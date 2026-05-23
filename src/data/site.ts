@@ -30,49 +30,50 @@ export type Capability = {
 
 export const navItems: NavItem[] = [
   { label: 'Services', href: '#services' },
-  { label: 'About', href: '#about' },
-  { label: 'Vision', href: '#vision' },
+  { label: 'Pricing', href: '#pricing' },
+  { label: 'Why Stone', href: '#about' },
+  { label: 'Future Vision', href: '#vision' },
   { label: 'Contact', href: '#contact' },
 ]
 
 export const services: Service[] = [
   {
-    title: 'IT Help Desk',
+    title: 'Same-Day Tech Cleanup',
     description:
-      'Responsive operational support for users, devices, and everyday technical issues, with clear escalation, dependable follow-through, and communication suitable for support environments.',
+      'Virus pop-ups, slow laptops, Android cleanup, browser hijacks, updates, basic security hardening, and general troubleshooting for people who need their device usable again.',
     icon: Headset,
   },
   {
-    title: 'Web Development',
+    title: '24-Hour Business Websites',
     description:
-      'Practical web systems, internal tools, and client-facing sites built for maintainability, clear requirements, and dependable delivery rather than design novelty.',
+      'Fast one-page websites for local vendors, barbers, food trucks, mobile detailers, restaurants, creators, contractors, and service businesses that need a real link to send customers.',
     icon: Globe,
   },
   {
-    title: 'Logistics Planning & Coordination',
+    title: 'Wi-Fi, Printer & POS Support',
     description:
-      'Structured planning and coordination support for teams that depend on timing, accountability, documentation, and reliable movement across multiple operational inputs.',
+      'Practical help for home offices and small businesses, including Wi-Fi checks, printer issues, basic POS support, documentation, and setup cleanup.',
     icon: Map,
   },
 ]
 
 export const credibilitySignals: Capability[] = [
   {
-    title: 'Execution over theory',
+    title: 'IT support background',
     description:
-      'Stone Industries is built around practical execution, disciplined follow-through, and the kind of consistency that helps clients move work forward with confidence.',
+      'Stone Industries is led by Edward Stone, an IT support professional with hands-on experience across user support, Windows troubleshooting, Microsoft 365, device management, and documentation.',
     icon: ShieldCheck,
   },
   {
     title: 'Veteran-led discipline',
     description:
-      'Our operating posture reflects veteran-led discipline: direct communication, respect for responsibility, and a preference for dependable results over inflated claims.',
+      'The operating style is direct: show up, define the problem, fix what can be fixed, document the next step, and avoid inflated promises.',
     icon: Cpu,
   },
   {
-    title: 'Long-range capability building',
+    title: 'Built for small business speed',
     description:
-      'We focus on support, infrastructure, and planning work that is useful now while steadily building technical maturity for more advanced autonomous and resilient systems later.',
+      'The current focus is not enterprise consulting theater. It is fast, practical service work for local businesses that need a cleaner website, working tech, and a better customer path now.',
     icon: BriefcaseBusiness,
   },
 ]
