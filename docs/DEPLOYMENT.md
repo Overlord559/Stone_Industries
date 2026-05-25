@@ -5,89 +5,135 @@
 
 ---
 
-## Current — GitHub Pages
+## Current — GitHub Pages (production today)
 
 | Item | Value |
 |------|-------|
 | **Workflow** | `.github/workflows/deploy.yml` |
 | **Trigger** | Push to `main` or manual `workflow_dispatch` |
 | **Live URL** | https://overlord559.github.io/Stone_Industries/ |
-| **Base path** | `/Stone_Industries/` (default in `vite.config.ts`) |
+| **Base path** | `/Stone_Industries/` (default when `VITE_BASE_PATH` unset) |
+| **Build** | `npm ci` + `npm run build` → artifact `./dist` |
 
-Build uses `npm ci` + `npm run build`; artifact uploaded from `./dist`.
+GitHub Actions does **not** set `VITE_BASE_PATH` — build uses default `/Stone_Industries/`. **Do not change the default** in `vite.config.ts` unless operator approves a GitHub Pages migration.
 
 ---
 
-## Future — Vercel
+## Vercel — free tier (ready to import)
 
-**Status:** Planned — not primary yet.
+**Status:** Code-compatible; operator import pending.
+
+### One-time Vercel setup
 
 | Step | Action |
 |------|--------|
-| 1 | Import GitHub repo in Vercel (free tier) |
-| 2 | Set build command: `npm run build` |
-| 3 | Set output directory: `dist` |
-| 4 | Set env `VITE_BASE_PATH=/` (root deploy) **or** match subdirectory if using path |
-| 5 | Update `index.html` og:url meta if domain changes |
-| 6 | Run full [`QA_CHECKLIST.md`](QA_CHECKLIST.md) on preview URL |
+| 1 | Sign in at [vercel.com](https://vercel.com) (free Hobby) |
+| 2 | **Add New Project** → Import GitHub repo `stone_industries website` |
+| 3 | Framework preset: **Vite** |
+| 4 | Build command: `npm run build` |
+| 5 | Output directory: `dist` |
+| 6 | Install command: `npm ci` (or `npm install`) |
+| 7 | **Environment variable (Production + Preview):** `VITE_BASE_PATH` = `/` |
+| 8 | Deploy → note preview URL (`*.vercel.app`) |
 
-**Do not** switch hosts without updating base path docs and running production asset path checks.
+### Post-Vercel deploy checklist
+
+- [ ] Homepage loads — assets 200 in Network tab
+- [ ] Background WebP loads (preload uses `%BASE_URL%` — works for `/` and `/Stone_Industries/`)
+- [ ] Mailto + `tel:+15595799376` work
+- [ ] `privacy.html`, `terms.html`, `capability-brief.html` load at `{base}privacy.html`
+- [ ] Mobile 375px spot check
+- [ ] Update `index.html` `og:url` and `og:image` / `twitter:image` to Vercel URL **when Vercel becomes primary marketing URL**
+
+---
+
+## Dual-host compatibility plan
+
+| Host | `VITE_BASE_PATH` | Asset URLs | CI / config |
+|------|------------------|------------|-------------|
+| **GitHub Pages** | `/Stone_Industries/` (default) | `/Stone_Industries/assets/...` | No env in workflow — keep default |
+| **Vercel** | `/` | `/assets/...` | Set in Vercel project env |
+
+**`vite.config.ts`** — no change required:
+
+```ts
+const repoBasePath = process.env.VITE_BASE_PATH ?? '/Stone_Industries/'
+base: mode === 'production' ? repoBasePath : '/',
+```
+
+**`index.html`** — hero preload uses Vite `%BASE_URL%` placeholder (GitHub + Vercel safe).
+
+**`import.meta.env.BASE_URL`** — used by `capabilityBriefPath` in `site.ts` for runtime links.
+
+### Running both hosts
+
+- **GitHub Pages** remains live on every push to `main` until operator chooses otherwise.
+- **Vercel** can run in parallel on the same repo with `VITE_BASE_PATH=/`.
+- **Canonical URL:** Pick one primary host for SEO; update `og:url` in `index.html` on cutover. Until then, `og:url` stays GitHub Pages (accurate for current production).
+
+### Local production preview
+
+```powershell
+cd "C:\dev\stone_industries website"
+
+# GitHub Pages parity
+Copy-Item .env.example .env.local -ErrorAction SilentlyContinue
+npm run build
+npm run preview
+
+# Vercel parity
+$env:VITE_BASE_PATH="/"
+npm run build
+npm run preview
+```
 
 ---
 
 ## Vite base path caution
 
-```ts
-// vite.config.ts
-const repoBasePath = process.env.VITE_BASE_PATH ?? '/Stone_Industries/'
-```
+Wrong `VITE_BASE_PATH` → blank page or 404 assets. Always smoke-test after host or env change.
 
-| Host | Typical `VITE_BASE_PATH` |
-|------|--------------------------|
+| Host | `VITE_BASE_PATH` |
+|------|------------------|
 | GitHub Pages (this repo) | `/Stone_Industries/` |
 | Vercel root | `/` |
 | Custom domain at root | `/` |
 
-Wrong base path → blank page or 404 assets. Always smoke-test CSS/background URLs after change.
+---
 
-Local override: copy `.env.example` to `.env.local`.
+## Free deployment plan (no paid services)
+
+1. **GitHub Pages** — current production, $0
+2. **Vercel Hobby** — preview + optional production, $0
+3. **Domain** — deferred (no budget)
+4. **Dedicated business phone** — deferred; `559-579-9376` on site today
+5. **Google Business Profile** — operator task post-deploy
 
 ---
 
-## Free deployment plan
+## Service area (SEO note)
 
-1. **GitHub Pages** — current, $0
-2. **Vercel** — free hobby tier for preview + production
-3. **Domain** — deferred (no budget) — use GitHub/Vercel URLs until purchased
-4. **Phone / Google Business** — deferred until budget; number already on site
+Primary market: **Fresno & Central Valley, California** — copy in `src/data/site.ts`, Hero, Contact, and meta tags. No street address or fake office.
+
+**Follow-up (out of this pass):** `public/capability-brief.html` still references Sacramento — update in a separate scoped pass if operator wants NAP consistency everywhere.
 
 ---
 
 ## Post-deploy smoke test
 
-After any deploy:
-
 - [ ] Homepage loads — not 404
-- [ ] Background images load (check Network tab)
-- [ ] One mailto link opens mail client with subject
-- [ ] Privacy and terms links work with correct base path
-- [ ] Mobile 375px spot check
-- [ ] Compare live URL to [`QA_CHECKLIST.md`](QA_CHECKLIST.md) P0 items
+- [ ] Background images load
+- [ ] Service area visible in hero/contact
+- [ ] Mailto opens with subject
+- [ ] Privacy / terms / capability brief load with correct base
+- [ ] 375px mobile check
+
+See [`QA_CHECKLIST.md`](QA_CHECKLIST.md).
 
 ---
 
-## Commit / push caution
+## Git safety
 
-Agents do **not** commit or push unless operator approves.
+Agents do **not** commit, push, or stage unless operator approves. Stage **exact paths** only — never `git add .`
 
-When approved, stage **exact paths** only — never `git add .`
-
-Example (docs only):
-
-```powershell
-cd "C:\dev\stone_industries website"
-git add AGENTS.md docs/PROJECT_CONTEXT.md docs/CHATGPT_CURSOR_BRIDGE.md docs/PROMPT_TEMPLATE.md docs/LEARNING_LOOP.md docs/DESIGN_MISTAKE_LEDGER.md docs/QA_CHECKLIST.md docs/DEPLOYMENT.md
-git status --short
-```
-
-Runtime deploy happens on push to `main` — confirm operator intent before pushing runtime changes.
+Pushing runtime to `main` triggers GitHub Pages deploy — confirm intent first.

@@ -49,6 +49,15 @@ export const contactEmail = 'stoneindustries0.llc@gmail.com'
 export const contactPhone = '559-579-9376'
 export const contactPhoneHref = 'tel:+15595799376'
 
+export const serviceAreaPrimary = 'Fresno & Central Valley, California'
+export const serviceAreaShort = 'Fresno / Central Valley'
+export const serviceAreaContactLabel = 'Fresno & Central Valley, CA'
+export const serviceAreaOnSite =
+  'On-site support in the Fresno area and greater Central Valley when scheduling allows.'
+export const serviceAreaRemote =
+  'Remote support available for websites, AI workflow setup, and logistics coordination.'
+export const serviceAreaSeoPhrase = 'Fresno and Central Valley, California'
+
 export const navItems: NavItem[] = [
   { label: 'Services', href: '#services' },
   { label: 'About', href: '#about' },
@@ -235,6 +244,7 @@ export const futureVision: RoadmapCapability[] = [
 ]
 
 export const trustChips = [
+  'Fresno & Central Valley service area',
   'Veteran-led discipline',
   'Direct small-business support',
   'Subcontracting inquiries welcome',
@@ -242,7 +252,7 @@ export const trustChips = [
 ] as const
 
 export const inquiryBodyTemplate = `What I need:
-Location (on-site or remote):
+Location (city/area — on-site or remote):
 Timeline/deadline:
 Photos/screenshots (if relevant):
 Best callback time:

@@ -70,14 +70,26 @@ Do not move these into Current Services without operator approval and realistic 
 
 ---
 
-## Current next business tasks (not code)
+## Service area
 
-| Priority | Task | Blocker |
-|----------|------|---------|
-| 1 | **Vercel deploy** | Free tier OK; set `VITE_BASE_PATH=/` for Vercel |
-| 2 | **Fresno service-area update** | Copy/SEO pass in site data + meta |
-| 3 | **Phone / contact setup** | Deferred — limited budget; number exists in site data |
-| 4 | **Local SEO** | Google Business Profile, service-area pages — post-deploy |
+**Primary market:** Fresno & Central Valley, California (on-site when scheduling allows; remote for web/AI/logistics).
+
+Source of truth: [`src/data/site.ts`](../src/data/site.ts) — `serviceAreaPrimary`, `serviceAreaOnSite`, `serviceAreaRemote`.
+
+**No street address or fake office** — service-area positioning only.
+
+---
+
+## Current next business tasks
+
+| Priority | Task | Status |
+|----------|------|--------|
+| 1 | **Fresno service-area copy + meta** | Done in site data, Hero, Contact, `index.html` |
+| 2 | **Vercel free deploy prep** | Code-ready — operator imports repo; set `VITE_BASE_PATH=/` |
+| 3 | **Operator Vercel import + smoke test** | Pending |
+| 4 | **Google Business Profile / local SEO** | Pending — post-deploy, operator |
+| 5 | **Phone / paid domain** | Deferred — budget |
+| 6 | **Capability brief NAP sync** | Optional follow-up — brief still mentions Sacramento |
 
 ---
 

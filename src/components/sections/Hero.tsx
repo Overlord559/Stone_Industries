@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { ArrowRight, FileText, Shield, Waypoints } from 'lucide-react'
-import { buildMailto, capabilityBriefPath } from '../../data/site'
+import { buildMailto, capabilityBriefPath, serviceAreaOnSite, serviceAreaPrimary } from '../../data/site'
 
 const serviceInquiryMailto = buildMailto('Service Inquiry — Stone Industries')
 
@@ -39,6 +39,10 @@ export function Hero() {
           </p>
           <p className="mt-5 text-sm font-medium uppercase tracking-[0.32em] text-slate-400">
             Reliable Today. Autonomous Tomorrow.
+          </p>
+          <p className="mt-3 max-w-2xl text-sm leading-6 text-slate-400">
+            <span className="font-medium text-slate-300">Service area:</span> {serviceAreaPrimary}.{' '}
+            {serviceAreaOnSite}
           </p>
           <div className="mt-6 flex flex-wrap gap-2">
             {[
