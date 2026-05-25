@@ -21,10 +21,33 @@
 
 | Blocker | Owner | Unblock |
 |---------|-------|---------|
-| Fresno service-area copy | Next Standard prompt | `site.ts` + meta |
-| Vercel not configured | Operator + deploy doc | Import repo, set `VITE_BASE_PATH=/` |
+| Vercel operator import | Operator | Import repo; `VITE_BASE_PATH=/` |
 | GBP / local SEO | Operator | Time + account |
-| Paid domain/phone | Budget | Deferred |
+| Paid domain / Stripe Payment Links setup | Budget | Friday/Monday if funds |
+| Supabase free tier full | Operator | Pause unused project or defer DB |
+
+---
+
+## Next ship milestones
+
+| Milestone | Status |
+|-----------|--------|
+| M1 | Project OS v2 docs — done |
+| M2 | Fresno service area — done |
+| M3 | Static pricing funnel — done |
+| M4 | Vercel preview + smoke test — operator |
+| M5 | First paid customer via manual quote — operator |
+| M6 | GBP + local SEO — operator |
+
+---
+
+## Backend deferral (this week)
+
+| System | Decision | When |
+|--------|----------|------|
+| Supabase | **DEFER** — free projects maxed; no intake DB need yet | After repeat inquiries or Friday/Monday budget |
+| Stripe custom checkout | **DEFER** — use Payment Link after quote manually | When packages repeat |
+| Vercel free | **BUILD** — operator import now | This week |
 
 ---
 
@@ -35,17 +58,6 @@
 3. **WIP visibility** — report dirty `src/` files; do not silent-fix unrelated
 4. **Handoff Update** after every Standard/Major pass
 5. **Exact-path commits** — separate docs commits from runtime when possible
-
----
-
-## Next ship milestones
-
-| Milestone | Type |
-|-----------|------|
-| M1 | Project OS v2 docs committed |
-| M2 | Fresno + mobile CTA Standard pass |
-| M3 | Vercel preview + smoke test |
-| M4 | GBP + local SEO (operator) |
 
 ---
 

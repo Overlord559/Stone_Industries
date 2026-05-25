@@ -76,6 +76,22 @@
 
 ---
 
+## STONE-007 — Service CTAs need pricing/detail pages before backend
+
+| Field | Value |
+|-------|-------|
+| **Severity** | STRONG_RULE |
+| **Factory link** | DESIGN-029 |
+| **Status** | ACTIVE |
+
+**Problem:** Premium service sites with mailto-only CTAs dead-end without package context — buyers bounce before quoting.
+
+**Rule:** Every current service gets a static pricing/detail page. Homepage card primary CTA → detail page; mailto secondary. Build static funnel before Supabase/Stripe.
+
+**QA check:** No service card mailto-only without detail page link.
+
+---
+
 ## STONE-006 — Practical AI service naming
 
 | Field | Value |

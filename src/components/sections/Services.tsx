@@ -14,8 +14,8 @@ export function Services() {
       <div className="flex flex-col gap-8 lg:flex-row lg:items-start lg:justify-between lg:gap-10">
         <SectionHeading
           eyebrow="Current Services"
-          title="Quote-based packages you can inquire about today."
-          description="These are current offerings—not roadmap concepts. Each package is scoped before work begins. Pricing is quote-based and confirmed up front."
+          title="Quote-based packages with starting prices you can review today."
+          description="These are current offerings—not roadmap concepts. Each card links to a pricing page with packages, scope, and what is not included. Final quote confirmed before work begins."
         />
         <div className="hidden shrink-0 self-start lg:block">
           <InteractiveOrbAccent
@@ -64,14 +64,23 @@ export function Services() {
               </ul>
               <div className="mt-8 h-px w-full bg-gradient-to-r from-white/12 via-white/6 to-transparent" />
               <p className="mt-5 text-sm font-medium text-slate-400">{service.tag}</p>
+              <p className="mt-2 text-sm font-semibold text-cyan-200/90">{service.startingAtLabel}</p>
               <p className="mt-2 text-sm text-slate-500">{service.pricingNote}</p>
-              <a
-                href={buildMailto(service.inquirySubject)}
-                className="si-secondary-cta mt-6 inline-flex w-fit items-center gap-2 rounded-full border border-white/15 bg-white/5 px-5 py-2.5 text-sm font-semibold !text-white transition hover:bg-white/10 hover:!text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 [&_svg]:!stroke-white"
-              >
-                {service.inquiryLabel}
-                <ArrowRight size={15} />
-              </a>
+              <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+                <a
+                  href={service.detailPagePath}
+                  className="si-primary-cta inline-flex w-fit items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-semibold !text-slate-950 transition hover:bg-slate-200 hover:!text-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 [&_svg]:!stroke-slate-950"
+                >
+                  {service.pricingPageLabel}
+                  <ArrowRight size={15} />
+                </a>
+                <a
+                  href={buildMailto(service.inquirySubject)}
+                  className="si-secondary-cta inline-flex w-fit items-center gap-2 rounded-full border border-white/15 bg-white/5 px-5 py-2.5 text-sm font-semibold !text-white transition hover:bg-white/10 hover:!text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 [&_svg]:!stroke-white"
+                >
+                  {service.inquiryLabel}
+                </a>
+              </div>
             </motion.article>
           )
         })}

@@ -84,12 +84,12 @@ Source of truth: [`src/data/site.ts`](../src/data/site.ts) — `serviceAreaPrima
 
 | Priority | Task | Status |
 |----------|------|--------|
-| 1 | **Fresno service-area copy + meta** | Done in site data, Hero, Contact, `index.html` |
-| 2 | **Vercel free deploy prep** | Code-ready — operator imports repo; set `VITE_BASE_PATH=/` |
+| 1 | **Static pricing funnel** | Done — `pricing.html` + 5 service pages |
+| 2 | **Fresno service-area copy + meta** | Done |
 | 3 | **Operator Vercel import + smoke test** | Pending |
 | 4 | **Google Business Profile / local SEO** | Pending — post-deploy, operator |
-| 5 | **Phone / paid domain** | Deferred — budget |
-| 6 | **Capability brief NAP sync** | Optional follow-up — brief still mentions Sacramento |
+| 5 | **Phone / paid domain / Stripe Payment Links** | Deferred — budget (Fri/Mon) |
+| 6 | **Supabase intake DB** | Deferred — free tier maxed; validate demand first |
 
 ---
 

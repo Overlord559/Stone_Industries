@@ -113,9 +113,42 @@ Wrong `VITE_BASE_PATH` → blank page or 404 assets. Always smoke-test after hos
 
 ## Service area (SEO note)
 
-Primary market: **Fresno & Central Valley, California** — copy in `src/data/site.ts`, Hero, Contact, and meta tags. No street address or fake office.
+Primary market: **Fresno & Central Valley, California** — copy in `src/data/site.ts`, Hero, Contact, meta tags, and static pricing pages.
 
-**Follow-up (out of this pass):** `public/capability-brief.html` still references Sacramento — update in a separate scoped pass if operator wants NAP consistency everywhere.
+---
+
+## Static pricing funnel
+
+| Page | Purpose |
+|------|---------|
+| `public/pricing.html` | All starting packages |
+| `public/services.html` | Service index |
+| `public/services/*.html` | Per-service packages + mailto |
+
+No backend required. GitHub Pages + Vercel compatible via relative links and `%BASE_URL%` in React.
+
+---
+
+## Supabase / Stripe / Vercel plan
+
+### Supabase — **DEFER**
+
+- Operator free projects maxed
+- **Option A:** Pause/delete unused Supabase project and reuse slot
+- **Option B:** Wait until Friday/Monday if upgrading
+- **Option C (recommended now):** No database — mailto + manual follow-up validates demand first
+
+### Stripe — **DEFER custom integration**
+
+- No embedded checkout on static site
+- **Near-term:** Manual quote → Stripe Payment Link or invoice when operator has account
+- **Later:** Checkout only if standardized packages sell repeatedly
+
+### Vercel — **BUILD (operator)**
+
+- Free Hobby tier; set `VITE_BASE_PATH=/`
+- Keep GitHub Pages until Vercel smoke test passes
+- Custom domain deferred (no budget)
 
 ---
 

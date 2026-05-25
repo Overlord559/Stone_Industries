@@ -17,6 +17,18 @@ export function Footer() {
           <p className="text-slate-200">Reliable Today. Autonomous Tomorrow.</p>
           <div className="flex flex-wrap gap-x-4 gap-y-1 lg:justify-end">
             <a
+              href={`${legalBasePath}pricing.html`}
+              className="transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
+            >
+              Pricing
+            </a>
+            <a
+              href={`${legalBasePath}services.html`}
+              className="transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
+            >
+              Services
+            </a>
+            <a
               href={`${legalBasePath}capability-brief.html`}
               className="transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
             >

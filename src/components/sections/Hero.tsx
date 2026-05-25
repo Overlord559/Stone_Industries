@@ -1,8 +1,6 @@
 import { motion } from 'framer-motion'
 import { ArrowRight, FileText, Shield, Waypoints } from 'lucide-react'
-import { buildMailto, capabilityBriefPath, serviceAreaOnSite, serviceAreaPrimary } from '../../data/site'
-
-const serviceInquiryMailto = buildMailto('Service Inquiry — Stone Industries')
+import { capabilityBriefPath, pricingPagePath, serviceAreaOnSite, serviceAreaPrimary } from '../../data/site'
 
 export function Hero() {
   return (
@@ -62,10 +60,10 @@ export function Hero() {
           </div>
           <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center">
             <a
-              href={serviceInquiryMailto}
+              href={pricingPagePath}
               className="si-primary-cta inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold !text-slate-950 transition hover:bg-slate-200 hover:!text-slate-950 [&_svg]:!stroke-slate-950"
             >
-              Start Service Inquiry
+              View Pricing &amp; Packages
               <ArrowRight size={16} />
             </a>
             <a
@@ -84,8 +82,9 @@ export function Hero() {
             </a>
           </div>
           <p className="mt-4 max-w-2xl text-sm leading-6 text-slate-400">
-            Email to start a quote-based service inquiry, or read the static capability
-            brief for subcontracting outreach. No booking system on this site.
+            Browse starting packages and scope on the pricing pages, then email for a
+            confirmed quote. Capability brief available for subcontracting outreach. No
+            booking system on this site.
           </p>
 
           <div className="mt-5 max-w-2xl rounded-xl border border-cyan-400/20 bg-slate-900/28 px-4 py-3 backdrop-blur-sm si-section-glass">

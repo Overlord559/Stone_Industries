@@ -18,12 +18,13 @@
 
 ---
 
-## SEO tasks (next code pass)
+## SEO tasks
 
-1. Update title/meta for Fresno + Central Valley service area
-2. Consistent NAP: email + phone from `site.ts`
-3. `robots.txt` + sitemap if added — verify base path
-4. og:url matches active host (GitHub vs Vercel)
+1. ~~Update title/meta for Fresno + Central Valley~~ — done
+2. ~~Static pricing pages for local discovery~~ — done
+3. Consistent NAP: email + phone from `site.ts`
+4. Google Business Profile when operator ready
+5. `og:url` update when Vercel becomes primary host
 
 ---
 

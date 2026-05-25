@@ -18,13 +18,28 @@ export type NavItem = {
   href: string
 }
 
+export type ServiceTier = {
+  name: string
+  startingAt: string
+  summary: string
+  includes: string[]
+  notIncluded: string[]
+}
+
 export type Service = {
+  slug: string
   packageName: string
   title: string
   description: string
   tag: string
   scope: string[]
+  whoFor: string
+  startingAtLabel: string
   pricingNote: string
+  pricingTiers: ServiceTier[]
+  detailPath: string
+  detailPagePath: string
+  pricingPageLabel: string
   inquiryLabel: string
   inquirySubject: string
   icon: LucideIcon
@@ -60,89 +75,244 @@ export const serviceAreaSeoPhrase = 'Fresno and Central Valley, California'
 
 export const navItems: NavItem[] = [
   { label: 'Services', href: '#services' },
+  { label: 'Pricing', href: `${import.meta.env.BASE_URL}pricing.html` },
   { label: 'About', href: '#about' },
   { label: 'Vision', href: '#vision' },
   { label: 'Contact', href: '#contact' },
 ]
 
+export const pricingPagePath = `${import.meta.env.BASE_URL}pricing.html`
+export const servicesPagePath = `${import.meta.env.BASE_URL}services.html`
+
+export const pricingDisclaimer =
+  'Starting prices are guides only—not fixed guarantees. Final quote depends on scope, timeline, tools, location (on-site vs remote), and complexity.'
+
+export const paymentNote =
+  'No online checkout on this site. Payment details confirmed after quote. An online payment link can be provided when available.'
+
 export const services: Service[] = [
   {
+    slug: 'tech-cleanup',
     packageName: 'Tech Cleanup Sprint',
     title: 'Same-Day Tech Cleanup',
     description:
       'Device cleanup, virus and pop-up troubleshooting, and practical same-day support for users who need problems handled—not escalated into a ticket maze.',
     tag: 'For home offices, small teams, and urgent fix requests.',
+    whoFor: 'Home offices, small teams, and anyone with urgent pop-ups, slow devices, or basic cleanup needs.',
     scope: [
       'Virus, pop-up, and unwanted browser behavior cleanup',
       'Slow-device triage and basic troubleshooting',
       'Same-day or next-available support when scheduling allows',
     ],
-    pricingNote: 'Quote-based. Scope confirmed before work begins.',
-    inquiryLabel: 'Start Tech Cleanup Inquiry',
+    startingAtLabel: 'Packages from $49',
+    pricingNote: pricingDisclaimer,
+    pricingTiers: [
+      {
+        name: 'Quick Cleanup',
+        startingAt: 'Starting at $49',
+        summary: 'Remote triage and focused cleanup for one device.',
+        includes: ['Pop-up / unwanted software review', 'Browser cleanup guidance', 'Basic slow-device triage'],
+        notIncluded: ['Hardware repair', 'Full network redesign', 'Guaranteed same-hour response'],
+      },
+      {
+        name: 'Deep Cleanup',
+        startingAt: 'Starting at $99',
+        summary: 'More thorough cleanup with follow-up notes.',
+        includes: ['Deeper device cleanup session', 'Startup item / nuisance software review', 'Written recap of what changed'],
+        notIncluded: ['New hardware', 'Enterprise security contracts', 'Ongoing unlimited support'],
+      },
+      {
+        name: 'Urgent / On-site',
+        startingAt: 'Starting at $149 · quote-based',
+        summary: 'Priority help in the Fresno / Central Valley area when scheduling allows.',
+        includes: ['On-site visit when available', 'Hands-on troubleshooting', 'Scope confirmed before work begins'],
+        notIncluded: ['24/7 guaranteed availability', 'After-hours without prior agreement'],
+      },
+    ],
+    detailPath: 'services/tech-cleanup.html',
+    detailPagePath: `${import.meta.env.BASE_URL}services/tech-cleanup.html`,
+    pricingPageLabel: 'View Tech Cleanup Pricing',
+    inquiryLabel: 'Email Tech Cleanup Inquiry',
     inquirySubject: 'Tech Cleanup Inquiry — Stone Industries',
     icon: Wrench,
   },
   {
+    slug: 'business-websites',
     packageName: '24-Hour Website Launch',
     title: '24-Hour Business Websites',
     description:
       'Focused one-page sites for local vendors, contractors, and service businesses that need a credible web presence launched quickly with clear scope and maintainable delivery.',
     tag: 'For local businesses that need to look professional fast.',
+    whoFor: 'Local vendors, contractors, and service businesses that need a credible one-page presence fast.',
     scope: [
       'One-page business site with clear contact path',
       'Local vendors, contractors, and service businesses',
       'Fast launch with defined content and revision boundaries',
     ],
-    pricingNote: 'Quote-based. Final scope and timeline confirmed before build.',
-    inquiryLabel: 'Start Website Inquiry',
+    startingAtLabel: 'Packages from $199',
+    pricingNote: pricingDisclaimer,
+    pricingTiers: [
+      {
+        name: 'One-Page Launch',
+        startingAt: 'Starting at $199',
+        summary: 'Simple one-page site with contact path and mobile-friendly layout.',
+        includes: ['One-page layout', 'Contact / inquiry path', 'Basic launch checklist'],
+        notIncluded: ['Unlimited revisions', 'Custom ecommerce', 'Copywriting for every section unless scoped'],
+      },
+      {
+        name: 'Local Business Site',
+        startingAt: 'Starting at $399',
+        summary: 'Stronger one-page site with clearer service positioning.',
+        includes: ['Expanded one-page sections', 'Service / offer clarity', 'Launch + handoff notes'],
+        notIncluded: ['Multi-page CMS', 'Booking backend', 'Ongoing monthly edits without agreement'],
+      },
+      {
+        name: 'Premium / Fast Custom',
+        startingAt: 'Starting at $699+',
+        summary: 'Higher-touch launch when timeline and scope need more flexibility.',
+        includes: ['Custom section planning', 'Priority launch window when available', 'Defined revision rounds'],
+        notIncluded: ['Enterprise portal builds', 'Unlimited future changes'],
+      },
+    ],
+    detailPath: 'services/business-websites.html',
+    detailPagePath: `${import.meta.env.BASE_URL}services/business-websites.html`,
+    pricingPageLabel: 'View Website Packages',
+    inquiryLabel: 'Email Website Inquiry',
     inquirySubject: 'Website Launch Inquiry — Stone Industries',
     icon: Globe,
   },
   {
+    slug: 'wifi-printer-pos',
     packageName: 'Small Business Tech Support',
     title: 'Wi-Fi, Printer & POS Support',
     description:
       'Setup, cleanup, and basic troubleshooting for small-business networks, printers, and point-of-sale environments where downtime directly affects revenue.',
     tag: 'For shops, offices, and operators who depend on working tech daily.',
+    whoFor: 'Shops, offices, and operators who need working Wi-Fi, printers, or basic POS environments.',
     scope: [
       'Wi-Fi setup, cleanup, and basic troubleshooting',
       'Printer setup and recurring issue triage',
       'Basic POS environment support and cleanup',
     ],
-    pricingNote: 'Quote-based. On-site vs remote confirmed up front.',
-    inquiryLabel: 'Start Tech Support Inquiry',
+    startingAtLabel: 'Packages from $49',
+    pricingNote: pricingDisclaimer,
+    pricingTiers: [
+      {
+        name: 'Remote / Basic Setup',
+        startingAt: 'Starting at $49',
+        summary: 'Remote guidance or light cleanup for one issue area.',
+        includes: ['Remote triage', 'Basic setup guidance', 'Next-step recommendations'],
+        notIncluded: ['New hardware purchase', 'ISP contract negotiation', 'Full cabling project'],
+      },
+      {
+        name: 'On-site Setup',
+        startingAt: 'Starting at $99',
+        summary: 'Hands-on setup in the Fresno / Central Valley when scheduling allows.',
+        includes: ['On-site Wi-Fi or printer setup', 'Basic verification testing', 'Operator walkthrough'],
+        notIncluded: ['Enterprise network design', 'After-hours emergency SLA'],
+      },
+      {
+        name: 'Small Business Tech Visit',
+        startingAt: 'Starting at $149+',
+        summary: 'Broader visit for mixed Wi-Fi, printer, and POS cleanup needs.',
+        includes: ['Multi-issue triage visit', 'Documented findings', 'Quote for follow-up if needed'],
+        notIncluded: ['Full POS vendor contract work without scope review'],
+      },
+    ],
+    detailPath: 'services/wifi-printer-pos.html',
+    detailPagePath: `${import.meta.env.BASE_URL}services/wifi-printer-pos.html`,
+    pricingPageLabel: 'View Wi-Fi / POS Support',
+    inquiryLabel: 'Email Tech Support Inquiry',
     inquirySubject: 'Tech Support Inquiry — Stone Industries',
     icon: Wifi,
   },
   {
+    slug: 'logistics-coordination',
     packageName: 'Logistics Coordination Support',
     title: 'Logistics Coordination',
     description:
       'Planning support, coordination, documentation, and operational follow-through for teams that need timing, accountability, and reliable movement across multiple inputs.',
     tag: 'For teams and partners that need structured coordination support.',
+    whoFor: 'Teams, vendors, and partners that need planning, documentation, and follow-through—not autonomous logistics software.',
     scope: [
       'Planning support and vendor coordination',
       'Documentation and operational follow-through',
       'Subcontracting or scoped coordination inquiries',
     ],
-    pricingNote: 'Quote-based. Deliverables and timeline defined before engagement.',
-    inquiryLabel: 'Start Logistics Inquiry',
+    startingAtLabel: 'Packages from $150',
+    pricingNote: pricingDisclaimer,
+    pricingTiers: [
+      {
+        name: 'Coordination Sprint',
+        startingAt: 'Starting at $150',
+        summary: 'Short coordination push with clear deliverables.',
+        includes: ['Planning session / checklist', 'Vendor or task coordination', 'Status recap'],
+        notIncluded: ['Autonomous logistics platform', 'Guaranteed contract outcomes'],
+      },
+      {
+        name: 'Documentation / Follow-up Package',
+        startingAt: 'Starting at $250',
+        summary: 'Structured documentation and follow-through over a defined window.',
+        includes: ['Documentation templates', 'Follow-up tracking', 'Handoff summary'],
+        notIncluded: ['Full program management retainer unless scoped'],
+      },
+      {
+        name: 'Subcontractor Support',
+        startingAt: 'Quote-based',
+        summary: 'Scoped support for prime/subcontracting coordination inquiries.',
+        includes: ['Scope-defined coordination tasks', 'Written deliverables', 'Honest capability boundaries'],
+        notIncluded: ['Implied contract wins', 'Past performance claims not documented'],
+      },
+    ],
+    detailPath: 'services/logistics-coordination.html',
+    detailPagePath: `${import.meta.env.BASE_URL}services/logistics-coordination.html`,
+    pricingPageLabel: 'View Logistics Support',
+    inquiryLabel: 'Email Logistics Inquiry',
     inquirySubject: 'Logistics Coordination Inquiry — Stone Industries',
     icon: Map,
   },
   {
+    slug: 'ai-workflow-automation',
     packageName: 'AI Workflow Setup',
     title: 'AI Workflow Automation',
     description:
       'Practical AI automation for small businesses—intake helpers, document drafts, and repeatable workflow steps with human review, not unsupervised “autonomous agents.”',
     tag: 'For operators who want guarded automation with clear approval steps.',
+    whoFor: 'Operators who want practical automation with human review—not unsupervised “agentic” systems.',
     scope: [
       'Connect email, forms, spreadsheets, and website contact paths into simple automated workflows',
       'Set up guarded AI assistants for intake, FAQs, and internal checklists with clear human handoff',
       'Document what runs automatically, what needs approval, and how to maintain it',
     ],
-    pricingNote: 'Quote-based. Scope, tools, and privacy boundaries confirmed before setup.',
-    inquiryLabel: 'Start AI Workflow Inquiry',
+    startingAtLabel: 'Packages from $99',
+    pricingNote: pricingDisclaimer,
+    pricingTiers: [
+      {
+        name: 'Workflow Audit',
+        startingAt: 'Starting at $99',
+        summary: 'Review current tools and recommend realistic automation steps.',
+        includes: ['Tool / workflow review', 'Human-in-loop recommendations', 'Priority list you can act on'],
+        notIncluded: ['Unsupervised autonomous agents', 'Enterprise RAG build', 'Guaranteed ROI'],
+      },
+      {
+        name: 'AI Intake / FAQ Setup',
+        startingAt: 'Starting at $250',
+        summary: 'Guarded intake or FAQ helpers with approval steps documented.',
+        includes: ['Intake or FAQ workflow setup', 'Human review checkpoints', 'Maintenance notes'],
+        notIncluded: ['24/7 unsupervised AI ops', 'Compliance certifications not in scope'],
+      },
+      {
+        name: 'Custom AI Workflow Setup',
+        startingAt: 'Starting at $500+',
+        summary: 'Custom workflow connections across tools you already use.',
+        includes: ['Multi-step workflow mapping', 'Setup with approval gates', 'Operator handoff documentation'],
+        notIncluded: ['Autonomous logistics or defense-grade autonomy claims'],
+      },
+    ],
+    detailPath: 'services/ai-workflow-automation.html',
+    detailPagePath: `${import.meta.env.BASE_URL}services/ai-workflow-automation.html`,
+    pricingPageLabel: 'View AI Workflow Packages',
+    inquiryLabel: 'Email AI Workflow Inquiry',
     inquirySubject: 'AI Workflow Inquiry — Stone Industries',
     icon: Bot,
   },

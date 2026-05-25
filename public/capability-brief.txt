@@ -49,7 +49,7 @@ FUTURE ROADMAP (NOT SOLD TODAY)
 CONTACT (FASTEST RESPONSE: EMAIL OR CALL)
 Email: stoneindustries0.llc@gmail.com
 Phone: 559-579-9376
-Location: Sacramento, California (on-site scope confirmed case by case)
+Location: Fresno & Central Valley, California — on-site when scheduling allows; remote support available where appropriate
 
 INCLUDE IN YOUR MESSAGE
 - Inquiry type (tech cleanup, website, tech support, AI workflow, logistics, subcontracting)
@@ -68,4 +68,6 @@ HONEST LIMITATIONS
 
 WEB
 Homepage: https://overlord559.github.io/Stone_Industries/
+Pricing: pricing.html
+Services: services.html
 HTML brief: capability-brief.html
