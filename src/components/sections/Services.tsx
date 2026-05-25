@@ -8,11 +8,11 @@ export function Services() {
       <div className="pointer-events-none absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-white/15 to-transparent lg:inset-x-10" />
       <SectionHeading
         eyebrow="Current Services"
-        title="Current service lines built for reliable support, delivery, and coordination."
-        description="Our present capabilities are practical by design: support functions clients can use immediately, with clear communication, defined work, and dependable execution."
+        title="Practical service lines you can contact Stone Industries for today."
+        description="These are current offerings—not roadmap concepts. Each line is scoped for dependable delivery, clear communication, and work that holds up in real operating conditions."
       />
 
-      <div className="mt-14 grid gap-6 lg:grid-cols-3">
+      <div className="mt-14 grid gap-6 md:grid-cols-2">
         {services.map((service, index) => {
           const Icon = service.icon
 
@@ -37,7 +37,7 @@ export function Services() {
               </p>
               <div className="mt-8 h-px w-full bg-gradient-to-r from-white/12 via-white/6 to-transparent" />
               <p className="mt-5 text-sm font-medium text-slate-400">
-                Built for dependable delivery, clear client communication, and subcontract-ready support environments.
+                {service.tag}
               </p>
             </motion.article>
           )

@@ -21,20 +21,35 @@ export function Hero() {
           </p>
           <div className="inline-flex w-fit items-center gap-2 rounded-full border border-cyan-400/20 bg-cyan-400/10 px-4 py-2 text-xs font-medium uppercase tracking-[0.28em] text-cyan-100">
             <Shield size={14} />
-            Operational support. Disciplined execution.
+            Veteran-led. Practical services. Disciplined execution.
           </div>
-          <h1 className="mt-7 max-w-4xl font-display text-6xl font-semibold tracking-[-0.065em] text-white sm:text-7xl lg:text-[5.5rem] lg:leading-[0.93]">
-            Reliable operational support now, with a disciplined path toward autonomous capability.
+          <h1 className="mt-7 max-w-4xl font-display text-4xl font-semibold tracking-[-0.065em] text-white sm:text-5xl lg:text-6xl lg:leading-[1.02]">
+            Veteran-led IT support, web development, and logistics coordination—delivered reliably today.
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300 sm:text-xl">
-            Stone Industries provides practical IT support, web development,
-            and logistics coordination for clients who need responsive delivery,
-            clear communication, and work that holds up in real operating
-            conditions, while building toward advanced autonomous systems over time.
+            Stone Industries helps local businesses, home offices, and subcontracting
+            partners with same-day tech cleanup, fast business websites, Wi-Fi and POS
+            support, and logistics coordination—while building toward autonomous
+            infrastructure responsibly over time.
           </p>
           <p className="mt-5 text-sm font-medium uppercase tracking-[0.32em] text-slate-400">
             Reliable Today. Autonomous Tomorrow.
           </p>
+          <div className="mt-6 flex flex-wrap gap-2">
+            {[
+              'Same-day tech cleanup',
+              '24-hour business websites',
+              'Wi-Fi & POS support',
+              'Logistics coordination',
+            ].map((label) => (
+              <span
+                key={label}
+                className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-xs font-medium text-slate-300"
+              >
+                {label}
+              </span>
+            ))}
+          </div>
           <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center">
             <a
               href="#contact"
@@ -53,9 +68,9 @@ export function Hero() {
           </div>
           <div className="mt-12 grid gap-6 border-t border-white/10 pt-8 sm:grid-cols-3">
             {[
-              ['Current focus', 'Support, delivery, and coordination work clients need executed reliably today.'],
-              ['Operating style', 'Direct communication, accountable follow-through, and practical execution over theory.'],
-              ['Long-term direction', 'DALRM, AI-assisted operations, autonomous logistics, and resilient infrastructure.'],
+              ['Available today', 'Tech cleanup, business websites, Wi-Fi and POS support, and logistics coordination for operators who need practical help now.'],
+              ['Who we serve', 'Local small businesses, home offices, and partners evaluating subcontracting or scoped operational support.'],
+              ['Future roadmap', 'DALRM, AI-assisted operations, and autonomous logistics—long-range direction, not current products.'],
             ].map(([title, copy]) => (
               <div key={title}>
                 <p className="text-xs font-semibold uppercase tracking-[0.32em] text-slate-500">
@@ -78,10 +93,10 @@ export function Hero() {
               Operating posture
             </p>
             <p className="mt-3 text-sm font-medium text-white">
-              Support environments demand responsiveness, documentation, and dependable delivery.
+              Practical support for businesses and partners who need responsive delivery today.
             </p>
             <p className="mt-2 text-sm leading-6 text-slate-300">
-              Stone Industries is positioned for practical service work now and disciplined capability building over time.
+              Same-day tech help, fast websites, Wi-Fi and POS cleanup, and logistics coordination—with a disciplined long-range roadmap, not hype.
             </p>
           </div>
           <Suspense

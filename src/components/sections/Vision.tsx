@@ -9,8 +9,8 @@ export function Vision() {
       <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr]">
         <SectionHeading
           eyebrow="Future Vision"
-          title="A future roadmap built on practical service delivery today."
-          description="Stone Industries is focused today on support, delivery, and coordination work. The longer-range roadmap includes DALRM, AI-assisted operations, autonomous logistics, and resilient infrastructure systems, but those are future-direction efforts rather than current offerings."
+          title="Long-range roadmap—not what Stone Industries sells today."
+          description="Stone Industries is focused today on support, delivery, and coordination work listed above. The items below are future-direction research areas. They are not deployed products, certifications, or current contract offerings."
         />
 
         <div className="grid gap-5 md:grid-cols-3">
@@ -26,7 +26,10 @@ export function Vision() {
                 transition={{ duration: 0.5, delay: index * 0.08 }}
                 className="rounded-[1.5rem] border border-cyan-400/15 bg-[linear-gradient(180deg,rgba(34,211,238,0.06),rgba(34,211,238,0.03))] p-6"
               >
-                <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-cyan-400/20 bg-slate-950/70 text-cyan-200">
+                <span className="inline-flex rounded-full border border-cyan-400/25 bg-cyan-400/10 px-2.5 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.24em] text-cyan-200">
+                  Future roadmap
+                </span>
+                <div className="mt-4 flex h-12 w-12 items-center justify-center rounded-2xl border border-cyan-400/20 bg-slate-950/70 text-cyan-200">
                   <Icon size={20} />
                 </div>
                 <h3 className="mt-6 font-display text-xl font-semibold tracking-[-0.03em] text-white">

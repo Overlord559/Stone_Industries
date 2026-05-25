@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { credibilitySignals } from '../../data/site'
+import { credibilitySignals, trustChips } from '../../data/site'
 import { SectionHeading } from '../ui/SectionHeading'
 
 export function About() {
@@ -13,9 +13,19 @@ export function About() {
         <div className="space-y-8">
           <SectionHeading
             eyebrow="About"
-            title="Grounded, disciplined, and built to earn trust through execution."
-            description="Stone Industries is an early-stage company with an operator-minded posture: practical work, consistent follow-through, and a long-range commitment to building credible capability rather than selling vision ahead of delivery."
+            title="Grounded, veteran-led, and built to earn trust through execution."
+            description="Stone Industries is an early-stage company with an operator-minded posture: practical services for local businesses and partners today, consistent follow-through, and a long-range commitment to building credible capability—not selling vision ahead of delivery."
           />
+          <div className="flex flex-wrap gap-2">
+            {trustChips.map((chip) => (
+              <span
+                key={chip}
+                className="rounded-full border border-cyan-400/20 bg-cyan-400/10 px-3 py-1.5 text-xs font-medium text-cyan-100"
+              >
+                {chip}
+              </span>
+            ))}
+          </div>
           <div className="rounded-[1.75rem] border border-white/10 bg-slate-950/80 p-8">
             <p className="text-xs font-semibold uppercase tracking-[0.32em] text-cyan-300/80">
               Company standard
@@ -24,7 +34,9 @@ export function About() {
               Reliable Today. Autonomous Tomorrow.
             </p>
             <p className="mt-4 max-w-xl text-base leading-7 text-slate-300">
-              That standard reflects how we intend to operate: deliver useful support work now, build trust through consistency, and expand capability responsibly over time.
+              That standard reflects how we operate: deliver useful support work now,
+              serve local businesses and subcontracting partners honestly, and expand
+              capability responsibly over time.
             </p>
           </div>
         </div>

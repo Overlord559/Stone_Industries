@@ -33,8 +33,8 @@ export function Contact() {
         <div className="space-y-8">
           <SectionHeading
             eyebrow="Contact"
-            title="A practical entry point for direct support and subcontracting discussions."
-            description="If you need responsive operational support, dependable delivery, or a grounded starting point for scoped work, Stone Industries is available for direct contact and serious business conversations."
+            title="Direct contact for support, websites, subcontracting, or logistics coordination."
+            description="For IT support, small-business websites, Wi-Fi and POS help, subcontracting discussions, or logistics coordination inquiries, contact Stone Industries directly by email or phone. This site has no booking system or on-site forms—reach out and we will respond through your chosen channel."
           />
           <div className="rounded-[1.75rem] border border-white/10 bg-white/[0.04] p-6 shadow-[0_18px_60px_rgba(2,6,23,0.28)]">
             <p className="text-xs font-semibold uppercase tracking-[0.3em] text-cyan-300/85">
@@ -42,9 +42,9 @@ export function Contact() {
             </p>
             <div className="mt-5 grid gap-4 sm:grid-cols-3">
               {[
-                ['Direct contact', 'Reach Stone Industries directly by email or phone for support and subcontracting discussions.'],
-                ['Response-oriented', 'Conversations stay focused on operational needs, realistic scope, and practical next steps.'],
-                ['Professional follow-up', 'Responses are structured to move from inquiry to a workable path forward quickly.'],
+                ['Direct contact', 'Email or call Stone Industries for support, website work, subcontracting, or logistics coordination—no forms or booking flow on this site.'],
+                ['Clear scope', 'Conversations stay focused on what you need today, realistic timing, and practical next steps.'],
+                ['Honest follow-up', 'Responses aim to move from inquiry to a workable path forward without inflated promises.'],
               ].map(([title, copy]) => (
                 <div key={title} className="space-y-2">
                   <p className="text-sm font-semibold text-white">{title}</p>
