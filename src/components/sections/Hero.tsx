@@ -12,7 +12,7 @@ export function Hero() {
         className="pointer-events-none absolute inset-y-0 right-0 hidden w-[min(52%,32rem)] bg-[radial-gradient(ellipse_at_72%_36%,rgba(2,6,23,0.04),transparent_72%)] lg:block"
         aria-hidden="true"
       />
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-[linear-gradient(180deg,rgba(2,6,23,0),rgba(2,6,23,0.88))]" />
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-[linear-gradient(180deg,rgba(15,23,42,0),rgba(15,23,42,0.68))]" />
 
       <div className="relative mx-auto grid w-full max-w-7xl gap-12 px-6 py-20 lg:grid-cols-[1.05fr_0.95fr] lg:items-start lg:gap-10 lg:px-10 lg:py-28">
         <motion.div
@@ -84,7 +84,7 @@ export function Hero() {
             brief for subcontracting outreach. No booking system on this site.
           </p>
 
-          <div className="mt-5 max-w-2xl rounded-xl border border-cyan-400/15 bg-slate-950/35 px-4 py-3 backdrop-blur-sm">
+          <div className="mt-5 max-w-2xl rounded-xl border border-cyan-400/20 bg-slate-900/28 px-4 py-3 backdrop-blur-sm si-section-glass">
             <p className="text-[0.62rem] font-semibold uppercase tracking-[0.32em] text-cyan-300/75">
               Operating posture
             </p>

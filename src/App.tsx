@@ -16,10 +16,10 @@ const backgroundStyle = {
 function App() {
   return (
     <div
-      className="relative min-h-screen overflow-hidden bg-slate-950 text-slate-100"
+      className="relative min-h-screen overflow-hidden bg-slate-900 text-slate-100"
       style={backgroundStyle}
     >
-      <div className="pointer-events-none absolute inset-0 -z-20 bg-[radial-gradient(circle_at_top,_rgba(14,165,233,0.04),_transparent_26%)]" />
+      <div className="pointer-events-none absolute inset-0 -z-20 bg-[radial-gradient(circle_at_top,_rgba(14,165,233,0.07),_transparent_28%)]" />
       <Navbar />
       <main>
         <div className="relative isolate">

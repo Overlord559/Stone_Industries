@@ -7,7 +7,7 @@ export function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
 
   return (
-    <header className="sticky top-0 z-50 border-b border-white/10 bg-slate-950/80 backdrop-blur-xl">
+    <header className="sticky top-0 z-50 border-b border-white/[0.12] bg-slate-900/72 backdrop-blur-xl">
       <nav className="mx-auto flex w-full max-w-7xl items-center justify-between px-6 py-4 lg:px-10">
         <a
           href="#top"
@@ -70,7 +70,7 @@ export function Navbar() {
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
-            className="border-t border-white/10 bg-slate-950/95 px-6 py-5 md:hidden"
+            className="border-t border-white/[0.12] bg-slate-900/88 px-6 py-5 md:hidden"
           >
             <div className="mx-auto flex max-w-7xl flex-col gap-1">
               {navItems.map((item) => (

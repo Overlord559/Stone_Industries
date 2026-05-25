@@ -8,7 +8,7 @@ export function About() {
   return (
     <section
       id="about"
-      className="relative border-y border-white/10 py-20"
+      className="relative border-y border-white/[0.12] py-20"
     >
       <div className="pointer-events-none absolute inset-x-0 top-0 h-24 bg-[linear-gradient(180deg,rgba(6,182,212,0.06),rgba(6,182,212,0))]" />
       <div className="mx-auto grid w-full max-w-7xl gap-14 px-6 lg:grid-cols-[0.95fr_1.05fr] lg:px-10">
@@ -28,7 +28,7 @@ export function About() {
               </span>
             ))}
           </div>
-          <div className="si-section-glass rounded-[1.75rem] border border-white/10 p-8">
+          <div className="si-section-glass rounded-[1.75rem] border border-white/[0.14] p-8">
             <p className="text-xs font-semibold uppercase tracking-[0.32em] text-cyan-300/80">
               Who we work with
             </p>
@@ -46,7 +46,7 @@ export function About() {
               implying current major enterprise clients or government contract wins.
             </p>
           </div>
-          <div className="si-section-glass rounded-[1.75rem] border border-white/10 p-8">
+          <div className="si-section-glass rounded-[1.75rem] border border-white/[0.14] p-8">
             <p className="text-xs font-semibold uppercase tracking-[0.32em] text-cyan-300/80">
               Company standard
             </p>
@@ -72,7 +72,7 @@ export function About() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={revealViewport}
                 transition={{ duration: 0.55, delay: index * 0.07, ease: [0.22, 1, 0.36, 1] }}
-                className="si-reveal-item si-section-glass rounded-[1.5rem] border border-white/10 p-7"
+                className="si-reveal-item si-section-glass rounded-[1.5rem] border border-white/[0.14] p-7"
               >
                 <div className="flex items-start gap-5">
                   <div className="mt-1 flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.03] text-cyan-200">

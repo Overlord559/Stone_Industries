@@ -8,7 +8,7 @@ export function Vision() {
   return (
     <section
       id="vision"
-      className="si-vision-shell relative overflow-hidden border-y border-white/10 bg-[linear-gradient(180deg,rgba(2,6,23,0.16),rgba(2,6,23,0.06))] py-20"
+      className="si-vision-shell relative overflow-hidden border-y border-white/[0.12] bg-[linear-gradient(180deg,rgba(15,23,42,0.1),rgba(15,23,42,0.03))] py-20"
     >
       <div className="pointer-events-none absolute inset-0 si-vision-grid" aria-hidden="true" />
       <div className="pointer-events-none absolute inset-0 si-vision-glow" aria-hidden="true" />
@@ -32,7 +32,7 @@ export function Vision() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={revealViewport}
                 transition={{ duration: 0.55, delay: index * 0.07, ease: [0.22, 1, 0.36, 1] }}
-                className="si-reveal-item si-vision-card group relative overflow-hidden rounded-[1.5rem] border border-cyan-400/15 bg-[linear-gradient(145deg,rgba(8,47,73,0.34),rgba(2,6,23,0.88))] p-6 shadow-[0_20px_70px_rgba(2,6,23,0.45)] backdrop-blur-sm"
+                className="si-reveal-item si-vision-card group relative overflow-hidden rounded-[1.5rem] border border-cyan-400/20 bg-[linear-gradient(145deg,rgba(8,47,73,0.28),rgba(15,23,42,0.62))] p-6 shadow-[0_20px_70px_rgba(15,23,42,0.28)] backdrop-blur-sm"
               >
                 <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cyan-300/45 to-transparent opacity-80" />
                 <div className="flex items-start justify-between gap-4">

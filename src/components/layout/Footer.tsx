@@ -2,7 +2,7 @@ const legalBasePath = import.meta.env.BASE_URL
 
 export function Footer() {
   return (
-    <footer className="relative border-t border-white/10 bg-[linear-gradient(180deg,rgba(2,6,23,0.68),rgba(2,6,23,0.92))]">
+    <footer className="relative border-t border-white/[0.12] bg-[linear-gradient(180deg,rgba(15,23,42,0.52),rgba(15,23,42,0.78))]">
       <div className="mx-auto flex w-full max-w-7xl flex-col gap-6 px-6 py-10 text-sm text-slate-400 lg:flex-row lg:items-end lg:justify-between lg:px-10">
         <div className="space-y-3">
           <p className="font-display text-lg font-semibold tracking-[-0.03em] text-white">

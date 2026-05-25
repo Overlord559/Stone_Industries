@@ -96,7 +96,7 @@ export function Contact() {
 
 
 
-          <div className="si-section-glass rounded-[1.75rem] border border-white/10 p-6 shadow-[0_18px_60px_rgba(2,6,23,0.22)]">
+          <div className="si-section-glass rounded-[1.75rem] border border-white/[0.14] p-6 shadow-[0_18px_60px_rgba(15,23,42,0.14)]">
 
             <p className="text-xs font-semibold uppercase tracking-[0.3em] text-cyan-300/85">
 
@@ -130,7 +130,7 @@ export function Contact() {
 
 
 
-          <div className="si-section-glass rounded-[1.75rem] border border-white/10 p-6 shadow-[0_18px_60px_rgba(2,6,23,0.22)]">
+          <div className="si-section-glass rounded-[1.75rem] border border-white/[0.14] p-6 shadow-[0_18px_60px_rgba(15,23,42,0.14)]">
 
             <p className="text-xs font-semibold uppercase tracking-[0.3em] text-cyan-300/85">
 
@@ -219,7 +219,7 @@ export function Contact() {
 
                 href={item.href}
 
-                className="si-section-glass rounded-[1.5rem] border border-white/10 p-6 shadow-[0_18px_60px_rgba(2,6,23,0.18)] transition hover:border-cyan-400/30 hover:shadow-[0_22px_70px_rgba(8,145,178,0.12)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
+                className="si-section-glass rounded-[1.5rem] border border-white/[0.14] p-6 shadow-[0_18px_60px_rgba(15,23,42,0.12)] transition hover:border-cyan-400/32 hover:shadow-[0_22px_70px_rgba(8,145,178,0.14)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
 
               >
 
