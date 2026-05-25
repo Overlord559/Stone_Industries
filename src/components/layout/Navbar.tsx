@@ -1,12 +1,13 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import { Menu, Phone, X } from 'lucide-react'
 import { useState } from 'react'
-import { contactPhoneHref, navItems } from '../../data/site'
+import { contactPhoneHref, navItems, pricingPagePath } from '../../data/site'
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
 
   return (
+    <>
     <header className="sticky top-0 z-50 border-b border-white/[0.12] bg-slate-900/72 backdrop-blur-xl">
       <nav className="mx-auto flex w-full max-w-7xl items-center justify-between px-6 py-4 lg:px-10">
         <a
@@ -103,5 +104,28 @@ export function Navbar() {
         ) : null}
       </AnimatePresence>
     </header>
+
+    <div
+      className="si-mobile-contact-bar fixed inset-x-0 bottom-0 z-40 border-t border-white/[0.12] bg-slate-900/92 backdrop-blur-xl md:hidden"
+      role="region"
+      aria-label="Quick contact"
+    >
+      <div className="mx-auto flex max-w-7xl gap-2 px-4 py-3 pb-[max(0.75rem,env(safe-area-inset-bottom))]">
+        <a
+          href={contactPhoneHref}
+          className="inline-flex min-h-11 flex-1 items-center justify-center gap-2 rounded-full border border-cyan-400/30 bg-cyan-400/10 px-4 text-sm font-semibold !text-cyan-50 transition hover:border-cyan-300/50 hover:bg-cyan-400/15 hover:!text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 [&_svg]:stroke-current"
+        >
+          <Phone size={16} />
+          Call
+        </a>
+        <a
+          href={pricingPagePath}
+          className="inline-flex min-h-11 flex-1 items-center justify-center rounded-full border border-white/15 bg-white/5 px-4 text-sm font-semibold !text-white transition hover:border-white/25 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
+        >
+          View Pricing
+        </a>
+      </div>
+    </div>
+    </>
   )
 }

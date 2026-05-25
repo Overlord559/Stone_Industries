@@ -190,6 +190,10 @@
     stroke: #ffffff !important;
   }
 
+  .si-mobile-contact-bar {
+    box-shadow: 0 -8px 32px rgba(15, 23, 42, 0.42);
+  }
+
   /* App.tsx gates below-hero sections in opacity:0 — content must stay readable */
   main > .relative {
     opacity: 1 !important;
@@ -247,6 +251,10 @@
 
   .si-lower-parallax-bg {
     background-position: center 32%;
+  }
+
+  #root {
+    padding-bottom: calc(4.75rem + env(safe-area-inset-bottom, 0px));
   }
 }
 

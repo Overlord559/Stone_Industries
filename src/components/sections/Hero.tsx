@@ -1,6 +1,13 @@
 import { motion } from 'framer-motion'
-import { ArrowRight, FileText, Shield, Waypoints } from 'lucide-react'
-import { capabilityBriefPath, pricingPagePath, serviceAreaOnSite, serviceAreaPrimary } from '../../data/site'
+import { ArrowRight, FileText, Phone, Shield, Waypoints } from 'lucide-react'
+import {
+  capabilityBriefPath,
+  contactPhone,
+  contactPhoneHref,
+  pricingPagePath,
+  serviceAreaOnSite,
+  serviceAreaPrimary,
+} from '../../data/site'
 
 export function Hero() {
   return (
@@ -65,6 +72,13 @@ export function Hero() {
             >
               View Pricing &amp; Packages
               <ArrowRight size={16} />
+            </a>
+            <a
+              href={contactPhoneHref}
+              className="si-secondary-cta inline-flex items-center justify-center gap-2 rounded-full border border-cyan-400/25 bg-cyan-400/10 px-6 py-3 text-sm font-semibold !text-cyan-50 transition hover:border-cyan-300/40 hover:bg-cyan-400/15 hover:!text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 [&_svg]:stroke-current"
+            >
+              <Phone size={16} />
+              Call / Text · {contactPhone}
             </a>
             <a
               href={capabilityBriefPath}

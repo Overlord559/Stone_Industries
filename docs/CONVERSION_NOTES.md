@@ -10,8 +10,8 @@
 | Rank | Action | Where |
 |------|--------|-------|
 | 1 | Service pricing/detail page | Hero primary → `pricing.html`; cards → service pages |
-| 2 | Service inquiry (mailto w/ subject) | Service pages, Contact, card secondary |
-| 3 | Phone `559-579-9376` | Contact, Navbar mobile, service pages |
+| 2 | Phone `559-579-9376` | Hero secondary (Call / Text), mobile sticky bar, Navbar mobile, Contact |
+| 3 | Service inquiry (mailto w/ subject) | Service pages, Contact, card secondary |
 | 4 | Capability brief | Footer / About — subcontracting only |
 
 **Fail:** Mailto-only with no package context (STONE-007).
@@ -27,6 +27,18 @@
 | Per-service | `public/services/*.html` |
 
 React links use `import.meta.env.BASE_URL` via `site.ts`.
+
+---
+
+## Mobile contact chrome (current)
+
+| Element | Breakpoint | Actions |
+|---------|------------|---------|
+| Navbar top Call | `< md` | `tel:` quick dial |
+| Hero Call / Text | All | `tel:` with visible number |
+| Sticky bottom bar | `< md` | Call + View Pricing (max 2) |
+
+Bottom bar uses safe-area padding and `#root` mobile padding so footer/contact is not covered.
 
 ---
 
