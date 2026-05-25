@@ -1,3 +1,5 @@
+const legalBasePath = import.meta.env.BASE_URL
+
 export function Footer() {
   return (
     <footer className="border-t border-white/10 bg-slate-950">
@@ -13,6 +15,20 @@ export function Footer() {
         </div>
         <div className="space-y-2 text-left lg:text-right">
           <p className="text-slate-200">Reliable Today. Autonomous Tomorrow.</p>
+          <div className="flex flex-wrap gap-x-4 gap-y-1 lg:justify-end">
+            <a
+              href={`${legalBasePath}privacy.html`}
+              className="transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
+            >
+              Privacy
+            </a>
+            <a
+              href={`${legalBasePath}terms.html`}
+              className="transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
+            >
+              Terms
+            </a>
+          </div>
           <p>Built with React, TypeScript, Vite, Tailwind CSS, and Three.js.</p>
         </div>
       </div>
