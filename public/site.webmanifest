@@ -1,0 +1,16 @@
+{
+  "name": "Stone Industries",
+  "short_name": "Stone Industries",
+  "description": "Veteran-led IT support, websites, and logistics coordination.",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#020617",
+  "theme_color": "#020617",
+  "icons": [
+    {
+      "src": "./favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

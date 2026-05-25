@@ -1,16 +1,29 @@
 import { motion } from 'framer-motion'
-import { services } from '../../data/site'
+import { ArrowRight } from 'lucide-react'
+import { buildMailto, services } from '../../data/site'
+import { InteractiveOrbAccent } from '../scene/InteractiveOrbAccent'
 import { SectionHeading } from '../ui/SectionHeading'
+
+const revealViewport = { once: true, amount: 0.1, margin: '0px 0px -56px 0px' } as const
 
 export function Services() {
   return (
     <section id="services" className="relative mx-auto w-full max-w-7xl px-6 py-20 lg:px-10">
-      <div className="pointer-events-none absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-white/15 to-transparent lg:inset-x-10" />
-      <SectionHeading
-        eyebrow="Current Services"
-        title="Practical service lines you can contact Stone Industries for today."
-        description="These are current offerings—not roadmap concepts. Each line is scoped for dependable delivery, clear communication, and work that holds up in real operating conditions."
-      />
+      <div className="pointer-events-none absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-cyan-300/20 to-transparent lg:inset-x-10" />
+
+      <div className="flex flex-col gap-8 lg:flex-row lg:items-start lg:justify-between lg:gap-10">
+        <SectionHeading
+          eyebrow="Current Services"
+          title="Quote-based packages you can inquire about today."
+          description="These are current offerings—not roadmap concepts. Each package is scoped before work begins. Pricing is quote-based and confirmed up front."
+        />
+        <div className="hidden shrink-0 self-start lg:block">
+          <InteractiveOrbAccent
+            variant="services"
+            label="Interactive logistics network visual for service packages"
+          />
+        </div>
+      </div>
 
       <div className="mt-14 grid gap-6 md:grid-cols-2">
         {services.map((service, index) => {
@@ -19,26 +32,46 @@ export function Services() {
           return (
             <motion.article
               key={service.title}
-              initial={{ opacity: 0, y: 24 }}
+              initial={{ opacity: 0.76, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.35 }}
-              transition={{ duration: 0.55, delay: index * 0.08 }}
-              className="group relative overflow-hidden rounded-[1.75rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.025))] p-8 shadow-[0_24px_80px_rgba(2,6,23,0.45)] transition hover:-translate-y-1 hover:border-cyan-400/28 hover:bg-[linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.035))]"
+              viewport={revealViewport}
+              transition={{ duration: 0.55, delay: index * 0.07, ease: [0.22, 1, 0.36, 1] }}
+              className="si-reveal-item si-section-glass group relative flex flex-col overflow-hidden rounded-[1.75rem] border border-white/10 p-8 shadow-[0_24px_80px_rgba(2,6,23,0.38)] transition hover:-translate-y-1 hover:border-cyan-400/28 hover:shadow-[0_28px_90px_rgba(8,145,178,0.14)]"
             >
               <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cyan-300/40 to-transparent opacity-70" />
-              <div className="flex h-[3.25rem] w-[3.25rem] items-center justify-center rounded-2xl border border-cyan-400/20 bg-cyan-400/10 text-cyan-200 shadow-[0_12px_32px_rgba(8,145,178,0.16)]">
+              <span className="inline-flex w-fit rounded-full border border-cyan-400/25 bg-cyan-400/10 px-2.5 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.24em] text-cyan-200">
+                Current service
+              </span>
+              <div className="mt-5 flex h-[3.25rem] w-[3.25rem] items-center justify-center rounded-2xl border border-cyan-400/20 bg-cyan-400/10 text-cyan-200 shadow-[0_12px_32px_rgba(8,145,178,0.16)]">
                 <Icon size={22} />
               </div>
-              <h3 className="mt-8 font-display text-[1.7rem] font-semibold tracking-[-0.05em] text-white">
+              <p className="mt-5 text-xs font-semibold uppercase tracking-[0.28em] text-slate-500">
+                {service.packageName}
+              </p>
+              <h3 className="mt-2 font-display text-[1.7rem] font-semibold tracking-[-0.05em] text-white">
                 {service.title}
               </h3>
               <p className="mt-4 text-base leading-7 text-slate-300">
                 {service.description}
               </p>
+              <ul className="mt-5 space-y-2 text-sm leading-6 text-slate-300">
+                {service.scope.map((item) => (
+                  <li key={item} className="flex gap-2">
+                    <span className="text-cyan-300/80">•</span>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
               <div className="mt-8 h-px w-full bg-gradient-to-r from-white/12 via-white/6 to-transparent" />
-              <p className="mt-5 text-sm font-medium text-slate-400">
-                {service.tag}
-              </p>
+              <p className="mt-5 text-sm font-medium text-slate-400">{service.tag}</p>
+              <p className="mt-2 text-sm text-slate-500">{service.pricingNote}</p>
+              <a
+                href={buildMailto(service.inquirySubject)}
+                className="si-secondary-cta mt-6 inline-flex w-fit items-center gap-2 rounded-full border border-white/15 bg-white/5 px-5 py-2.5 text-sm font-semibold !text-white transition hover:bg-white/10 hover:!text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 [&_svg]:!stroke-white"
+              >
+                {service.inquiryLabel}
+                <ArrowRight size={15} />
+              </a>
             </motion.article>
           )
         })}

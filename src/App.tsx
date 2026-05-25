@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion'
+import type { CSSProperties } from 'react'
 import { Footer } from './components/layout/Footer'
 import { Navbar } from './components/layout/Navbar'
 import { About } from './components/sections/About'
@@ -7,25 +7,64 @@ import { Hero } from './components/sections/Hero'
 import { Services } from './components/sections/Services'
 import { Vision } from './components/sections/Vision'
 
+const assetBase = import.meta.env.BASE_URL
+const backgroundStyle = {
+  '--si-main-bg-image': `url(${assetBase}assets/stone-main-dalrm-bg.webp)`,
+  '--si-lower-bg-image': `url(${assetBase}assets/stone-coastal-tech-bg.webp)`,
+} as CSSProperties
+
 function App() {
   return (
-    <div className="relative min-h-screen overflow-hidden bg-slate-950 text-slate-100">
-      <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top,_rgba(14,165,233,0.08),_transparent_26%),linear-gradient(180deg,#020617_0%,#020617_50%,#000814_100%)]" />
+    <div
+      className="relative min-h-screen overflow-hidden bg-slate-950 text-slate-100"
+      style={backgroundStyle}
+    >
+      <div className="pointer-events-none absolute inset-0 -z-20 bg-[radial-gradient(circle_at_top,_rgba(14,165,233,0.04),_transparent_26%)]" />
       <Navbar />
       <main>
-        <Hero />
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.5 }}
-          className="relative"
-        >
-          <Services />
-          <About />
-          <Vision />
-          <Contact />
-        </motion.div>
+        <div className="relative isolate">
+          <div
+            className="si-main-parallax-bg pointer-events-none absolute inset-0 -z-10 min-h-[100vh]"
+            aria-hidden="true"
+          />
+          <div
+            className="si-main-bg-scrim pointer-events-none absolute inset-0 -z-10 min-h-[100vh]"
+            aria-hidden="true"
+          />
+          <Hero />
+        </div>
+        <div className="relative isolate">
+          <div
+            className="si-lower-parallax-bg pointer-events-none absolute inset-0 -z-10"
+            aria-hidden="true"
+          />
+          <div
+            className="si-bg-transition pointer-events-none absolute inset-x-0 top-0 -z-10 h-36 sm:h-44"
+            aria-hidden="true"
+          />
+          <div className="relative">
+            <div
+              className="si-lower-bg-scrim pointer-events-none absolute inset-0 -z-10"
+              aria-hidden="true"
+            />
+            <Services />
+            <About />
+          </div>
+          <div className="relative">
+            <div
+              className="si-lower-bg-scrim si-lower-bg-scrim--vision pointer-events-none absolute inset-0 -z-10"
+              aria-hidden="true"
+            />
+            <Vision />
+          </div>
+          <div className="relative">
+            <div
+              className="si-lower-bg-scrim si-lower-bg-scrim--contact pointer-events-none absolute inset-0 -z-10"
+              aria-hidden="true"
+            />
+            <Contact />
+          </div>
+        </div>
       </main>
       <Footer />
     </div>

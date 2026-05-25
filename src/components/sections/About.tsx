@@ -1,12 +1,14 @@
 import { motion } from 'framer-motion'
-import { credibilitySignals, trustChips } from '../../data/site'
+import { credibilitySignals, trustChips, whoWeWorkWith } from '../../data/site'
 import { SectionHeading } from '../ui/SectionHeading'
+
+const revealViewport = { once: true, amount: 0.1, margin: '0px 0px -56px 0px' } as const
 
 export function About() {
   return (
     <section
       id="about"
-      className="relative border-y border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.03),rgba(255,255,255,0.015))] py-22"
+      className="relative border-y border-white/10 py-20"
     >
       <div className="pointer-events-none absolute inset-x-0 top-0 h-24 bg-[linear-gradient(180deg,rgba(6,182,212,0.06),rgba(6,182,212,0))]" />
       <div className="mx-auto grid w-full max-w-7xl gap-14 px-6 lg:grid-cols-[0.95fr_1.05fr] lg:px-10">
@@ -26,7 +28,25 @@ export function About() {
               </span>
             ))}
           </div>
-          <div className="rounded-[1.75rem] border border-white/10 bg-slate-950/80 p-8">
+          <div className="si-section-glass rounded-[1.75rem] border border-white/10 p-8">
+            <p className="text-xs font-semibold uppercase tracking-[0.32em] text-cyan-300/80">
+              Who we work with
+            </p>
+            <div className="mt-5 grid gap-4 sm:grid-cols-2">
+              {whoWeWorkWith.map((item) => (
+                <div key={item.title} className="space-y-2">
+                  <p className="text-sm font-semibold text-white">{item.title}</p>
+                  <p className="text-sm leading-6 text-slate-300">{item.description}</p>
+                </div>
+              ))}
+            </div>
+            <p className="mt-5 text-sm leading-6 text-slate-400">
+              Stone Industries supports direct small-business jobs, one-off cleanup work,
+              quote-based project inquiries, and subcontracting support conversations—without
+              implying current major enterprise clients or government contract wins.
+            </p>
+          </div>
+          <div className="si-section-glass rounded-[1.75rem] border border-white/10 p-8">
             <p className="text-xs font-semibold uppercase tracking-[0.32em] text-cyan-300/80">
               Company standard
             </p>
@@ -48,11 +68,11 @@ export function About() {
             return (
               <motion.article
                 key={signal.title}
-                initial={{ opacity: 0, x: 20 }}
+                initial={{ opacity: 0.76, x: 14 }}
                 whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{ duration: 0.5, delay: index * 0.08 }}
-                className="rounded-[1.5rem] border border-white/10 bg-slate-950/70 p-7"
+                viewport={revealViewport}
+                transition={{ duration: 0.55, delay: index * 0.07, ease: [0.22, 1, 0.36, 1] }}
+                className="si-reveal-item si-section-glass rounded-[1.5rem] border border-white/10 p-7"
               >
                 <div className="flex items-start gap-5">
                   <div className="mt-1 flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.03] text-cyan-200">

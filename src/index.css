@@ -53,6 +53,112 @@
 }
 
 @layer components {
+  .si-main-parallax-bg {
+    background-image: var(--si-main-bg-image);
+    background-size: cover;
+    background-position: 68% 22%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  }
+
+  .si-main-bg-scrim {
+    background:
+      linear-gradient(90deg, rgba(2, 6, 23, 0.9) 0%, rgba(2, 6, 23, 0.62) 36%, rgba(2, 6, 23, 0.2) 58%, rgba(2, 6, 23, 0.14) 100%),
+      linear-gradient(180deg, rgba(2, 6, 23, 0.46) 0%, rgba(2, 6, 23, 0.1) 36%, rgba(2, 6, 23, 0.74) 100%),
+      radial-gradient(ellipse 44% 38% at 76% 34%, rgba(6, 182, 212, 0.04), transparent 70%);
+  }
+
+  .si-lower-parallax-bg {
+    background-image: var(--si-lower-bg-image);
+    background-size: cover;
+    background-position: center 30%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  }
+
+  .si-lower-bg-scrim {
+    background:
+      linear-gradient(90deg, rgba(2, 6, 23, 0.88) 0%, rgba(2, 6, 23, 0.58) 36%, rgba(2, 6, 23, 0.24) 58%, rgba(2, 6, 23, 0.2) 100%),
+      linear-gradient(180deg, rgba(2, 6, 23, 0.5) 0%, rgba(2, 6, 23, 0.12) 38%, rgba(2, 6, 23, 0.76) 100%);
+  }
+
+  .si-lower-bg-scrim--vision {
+    background:
+      linear-gradient(90deg, rgba(2, 6, 23, 0.84) 0%, rgba(2, 6, 23, 0.54) 36%, rgba(2, 6, 23, 0.28) 58%, rgba(2, 6, 23, 0.24) 100%),
+      linear-gradient(180deg, rgba(2, 6, 23, 0.54) 0%, rgba(2, 6, 23, 0.16) 42%, rgba(2, 6, 23, 0.72) 100%);
+  }
+
+  .si-lower-bg-scrim--contact {
+    background:
+      linear-gradient(90deg, rgba(2, 6, 23, 0.86) 0%, rgba(2, 6, 23, 0.56) 36%, rgba(2, 6, 23, 0.3) 58%, rgba(2, 6, 23, 0.26) 100%),
+      linear-gradient(180deg, rgba(2, 6, 23, 0.56) 0%, rgba(2, 6, 23, 0.18) 45%, rgba(2, 6, 23, 0.74) 100%);
+  }
+
+  .si-bg-transition {
+    background: linear-gradient(
+      180deg,
+      rgba(2, 6, 23, 0.72) 0%,
+      rgba(2, 6, 23, 0.38) 55%,
+      rgba(2, 6, 23, 0.14) 100%
+    );
+  }
+
+  .si-section-glass {
+    background: linear-gradient(
+      180deg,
+      rgba(2, 6, 23, 0.62),
+      rgba(2, 6, 23, 0.48)
+    );
+    backdrop-filter: blur(10px);
+  }
+
+  .si-interactive-orb {
+    cursor: pointer;
+    outline: none;
+    transform-style: preserve-3d;
+  }
+
+  .si-interactive-orb:focus-visible {
+    box-shadow: 0 0 0 2px rgba(34, 211, 238, 0.55);
+    border-radius: 1.35rem;
+  }
+
+  .si-orb-pulse-ring {
+    animation: si-orb-pulse 1.2s ease-out;
+  }
+
+  .si-orb-signal-burst {
+    animation: si-orb-signal-burst 1.2s ease-out;
+  }
+
+  @keyframes si-orb-pulse {
+    0% {
+      box-shadow: 0 0 0 0 rgba(34, 211, 238, 0.45);
+    }
+    100% {
+      box-shadow: 0 0 0 22px rgba(34, 211, 238, 0);
+    }
+  }
+
+  @keyframes si-orb-signal-burst {
+    0% {
+      background: rgba(34, 211, 238, 0.14);
+      box-shadow: 0 0 0 0 rgba(56, 189, 248, 0.35);
+    }
+    35% {
+      background: rgba(34, 211, 238, 0.1);
+      box-shadow: 0 0 0 10px rgba(56, 189, 248, 0.12);
+    }
+    100% {
+      background: rgba(34, 211, 238, 0);
+      box-shadow: 0 0 0 24px rgba(56, 189, 248, 0);
+    }
+  }
+
+  .si-orb-scene-active {
+    box-shadow: 0 16px 48px rgba(2, 6, 23, 0.28), 0 0 24px rgba(34, 211, 238, 0.08);
+  }
+
   .si-primary-cta,
   .si-primary-cta:visited,
   .si-primary-cta:hover,
@@ -74,11 +180,75 @@
   .si-secondary-cta svg {
     stroke: #ffffff !important;
   }
+
+  /* App.tsx gates below-hero sections in opacity:0 — content must stay readable */
+  main > .relative {
+    opacity: 1 !important;
+  }
+
+  .si-reveal-item {
+    will-change: opacity, transform;
+  }
+
+  .si-vision-grid {
+    background-image:
+      linear-gradient(rgba(34, 211, 238, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(34, 211, 238, 0.05) 1px, transparent 1px);
+    background-size: 48px 48px;
+    mask-image: radial-gradient(circle at 50% 40%, black 20%, transparent 78%);
+  }
+
+  .si-vision-glow {
+    background:
+      radial-gradient(circle at 18% 20%, rgba(34, 211, 238, 0.12), transparent 34%),
+      radial-gradient(circle at 82% 72%, rgba(59, 130, 246, 0.1), transparent 36%),
+      radial-gradient(circle at 50% 100%, rgba(6, 182, 212, 0.08), transparent 42%);
+  }
+
+  .si-vision-card {
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .si-vision-card:hover {
+    border-color: rgba(34, 211, 238, 0.28);
+    box-shadow: 0 24px 80px rgba(8, 145, 178, 0.12);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .si-orb-pulse-ring,
+    .si-orb-signal-burst {
+      animation: none;
+    }
+
+    .si-interactive-orb {
+      transform: none !important;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .si-main-parallax-bg,
+  .si-lower-parallax-bg {
+    background-attachment: scroll;
+  }
+
+  .si-main-parallax-bg {
+    background-position: 62% 26%;
+  }
+
+  .si-lower-parallax-bg {
+    background-position: center 32%;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+
+  .si-main-parallax-bg,
+  .si-lower-parallax-bg {
+    background-attachment: scroll;
   }
 
   *,
@@ -87,5 +257,12 @@
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+
+  main > .relative,
+  .si-reveal-item {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
   }
 }

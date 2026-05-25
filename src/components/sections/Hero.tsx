@@ -1,20 +1,25 @@
 import { motion } from 'framer-motion'
-import { ArrowRight, Shield, Waypoints } from 'lucide-react'
-import { lazy, Suspense } from 'react'
+import { ArrowRight, FileText, Shield, Waypoints } from 'lucide-react'
+import { buildMailto, capabilityBriefPath } from '../../data/site'
 
-const HeroScene = lazy(async () => import('../scene/HeroScene'))
+const serviceInquiryMailto = buildMailto('Service Inquiry — Stone Industries')
 
 export function Hero() {
   return (
     <section id="top" className="relative overflow-hidden">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(6,182,212,0.14),_transparent_28%),radial-gradient(circle_at_80%_20%,_rgba(59,130,246,0.12),_transparent_24%)]" />
-      <div className="absolute inset-x-0 bottom-0 h-32 bg-[linear-gradient(180deg,rgba(2,6,23,0),rgba(2,6,23,0.92))]" />
-      <div className="mx-auto grid w-full max-w-7xl gap-14 px-6 py-20 sm:py-20 lg:grid-cols-[1.08fr_0.92fr] lg:items-center lg:gap-20 lg:px-10 lg:py-28">
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(6,182,212,0.08),_transparent_32%),radial-gradient(ellipse_52%_44%_at_78%_34%,_rgba(6,182,212,0.07),_transparent_62%)]" />
+      <div
+        className="pointer-events-none absolute inset-y-0 right-0 hidden w-[min(52%,32rem)] bg-[radial-gradient(ellipse_at_72%_36%,rgba(2,6,23,0.04),transparent_72%)] lg:block"
+        aria-hidden="true"
+      />
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-[linear-gradient(180deg,rgba(2,6,23,0),rgba(2,6,23,0.88))]" />
+
+      <div className="relative mx-auto grid w-full max-w-7xl gap-12 px-6 py-20 lg:grid-cols-[1.05fr_0.95fr] lg:items-start lg:gap-10 lg:px-10 lg:py-28">
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
+          initial={{ opacity: 0.82, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: 'easeOut' }}
-          className="relative z-10 flex flex-col justify-center"
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          className="si-reveal-item relative z-10 flex flex-col justify-center"
         >
           <p className="text-sm font-semibold uppercase tracking-[0.45em] text-slate-500">
             Stone Industries
@@ -40,6 +45,7 @@ export function Hero() {
               'Same-day tech cleanup',
               '24-hour business websites',
               'Wi-Fi & POS support',
+              'AI workflow automation',
               'Logistics coordination',
             ].map((label) => (
               <span
@@ -52,20 +58,42 @@ export function Hero() {
           </div>
           <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center">
             <a
-              href="#contact"
+              href={serviceInquiryMailto}
               className="si-primary-cta inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold !text-slate-950 transition hover:bg-slate-200 hover:!text-slate-950 [&_svg]:!stroke-slate-950"
             >
-              Request Capability Brief
+              Start Service Inquiry
               <ArrowRight size={16} />
             </a>
             <a
-              href="#services"
+              href={capabilityBriefPath}
               className="si-secondary-cta inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm font-semibold !text-white transition hover:bg-white/10 hover:!text-white [&_svg]:!stroke-white"
             >
+              View Capability Brief
+              <FileText size={16} />
+            </a>
+            <a
+              href="#services"
+              className="inline-flex items-center justify-center gap-2 rounded-full px-2 py-3 text-sm font-medium !text-slate-300 transition hover:!text-white sm:px-4"
+            >
               View Service Lines
-              <Waypoints size={16} />
+              <Waypoints size={16} className="stroke-current" />
             </a>
           </div>
+          <p className="mt-4 max-w-2xl text-sm leading-6 text-slate-400">
+            Email to start a quote-based service inquiry, or read the static capability
+            brief for subcontracting outreach. No booking system on this site.
+          </p>
+
+          <div className="mt-5 max-w-2xl rounded-xl border border-cyan-400/15 bg-slate-950/35 px-4 py-3 backdrop-blur-sm">
+            <p className="text-[0.62rem] font-semibold uppercase tracking-[0.32em] text-cyan-300/75">
+              Operating posture
+            </p>
+            <p className="mt-1.5 text-sm leading-6 text-slate-300">
+              Practical support for businesses and partners who need responsive delivery today.
+              Same-day tech help, fast websites, Wi-Fi and POS cleanup, and logistics coordination—with a disciplined long-range roadmap, not hype.
+            </p>
+          </div>
+
           <div className="mt-12 grid gap-6 border-t border-white/10 pt-8 sm:grid-cols-3">
             {[
               ['Available today', 'Tech cleanup, business websites, Wi-Fi and POS support, and logistics coordination for operators who need practical help now.'],
@@ -82,31 +110,7 @@ export function Hero() {
           </div>
         </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, scale: 0.96 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.75, delay: 0.1, ease: 'easeOut' }}
-          className="relative z-10"
-        >
-          <div className="pointer-events-none absolute right-5 top-5 z-10 max-w-xs rounded-2xl border border-white/10 bg-slate-950/70 px-5 py-4 backdrop-blur sm:right-6 sm:top-6">
-            <p className="text-[0.68rem] font-semibold uppercase tracking-[0.34em] text-cyan-300/80">
-              Operating posture
-            </p>
-            <p className="mt-3 text-sm font-medium text-white">
-              Practical support for businesses and partners who need responsive delivery today.
-            </p>
-            <p className="mt-2 text-sm leading-6 text-slate-300">
-              Same-day tech help, fast websites, Wi-Fi and POS cleanup, and logistics coordination—with a disciplined long-range roadmap, not hype.
-            </p>
-          </div>
-          <Suspense
-            fallback={
-              <div className="relative h-[340px] w-full overflow-hidden rounded-[2rem] border border-white/10 bg-[radial-gradient(circle_at_center,_rgba(34,211,238,0.18),_rgba(2,6,23,0)_58%)] shadow-[0_30px_100px_rgba(2,6,23,0.55)] sm:h-[460px]" />
-            }
-          >
-            <HeroScene />
-          </Suspense>
-        </motion.div>
+        <div className="pointer-events-none relative hidden min-h-[32rem] lg:block" aria-hidden="true" />
       </div>
     </section>
   )
