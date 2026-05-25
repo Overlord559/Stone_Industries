@@ -38,14 +38,14 @@ export function Hero() {
           <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center">
             <a
               href="#contact"
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-slate-950 transition hover:bg-slate-200"
+              className="si-primary-cta inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold !text-slate-950 transition hover:bg-slate-200 hover:!text-slate-950 [&_svg]:!stroke-slate-950"
             >
               Request Capability Brief
               <ArrowRight size={16} />
             </a>
             <a
               href="#services"
-              className="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
+              className="si-secondary-cta inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm font-semibold !text-white transition hover:bg-white/10 hover:!text-white [&_svg]:!stroke-white"
             >
               View Service Lines
               <Waypoints size={16} />

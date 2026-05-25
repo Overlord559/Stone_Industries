@@ -55,7 +55,7 @@ export function Contact() {
           </div>
           <a
             href="mailto:stoneindustries0.llc@gmail.com"
-            className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-slate-950 transition hover:bg-slate-200"
+            className="si-primary-cta inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold !text-slate-950 transition hover:bg-slate-200 hover:!text-slate-950 [&_svg]:!stroke-slate-950"
           >
             Contact Stone Industries
             <ArrowRight size={16} />
