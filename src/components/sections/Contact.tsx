@@ -1,31 +1,19 @@
 import { ArrowRight, Mail, MapPinned, Phone } from 'lucide-react'
 
 import {
-
   buildMailto,
-
   capabilityBriefPath,
-
   contactEmail,
-
   contactPhone,
-
   contactPhoneHref,
-
   inquiryTypes,
-
   messageChecklist,
-
   serviceAreaContactLabel,
-
   serviceAreaOnSite,
-
   serviceAreaRemote,
-
 } from '../../data/site'
-
+import { InquiryForm } from '../InquiryForm'
 import { InteractiveOrbAccent } from '../scene/InteractiveOrbAccent'
-
 import { SectionHeading } from '../ui/SectionHeading'
 
 
@@ -96,7 +84,7 @@ export function Contact() {
 
             title="Email or call directly for the fastest response."
 
-            description={`For IT support, small-business websites, Wi-Fi and POS help, AI automation and digital assistant systems, logistics coordination, or subcontracting discussions, contact Stone Industries directly. ${serviceAreaOnSite} ${serviceAreaRemote} This site has no booking system, payment flow, or on-site forms.`}
+            description={`For IT support, small-business websites, Wi-Fi and POS help, AI automation and digital assistant systems, logistics coordination, or subcontracting discussions, contact Stone Industries directly. ${serviceAreaOnSite} ${serviceAreaRemote} Use the inquiry form, email, or phone below. No booking system or online checkout on this site.`}
           />
 
 
@@ -198,6 +186,7 @@ export function Contact() {
 
 
         <div className="grid gap-5 self-start">
+          <InquiryForm sourcePage="/" defaultService="General Inquiry" />
 
           <div className="hidden justify-end lg:flex">
 

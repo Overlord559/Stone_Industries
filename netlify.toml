@@ -8,3 +8,12 @@
 [build.environment]
   # Root deploy — required for React app + static pricing/service pages
   VITE_BASE_PATH = "/"
+# Set in Netlify UI (never commit): VITE_SUPABASE_URL, VITE_SUPABASE_ANON_KEY
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"

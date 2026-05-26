@@ -27,8 +27,10 @@
 | Var | Netlify (production) | GitHub Pages (mirror) | Vercel Pro (future) |
 |-----|----------------------|----------------------|---------------------|
 | `VITE_BASE_PATH` | `/` | `/Stone_Industries/` (CI default) | `/` |
+| `VITE_SUPABASE_URL` | Supabase project URL | unset (forms fall back to mailto/tel) | optional |
+| `VITE_SUPABASE_ANON_KEY` | Supabase anon public key | unset | optional |
 
-Set in `netlify.toml` for Netlify. GitHub Actions uses `vite.config.ts` default. Set in `.env.local` for local prod preview.
+Set `VITE_BASE_PATH` in `netlify.toml`. Set Supabase vars in **Netlify UI** (never commit real keys). GitHub Actions mirror does not need Supabase unless mirror forms are enabled. Use `.env.local` for local prod preview.
 
 ---
 
@@ -43,6 +45,8 @@ Set in `netlify.toml` for Netlify. GitHub Actions uses `vite.config.ts` default.
 6. /privacy.html /terms.html /capability-brief.html 200
 7. Mobile sticky bar at 375px and 320px
 8. One scroll through Services + Contact — no console errors
+9. Inquiry form submit (when Supabase env set) — success message; row in Supabase Table Editor
+10. Inquiry form with env unset — submit disabled; mailto/tel fallback visible
 ```
 
 Full checklist: [`DEPLOYMENT.md`](DEPLOYMENT.md) post-deploy section.

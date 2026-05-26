@@ -332,6 +332,12 @@ export const inquiryTypes: InquiryType[] = [
   },
 ]
 
+export const inquiryServiceOptions = [
+  ...services.map((service) => service.title),
+  'General Inquiry',
+  'Subcontracting / Capability Brief',
+] as const
+
 export const whoWeWorkWith = [
   {
     title: 'Local small businesses',

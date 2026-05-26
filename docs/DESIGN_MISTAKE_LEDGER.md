@@ -152,6 +152,54 @@
 
 ---
 
+## STONE-009 — Minimal lead capture: anon insert + RLS + mailto fallback
+
+| Field | Value |
+|-------|-------|
+| **Severity** | STRONG_RULE |
+| **Factory link** | — |
+| **Status** | ACTIVE |
+
+**Problem:** Mailto-only intake loses structured leads and makes follow-up harder; overbuilt backend (auth, dashboard, Stripe) slows first-customer shipping.
+
+**Rule:** Use **Supabase anon key + RLS insert-only** on `public.inquiries`. No service role in client. Use **fetch** (no supabase-js) when only INSERT is needed. Inject `inquiry-config.js` at build for static pages. **Always keep mailto/tel fallback** when env vars missing or submit fails. No auth, dashboard, or Stripe in v1.
+
+**QA check:** Test insert with Netlify env set; verify fallback UX with env unset; confirm no SELECT policy for anon.
+
+---
+
+## STONE-010 — Privacy copy must track data-collection changes
+
+| Field | Value |
+|-------|-------|
+| **Severity** | STRONG_RULE |
+| **Factory link** | — |
+| **Status** | ACTIVE |
+
+**Problem:** Adding inquiry forms or backend intake while `privacy.html` still claims “no on-site forms” creates legal/trust drift and launch risk.
+
+**Rule:** When forms, analytics, or third-party data storage are added, update **`public/privacy.html`** in the same pass with plain-language fields collected, purpose, storage (e.g. Supabase), fallback paths, and “do not submit sensitive data” guidance. Add QA check for privacy accuracy before deploy.
+
+**QA check:** Privacy page lists inquiry fields; no claim of “no forms” when forms exist.
+
+---
+
+## STONE-011 — Anon lead INSERT must be column-scoped + status locked
+
+| Field | Value |
+|-------|-------|
+| **Severity** | STRONG_RULE |
+| **Factory link** | — |
+| **Status** | ACTIVE |
+
+**Problem:** `GRANT INSERT ON TABLE` + permissive RLS lets clients POST `status`, `id`, or timestamps if columns are writable — weak integrity for public lead forms.
+
+**Rule:** For public inquiry tables: **column-level INSERT grant** for lead fields only; RLS `WITH CHECK (status = 'new')`; server defaults own `id` and `created_at`. Never expose service role in frontend.
+
+**QA check:** Direct REST POST with `status: closed` fails; normal form insert succeeds.
+
+---
+
 ## How to add a lesson
 
 1. Assign next `STONE-NNN` ID

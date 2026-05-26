@@ -83,7 +83,7 @@ Optional preview: `npm run preview` — open printed local URL.
 
 ## Legal / capability checks
 
-- [ ] `/privacy.html` loads (with base path in production)
+- [ ] `/privacy.html` loads — inquiry form data collection accurately described (with base path in production)
 - [ ] `/terms.html` loads
 - [ ] `/capability-brief.html` loads — positioned as subcontracting, not primary local CTA
 - [ ] No fake testimonials or contract logos
@@ -103,6 +103,19 @@ Optional preview: `npm run preview` — open printed local URL.
 - [ ] GitHub Pages mirror (if enabled): `/Stone_Industries/assets/`
 - [ ] No references to repo-root draft images
 - [ ] `og-image.svg` and favicon load
+
+---
+
+## Inquiry form check (Supabase)
+
+- [ ] Homepage Contact section form loads without console errors
+- [ ] `/pricing.html` and `/services.html` inquiry sections render
+- [ ] Client validation: name + message required; email **or** phone required
+- [ ] Honeypot field hidden; filled honeypot rejects submit
+- [ ] With Supabase env configured: test submit creates row in `public.inquiries`
+- [ ] With env unset: submit disabled on React form; static form shows mailto/tel fallback note
+- [ ] Submit failure shows error + mailto/tel still available
+- [ ] No service role key in repo, build output, or client bundle
 
 ---
 

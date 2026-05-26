@@ -22,6 +22,7 @@
 - **Netlify Free** — recommended commercial production host (`netlify.toml`, root base path)
 - GitHub Pages mirror via `.github/workflows/deploy.yml` on push to `main` (fallback, not primary commercial URL)
 - Contact: `stoneindustries0.llc@gmail.com` · `559-579-9376`
+- Inquiry capture: Supabase `public.inquiries` (anon insert + RLS) when env configured; mailto/tel fallback always available
 - Legal pages: `public/privacy.html`, `public/terms.html`, `public/capability-brief.html`
 
 **Runtime note:** Uncommitted WIP may exist in `src/` — agents must not assume working tree is clean.
@@ -91,7 +92,7 @@ Source of truth: [`src/data/site.ts`](../src/data/site.ts) — `serviceAreaPrima
 | 3 | **Operator Netlify import + smoke test** | Done — https://stoneindustries.netlify.app/ |
 | 4 | **Google Business Profile / local SEO** | Pending — post-deploy, operator |
 | 5 | **Phone / paid domain / Stripe Payment Links** | Deferred — budget (Fri/Mon) |
-| 6 | **Supabase intake DB** | Deferred — free tier maxed; validate demand first |
+| 6 | **Supabase inquiry capture** | In progress — schema + forms wired; operator runs SQL + Netlify env |
 
 ---
 

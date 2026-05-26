@@ -177,17 +177,26 @@ No backend required. Netlify + GitHub Pages compatible via relative links and `%
 
 ## Supabase / Stripe plan
 
-### Supabase — **DEFER**
+### Supabase — **minimal inquiry capture (in progress)**
 
-- Operator free projects maxed
-- **Recommended now:** No database — mailto + manual follow-up validates demand first
-- Revisit after Netlify is live and inquiries justify intake tooling
+| Item | Value |
+|------|-------|
+| **Purpose** | Structured lead capture from homepage + pricing/services pages |
+| **Schema** | [`docs/supabase/stone-industries-inquiries.sql`](supabase/stone-industries-inquiries.sql) |
+| **Client auth** | Public **anon key only** — insert via RLS; no service role in frontend |
+| **Netlify env** | `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY` (Site configuration → Environment variables) — **public build-time vars only**; never put service role or Stripe secrets in `VITE_*` |
+| **Fallback** | Mailto + `tel:+15595799376` when env vars missing or submit fails |
+| **Not in scope** | Auth, dashboard, customer portal, booking, AI chat |
+
+**Operator steps:** Run SQL in Supabase → add env vars in Netlify → redeploy → submit test inquiry → verify row in Table Editor.
 
 ### Stripe — **DEFER custom integration**
 
 - No embedded checkout on static site
 - **Near-term:** Manual quote → Stripe Payment Link or invoice when operator has account
 - **Later:** Checkout only if standardized packages sell repeatedly
+- **Future webhooks:** Verify Stripe signatures server-side only — never trust browser/client payment state
+- **Secrets:** Stripe secret keys and webhook signing secrets stay in server/Netlify env — never in `VITE_*` frontend vars
 
 ---
 
@@ -212,6 +221,8 @@ Run on live Netlify URL (https://stoneindustries.netlify.app/):
 - [ ] Mobile sticky bar visible below 768px — Call + View Pricing
 - [ ] 375px and 320px — no horizontal scroll; sticky bar does not cover contact CTAs
 - [ ] No console errors on homepage happy path
+- [ ] Inquiry form on `/`, `/pricing.html`, `/services.html` — submit test row when Supabase configured
+- [ ] Mailto/tel fallback still visible when Supabase env vars unset
 
 See [`QA_CHECKLIST.md`](QA_CHECKLIST.md).
 
