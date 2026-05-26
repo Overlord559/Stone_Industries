@@ -457,6 +457,57 @@
 
 ---
 
+## STONE-024 — New service additions must update the full funnel together
+
+| Field | Value |
+|-------|-------|
+| **Severity** | STRONG_RULE |
+| **Factory link** | DESIGN-036, DESIGN-037 |
+| **Status** | ACTIVE |
+| **First observed** | Custom PC Builds & Upgrades service add (2026-05-25) |
+
+**Problem:** Adding a service to `pricingCatalog.ts` alone leaves dead inquiry preselects, missing static pages, stale “five services” docs, and homepage cards that never appear.
+
+**Rule:** Any new sold service must update in one pass: `pricingCatalog.ts` + `buildServices.ts` + add-on details + homepage cards/CSS-3D object + `services.html` + `pricing.html` + `public/services/<slug>.html` + `inquiry-form.js` slug map + QA/docs + factory promotion if reusable.
+
+**QA check:** Grep slug across catalog, static pages, inquiry map; `/services/<slug>.html` returns 200; estimator and inquiry preselect work.
+
+---
+
+## STONE-025 — Hardware / PC build services need parts-fee separation and warranty boundaries
+
+| Field | Value |
+|-------|-------|
+| **Severity** | STRONG_RULE |
+| **Factory link** | DESIGN-037 |
+| **Status** | ACTIVE |
+| **First observed** | Custom PC Builds & Upgrades service add (2026-05-25) |
+
+**Problem:** PC build copy that bundles parts into service fees, promises benchmarks, or mimics national builder warranties creates margin risk, buyer confusion, and overclaiming.
+
+**Rule:** Separate **parts cost** from **service fee** on all public pages. State supported platforms (Windows towers only), excluded work (laptops, Linux, open-loop, consoles), and non-guarantees (FPS, defective parts, shipping speed, data recovery). Compete on local planning/upgrades/handoff — not “cheaper than [online builder]” or certification claims.
+
+**QA check:** Service page + catalog disclaimers present; grep finds no competitor names, “certified builder,” or “guaranteed FPS.”
+
+---
+
+## STONE-026 — Productized packages need differentiation and package-aware add-ons
+
+| Field | Value |
+|-------|-------|
+| **Severity** | STRONG_RULE |
+| **Factory link** | DESIGN-037 |
+| **Status** | ACTIVE |
+| **First observed** | Custom PC Builds package-logic audit (2026-05-25) |
+
+**Problem:** Package names and prices alone read like the same add-ons at different tiers. Customers cannot tell Simple vs Core upgrade or Basic vs Standard vs Gaming vs Showcase. Optional add-ons that duplicate included package work create double-charge confusion.
+
+**Rule:** Every productized package must expose **best for / includes / not included** (estimator + static page). Hardware upgrade tiers must separate drop-in upgrades from platform/power/cooling work — **Simple = drop-in part install; Core = platform/power/cooling/multi-part work** (not price alone). Estimator add-ons must use `includedAddOnIds` + `showForPackages` — included items move to “Included in this package,” are not checkable, and do not increase totals. Planning-only packages hide optional add-ons. **Package dropdown labels stay short** (name + price only); detailed guidance belongs in the context panel below the dropdown, not inside `<option>` text.
+
+**QA check:** Select each PC package in estimator — dropdown options do not overflow; context panel shows differentiation; Windows/cable/RGB/AIO included per tier; no double-charge on included add-ons; `parts-plan` hides add-on checkboxes; Simple vs Core contrast is obvious.
+
+---
+
 ## Recent Operator Corrections Backfill (2026-05-25)
 
 Index of operator corrections from pricing/estimator/nav/email/vision passes. Extend cited IDs — do not duplicate full lessons.
@@ -489,6 +540,10 @@ Index of operator corrections from pricing/estimator/nav/email/vision passes. Ex
 | 24 | Logistics ≠ freight broker/carrier/3PL | STONE-017 | DESIGN-036 | Disclaimer on logistics page |
 | 25 | Load SaaS Factory docs on serious Stone prompts | STONE-023 | DESIGN-031, DESIGN-036 | Report lists factory paths |
 | 26 | Every correction → learning engine | LEARNING_LOOP | SAAS_FACTORY_LEARNING_LOOP | Entry or reason_code |
+| 27 | PC packages need best-for/includes/not-included | STONE-026 | DESIGN-037 | Estimator context per package |
+| 28 | Package-aware add-ons prevent double-charge | STONE-026, STONE-015 | DESIGN-037 | Included list not summed again |
+| 29 | Estimator dropdown labels stay short | STONE-026 | DESIGN-037 | No best-for text in `<option>` |
+| 30 | Simple vs Core defined by job complexity | STONE-026 | DESIGN-037 | Drop-in vs platform/power/cooling |
 
 ---
 

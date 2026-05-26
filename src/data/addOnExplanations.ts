@@ -23,6 +23,15 @@ export const aiWorkflowScopeNote =
 export const techCleanupPlatformScopeNote =
   'Currently focused on Windows computers. No phones or Linux support right now. macOS may be considered case-by-case depending on the issue.'
 
+export const pcBuildServiceScopeNote =
+  'Windows desktop tower PCs only — mini, mid, or full tower. Hands-on PC assembly, upgrade, and component-planning experience. No laptops, phones, consoles, Linux builds, or custom open-loop liquid cooling right now.'
+
+export const pcBuildPartsPricingNote =
+  'Service fees cover planning, assembly, upgrade labor, setup, and handoff — not component cost. Parts are quoted separately; customer may purchase from an approved list. If Stone orders parts, component cost is invoiced upfront before assembly begins.'
+
+export const pcBuildCompetitorNote =
+  'Prebuilt online systems may be cheaper for simple plug-and-play needs. Stone Industries focuses on local guidance, compatible parts planning, desktop tower upgrades, assembly, Windows setup when scoped, and personal handoff — not national builder warranty scale or guaranteed benchmark performance.'
+
 export const addOnDetailsById: Record<string, AddOnDetail> = {
   'device-security': {
     shortDescription: 'Basic device and browser security check during a cleanup visit.',
@@ -347,6 +356,100 @@ export const addOnDetailsById: Record<string, AddOnDetail> = {
     ],
     notIncluded: ['Unlimited new workflows', '24/7 agent monitoring', 'Guaranteed accuracy'],
     bestFor: 'Businesses running one or more approved workflows that need occasional adjustments.',
+  },
+  'pc-extra-storage': {
+    shortDescription: 'Install an additional internal storage drive in a desktop tower.',
+    whatThisIs: 'Hands-on install of an extra SSD or HDD the customer provides or approves.',
+    includes: ['Drive mount and connection', 'Basic boot/disk visibility check', 'Simple handoff note'],
+    notIncluded: [
+      'Drive hardware cost',
+      'Data recovery if drive fails',
+      'Laptop storage upgrades',
+      'Guaranteed data transfer success',
+    ],
+    bestFor: 'Tower owners adding storage after the main upgrade or build scope.',
+  },
+  'pc-wifi-bt': {
+    shortDescription: 'Install a Wi-Fi or Bluetooth card in a compatible desktop tower.',
+    whatThisIs: 'Install and basic driver check for a customer-provided Wi-Fi/Bluetooth card.',
+    includes: ['Card install', 'Basic connectivity check', 'Driver-ready handoff note'],
+    notIncluded: ['Card hardware cost', 'Laptop wireless upgrades', 'Enterprise Wi-Fi design'],
+    bestFor: 'Desktops without built-in Wi-Fi or with weak wireless.',
+  },
+  'pc-aio-cooler': {
+    shortDescription: 'Install a compatible AIO liquid cooler — closed-loop only.',
+    whatThisIs: 'Install of a customer-approved all-in-one (AIO) cooler when case and board are compatible.',
+    includes: ['AIO mount and fan routing', 'Basic boot/temp sanity check', 'Handoff notes'],
+    notIncluded: [
+      'Custom open-loop liquid cooling',
+      'Cooler hardware cost',
+      'Guaranteed thermal or FPS results',
+      'Laptop cooling work',
+    ],
+    bestFor: 'Performance towers that need a compatible AIO install.',
+  },
+  'pc-rgb-setup': {
+    shortDescription: 'Basic RGB and fan control software setup after hardware install.',
+    whatThisIs: 'Help configuring RGB/fan software that came with approved parts — not full custom lighting design.',
+    includes: ['Software install guidance', 'Basic profile setup', 'Operator walkthrough'],
+    notIncluded: ['Guaranteed sync across all brands', 'Complex custom lighting programming'],
+    bestFor: 'RGB-heavy builds after assembly is complete.',
+  },
+  'pc-windows-drivers': {
+    shortDescription: 'Windows install and driver setup when not already in the package.',
+    whatThisIs: 'Windows installation and basic driver setup when customer has valid license/media or purchases license separately.',
+    includes: ['Windows install when media/license is provided', 'Basic driver setup', 'Boot and device check'],
+    notIncluded: [
+      'Windows license cost unless separately purchased',
+      'Guaranteed FPS or benchmark results',
+      'Data recovery',
+      'Linux installs',
+    ],
+    bestFor: 'Assembly-only packages that still need a fresh Windows setup.',
+  },
+  'pc-data-transfer': {
+    shortDescription: 'Move files from an old Windows PC to the new or upgraded tower.',
+    whatThisIs: 'Basic file transfer from an old Windows desktop when drives and access allow.',
+    includes: ['Scope-defined file/folder transfer', 'Simple verification checklist', 'Handoff notes'],
+    notIncluded: [
+      'Guaranteed data recovery',
+      'Forensic recovery',
+      'Laptop transfers',
+      'Transfer from failed or encrypted drives without backup',
+    ],
+    bestFor: 'Customers replacing a tower who want common files moved over.',
+  },
+  'pc-local-delivery': {
+    shortDescription: 'Local delivery and basic setup at customer location when scheduling allows.',
+    whatThisIs: 'Local drop-off or pickup plus basic desk setup in Fresno / Central Valley when scheduled.',
+    includes: ['Local delivery or pickup coordination', 'Basic desk placement and power-on check'],
+    notIncluded: ['Shipping logistics', 'Guaranteed shipping speed', 'Nationwide courier service'],
+    bestFor: 'Local customers who want hand delivery instead of shop pickup.',
+  },
+  'pc-failed-build-diagnostic': {
+    shortDescription: 'Diagnose a customer-built or partial upgrade that will not boot.',
+    whatThisIs: 'Diagnostic visit for a tower the customer started or upgraded — quoted repair beyond diagnostic if needed.',
+    includes: ['No-post / boot triage', 'Compatibility and power/cable checks', 'Written next-step quote'],
+    notIncluded: [
+      'Free unlimited rework',
+      'Guaranteed fix without parts changes',
+      'Laptop or console repair',
+    ],
+    bestFor: 'DIY builds that need a second pair of hands to find the issue.',
+  },
+  'pc-cable-mgmt': {
+    shortDescription: 'Clean up cabling after assembly or upgrade work.',
+    whatThisIs: 'Extra cable routing and tidying beyond the basic management included in the package.',
+    includes: ['Additional routing and strap work', 'Airflow-friendly layout where possible'],
+    notIncluded: ['Custom sleeved cable mods', 'Guaranteed temperature or noise outcomes'],
+    bestFor: 'Showcase builds or cramped cases that need extra tidying.',
+  },
+  'pc-dust-cleanup': {
+    shortDescription: 'Dust cleanup while the case is open for upgrade work.',
+    whatThisIs: 'Basic internal dust blow-out or wipe-down during an upgrade visit.',
+    includes: ['Internal dust removal where accessible', 'Simple cleanliness note'],
+    notIncluded: ['Liquid damage repair', 'Guaranteed hardware longevity'],
+    bestFor: 'Older towers opened for RAM, GPU, or storage upgrades.',
   },
 }
 

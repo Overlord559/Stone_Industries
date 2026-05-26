@@ -298,6 +298,11 @@
     color: #c4b5fd;
   }
 
+  .si-service-object--custom-pc-builds {
+    border-color: rgba(244, 114, 182, 0.35);
+    color: #f9a8d4;
+  }
+
   @media (hover: hover) and (pointer: fine) {
     .si-service-object:hover {
       transform: perspective(900px) rotateX(2deg) rotateY(4deg) translateY(-3px) scale(1.04);

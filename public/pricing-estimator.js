@@ -231,6 +231,15 @@
       '<label>Service<select data-estimator-service><option value="">Choose a service</option></select></label>' +
       '<label>Package<select data-estimator-package disabled><option value="">Choose a package</option></select></label>' +
       '</div>' +
+      '<div class="si-estimator-package-context" data-estimator-package-context hidden>' +
+      '<p class="si-estimator-package-best-for" data-estimator-package-best-for></p>' +
+      '<p class="si-estimator-package-summary note-muted" data-estimator-package-summary hidden></p>' +
+      '<p class="si-estimator-package-use-for" data-estimator-package-use-for hidden></p>' +
+      '<p class="si-estimator-package-includes"><strong>Includes:</strong> <span data-estimator-package-includes></span></p>' +
+      '<p class="si-estimator-package-not-included"><strong>Not included:</strong> <span data-estimator-package-not-included></span></p>' +
+      '<p class="note-muted si-estimator-package-parts-note" data-estimator-package-parts-note hidden></p>' +
+      '<p class="note-muted si-estimator-package-timeline-note" data-estimator-package-timeline-note hidden></p>' +
+      '</div>' +
       '<div class="si-estimator-page-count" data-estimator-page-count-wrap hidden>' +
       '<label for="estimator-page-count">How many pages do you estimate?' +
       '<input type="number" id="estimator-page-count" data-estimator-page-count min="1" max="30" value="1" step="1">' +
@@ -276,6 +285,14 @@
 
     var serviceSelect = root.querySelector('[data-estimator-service]')
     var packageSelect = root.querySelector('[data-estimator-package]')
+    var packageContextWrap = root.querySelector('[data-estimator-package-context]')
+    var packageBestForEl = root.querySelector('[data-estimator-package-best-for]')
+    var packageSummaryEl = root.querySelector('[data-estimator-package-summary]')
+    var packageUseForEl = root.querySelector('[data-estimator-package-use-for]')
+    var packageIncludesEl = root.querySelector('[data-estimator-package-includes]')
+    var packageNotIncludedEl = root.querySelector('[data-estimator-package-not-included]')
+    var packagePartsNoteEl = root.querySelector('[data-estimator-package-parts-note]')
+    var packageTimelineNoteEl = root.querySelector('[data-estimator-package-timeline-note]')
     var pageCountWrap = root.querySelector('[data-estimator-page-count-wrap]')
     var pageCountInput = root.querySelector('[data-estimator-page-count]')
     var pageHint = root.querySelector('[data-estimator-page-hint]')
@@ -355,6 +372,75 @@
         '/page. Sites with 10+ pages may need a final quote after scope review.'
     }
 
+    function syncPackageContext() {
+      var svc = currentService()
+      var pkg = currentPackage()
+
+      if (!packageContextWrap) return
+
+      if (!svc || !pkg) {
+        packageContextWrap.hidden = true
+        return
+      }
+
+      packageContextWrap.hidden = false
+
+      if (packageBestForEl) {
+        packageBestForEl.textContent = pkg.bestFor
+          ? 'Best for: ' + pkg.bestFor + '.'
+          : pkg.summary || ''
+      }
+
+      if (packageSummaryEl) {
+        if (pkg.summary && pkg.bestFor) {
+          packageSummaryEl.hidden = false
+          packageSummaryEl.textContent = pkg.summary
+        } else {
+          packageSummaryEl.hidden = true
+          packageSummaryEl.textContent = ''
+        }
+      }
+
+      if (packageUseForEl) {
+        if (pkg.useFor && pkg.useFor.length) {
+          packageUseForEl.hidden = false
+          packageUseForEl.innerHTML =
+            '<strong>Use for:</strong> <span>' + pkg.useFor.join(' · ') + '</span>'
+        } else {
+          packageUseForEl.hidden = true
+          packageUseForEl.innerHTML = ''
+        }
+      }
+
+      if (packageIncludesEl) {
+        packageIncludesEl.textContent = (pkg.includes || []).join(' · ')
+      }
+
+      if (packageNotIncludedEl) {
+        packageNotIncludedEl.textContent = (pkg.notIncluded || []).join(' · ')
+      }
+
+      if (packagePartsNoteEl) {
+        if (pkg.partsNote) {
+          packagePartsNoteEl.hidden = false
+          packagePartsNoteEl.textContent = 'Parts note: ' + pkg.partsNote
+        } else {
+          packagePartsNoteEl.hidden = true
+          packagePartsNoteEl.textContent = ''
+        }
+      }
+
+      if (packageTimelineNoteEl) {
+        if (pkg.timelineNote) {
+          packageTimelineNoteEl.hidden = false
+          packageTimelineNoteEl.textContent = 'Timeline: ' + pkg.timelineNote
+        } else {
+          packageTimelineNoteEl.hidden = true
+          packageTimelineNoteEl.textContent = ''
+        }
+      }
+    }
+
     function fillPackages() {
       packageSelect.innerHTML = '<option value="">Choose a package</option>'
       var svc = currentService()
@@ -369,6 +455,7 @@
       addonHint.hidden = !!svc
       breakdownWrap.hidden = true
       setEstimatorCtasVisible(false)
+      if (packageContextWrap) packageContextWrap.hidden = true
       if (!svc) return
 
       svc.packages.forEach(function (pkg) {
@@ -402,17 +489,30 @@
         pageCountWrap.hidden = true
         addonHint.hidden = false
         addonHint.textContent = 'Choose a package to see add-ons for ' + svc.title + '.'
+        syncPackageContext()
         return
       }
 
       syncPageCountControl()
+      syncPackageContext()
 
       if (pkg.pagesIncludedLabel && svc.slug !== 'business-websites') {
         pageNote.hidden = false
         pageNote.textContent = [pkg.pagesIncludedLabel, pkg.pageLimitNote].filter(Boolean).join(' — ')
-      } else if (svc.serviceDisclaimer && svc.slug !== 'business-websites') {
+      } else if (svc.slug !== 'custom-pc-builds' && svc.serviceDisclaimer) {
         pageNote.hidden = false
         pageNote.textContent = svc.serviceDisclaimer
+      } else {
+        pageNote.hidden = true
+        pageNote.textContent = ''
+      }
+
+      if (svc.slug === 'custom-pc-builds' && pkg.id === 'parts-plan') {
+        addonsWrap.hidden = true
+        addonHint.hidden = false
+        addonHint.textContent =
+          'Parts List / Upgrade Plan is planning only — no installation add-ons. Choose a build or upgrade package for optional add-ons.'
+        return
       }
 
       var includedIdsList = includedIds(pkg)
@@ -433,6 +533,11 @@
       appendAddonGroup(addonList, 'One-time add-ons', oneTimeRows)
       appendAddonGroup(addonList, 'Hourly / variable (not in one-time total)', hourlyRows)
       appendAddonGroup(addonList, 'Monthly care (billed separately)', monthlyRows)
+
+      if (!oneTimeRows.length && !hourlyRows.length && !monthlyRows.length && !includedIdsList.length) {
+        addonHint.hidden = false
+        addonHint.textContent = 'No optional add-ons for this package — scoped work is covered by the package fee.'
+      }
 
       if (includedIdsList.length) {
         includedWrap.hidden = false

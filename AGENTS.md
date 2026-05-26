@@ -55,6 +55,7 @@ Every serious Cursor/ChatGPT pass:
 | Same-Day Tech Cleanup | Device cleanup, virus/pop-up fixes |
 | 24-Hour Business Websites | One-page local business sites |
 | Wi-Fi, Printer & POS Support | Small-business network/POS support |
+| Custom PC Builds & Upgrades | Windows tower planning, upgrades, assembly, and handoff |
 | Logistics Coordination | Planning, documentation, coordination |
 | AI Workflow Automation | Guarded automation, human review |
 

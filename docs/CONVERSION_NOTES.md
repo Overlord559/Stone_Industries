@@ -58,6 +58,10 @@ Inquiry form remains primary — email is fallback when Supabase fails or buyer 
 
 React links use `import.meta.env.BASE_URL` via `site.ts`. Catalog source: `src/data/pricingCatalog.ts` → build emits `public/pricing-catalog.js`.
 
+**PC builds slug:** `custom-pc-builds` → `/pricing.html?service=custom-pc-builds` · parts cost always separate from service fee on public copy.
+
+**PC package differentiation (STONE-026):** Seven tiers must read as distinct jobs — planning vs simple drop-in upgrade vs core platform upgrade vs assembly-only vs full Windows build vs gaming layout vs showcase complexity. Estimator shows **Best for / Includes / Not included** after package pick; `includedAddOnIds` + `showForPackages` prevent double-charging bundled work.
+
 ---
 
 ## Productized pricing (2026-05-25)
@@ -98,12 +102,15 @@ React links use `import.meta.env.BASE_URL` via `site.ts`. Catalog source: `src/d
 | Service → package | Add-ons list only after package selected; service-scoped only |
 | Website page count | After website package selected: “How many pages do you estimate?” — defaults to included count; extra beyond included = +$125/page line item |
 | Large sites | 10+ estimated pages → “final quote after scope review” note (not added to total beyond per-page math) |
-| Included add-ons | `includedAddOnIds` on package — shown as included, not summed |
+| Included add-ons | `includedAddOnIds` on package — shown as included, not summed; optional `showForPackages` filters by tier |
+| Package context | After package select: **Best for / Use for / Includes / Not included** (+ parts/timeline notes for hardware) |
+| Dropdown labels | **Name + price only** — no long “best for” text inside `<option>` (STONE-026) |
+| Planning-only packages | e.g. PC `parts-plan` — hide optional add-ons; no false upsell checkboxes |
 | One-time total | Package + checked one-time add-ons only |
 | Hourly / monthly | Notes + mailto lines — not added to one-time total |
 | Mailto | Breakdown with package, estimated pages, extra-page line, add-ons, hourly/monthly notes |
 
-**Fail:** Double-charging bundled add-ons (STONE-015).
+**Fail:** Double-charging bundled add-ons (STONE-015). PC tiers that read as same add-ons at different prices (STONE-026). PC build tiers that look like the same add-ons at different prices (STONE-026).
 
 ---
 

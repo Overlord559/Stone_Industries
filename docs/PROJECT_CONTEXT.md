@@ -10,7 +10,7 @@
 
 ## Positioning
 
-**Tagline:** *Reliable Today. Autonomous Tomorrow.* — current five services are “today”; Vision section is “tomorrow” only.
+**Tagline:** *Reliable Today. Autonomous Tomorrow.* — current six services are “today”; Vision section is “tomorrow” only.
 
 ---
 
@@ -45,10 +45,11 @@ Source of truth for copy: [`src/data/site.ts`](../src/data/site.ts) · package t
 | 1 | **Same-Day Tech Cleanup** | Tech Cleanup Sprint |
 | 2 | **24-Hour Business Websites** | 24-Hour Website Launch |
 | 3 | **Wi-Fi, Printer & POS Support** | Small Business Tech Support |
-| 4 | **Logistics Coordination** | Logistics Coordination Support |
-| 5 | **AI Automation & Digital Assistant Systems** | Digital Assistant Setup |
+| 4 | **Custom PC Builds & Upgrades** | Desktop Tower Build & Upgrade |
+| 5 | **Logistics Coordination** | Logistics Coordination Support |
+| 6 | **AI Automation & Digital Assistant Systems** | Digital Assistant Setup |
 
-**Productized packages** with add-on `detail` blocks, compact grouped estimator UI, and scope guardrails: Windows-only Tech Cleanup, no customer-facing Post-launch QA (launch-ready handoff is standard delivery), paid-ads setup/guidance only (not campaign management), AI-agent-style workflows with human approval.
+**Productized packages** with add-on `detail` blocks, compact grouped estimator UI, package-aware add-on filtering (`includedAddOnIds`, `showForPackages`), and scope guardrails: Windows-only Tech Cleanup, PC builds/upgrades (Windows towers only; parts vs service fee separated; seven differentiated tiers), no customer-facing Post-launch QA (launch-ready handoff is standard delivery), paid-ads setup/guidance only (not campaign management), AI-agent-style workflows with human approval.
 
 **Static visuals:** Pricing/services pages use coastal-tech background (`stone-coastal-tech-bg.webp`) with glass sections — aligned with homepage lower parallax (STONE-001).
 
@@ -100,7 +101,7 @@ Source of truth: [`src/data/site.ts`](../src/data/site.ts) — `serviceAreaPrima
 
 | Priority | Task | Status |
 |----------|------|--------|
-| 1 | **Static pricing funnel** | Done — `pricing.html` + 5 service pages |
+| 1 | **Static pricing funnel** | Done — `pricing.html` + 6 service pages |
 | 2 | **Fresno service-area copy + meta** | Done |
 | 3 | **Operator Netlify import + smoke test** | Done — https://stoneindustries.netlify.app/ |
 | 4 | **Google Business Profile / local SEO** | Pending — post-deploy, operator |

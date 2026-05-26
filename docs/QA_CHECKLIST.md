@@ -30,7 +30,7 @@ Optional preview: `npm run preview` — open printed local URL.
 
 - [ ] Hero: headline, subcopy, primary CTA readable
 - [ ] Primary CTA contrast on light buttons (dark text visible)
-- [ ] Services section: all 5 services visible with inquiry links
+- [ ] Services section: all **6** current services visible with inquiry links
 - [ ] Vision section: future items labeled **not sold today**; direction tiles link to `/vision.html` anchors
 - [ ] Contact: inquiry form primary; email shows copy + mailto fallback; phone link uses `tel:+15595799376`
 - [ ] Navbar: Services → `/services.html`; Pricing → `/pricing.html`; Vision → `/vision.html`
@@ -75,7 +75,7 @@ Optional preview: `npm run preview` — open printed local URL.
 
 ## Mailto / tel / email copy checks
 
-- [ ] Visible email `stoneindustries0.llc@gmail.com` on homepage contact, footer, pricing, services, all five service detail pages
+- [ ] Visible email `stoneindustries0.llc@gmail.com` on homepage contact, footer, pricing, services, all **six** service detail pages
 - [ ] **Copy email** shows “Email copied.” on click (React + static `contact-email.js`)
 - [ ] **Open email app** uses `mailto:stoneindustries0.llc@gmail.com?subject=Stone%20Industries%20Inquiry`
 - [ ] No Gmail web compose / Google account picker URLs (`mail.google.com`, `accounts.google.com`)
@@ -146,7 +146,7 @@ Optional preview: `npm run preview` — open printed local URL.
 Run on live Netlify URL after deploy — https://stoneindustries.netlify.app/ — see [`DEPLOYMENT.md`](DEPLOYMENT.md):
 
 - [ ] `/`, `/pricing.html`, `/services.html`, `/vision.html` — 200
-- [ ] All five `/services/*.html` detail pages — 200
+- [ ] All **six** `/services/*.html` detail pages — 200
 - [ ] `/capability-brief.html`, `/privacy.html`, `/terms.html` — 200
 - [ ] Hero primary CTA → `/pricing.html`
 - [ ] Top nav Services → `/services.html`; Pricing → `/pricing.html`; Vision → `/vision.html`
@@ -157,10 +157,33 @@ Run on live Netlify URL after deploy — https://stoneindustries.netlify.app/ �
 
 ---
 
+## Custom PC Builds & Upgrades check (2026-05-25)
+
+- [ ] `/services/custom-pc-builds.html` loads with coastal background and readable packages
+- [ ] Homepage service card + CSS-3D object routes to `/pricing.html?service=custom-pc-builds`
+- [ ] Estimator preselects **Custom PC Builds & Upgrades** from `?service=custom-pc-builds`
+- [ ] Homepage **Request This Package** preselects service in inquiry dropdown
+- [ ] Static + React inquiry submit with `service_requested = Custom PC Builds & Upgrades`
+- [ ] Copy states **parts cost separate** from service fee; no “certified builder” or benchmark guarantees
+- [ ] Scope excludes laptops, phones, consoles, Linux, open-loop liquid cooling
+- [ ] No competitor names; no “cheaper than [brand]” claims
+- [ ] Mobile 375px / 320px — 7 package cards wrap cleanly; no horizontal scroll
+- [ ] **Which package should I choose?** guide section present on service page
+- [ ] Estimator shows **Best for / Includes / Not included** context after package selection
+- [ ] Package dropdown options are **name + price only** — no long text in `<option>` labels
+- [ ] Estimator grid/select uses `min-width: 0` / `max-width: 100%` — no horizontal overflow at 375px/320px
+- [ ] Simple vs Core upgrade differentiation clear in context panel and service page
+- [ ] Basic vs Standard vs Gaming vs Showcase differentiation clear
+- [ ] `parts-plan` hides optional add-ons (planning only)
+- [ ] Included add-ons (Windows, cable mgmt, RGB/AIO on Showcase) show in “Included in this package” — not summed again
+- [ ] Failed-build diagnostic only on Simple/Core upgrade packages
+
+---
+
 ## Productized pricing check
 
 - [ ] `public/pricing.html` package overview shows website tiers from $399 / $799 / $1,199+
-- [ ] All five `public/services/*.html` show 3 fixed packages + add-on list with $ labels
+- [ ] All **six** `public/services/*.html` show fixed packages + add-on list with $ labels
 - [ ] `src/data/pricingCatalog.ts` matches static page prices (grep spot-check)
 - [ ] React Services section shows updated `startingAtLabel` from catalog
 - [ ] CTAs: Request This Package / Compare Packages — no “instant checkout” or embedded pay
@@ -178,7 +201,7 @@ Run on live Netlify URL after deploy — https://stoneindustries.netlify.app/ �
 - [ ] Paid ads copy = setup/guidance only — no campaign management or guaranteed ROI
 - [ ] AI copy includes AI-agent-style workflows + human approval — no employee replacement
 - [ ] Premium Website included add-ons show **What this includes** details without double-charging
-- [ ] Service pages with `data-si-service-addons` render catalog-driven add-on accordions (5 service pages)
+- [ ] Service pages with `data-si-service-addons` render catalog-driven add-on accordions (**6** service pages)
 - [ ] Business websites page clarifies secure lead capture vs Tier 1/Tier 2 cybersecurity
 - [ ] SEO copy distinguishes basic SEO/meta vs deeper SEO/ads/campaigns — no guaranteed rankings
 - [ ] AI copy mentions AI models, APIs, n8n-style automation — no employee replacement
@@ -210,7 +233,7 @@ Run on live Netlify URL after deploy — https://stoneindustries.netlify.app/ �
 
 ## Static page background check
 
-- [ ] `pricing.html`, `services.html`, all five service pages use `page-atmosphere--coastal`
+- [ ] `pricing.html`, `services.html`, all **six** service pages use `page-atmosphere--coastal`
 - [ ] `stone-coastal-tech-bg.webp` visible but text readable (no STONE-001 over-darkening)
 - [ ] Mobile 375px / 320px: no horizontal scroll; background `scroll` not broken
 - [ ] Homepage hero unchanged

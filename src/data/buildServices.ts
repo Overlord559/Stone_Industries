@@ -1,5 +1,5 @@
 import type { LucideIcon } from 'lucide-react'
-import { Bot, Globe, Map, Wifi, Wrench } from 'lucide-react'
+import { Bot, Boxes, Globe, Map, Wifi, Wrench } from 'lucide-react'
 
 import {
   lowestPackagePrice,
@@ -88,6 +88,24 @@ const metaBySlug: Record<string, ServiceMeta> = {
     icon: Map,
     detailPath: 'services/logistics-coordination.html',
     pricingPageLabel: 'Compare Operations Packages',
+  },
+  'custom-pc-builds': {
+    packageName: 'Desktop Tower Build & Upgrade',
+    description:
+      'Windows desktop tower builds and upgrades from compatible parts — planning, assembly, setup, and local handoff. Parts quoted separately; Stone charges a clear service fee.',
+    tag: 'For customers who want local help choosing parts, upgrading a tower, or getting a desktop assembled — not national warranty scale.',
+    whoFor:
+      'Gamers, creators, and home-office users with desktop towers who want local planning, upgrades, assembly, and handoff — not laptop or phone repair.',
+    scope: [
+      'New tower desktop builds and existing Windows desktop tower upgrades',
+      'GPU, RAM, SSD, CPU, motherboard, PSU, Wi-Fi card, and fan upgrades when compatible',
+      'Parts list / upgrade planning, assembly, BIOS/boot check, and optional Windows setup',
+      'Mini, mid, and full tower cases — Windows only; no laptops, phones, consoles, or Linux right now',
+    ],
+    securityIncluded: [],
+    icon: Boxes,
+    detailPath: 'services/custom-pc-builds.html',
+    pricingPageLabel: 'Compare PC Build Packages',
   },
   'ai-workflow-automation': {
     packageName: 'Digital Assistant Setup',

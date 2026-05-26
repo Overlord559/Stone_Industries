@@ -21,8 +21,8 @@
 | Hosting compliance | Commercial site on **Netlify Free** — not Vercel Hobby |
 | Service packaging | Secure-by-default sections on all `public/services/*.html`; no compliance overclaims |
 | Payment protection copy | `pricing.html` — deposits, scope, delivery, Bluevine workflow; no on-site checkout |
-| Productized pricing | Fixed package tiers on pricing + 5 service pages; `pricingCatalog.ts` source of truth |
-| Package estimator | Service + package-scoped add-ons; website page-count control; add-on `<details>` explanations; included add-ons not double-charged |
+| Productized pricing | Fixed package tiers on pricing + **6** service pages; `pricingCatalog.ts` source of truth |
+| Package estimator | Service + package-scoped add-ons; website page-count control; add-on `<details>` explanations; included add-ons not double-charged; PC builds show package context (best for / includes / not included) per STONE-026 |
 | Tech Cleanup scope | Windows PCs only — no phones/Linux; macOS case-by-case; see `techCleanupPlatformScopeNote` |
 | Estimator UX | Compact grouped add-ons; no standalone secure-lead-capture callout; `Details` collapsed by default |
 | Post-launch QA | Removed from customer-facing catalog — QA remains internal delivery standard (`docs/QA_CHECKLIST.md`) |
@@ -67,7 +67,7 @@ Set `VITE_BASE_PATH` in `netlify.toml`. Set Supabase vars in **Netlify UI** (nev
 ```text
 1. Homepage 200 at /
 2. Background WebP 200 (Network tab)
-3. /pricing.html + /services.html + /vision.html + all 5 service detail pages 200
+3. /pricing.html + /services.html + /vision.html + all **6** service detail pages 200
 4. Mailto opens with subject; Copy email shows confirmation
 5. tel:+15595799376 on hero, contact, static pages
 6. /privacy.html /terms.html /capability-brief.html 200

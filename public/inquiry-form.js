@@ -9,6 +9,7 @@
     'Wi-Fi, Printer & POS Support',
     'Operations & Logistics Coordination Setup',
     'AI Automation & Digital Assistant Systems',
+    'Custom PC Builds & Upgrades',
     'General Inquiry',
     'Subcontracting / Capability Brief',
   ]
@@ -19,6 +20,7 @@
     'wifi-printer-pos': 'Wi-Fi, Printer & POS Support',
     'logistics-coordination': 'Operations & Logistics Coordination Setup',
     'ai-workflow-automation': 'AI Automation & Digital Assistant Systems',
+    'custom-pc-builds': 'Custom PC Builds & Upgrades',
   }
 
   const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/

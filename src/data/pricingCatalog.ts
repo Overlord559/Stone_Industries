@@ -7,6 +7,9 @@ import {
   advancedSeoPublicLine,
   aiWorkflowScopeNote,
   detailForAddOn,
+  pcBuildCompetitorNote,
+  pcBuildPartsPricingNote,
+  pcBuildServiceScopeNote,
   techCleanupPlatformScopeNote,
 } from './addOnExplanations'
 
@@ -51,6 +54,14 @@ export type CatalogPackage = {
   pagesIncludedLabel?: string
   /** Shown in estimator when package selected */
   pageLimitNote?: string
+  /** Customer-facing “best for” line — estimator context panel only, not dropdown labels */
+  bestFor?: string
+  /** Short “use for” examples — estimator context panel only */
+  useFor?: string[]
+  /** Parts-cost reminder for hardware/build packages */
+  partsNote?: string
+  /** Timeline expectation for hardware/build packages */
+  timelineNote?: string
 }
 
 export type CatalogService = {
@@ -77,6 +88,8 @@ export const whereStoneFits = [
     aiWorkflowScopeNote +
     ' Start with one workflow, then expand.',
   'Not a freight broker or 3PL — operations workflow setup, intake forms, handoffs, tracking sheets, and SOPs. Freight movement and regulated transportation require properly authorized providers.',
+  'Not a national PC builder warranty program — local Windows tower planning, upgrades, assembly, setup, and handoff. ' +
+    pcBuildCompetitorNote,
 ] as const
 
 export const logisticsFreightDisclaimer =
@@ -677,6 +690,330 @@ const pricingCatalogRaw: CatalogService[] = [
       'No payment or card handling by AI workflows',
       'API keys documented for server-side use only',
       'Prompt boundaries and privacy/workflow documentation',
+    ],
+  },
+  {
+    slug: 'custom-pc-builds',
+    title: 'Custom PC Builds & Upgrades',
+    inquirySubject: 'Custom PC Build / Upgrade Inquiry — Stone Industries',
+    serviceDisclaimer:
+      pcBuildServiceScopeNote +
+      ' ' +
+      pcBuildPartsPricingNote +
+      ' ' +
+      pcBuildCompetitorNote +
+      ' Typical full build timeline is about one week depending on parts shipping; simple upgrades may be faster. Final price depends on parts availability, case access, compatibility, complexity, and requested setup.',
+    packages: [
+      {
+        id: 'parts-plan',
+        name: 'Parts List / Upgrade Plan',
+        priceLabel: '$49',
+        baseEstimate: 49,
+        isFrom: false,
+        bestFor: 'Choosing compatible parts before you buy',
+        partsNote: pcBuildPartsPricingNote,
+        timelineNote: 'Usually 1–2 business days for a written parts or upgrade plan.',
+        summary: 'Planning only — compatible parts list and upgrade path before you purchase components.',
+        includes: [
+          'Budget and use-case intake',
+          'Compatible build or upgrade parts list',
+          'Estimated parts cost range',
+          'Upgrade path notes',
+          'Planning fee may credit toward full build/upgrade within 14 days if you move forward',
+        ],
+        notIncluded: [
+          'Physical installation or assembly',
+          'Windows install or driver setup',
+          'Troubleshooting or boot repair',
+          'Parts purchase (quoted separately)',
+        ],
+      },
+      {
+        id: 'simple-upgrade',
+        name: 'Simple Upgrade Install',
+        priceLabel: '$79+',
+        baseEstimate: 79,
+        isFrom: true,
+        bestFor: 'Easy drop-in upgrades for an existing Windows tower',
+        useFor: [
+          'RAM install',
+          'SSD/storage install',
+          'Wi‑Fi/Bluetooth card install',
+          'Simple compatible GPU install when no power-supply, case, or BIOS issue is expected',
+        ],
+        partsNote: pcBuildPartsPricingNote,
+        timelineNote: 'Often same-day or next-available when parts are on hand and case access is straightforward.',
+        summary:
+          'Simple = drop-in part install. Choose Core Upgrade if the job affects CPU, motherboard, power supply, or cooling.',
+        includes: [
+          'One simple component install, or a small set of simple drop-in installs if quoted together',
+          'Basic boot check',
+          'Basic driver check when relevant',
+        ],
+        notIncluded: [
+          'Parts cost',
+          'CPU upgrade',
+          'Motherboard swap',
+          'PSU replacement',
+          'Major cooling changes',
+          'Windows reinstall',
+          'Complex troubleshooting',
+          'Data recovery',
+        ],
+      },
+      {
+        id: 'core-upgrade',
+        name: 'Core Upgrade Install',
+        priceLabel: '$149+',
+        baseEstimate: 149,
+        isFrom: true,
+        bestFor:
+          'Major internal upgrades that affect the platform, power, cooling, or multiple connected parts',
+        useFor: [
+          'CPU upgrade',
+          'Motherboard swap',
+          'Power supply replacement',
+          'Cooler/fan changes',
+          'Multiple-part upgrade',
+          'BIOS/boot compatibility work',
+        ],
+        partsNote: pcBuildPartsPricingNote,
+        timelineNote: 'Timeline depends on parts, case access, and compatibility — often 1–3 days for scoped work.',
+        summary:
+          'Core = platform, power, cooling, or multi-part internal work. Choose Simple Upgrade for RAM, SSD, Wi‑Fi, or an easy GPU swap.',
+        includes: [
+          'Major component install',
+          'Compatibility/fit check',
+          'BIOS/boot check',
+          'Basic cable management after install',
+        ],
+        notIncluded: [
+          'Parts cost',
+          'Windows reinstall unless needed/quoted',
+          'Data recovery',
+          'Guaranteed compatibility if customer supplied incompatible parts',
+          'Complex troubleshooting beyond scoped install',
+        ],
+        includedAddOnIds: ['pc-cable-mgmt'],
+      },
+      {
+        id: 'basic-assembly',
+        name: 'Basic Tower Assembly',
+        priceLabel: '$149',
+        baseEstimate: 149,
+        isFrom: false,
+        bestFor: 'Physical assembly only — you already have approved compatible parts',
+        partsNote: pcBuildPartsPricingNote,
+        timelineNote: 'Typical assembly handoff in about 2–5 days after approved parts are available.',
+        summary: 'Assemble a new tower from customer-approved parts — service fee only.',
+        includes: [
+          'Assemble provided/approved compatible parts',
+          'Basic cable routing',
+          'BIOS/boot check',
+          'Basic handoff checklist',
+        ],
+        notIncluded: [
+          'Parts cost',
+          'Windows install or driver setup',
+          'RGB software setup',
+          'Data transfer',
+          'Local delivery/setup',
+          'Troubleshooting defective or incompatible customer parts',
+        ],
+        includedAddOnIds: ['pc-cable-mgmt'],
+      },
+      {
+        id: 'standard-build',
+        name: 'Standard Windows PC Build',
+        priceLabel: '$199',
+        baseEstimate: 199,
+        isFrom: false,
+        bestFor: 'Normal full desktop build with Windows and driver handoff',
+        partsNote: pcBuildPartsPricingNote,
+        timelineNote: 'Typical full build timeline is about one week depending on parts shipping.',
+        summary: 'Full tower build plus Windows install and basic drivers when license/media is available.',
+        includes: [
+          'Tower assembly from approved parts list',
+          'BIOS/boot check',
+          'Basic cable management',
+          'Windows install + basic driver setup when customer has/provides license or license is purchased separately',
+          'Basic handoff',
+        ],
+        notIncluded: [
+          'Parts cost or Windows license unless purchased separately',
+          'RGB-heavy or showcase cable routing',
+          'AIO install unless quoted/added',
+          'Data transfer or local delivery/setup',
+          'Guaranteed FPS or benchmark results',
+        ],
+        includedAddOnIds: ['pc-windows-drivers', 'pc-cable-mgmt'],
+      },
+      {
+        id: 'gaming-build',
+        name: 'Gaming / Performance Build',
+        priceLabel: '$249',
+        baseEstimate: 249,
+        isFrom: false,
+        bestFor: 'Gaming or workstation builds where GPU, airflow, and drivers matter',
+        partsNote: pcBuildPartsPricingNote,
+        timelineNote: 'Typical timeline is about one week depending on parts shipping; airflow and GPU setup included in service fee.',
+        summary: 'Everything in Standard Windows PC Build, plus gaming/workstation-focused layout and airflow.',
+        includes: [
+          'Everything in Standard Windows PC Build',
+          'GPU, storage, and fan setup',
+          'Airflow check',
+          'Cleaner cable management than Standard',
+          'Driver-ready handoff',
+        ],
+        notIncluded: [
+          'Parts cost',
+          'Guaranteed FPS or benchmark performance',
+          'RGB-heavy showcase layout (see Showcase package)',
+          'AIO install unless quoted/added',
+          'Data transfer or delivery/setup unless added',
+        ],
+        includedAddOnIds: ['pc-windows-drivers', 'pc-cable-mgmt'],
+      },
+      {
+        id: 'showcase-build',
+        name: 'Showcase / Complex Build',
+        priceLabel: '$349+',
+        baseEstimate: 349,
+        isFrom: true,
+        bestFor: 'RGB-heavy, AIO, compact case, or complex visual/cable layout',
+        partsNote: pcBuildPartsPricingNote,
+        timelineNote: 'Complex builds are quoted after scope review — often about one week+ depending on parts and layout.',
+        summary: 'Everything in Gaming / Performance Build, plus visual layout, RGB, and compatible AIO when scoped.',
+        includes: [
+          'Everything in Gaming / Performance Build',
+          'RGB/fan layout planning and baseline software setup',
+          'Compatible AIO liquid cooler install when in scoped parts list',
+          'Extended cable management and handoff checklist',
+        ],
+        notIncluded: [
+          'Parts cost',
+          'Custom open-loop liquid cooling',
+          'Guaranteed thermals, FPS, or aesthetic outcomes',
+          'Defective-part warranty or data recovery',
+          'Delivery/setup unless added',
+        ],
+        includedAddOnIds: ['pc-windows-drivers', 'pc-aio-cooler', 'pc-rgb-setup', 'pc-cable-mgmt'],
+      },
+    ],
+    addOns: [
+      {
+        id: 'pc-extra-storage',
+        name: 'Extra storage drive install',
+        priceLabel: '+$39/drive',
+        kind: 'per-unit',
+        estimateAdd: 39,
+        unitLabel: 'drive',
+        maxUnits: 4,
+        helpText: 'For extra drives beyond the main scoped build or upgrade — not the primary drive in a simple upgrade job.',
+        showForPackages: [
+          'simple-upgrade',
+          'core-upgrade',
+          'basic-assembly',
+          'standard-build',
+          'gaming-build',
+          'showcase-build',
+        ],
+      },
+      {
+        id: 'pc-wifi-bt',
+        name: 'Wi-Fi/Bluetooth card install',
+        priceLabel: '+$39',
+        kind: 'one-time',
+        estimateAdd: 39,
+        showForPackages: ['simple-upgrade'],
+        helpText: 'Use when the Wi‑Fi/Bluetooth card is an add-on beyond the one simple install already in the package.',
+      },
+      {
+        id: 'pc-aio-cooler',
+        name: 'AIO liquid cooler install',
+        priceLabel: '+$79',
+        kind: 'one-time',
+        estimateAdd: 79,
+        helpText: 'Closed-loop AIO only when case, board, and cooler are compatible — not custom open-loop.',
+        showForPackages: ['core-upgrade', 'basic-assembly', 'standard-build', 'gaming-build'],
+      },
+      {
+        id: 'pc-rgb-setup',
+        name: 'RGB/fan software setup',
+        priceLabel: '+$49',
+        kind: 'one-time',
+        estimateAdd: 49,
+        showForPackages: ['core-upgrade', 'basic-assembly', 'standard-build', 'gaming-build'],
+      },
+      {
+        id: 'pc-windows-drivers',
+        name: 'Windows install + driver setup',
+        priceLabel: '+$79',
+        kind: 'one-time',
+        estimateAdd: 79,
+        helpText:
+          'When not already included in the selected package. Customer must provide valid Windows license/media or purchase license separately.',
+        showForPackages: ['simple-upgrade', 'core-upgrade', 'basic-assembly'],
+      },
+      {
+        id: 'pc-data-transfer',
+        name: 'Data transfer from old Windows PC',
+        priceLabel: '+$79+',
+        kind: 'one-time',
+        estimateAdd: 79,
+        estimateNote: 'From $79 depending on data size and drive access — not a data recovery guarantee.',
+        showForPackages: [
+          'simple-upgrade',
+          'core-upgrade',
+          'basic-assembly',
+          'standard-build',
+          'gaming-build',
+          'showcase-build',
+        ],
+      },
+      {
+        id: 'pc-local-delivery',
+        name: 'Local delivery/setup',
+        priceLabel: '+$59+',
+        kind: 'one-time',
+        estimateAdd: 59,
+        estimateNote: 'From $59 when scheduling allows in Fresno / Central Valley',
+        showForPackages: ['basic-assembly', 'standard-build', 'gaming-build', 'showcase-build'],
+      },
+      {
+        id: 'pc-failed-build-diagnostic',
+        name: 'Troubleshoot failed customer build/upgrade',
+        priceLabel: '$79 diagnostic',
+        kind: 'one-time',
+        estimateAdd: 79,
+        helpText: 'Diagnostic fee for customer-started builds — repair labor or parts quoted separately in writing.',
+        showForPackages: ['simple-upgrade', 'core-upgrade'],
+      },
+      {
+        id: 'pc-cable-mgmt',
+        name: 'Cable management cleanup',
+        priceLabel: '+$49+',
+        kind: 'one-time',
+        estimateAdd: 49,
+        estimateNote: 'From $49 for enhanced tidying beyond basic cable routing already in Core+ packages',
+        showForPackages: ['simple-upgrade'],
+      },
+      {
+        id: 'pc-dust-cleanup',
+        name: 'Dust cleanup during upgrade',
+        priceLabel: '+$39+',
+        kind: 'one-time',
+        estimateAdd: 39,
+        estimateNote: 'From $39 when added during an open-case upgrade visit',
+        showForPackages: ['simple-upgrade', 'core-upgrade'],
+      },
+    ],
+    secureBullets: [
+      'Customer-approved parts list before assembly or major install',
+      'Compatibility, case-space, and PSU review before work begins',
+      'Basic cable management and airflow check where scoped',
+      'BIOS/boot verification and written handoff checklist',
+      'Windows/driver setup only when scoped — customer license/media required',
     ],
   },
 ]
