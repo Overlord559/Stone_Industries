@@ -108,7 +108,7 @@ Optional preview: `npm run preview` — open printed local URL.
 
 ## Netlify post-deploy smoke (production)
 
-Run on live Netlify URL after deploy — see [`DEPLOYMENT.md`](DEPLOYMENT.md):
+Run on live Netlify URL after deploy — https://stoneindustries.netlify.app/ — see [`DEPLOYMENT.md`](DEPLOYMENT.md):
 
 - [ ] `/`, `/pricing.html`, `/services.html` — 200
 - [ ] All five `/services/*.html` detail pages — 200

@@ -12,6 +12,7 @@ Stone Industries is a **commercial service site** (pricing, service pages, phone
 | Item | Value |
 |------|-------|
 | **Host** | [Netlify](https://www.netlify.com) — Free tier |
+| **Live URL (canonical)** | https://stoneindustries.netlify.app/ |
 | **Source** | GitHub repo `stone_industries website` |
 | **Build** | `npm run build` → publish `dist/` |
 | **Base path** | `/` via `VITE_BASE_PATH=/` |
@@ -110,9 +111,9 @@ base: mode === 'production' ? repoBasePath : '/',
 
 ### Canonical URL / social meta
 
-- **`og:url` / `twitter:image`** in `index.html` currently point to GitHub Pages — accurate until Netlify deploy exists
-- **After first Netlify deploy:** update meta tags to Netlify URL (or custom domain)
-- Pick **one** canonical host for SEO; Netlify should be canonical once live
+- **Canonical production URL:** https://stoneindustries.netlify.app/
+- **`og:url` / `og:image` / `twitter:image`** in `index.html` point to Netlify (update when custom domain is added)
+- **GitHub Pages** remains mirror/preview only — do not use as canonical `og:url`
 
 ### Local production preview
 
@@ -192,7 +193,7 @@ No backend required. Netlify + GitHub Pages compatible via relative links and `%
 
 ## Post-deploy smoke test (Netlify)
 
-Run on live Netlify URL (`https://<site>.netlify.app`):
+Run on live Netlify URL (https://stoneindustries.netlify.app/):
 
 - [ ] `/` — homepage loads, assets 200
 - [ ] `/pricing.html`

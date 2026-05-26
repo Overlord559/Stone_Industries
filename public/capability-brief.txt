@@ -67,7 +67,7 @@ HONEST LIMITATIONS
 - Quote-based pricing confirmed before work begins
 
 WEB
-Homepage: https://overlord559.github.io/Stone_Industries/
+Homepage: https://stoneindustries.netlify.app/
 Pricing: pricing.html
 Services: services.html
 HTML brief: capability-brief.html

@@ -1,7 +1,7 @@
 # Stone Industries — Project Context
 
 **Last updated:** 2026-05-25 · **Project OS v2**  
-**Production target:** Netlify Free (`VITE_BASE_PATH=/`) — see [`DEPLOYMENT.md`](DEPLOYMENT.md)  
+**Live production:** https://stoneindustries.netlify.app/ (Netlify Free, `VITE_BASE_PATH=/`) — see [`DEPLOYMENT.md`](DEPLOYMENT.md)  
 **Mirror / preview:** https://overlord559.github.io/Stone_Industries/ (GitHub Pages)  
 **Repo:** `stone_industries website` · branch `main`  
 **Routing:** [`PROJECT_OS_INDEX.md`](PROJECT_OS_INDEX.md)
@@ -88,7 +88,7 @@ Source of truth: [`src/data/site.ts`](../src/data/site.ts) — `serviceAreaPrima
 |----------|------|--------|
 | 1 | **Static pricing funnel** | Done — `pricing.html` + 5 service pages |
 | 2 | **Fresno service-area copy + meta** | Done |
-| 3 | **Operator Netlify import + smoke test** | Pending |
+| 3 | **Operator Netlify import + smoke test** | Done — https://stoneindustries.netlify.app/ |
 | 4 | **Google Business Profile / local SEO** | Pending — post-deploy, operator |
 | 5 | **Phone / paid domain / Stripe Payment Links** | Deferred — budget (Fri/Mon) |
 | 6 | **Supabase intake DB** | Deferred — free tier maxed; validate demand first |

@@ -9,6 +9,7 @@
 
 | Check | Requirement |
 |-------|-------------|
+| Live URL | https://stoneindustries.netlify.app/ (canonical) |
 | Build | `npm run build` exit 0 |
 | Lint | `npm run lint` exit 0 |
 | Base path | Matches host — see [`DEPLOYMENT.md`](DEPLOYMENT.md) |
