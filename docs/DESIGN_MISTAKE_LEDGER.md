@@ -200,6 +200,22 @@
 
 ---
 
+## STONE-012 — Sell security without overclaiming
+
+| Field | Value |
+|-------|-------|
+| **Severity** | STRONG_RULE |
+| **Factory link** | DESIGN-033 |
+| **Status** | ACTIVE |
+
+**Problem:** Service pages either omit security (buyers assume no care) or overclaim “military-grade,” compliance, or hacker-proof protection — both hurt trust and create legal drift.
+
+**Rule:** Package **practical secure-by-default bullets** per service (device safety, secure launch, Wi-Fi/POS guidance, handoffs, guarded AI). Add global disclaimer: included where applicable, **not** hacker-proof; **no** PCI/HIPAA/SOC 2/government compliance claims unless separately contracted. Stripe = hosted Payment Link readiness, not custom card capture.
+
+**QA check:** Service pages have secure-by-default section; pricing/services index has disclaimer; grep finds no hacker-proof / military-grade / false compliance claims.
+
+---
+
 ## How to add a lesson
 
 1. Assign next `STONE-NNN` ID

@@ -19,6 +19,7 @@
 | Console | No uncaught errors on homepage |
 | Mobile | 375px + 320px QA pass |
 | Hosting compliance | Commercial site on **Netlify Free** — not Vercel Hobby |
+| Service packaging | Secure-by-default sections on all `public/services/*.html`; no compliance overclaims |
 
 ---
 

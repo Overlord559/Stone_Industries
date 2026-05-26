@@ -33,6 +33,8 @@ export type Service = {
   description: string
   tag: string
   scope: string[]
+  /** Practical secure-by-default deliverables — no compliance or hacker-proof claims. */
+  securityIncluded: string[]
   whoFor: string
   startingAtLabel: string
   pricingNote: string
@@ -90,6 +92,10 @@ export const pricingDisclaimer =
 export const paymentNote =
   'No online checkout on this site. Payment details confirmed after quote. An online payment link can be provided when available.'
 
+/** Shown on service/pricing pages — honest scope, no compliance or hacker-proof claims. */
+export const securityPackageDisclaimer =
+  'Security-conscious setup is included where applicable, but no website or system can be guaranteed hacker-proof. Stone Industries does not claim PCI, HIPAA, SOC 2, or government compliance unless separately contracted and documented.'
+
 export const services: Service[] = [
   {
     slug: 'tech-cleanup',
@@ -103,6 +109,14 @@ export const services: Service[] = [
       'Virus, pop-up, and unwanted browser behavior cleanup',
       'Slow-device triage and basic troubleshooting',
       'Same-day or next-available support when scheduling allows',
+      'Browser/account safety review and scam-prevention basics where applicable',
+    ],
+    securityIncluded: [
+      'Browser and account safety review',
+      'Suspicious extension and unwanted app cleanup',
+      'Update and checkup guidance',
+      'Backup and recovery recommendations',
+      'Phishing and scam-prevention basics',
     ],
     startingAtLabel: 'Packages from $49',
     pricingNote: pricingDisclaimer,
@@ -111,7 +125,12 @@ export const services: Service[] = [
         name: 'Quick Cleanup',
         startingAt: 'Starting at $49',
         summary: 'Remote triage and focused cleanup for one device.',
-        includes: ['Pop-up / unwanted software review', 'Browser cleanup guidance', 'Basic slow-device triage'],
+        includes: [
+          'Pop-up / unwanted software review',
+          'Browser cleanup guidance',
+          'Basic slow-device triage',
+          'Account safety and scam-prevention basics',
+        ],
         notIncluded: ['Hardware repair', 'Full network redesign', 'Guaranteed same-hour response'],
       },
       {
@@ -148,6 +167,14 @@ export const services: Service[] = [
       'One-page business site with clear contact path',
       'Local vendors, contractors, and service businesses',
       'Fast launch with defined content and revision boundaries',
+      'Privacy, terms, secure inquiry path, and baseline hosting headers where applicable',
+    ],
+    securityIncluded: [
+      'Privacy and terms pages',
+      'Secure inquiry form with protected lead capture (no admin keys in the site)',
+      'Netlify baseline security headers on launch',
+      'Stripe-hosted payment readiness (Payment Link after quote — no card data on your site)',
+      'Post-launch QA checklist for forms and contact paths',
     ],
     startingAtLabel: 'Packages from $199',
     pricingNote: pricingDisclaimer,
@@ -156,7 +183,11 @@ export const services: Service[] = [
         name: 'One-Page Launch',
         startingAt: 'Starting at $199',
         summary: 'Simple one-page site with contact path and mobile-friendly layout.',
-        includes: ['One-page layout', 'Contact / inquiry path', 'Basic launch checklist'],
+        includes: [
+          'One-page layout',
+          'Contact / inquiry path with privacy + terms',
+          'Secure lead capture baseline and launch checklist',
+        ],
         notIncluded: ['Unlimited revisions', 'Custom ecommerce', 'Copywriting for every section unless scoped'],
       },
       {
@@ -193,6 +224,14 @@ export const services: Service[] = [
       'Wi-Fi setup, cleanup, and basic troubleshooting',
       'Printer setup and recurring issue triage',
       'Basic POS environment support and cleanup',
+      'Wi-Fi password, guest network, and POS safety guidance — not formal PCI compliance',
+    ],
+    securityIncluded: [
+      'Wi-Fi password and security settings review',
+      'Guest network recommendation when appropriate',
+      'Printer access and sharing review',
+      'POS environment safety guidance',
+      'Practical hardening notes — not PCI compliance certification',
     ],
     startingAtLabel: 'Packages from $49',
     pricingNote: pricingDisclaimer,
@@ -238,6 +277,14 @@ export const services: Service[] = [
       'Planning support and vendor coordination',
       'Documentation and operational follow-through',
       'Subcontracting or scoped coordination inquiries',
+      'Minimal data collection and secure handoff checklists where applicable',
+    ],
+    securityIncluded: [
+      'Minimal data collection for coordination tasks',
+      'Shared-access cleanup guidance',
+      'Secure handoff checklist for vendors and contacts',
+      'Vendor and contact organization',
+      'Simple operations security notes — not compliance certification',
     ],
     startingAtLabel: 'Packages from $150',
     pricingNote: pricingDisclaimer,
@@ -285,6 +332,14 @@ export const services: Service[] = [
       'FAQ and customer-response assistant with approval before send',
       'Internal workflow automation across spreadsheets, checklists, and task routing',
       'Document and email process automation with documented approval gates',
+      'Human approval for important actions; API keys and sensitive data kept server-side',
+    ],
+    securityIncluded: [
+      'Human approval for important customer-facing actions',
+      'No sensitive data collection unless scoped and necessary',
+      'No payment or card handling by AI workflows',
+      'API keys and integrations documented for server-side use only',
+      'Prompt boundaries and privacy/workflow documentation',
     ],
     startingAtLabel: 'Packages from $99',
     pricingNote: pricingDisclaimer,

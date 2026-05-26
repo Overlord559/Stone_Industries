@@ -133,6 +133,17 @@ Run on live Netlify URL after deploy — https://stoneindustries.netlify.app/ �
 
 ---
 
+## Secure-by-default packaging check
+
+- [ ] Each `public/services/*.html` has “Secure-by-default” section with service-specific bullets
+- [ ] `public/pricing.html` and `public/services.html` include global disclaimer (not hacker-proof; no PCI/HIPAA/SOC 2 unless scoped)
+- [ ] No copy claims military-grade, hacker-proof, or formal PCI/HIPAA/SOC 2 compliance
+- [ ] Website package mentions privacy/terms, secure inquiry, headers, Stripe **hosted** payment readiness — not embedded card forms
+- [ ] AI package mentions human approval and no card handling by AI
+- [ ] `src/data/site.ts` `securityIncluded` arrays align with static pages
+
+---
+
 ## No fake claims check
 
 - [ ] Services match deliverable scope in `site.ts`

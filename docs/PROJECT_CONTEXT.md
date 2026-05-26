@@ -43,6 +43,8 @@ Source of truth for copy: [`src/data/site.ts`](../src/data/site.ts)
 
 All pricing is **quote-based**. Scope confirmed before work begins.
 
+**Secure-by-default packaging:** Each current service documents practical security-conscious deliverables (device safety, secure site launch basics, Wi-Fi/POS guidance, coordination handoffs, guarded AI workflows). Copy explicitly avoids hacker-proof, military-grade, and PCI/HIPAA/SOC 2 claims unless separately contracted. Global disclaimer on pricing/services pages.
+
 ---
 
 ## Visual system
@@ -92,7 +94,8 @@ Source of truth: [`src/data/site.ts`](../src/data/site.ts) — `serviceAreaPrima
 | 3 | **Operator Netlify import + smoke test** | Done — https://stoneindustries.netlify.app/ |
 | 4 | **Google Business Profile / local SEO** | Pending — post-deploy, operator |
 | 5 | **Phone / paid domain / Stripe Payment Links** | Deferred — budget (Fri/Mon) |
-| 6 | **Supabase inquiry capture** | In progress — schema + forms wired; operator runs SQL + Netlify env |
+| 6 | **Supabase inquiry capture** | Done — operator runs SQL + Netlify env before first live submit |
+| 7 | **Secure-by-default service packaging** | Done — static service pages + `site.ts`; honest scope, no compliance overclaims |
 
 ---
 

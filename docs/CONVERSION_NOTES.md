@@ -50,6 +50,21 @@ Bottom bar uses safe-area padding and `#root` mobile padding so footer/contact i
 
 ---
 
+## Secure-by-default packaging (2026-05-25)
+
+| Rule | Why |
+|------|-----|
+| Sell **practical** security per service | Local buyers want trust without enterprise fear-mongering |
+| Link to service detail pages | Full bullet lists live on `public/services/*.html` |
+| Global disclaimer on pricing/services | “Included where applicable” — not hacker-proof or compliance certified |
+| No PCI/HIPAA/SOC 2/military-grade claims | Avoid legal/trust drift (factory DESIGN-033) |
+
+**CTA unchanged:** Email/phone/manual quote still primary; security copy supports trust, does not replace contact path.
+
+Source: `src/data/site.ts` (`securityIncluded`, `securityPackageDisclaimer`) + static service pages.
+
+---
+
 ## Post-visual-upgrade check
 
 After any background/orb/motion pass, re-run CTA hierarchy check.
