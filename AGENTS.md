@@ -93,8 +93,9 @@ Runtime QA: desktop, 375px, 320px — [`docs/QA_CHECKLIST.md`](docs/QA_CHECKLIST
 
 ## Deployment
 
-- **Live:** https://overlord559.github.io/Stone_Industries/ (GitHub Pages, base `/Stone_Industries/`)
-- **Planned:** Vercel free tier — see [`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md)
+- **Live (production):** https://stoneindustries.netlify.app/ (Netlify Free, `VITE_BASE_PATH=/`)
+- **Mirror / fallback:** https://overlord559.github.io/Stone_Industries/ (GitHub Pages, base `/Stone_Industries/`)
+- **Deploy runbook:** [`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md)
 
 ---
 

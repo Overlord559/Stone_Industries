@@ -9,10 +9,10 @@
 
 | Channel | Status | Action |
 |---------|--------|--------|
-| **GitHub Pages site** | Live | https://overlord559.github.io/Stone_Industries/ |
+| **Netlify production site** | Live | https://stoneindustries.netlify.app/ |
+| **GitHub Pages mirror** | Live (fallback) | https://overlord559.github.io/Stone_Industries/ |
 | **Google Business Profile** | Not started | Create when operator ready — Fresno/Central Valley |
-| **Local SEO** | Pending | Fresno service-area copy + meta tags |
-| **Vercel preview URL** | Planned | Free tier for shareable previews |
+| **Local SEO** | In progress | Fresno service-area copy + meta tags done; GBP pending |
 | **Direct outreach** | Manual | Mailto inquiries, local networking |
 | **Paid ads** | Deferred | No budget |
 
@@ -24,7 +24,7 @@
 2. ~~Static pricing pages for local discovery~~ — done
 3. Consistent NAP: email + phone from `site.ts`
 4. Google Business Profile when operator ready
-5. `og:url` update when Vercel becomes primary host
+5. ~~`og:url` update to Netlify production URL~~ — done (pending redeploy after next push)
 
 ---
 

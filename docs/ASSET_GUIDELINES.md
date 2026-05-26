@@ -53,4 +53,9 @@ Factory: DESIGN-027 — [`../../priv-saas-factory/docs/DESIGN_MISTAKE_LEDGER.md`
 
 ## Base path check
 
-Production URLs include `/Stone_Industries/` prefix on GitHub Pages. After Vercel migration, re-verify all asset references.
+| Host | Asset URL pattern |
+|------|-------------------|
+| **Netlify (production)** | `/assets/...` at https://stoneindustries.netlify.app/assets/... |
+| **GitHub Pages (mirror)** | `/Stone_Industries/assets/...` — verify after mirror deploy |
+
+After host or `VITE_BASE_PATH` change, re-verify backgrounds, OG image, and favicon on the live URL.

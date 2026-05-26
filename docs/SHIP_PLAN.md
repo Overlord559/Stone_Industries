@@ -9,7 +9,8 @@
 
 | Done when | Evidence |
 |-----------|----------|
-| Site live on GitHub Pages | URL loads, assets OK |
+| Site live on Netlify (production) | https://stoneindustries.netlify.app/ loads, assets OK |
+| GitHub Pages mirror (optional) | https://overlord559.github.io/Stone_Industries/ |
 | Build + lint pass | `npm run build`, `npm run lint` |
 | QA P0 complete | [`QA_CHECKLIST.md`](QA_CHECKLIST.md) desktop + 375px + 320px |
 | No fake claims | [`SAFETY_BOUNDARIES.md`](SAFETY_BOUNDARIES.md) |
@@ -21,7 +22,6 @@
 
 | Blocker | Owner | Unblock |
 |---------|-------|---------|
-| Vercel operator import | Operator | Import repo; `VITE_BASE_PATH=/` |
 | GBP / local SEO | Operator | Time + account |
 | Paid domain / Stripe Payment Links setup | Budget | Friday/Monday if funds |
 | Supabase free tier full | Operator | Pause unused project or defer DB |
@@ -35,7 +35,7 @@
 | M1 | Project OS v2 docs — done |
 | M2 | Fresno service area — done |
 | M3 | Static pricing funnel — done |
-| M4 | Vercel preview + smoke test — operator |
+| M4 | Netlify production deploy + smoke test — done |
 | M5 | First paid customer via manual quote — operator |
 | M6 | GBP + local SEO — operator |
 
@@ -47,7 +47,7 @@
 |--------|----------|------|
 | Supabase | **DEFER** — free projects maxed; no intake DB need yet | After repeat inquiries or Friday/Monday budget |
 | Stripe custom checkout | **DEFER** — use Payment Link after quote manually | When packages repeat |
-| Vercel free | **BUILD** — operator import now | This week |
+| Vercel Pro | **DEFER** — Netlify is production; Hobby not for commercial use | Only if operator upgrades later |
 
 ---
 
