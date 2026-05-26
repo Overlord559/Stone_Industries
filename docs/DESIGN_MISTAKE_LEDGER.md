@@ -102,7 +102,37 @@
 
 **Problem:** Vague “agentic” labels overclaim and blur future vs current services.
 
-**Rule:** Use **AI Workflow Automation** with human review in scope. Future roadmap items stay in Vision section — not Current Services.
+**Rule:** Use **AI Automation & Digital Assistant Systems** (or equivalent practical naming) with human review in scope. “Agentic-style” is OK when paired with approval gates—not unsupervised autonomy. Future roadmap items stay in Vision section — not Current Services.
+
+---
+
+## STONE-009 — Static pricing pages must inherit homepage visual system before deploy
+
+| Field | Value |
+|-------|-------|
+| **Severity** | STRONG_RULE |
+| **Factory link** | DESIGN-003, DESIGN-008 |
+| **Status** | ACTIVE |
+
+**Problem:** Static pricing/service HTML felt like a separate basic site—Segoe UI, flat cards, weak CTA bands—while the React homepage used premium glass, typography, and conversion hierarchy.
+
+**Rule:** `public/static-pages.css` must share fonts, glass cards, hero bands, and CTA styling with the homepage before Netlify deploy. HTML CTAs stay primary; motion stays L3 (CSS hover) only on static pages.
+
+**QA check:** Pricing + all five service pages visually match homepage tone at 375px.
+
+---
+
+## STONE-010 — L3 Advanced Motion is the safe pre-deploy visual tier
+
+| Field | Value |
+|-------|-------|
+| **Severity** | WARNING |
+| **Factory link** | DESIGN-008, DESIGN-014 |
+| **Status** | ACTIVE |
+
+**Problem:** Full L7 WebGL, frame-scroll, or visual-world migration before deploy risks conversion regression and deploy delay.
+
+**Rule:** Pre-Netlify polish = CSS glass, card hover, restrained framer-motion, existing orb accents only. Defer frame-scroll and Real 3D until after production is live and smoke-tested.
 
 ---
 

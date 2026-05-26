@@ -96,7 +96,7 @@ export function Contact() {
 
             title="Email or call directly for the fastest response."
 
-            description={`For IT support, small-business websites, Wi-Fi and POS help, AI workflow automation, logistics coordination, or subcontracting discussions, contact Stone Industries directly. ${serviceAreaOnSite} ${serviceAreaRemote} This site has no booking system, payment flow, or on-site forms.`}
+            description={`For IT support, small-business websites, Wi-Fi and POS help, AI automation and digital assistant systems, logistics coordination, or subcontracting discussions, contact Stone Industries directly. ${serviceAreaOnSite} ${serviceAreaRemote} This site has no booking system, payment flow, or on-site forms.`}
           />
 
 

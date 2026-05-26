@@ -38,7 +38,7 @@ Source of truth for copy: [`src/data/site.ts`](../src/data/site.ts)
 | 2 | **24-Hour Business Websites** | 24-Hour Website Launch |
 | 3 | **Wi-Fi, Printer & POS Support** | Small Business Tech Support |
 | 4 | **Logistics Coordination** | Logistics Coordination Support |
-| 5 | **AI Workflow Automation** | AI Workflow Setup |
+| 5 | **AI Automation & Digital Assistant Systems** | Digital Assistant Setup |
 
 All pricing is **quote-based**. Scope confirmed before work begins.
 

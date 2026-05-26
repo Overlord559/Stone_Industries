@@ -190,6 +190,22 @@
     stroke: #ffffff !important;
   }
 
+  .si-card-tilt {
+    transform-style: preserve-3d;
+    transition:
+      transform 0.35s ease,
+      border-color 0.25s ease,
+      box-shadow 0.25s ease;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .si-card-tilt:hover {
+      transform: translateY(-4px);
+      border-color: rgba(34, 211, 238, 0.32);
+      box-shadow: 0 28px 90px rgba(8, 145, 178, 0.16);
+    }
+  }
+
   .si-mobile-contact-bar {
     box-shadow: 0 -8px 32px rgba(15, 23, 42, 0.42);
   }
@@ -201,6 +217,12 @@
 
   .si-reveal-item {
     will-change: opacity, transform;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .si-card-tilt:hover {
+      transform: none;
+    }
   }
 
   .si-vision-grid {

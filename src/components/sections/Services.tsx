@@ -25,7 +25,7 @@ export function Services() {
         </div>
       </div>
 
-      <div className="mt-14 grid gap-6 md:grid-cols-2">
+      <div className="mt-14 grid gap-6 sm:grid-cols-2">
         {services.map((service, index) => {
           const Icon = service.icon
 
@@ -36,7 +36,7 @@ export function Services() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={revealViewport}
               transition={{ duration: 0.55, delay: index * 0.07, ease: [0.22, 1, 0.36, 1] }}
-              className="si-reveal-item si-section-glass group relative flex flex-col overflow-hidden rounded-[1.75rem] border border-white/[0.14] p-8 shadow-[0_24px_80px_rgba(15,23,42,0.22)] transition hover:-translate-y-1 hover:border-cyan-400/32 hover:shadow-[0_28px_90px_rgba(8,145,178,0.16)]"
+              className="si-reveal-item si-section-glass si-card-tilt group relative flex flex-col overflow-hidden rounded-[1.75rem] border border-white/[0.14] p-7 shadow-[0_24px_80px_rgba(15,23,42,0.22)] lg:p-8"
             >
               <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cyan-300/40 to-transparent opacity-70" />
               <span className="inline-flex w-fit rounded-full border border-cyan-400/25 bg-cyan-400/10 px-2.5 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.24em] text-cyan-200">
@@ -66,7 +66,7 @@ export function Services() {
               <p className="mt-5 text-sm font-medium text-slate-400">{service.tag}</p>
               <p className="mt-2 text-sm font-semibold text-cyan-200/90">{service.startingAtLabel}</p>
               <p className="mt-2 text-sm text-slate-500">{service.pricingNote}</p>
-              <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+              <div className="mt-auto flex flex-col gap-3 pt-6 sm:flex-row sm:flex-wrap">
                 <a
                   href={service.detailPagePath}
                   className="si-primary-cta inline-flex w-fit items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-semibold !text-slate-950 transition hover:bg-slate-200 hover:!text-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 [&_svg]:!stroke-slate-950"

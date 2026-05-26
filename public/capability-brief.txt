@@ -5,7 +5,7 @@ Last updated: May 25, 2026
 OVERVIEW
 Stone Industries provides veteran-led operational services for practical work
 clients can use today: IT troubleshooting, small-business websites, Wi-Fi and
-POS support, AI workflow automation, and logistics coordination.
+POS support, AI automation and digital assistant systems, and logistics coordination.
 
 CURRENT SERVICE LINES (AVAILABLE TODAY)
 1. Same-Day Tech Cleanup
@@ -20,7 +20,7 @@ CURRENT SERVICE LINES (AVAILABLE TODAY)
 4. Logistics Coordination
    - Planning support, documentation, coordination, operational follow-through
 
-5. AI Workflow Automation
+5. AI Automation & Digital Assistant Systems
    - Practical workflow automation with intake helpers, document/checklist drafts,
      and website or customer inquiry support
    - Human review and approval required; not unsupervised autonomous agents

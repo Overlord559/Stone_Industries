@@ -54,7 +54,7 @@ export function Hero() {
               'Same-day tech cleanup',
               '24-hour business websites',
               'Wi-Fi & POS support',
-              'AI workflow automation',
+              'AI & digital assistants',
               'Logistics coordination',
             ].map((label) => (
               <span
