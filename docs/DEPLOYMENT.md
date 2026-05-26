@@ -177,7 +177,7 @@ No backend required. Netlify + GitHub Pages compatible via relative links and `%
 
 ## Supabase / Stripe plan
 
-### Supabase — **minimal inquiry capture (in progress)**
+### Supabase — **minimal inquiry capture (implemented)**
 
 | Item | Value |
 |------|-------|

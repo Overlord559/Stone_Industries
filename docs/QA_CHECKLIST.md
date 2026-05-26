@@ -142,6 +142,21 @@ Run on live Netlify URL after deploy — https://stoneindustries.netlify.app/ �
 
 ---
 
+## Security pre-deploy (V2)
+
+- [ ] No `SUPABASE_SERVICE_ROLE`, `sk_live`, `sk_test`, or real anon keys in repo or `dist/`
+- [ ] `docs/supabase/stone-industries-inquiries.sql` applied in Supabase before first production submit
+- [ ] RLS enabled on `public.inquiries`; anon has INSERT only (no SELECT/UPDATE/DELETE policies)
+- [ ] Column-scoped INSERT grant; REST POST with `status: closed` fails
+- [ ] Netlify env: `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY` only — never service role in `VITE_*`
+- [ ] `inquiry-config.js` in `dist/` exposes only public URL + anon key (expected when configured)
+- [ ] Privacy page matches form fields + sensitive-data warning + retention note
+- [ ] Security headers present in `netlify.toml` (X-Frame-Options, nosniff, Referrer-Policy, Permissions-Policy)
+- [ ] CSP / CAPTCHA / rate limit: deferred — see [`PRODUCTION_READINESS.md`](PRODUCTION_READINESS.md) security backlog
+- [ ] Browser Network tab: no PII in console logs on submit success/failure
+
+---
+
 ## Pre-commit hygiene
 
 ```powershell

@@ -72,4 +72,20 @@ Full checklist: [`DEPLOYMENT.md`](DEPLOYMENT.md) post-deploy section.
 - Report dirty tree before deploy-related edits
 - **Vercel Hobby is not approved for commercial production**
 
+---
+
+## Security backlog (post-launch hardening)
+
+| Item | Status | Notes |
+|------|--------|-------|
+| Run hardened SQL in Supabase | **Before first live submit** | [`docs/supabase/stone-industries-inquiries.sql`](supabase/stone-industries-inquiries.sql) |
+| CAPTCHA / Turnstile | Deferred | Requires server-side token verification — not client-only |
+| Rate limiting | Deferred | Supabase Edge Function, Netlify Function proxy, or platform limits |
+| Content-Security-Policy | Deferred | Google Fonts `@import` + Vite bundles need tuned CSP — see factory [`NETLIFY_SECURITY_HEADERS.md`](../../priv-saas-factory/docs/NETLIFY_SECURITY_HEADERS.md) |
+| Spam monitoring | Deferred | Watch `public.inquiries` volume in Supabase Table Editor |
+| Netlify Function proxy | Deferred | Escalation if direct anon insert abuse appears |
+| Duplicate validation cleanup | Low | `inquiryTypes.ts` vs `inquiry-form.js` — keep in sync when fields change |
+
+Factory security pack: [`../../priv-saas-factory/docs/SECURITY_BASELINE.md`](../../priv-saas-factory/docs/SECURITY_BASELINE.md)
+
 Cross-ref: [`QA_CHECKLIST.md`](QA_CHECKLIST.md), [`DEPLOYMENT.md`](DEPLOYMENT.md)
