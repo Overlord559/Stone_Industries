@@ -39,6 +39,51 @@ body.si-static {
     var(--si-bg-deep);
 }
 
+/* Second Stone background (coastal-tech) — matches homepage lower parallax (STONE-001) */
+.page-atmosphere--coastal::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('./assets/stone-coastal-tech-bg.webp');
+  background-size: cover;
+  background-position: center 30%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  opacity: 0.92;
+}
+
+.page-atmosphere--coastal {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(var(--si-scrim-rgb), 0.78) 0%,
+      rgba(var(--si-scrim-rgb), 0.5) 38%,
+      rgba(var(--si-scrim-rgb), 0.2) 62%,
+      rgba(var(--si-scrim-rgb), 0.14) 100%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(var(--si-scrim-rgb), 0.42) 0%,
+      rgba(var(--si-scrim-rgb), 0.08) 40%,
+      rgba(var(--si-scrim-rgb), 0.55) 100%
+    ),
+    radial-gradient(circle at top, rgba(14, 165, 233, 0.08), transparent 32%),
+    var(--si-bg-deep);
+}
+
+@media (max-width: 768px) {
+  .page-atmosphere--coastal::before {
+    background-attachment: scroll;
+    background-position: center 32%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-atmosphere--coastal::before {
+    background-attachment: scroll;
+  }
+}
+
 .page-main {
   position: relative;
   z-index: 1;
@@ -169,6 +214,16 @@ ul {
 
 .page-section {
   margin-top: 2rem;
+  padding: 1.15rem 1.1rem 1.25rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 1.15rem;
+  background: linear-gradient(
+    180deg,
+    rgba(var(--si-scrim-rgb), 0.52),
+    rgba(var(--si-scrim-soft-rgb), 0.34)
+  );
+  backdrop-filter: blur(10px);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
 }
 
 .cta-row,
@@ -459,4 +514,394 @@ ul {
   width: 1px;
   height: 1px;
   overflow: hidden;
+}
+
+/* Package estimator (pricing.html) */
+.si-estimator-grid {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+@media (min-width: 640px) {
+  .si-estimator-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.si-estimator-grid label {
+  display: grid;
+  gap: 0.4rem;
+  font-size: 0.875rem;
+  color: #e2e8f0;
+}
+
+.si-estimator-grid select {
+  border-radius: 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(15, 23, 42, 0.55);
+  color: #f8fafc;
+  padding: 0.65rem 0.75rem;
+  font: inherit;
+}
+
+.si-estimator-addons {
+  margin-top: 1.25rem;
+  padding: 1rem 1.1rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 1rem;
+}
+
+.si-estimator-addons legend {
+  padding: 0 0.35rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #a5f3fc;
+}
+
+.si-estimator-addon-list {
+  display: grid;
+  gap: 0.65rem;
+  margin-top: 0.75rem;
+}
+
+.si-estimator-addon-item {
+  display: flex;
+  gap: 0.5rem;
+  align-items: flex-start;
+  font-size: 0.875rem;
+  color: #cbd5e1;
+  cursor: pointer;
+}
+
+.si-estimator-addon-item em {
+  color: #94a3b8;
+  font-style: normal;
+}
+
+.si-estimator-total {
+  margin-top: 1.25rem;
+  padding: 1rem 1.15rem;
+  border-radius: 1rem;
+  border: 1px solid rgba(34, 211, 238, 0.25);
+  background: rgba(6, 182, 212, 0.08);
+}
+
+.si-estimator-total-label {
+  margin: 0;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #a5f3fc;
+}
+
+.si-estimator-total-value {
+  margin: 0.35rem 0 0;
+  font-family: 'Space Grotesk', system-ui, sans-serif;
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: #f8fafc;
+}
+
+.si-estimator-included {
+  margin: 0.75rem 0 0;
+  padding-left: 1.1rem;
+  font-size: 0.8125rem;
+  color: #94a3b8;
+}
+
+.si-estimator-included li {
+  margin: 0.25rem 0;
+}
+
+.si-estimator-addon-item.is-included {
+  opacity: 0.65;
+}
+
+.si-estimator-breakdown {
+  margin-top: 1rem;
+}
+
+.si-estimator-lines {
+  margin: 0 0 1rem;
+  display: grid;
+  grid-template-columns: minmax(7rem, 38%) 1fr;
+  gap: 0.35rem 0.75rem;
+  font-size: 0.875rem;
+}
+
+.si-estimator-lines dt {
+  margin: 0;
+  color: #94a3b8;
+  font-weight: 500;
+}
+
+.si-estimator-lines dd {
+  margin: 0;
+  color: #e2e8f0;
+}
+
+.si-estimator-help {
+  margin: 1rem 0;
+  padding: 0.75rem 1rem;
+  border: 1px solid rgba(34, 211, 238, 0.2);
+  border-radius: 0.75rem;
+  background: rgba(6, 182, 212, 0.06);
+  font-size: 0.875rem;
+}
+
+.si-estimator-help summary {
+  cursor: pointer;
+  color: #67e8f9;
+  font-weight: 600;
+}
+
+.si-estimator-page-count {
+  margin-top: 1rem;
+  padding: 1rem 1.1rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 1rem;
+  background: rgba(15, 23, 42, 0.35);
+}
+
+.si-estimator-page-count label {
+  display: grid;
+  gap: 0.4rem;
+  font-size: 0.875rem;
+  color: #e2e8f0;
+}
+
+.si-estimator-page-count input[type='number'] {
+  width: 5rem;
+  padding: 0.45rem 0.55rem;
+  border-radius: 0.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(15, 23, 42, 0.55);
+  color: #f8fafc;
+  font: inherit;
+}
+
+.si-estimator-addon-row {
+  display: grid;
+  gap: 0.2rem;
+  padding: 0.45rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.si-estimator-addon-row:last-child {
+  border-bottom: none;
+}
+
+.si-estimator-group-label {
+  margin: 0.75rem 0 0.35rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #94a3b8;
+}
+
+.si-estimator-group-label:first-child {
+  margin-top: 0.15rem;
+}
+
+.si-estimator-addon-short {
+  margin: 0 0 0 1.65rem;
+  font-size: 0.78rem;
+  line-height: 1.45;
+}
+
+.si-estimator-addon-name {
+  font-weight: 500;
+}
+
+.si-estimator-addon-price {
+  color: #94a3b8;
+  font-style: normal;
+  font-size: 0.8125rem;
+}
+
+.si-estimator-included-wrap {
+  margin-top: 0.85rem;
+  padding: 0.75rem 0.9rem;
+  border: 1px solid rgba(34, 211, 238, 0.18);
+  border-radius: 0.75rem;
+  background: rgba(6, 182, 212, 0.04);
+}
+
+.si-estimator-included-heading {
+  margin: 0 0 0.35rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #a5f3fc;
+}
+
+.si-addon-details--compact {
+  margin: 0.1rem 0 0 1.65rem;
+  padding: 0.35rem 0.55rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 0.5rem;
+  background: rgba(15, 23, 42, 0.35);
+  font-size: 0.78rem;
+}
+
+.si-addon-details--compact summary {
+  font-size: 0.78rem;
+  color: #7dd3fc;
+}
+
+.si-addon-details--compact .si-addon-detail-body p,
+.si-addon-details--compact .si-addon-detail-body ul {
+  margin: 0.25rem 0;
+  font-size: 0.78rem;
+  line-height: 1.45;
+}
+
+.si-addon-not-included {
+  font-size: 0.72rem !important;
+  line-height: 1.4 !important;
+}
+
+.si-addon-details {
+  margin: 0.15rem 0 0 1.65rem;
+  padding: 0.55rem 0.75rem;
+  border: 1px solid rgba(34, 211, 238, 0.18);
+  border-radius: 0.65rem;
+  background: rgba(6, 182, 212, 0.05);
+  font-size: 0.8125rem;
+  color: #cbd5e1;
+}
+
+.si-addon-details summary {
+  cursor: pointer;
+  color: #67e8f9;
+  font-weight: 600;
+  list-style-position: outside;
+}
+
+.si-addon-detail-body {
+  margin-top: 0.55rem;
+}
+
+.si-addon-detail-body p {
+  margin: 0.35rem 0;
+}
+
+.si-addon-detail-body ul {
+  margin: 0.25rem 0 0.5rem;
+  padding-left: 1.1rem;
+}
+
+.si-addon-detail-label {
+  margin: 0.45rem 0 0.15rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #94a3b8;
+}
+
+.si-estimator-included-item {
+  margin: 0.35rem 0 0.65rem;
+}
+
+.si-estimator-included-title {
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.si-service-addon-card {
+  margin: 0.75rem 0;
+  padding: 0.85rem 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.85rem;
+  background: rgba(15, 23, 42, 0.35);
+}
+
+.si-service-addon-title {
+  margin: 0 0 0.35rem;
+}
+
+.si-estimator-per-unit {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 0.75rem;
+  padding: 0.5rem 0;
+}
+
+.si-estimator-per-unit input[type='number'] {
+  width: 4rem;
+  padding: 0.35rem 0.5rem;
+  border-radius: 0.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(15, 23, 42, 0.55);
+  color: #f8fafc;
+}
+
+.si-cyber-addon-detail {
+  margin: -0.25rem 0 0.5rem 1.75rem;
+  font-size: 0.75rem;
+}
+
+.positioning-note {
+  margin-top: 1.25rem;
+  padding: 1rem 1.1rem;
+  border-radius: 1rem;
+  border: 1px solid rgba(34, 211, 238, 0.2);
+  background: rgba(6, 182, 212, 0.08);
+  font-size: 0.9rem;
+  color: #cbd5e1;
+}
+
+.si-where-fits {
+  margin: 0.5rem 0 0;
+  padding-left: 1.2rem;
+}
+
+.si-where-fits li {
+  margin: 0.55rem 0;
+  color: #cbd5e1;
+  font-size: 0.9rem;
+}
+
+.package-tier-list {
+  margin: 0.5rem 0 0;
+  padding-left: 1.1rem;
+  font-size: 0.875rem;
+  color: #94a3b8;
+}
+
+.package-tier-list li {
+  margin: 0.2rem 0;
+}
+
+.si-addon-list,
+.addon-list {
+  margin: 0.75rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.si-addon-list li,
+.addon-list li {
+  padding: 0.35rem 0;
+  font-size: 0.875rem;
+  color: #cbd5e1;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.si-addon-list li:last-child,
+.addon-list li:last-child {
+  border-bottom: none;
+}
+
+.addon-list em {
+  color: #67e8f9;
+  font-style: normal;
 }

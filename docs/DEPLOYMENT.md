@@ -190,10 +190,16 @@ No backend required. Netlify + GitHub Pages compatible via relative links and `%
 
 **Operator steps:** Run SQL in Supabase → add env vars in Netlify → redeploy → submit test inquiry → verify row in Table Editor.
 
-### Stripe — **DEFER custom integration**
+### Payments — **Bluevine near-term (no site checkout)**
+
+- No embedded checkout on static site; **no card data** collected on the marketing site
+- **Near-term:** Written quote → **Bluevine invoice or payment link** (see [`SERVICE_AGREEMENT_BASELINE.md`](SERVICE_AGREEMENT_BASELINE.md) and `public/pricing.html`)
+- Deposits and balance-before-handoff rules on pricing page
+
+### Stripe — **optional later**
 
 - No embedded checkout on static site
-- **Near-term:** Manual quote → Stripe Payment Link or invoice when operator has account
+- **Later:** Hosted Stripe Payment Link when operator prefers it for specific packages
 - **Later:** Checkout only if standardized packages sell repeatedly
 - **Future webhooks:** Verify Stripe signatures server-side only — never trust browser/client payment state
 - **Secrets:** Stripe secret keys and webhook signing secrets stay in server/Netlify env — never in `VITE_*` frontend vars

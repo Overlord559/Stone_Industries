@@ -23,10 +23,88 @@
 | Page | Path |
 |------|------|
 | All pricing | `public/pricing.html` |
+| Package estimator | `pricing.html#package-estimator` — `pricing-catalog.js` + `pricing-estimator.js` |
 | All services | `public/services.html` |
 | Per-service | `public/services/*.html` |
 
-React links use `import.meta.env.BASE_URL` via `site.ts`.
+React links use `import.meta.env.BASE_URL` via `site.ts`. Catalog source: `src/data/pricingCatalog.ts` → build emits `public/pricing-catalog.js`.
+
+---
+
+## Productized pricing (2026-05-25)
+
+| Pattern | Rule |
+|---------|------|
+| Packages | Fixed tiers per service (e.g. Tech $99/$179/$299+) |
+| Add-ons | Visible $ amounts on service pages + estimator checkboxes |
+| Estimator | Running total + mailto prefill; **estimate only** disclaimer |
+| Custom work | Quote in writing — not hidden behind inquiry-only |
+| CTAs | Request This Package · Text to Confirm · Compare Packages · Get Final Quote |
+| Checkout | **None** — do not imply instant pay |
+
+**Fail:** Inquiry-only pages with no visible package price (STONE-014).
+
+---
+
+## Website page-count pricing (2026-05-25 correction)
+
+| Package | Price | Pages | Extra pages |
+|---------|-------|-------|-------------|
+| Starter Landing | $399 | 1 | +$125/page via page-count control on estimator |
+| Business Website | $799 | Up to 5 | +$125/page beyond 5 on estimator; 10+ pages → final-quote note |
+| Premium Website | $1,199+ | Up to 7 | +$125/page beyond 7 on estimator; 10+ pages → final-quote note |
+
+- **Secure lead capture** ≠ cybersecurity tiers — see `secureLeadCaptureHelp` in catalog; every add-on has `detail` blocks with includes / not-included lists.
+- **Add-on education:** Estimator and service pages use `<details>` accordions — click “What this add-on is” / “What this includes”.
+- **SEO scope:** Basic SEO/meta vs deeper SEO/ads/campaigns — see `advancedSeoPublicLine` in `addOnExplanations.ts`.
+- **AI scope:** AI models, APIs, n8n-style workflow automation — see `aiWorkflowScopeNote`.
+- **Premium** `includedAddOnIds`: lead-capture, cyber-tier-1, cyber-tier-2, stripe-link, copy (not monthly-care). Launch-ready handoff is standard delivery — not a customer-facing QA add-on.
+
+---
+
+## Estimator rules (2026-05-25 refinement)
+
+| Rule | Behavior |
+|------|----------|
+| Service → package | Add-ons list only after package selected; service-scoped only |
+| Website page count | After website package selected: “How many pages do you estimate?” — defaults to included count; extra beyond included = +$125/page line item |
+| Large sites | 10+ estimated pages → “final quote after scope review” note (not added to total beyond per-page math) |
+| Included add-ons | `includedAddOnIds` on package — shown as included, not summed |
+| One-time total | Package + checked one-time add-ons only |
+| Hourly / monthly | Notes + mailto lines — not added to one-time total |
+| Mailto | Breakdown with package, estimated pages, extra-page line, add-ons, hourly/monthly notes |
+
+**Fail:** Double-charging bundled add-ons (STONE-015).
+
+---
+
+## Static page visuals
+
+- `page-atmosphere--coastal` uses `stone-coastal-tech-bg.webp` (homepage image 2) with light scrim — STONE-001
+- Glass `page-section` cards on pricing/services for readability
+
+---
+
+## Competitor-aware positioning (2026-05-25)
+
+| Competitor type | Stone position | Do not claim |
+|-----------------|----------------|--------------|
+| Marketing/SEO agencies | Page-count websites, lead capture, fast launch | Full SEO/ad replacement, guaranteed rankings |
+| MSPs (e.g. mature IT/security shops) | Fixed-scope tech, Wi-Fi/POS, security-conscious setup | Managed IT, help desk, compliance, incident response |
+| AI automation vendors | Starter workflows, human approval, expand later | Autonomous agents, employee replacement, enterprise RAG |
+| Freight/3PL/logistics operators | Operations coordination systems | Broker, carrier, 3PL, transportation arrangement |
+
+Public section: `#where-stone-fits` on `pricing.html` and `services.html`. **Local First. Bigger Vision.** (`#local-first-vision`) on pricing/services — grounded expansion, no premature enterprise claims. **No competitor names** on public pages.
+
+Logistics guardrail: `logisticsFreightDisclaimer` in catalog + service page.
+
+---
+
+## Competitor-aware positioning (no trade dress copy)
+
+- Transparent fixed packages for small businesses — not full MSP contracts
+- Custom quote for managed IT / formal compliance programs
+- Do not name competitors on public pages
 
 ---
 
@@ -44,9 +122,17 @@ Bottom bar uses safe-area padding and `#root` mobile padding so footer/contact i
 
 ## Payment (manual first)
 
-- No fake checkout on site
-- Quote confirmed before work
-- Stripe Payment Link / invoice after quote when operator ready — not embedded checkout yet
+- No fake checkout on site; **no card data collected** on the marketing site
+- **Written quote / scope before work** — customer confirms package or custom scope
+- **Bluevine invoices / payment links** — recommended near-term invoicing (no custom invoice generator yet)
+- **Deposits** on larger jobs ($300+ tiers on [`public/pricing.html`](../public/pricing.html))
+- **Final balance before launch, handoff, transfer, or final delivery** unless agreed otherwise in writing
+- **Change orders** — out-of-scope work approved in writing; often $85–$125/hr or re-quoted
+- **Stripe Payment Links / Checkout** may be added later for repeat packages — still not embedded checkout on site (no Stripe SDK in repo yet)
+
+**Operator checklist:** [`SERVICE_AGREEMENT_BASELINE.md`](SERVICE_AGREEMENT_BASELINE.md)
+
+**Public detail:** `pricing.html` sections — payment workflow, scope protection, final delivery, approval, disputes/refunds (practical tone, not scary legal).
 
 ---
 

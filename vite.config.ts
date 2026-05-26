@@ -3,6 +3,15 @@ import react from '@vitejs/plugin-react'
 import { writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { defineConfig, loadEnv, type Plugin } from 'vite'
+import {
+  competitorPositioningNote,
+  cyberTier1Help,
+  cyberTier2Help,
+  outOfScopeHourlyNote,
+  pricingCatalog,
+  secureLeadCaptureHelp,
+} from './src/data/pricingCatalog'
+import { advancedSeoNotIncludedNote, advancedSeoPublicLine, aiWorkflowScopeNote } from './src/data/addOnExplanations'
 
 const repoBasePath = process.env.VITE_BASE_PATH ?? '/Stone_Industries/'
 
@@ -22,35 +31,55 @@ function inquiryConfigSource(env: { VITE_SUPABASE_URL?: string; VITE_SUPABASE_AN
   })};\n`
 }
 
-function stoneInquiryConfigPlugin(): Plugin {
+function pricingCatalogSource() {
+  return `window.__SI_PRICING_CATALOG__=${JSON.stringify({
+    services: pricingCatalog,
+    outOfScopeHourlyNote,
+    competitorPositioningNote,
+    secureLeadCaptureHelp,
+    cyberTier1Help,
+    cyberTier2Help,
+    advancedSeoNote: advancedSeoPublicLine + ' ' + advancedSeoNotIncludedNote,
+    aiWorkflowScopeNote,
+  })};\n`
+}
+
+function stoneStaticAssetsPlugin(): Plugin {
   let outDir = 'dist'
 
   return {
-    name: 'stone-inquiry-config',
+    name: 'stone-static-assets',
     configResolved(config) {
       outDir = config.build.outDir
+      writeFileSync(join(process.cwd(), 'public', 'pricing-catalog.js'), pricingCatalogSource(), 'utf8')
     },
     configureServer(server) {
       server.middlewares.use((req, res, next) => {
-        if (req.url?.split('?')[0] !== '/inquiry-config.js') {
-          next()
+        const path = req.url?.split('?')[0]
+        if (path === '/inquiry-config.js') {
+          const env = inquiryEnv(server.config.mode)
+          res.setHeader('Content-Type', 'application/javascript; charset=utf-8')
+          res.end(inquiryConfigSource(env))
           return
         }
-
-        const env = inquiryEnv(server.config.mode)
-        res.setHeader('Content-Type', 'application/javascript; charset=utf-8')
-        res.end(inquiryConfigSource(env))
+        if (path === '/pricing-catalog.js') {
+          res.setHeader('Content-Type', 'application/javascript; charset=utf-8')
+          res.end(pricingCatalogSource())
+          return
+        }
+        next()
       })
     },
     closeBundle() {
       const env = inquiryEnv(process.env.NODE_ENV === 'production' ? 'production' : 'development')
       writeFileSync(join(outDir, 'inquiry-config.js'), inquiryConfigSource(env), 'utf8')
+      writeFileSync(join(outDir, 'pricing-catalog.js'), pricingCatalogSource(), 'utf8')
     },
   }
 }
 
 export default defineConfig(({ mode }) => ({
-  plugins: [react(), tailwindcss(), stoneInquiryConfigPlugin()],
+  plugins: [react(), tailwindcss(), stoneStaticAssetsPlugin()],
   base: mode === 'production' ? repoBasePath : '/',
   build: {
     chunkSizeWarningLimit: 900,

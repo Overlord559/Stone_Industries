@@ -20,6 +20,30 @@
 | Mobile | 375px + 320px QA pass |
 | Hosting compliance | Commercial site on **Netlify Free** — not Vercel Hobby |
 | Service packaging | Secure-by-default sections on all `public/services/*.html`; no compliance overclaims |
+| Payment protection copy | `pricing.html` — deposits, scope, delivery, Bluevine workflow; no on-site checkout |
+| Productized pricing | Fixed package tiers on pricing + 5 service pages; `pricingCatalog.ts` source of truth |
+| Package estimator | Service + package-scoped add-ons; website page-count control; add-on `<details>` explanations; included add-ons not double-charged |
+| Tech Cleanup scope | Windows PCs only — no phones/Linux; macOS case-by-case; see `techCleanupPlatformScopeNote` |
+| Estimator UX | Compact grouped add-ons; no standalone secure-lead-capture callout; `Details` collapsed by default |
+| Post-launch QA | Removed from customer-facing catalog — QA remains internal delivery standard (`docs/QA_CHECKLIST.md`) |
+| Paid ads | Setup/guidance quotable separately — not ongoing ad management or guaranteed results |
+| AI scope | AI models, APIs, n8n-style workflows, AI-agent-style automation with human approval |
+| Static page backgrounds | `page-atmosphere--coastal` on pricing/services — readable scrim (STONE-001) |
+| Competitive positioning | `#where-stone-fits` on pricing/services; logistics freight disclaimer; no competitor names |
+
+---
+
+## Payment & agreement workflow (operator)
+
+| Rule | Implementation |
+|------|----------------|
+| Invoicing | **Bluevine** invoices/payment links near-term — no custom invoice app |
+| Checkout | None on website; no card data collection |
+| Quote | Fixed packages for defined scope; written confirmation before work; deposits per tier on pricing page |
+| Stripe | **Not implemented** — Payment Links/invoices planned after quote; no card data on site |
+| Handoff | Final balance before launch/transfer/credentials unless written exception |
+| Change orders | Written approval for out-of-scope; hourly or re-quote |
+| Internal template | [`SERVICE_AGREEMENT_BASELINE.md`](SERVICE_AGREEMENT_BASELINE.md) |
 
 ---
 

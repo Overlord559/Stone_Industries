@@ -7,7 +7,7 @@
     'Same-Day Tech Cleanup',
     '24-Hour Business Websites',
     'Wi-Fi, Printer & POS Support',
-    'Logistics Coordination',
+    'Operations & Logistics Coordination',
     'AI Automation & Digital Assistant Systems',
     'General Inquiry',
     'Subcontracting / Capability Brief',

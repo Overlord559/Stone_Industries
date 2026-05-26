@@ -14,8 +14,8 @@ export function Services() {
       <div className="flex flex-col gap-8 lg:flex-row lg:items-start lg:justify-between lg:gap-10">
         <SectionHeading
           eyebrow="Current Services"
-          title="Quote-based packages with starting prices you can review today."
-          description="These are current offerings—not roadmap concepts. Each card links to a pricing page with packages, scope, and what is not included. Final quote confirmed before work begins."
+          title="Fixed packages — faster to buy than a full agency, MSP, or 3PL contract."
+          description="Current offerings with clear scope and starting prices. Not a full marketing agency, managed IT provider, AI agency, or freight broker — practical fixed-scope work for Fresno and Central Valley small businesses."
         />
         <div className="hidden shrink-0 self-start lg:block">
           <InteractiveOrbAccent

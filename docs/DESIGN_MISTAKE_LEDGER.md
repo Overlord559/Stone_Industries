@@ -200,6 +200,134 @@
 
 ---
 
+## STONE-013 — Payment protection copy without scary legal or fake checkout
+
+| Field | Value |
+|-------|-------|
+| **Severity** | STRONG_RULE |
+| **Factory link** | — |
+| **Status** | ACTIVE |
+
+**Problem:** Small operators either skip payment/scope language (chargebacks, scope creep, unpaid handoff) or add aggressive legal copy / fake checkout that erodes trust.
+
+**Rule:** On `pricing.html`: practical workflow (quote → Bluevine invoice → deposit → balance before handoff), tiered deposits, scope protection, delivery policy, mild dispute language. **No** card collection on site, **no** instant checkout, **no** unlimited-refund promise, **no** “all deposits non-refundable” without counsel. Internal [`SERVICE_AGREEMENT_BASELINE.md`](SERVICE_AGREEMENT_BASELINE.md) for operator quotes — not a published contract.
+
+**QA check:** Pricing page sections present; grep finds no “hacker-proof”-style payment guarantees.
+
+---
+
+## STONE-017 — Competitor-aware positioning without overclaiming
+
+| Field | Value |
+|-------|-------|
+| **Severity** | STRONG_RULE |
+| **Factory link** | DESIGN-029 |
+| **Status** | ACTIVE |
+
+**Problem:** Small vendors get compared to agencies, MSPs, AI shops, and freight/3PL providers — vague copy causes buyers to expect the wrong service class or triggers regulated-logistics misread.
+
+**Rule:** Position Stone as **fast fixed-scope** for Fresno/Central Valley SMBs. Public `#where-stone-fits` section: not full agency/MSP/AI agency/freight broker. Operations service = coordination systems (intake, handoffs, SOPs) with **freight broker/carrier/3PL disclaimer**. No competitor names, trade dress, or guaranteed marketing/security/logistics outcomes on public pages.
+
+**QA check:** Grep competitor names on `public/`; logistics disclaimer present; no MSP/compliance/incident-response claims.
+
+---
+
+## STONE-019 — Simplify explanation-heavy estimator; platform and ads scope boundaries
+
+| Field | Value |
+|-------|-------|
+| **Severity** | STRONG_RULE |
+| **Factory link** | DESIGN-029 |
+| **Status** | ACTIVE |
+
+**Problem:** Add-on education pass made the estimator visually busy; standalone secure-lead-capture callout duplicated add-on details; customer-facing “Post-launch QA” implied websites might ship without basic delivery checks; Tech Cleanup scope was too broad (phones/Linux/macOS).
+
+**Rule:** Keep add-on explanations in collapsed **Details** on each row only — no standalone lead-capture callout. Group add-ons (one-time / hourly / monthly). Remove customer-facing Post-launch QA; use “launch-ready handoff” as delivery standard. Tech Cleanup = **Windows only**; no phones/Linux; macOS case-by-case. Paid ads = setup/guidance only — not campaign management or guaranteed results. AI = models/APIs/n8n + AI-agent-style workflows with human approval.
+
+**QA check:** Estimator Website package — no top lead-capture block; Premium included list has no Post-launch QA; Tech Cleanup page shows Windows scope.
+
+---
+
+## STONE-018 — Add-on education via catalog detail blocks and `<details>` UI
+
+| Field | Value |
+|-------|-------|
+| **Severity** | STRONG_RULE |
+| **Factory link** | DESIGN-029 |
+| **Status** | ACTIVE |
+
+**Problem:** Buyers confuse secure lead capture with cybersecurity tiers, monthly care with one-time totals, and AI/security add-ons without plain-English scope — especially on mobile estimator UI.
+
+**Rule:** Every catalog add-on gets a `detail` block (`whatThisIs`, `includes`, `notIncluded`, optional `bestFor`) in `addOnExplanations.ts`. Estimator and service pages render native `<details>` accordions — no tooltip-only hints. Distinguish basic SEO/meta from deeper SEO/ads/campaigns; AI copy names models/APIs/n8n-style automation with human-approval guardrails.
+
+**QA check:** Estimator Website → Tier 1 details open; Premium included lead-capture shows details; service pages load `service-addon-details.js` without console errors.
+
+---
+
+## STONE-017 — Page-count control tied to website package; local-first before enterprise claims
+
+| Field | Value |
+|-------|-------|
+| **Severity** | STRONG_RULE |
+| **Factory link** | DESIGN-029 |
+| **Status** | ACTIVE |
+
+**Problem:** Separate “extra page” add-on on Starter only blocked Business/Premium buyers from estimating over-limit pages; mission copy did not emphasize local conquest before larger expansion; “Premium Local Website” naming was redundant.
+
+**Rule:** Website estimator uses one **page-count control** per selected package (included pages default). Extra pages beyond included = +$125/page line item; 10+ pages show final-quote note. Rename package to **Premium Website**. Public **Local First. Bigger Vision.** section on pricing/services — grounded future path, no premature agency/MSP/3PL/enterprise AI claims.
+
+**QA check:** Estimator Business 8 pages → 3 × $125; Premium 9 pages → 2 × $125; mailto includes page count; grep no “Premium Local Website”.
+
+---
+
+## STONE-016 — Secure lead capture ≠ cybersecurity; page-count packages
+
+| Field | Value |
+|-------|-------|
+| **Severity** | STRONG_RULE |
+| **Factory link** | DESIGN-029 |
+| **Status** | ACTIVE |
+
+**Problem:** Buyers confuse “secure lead capture” with antivirus/MSP security; website tiers hide page limits; extra-page add-ons on multi-page packages double-charge pages already included.
+
+**Rule:** Document lead capture (form + Supabase + RLS) separately from Tier 1/2 cybersecurity layers. Price websites by page count via estimator page control; extra pages beyond included = +$125/page. Premium Website `includedAddOnIds` bundles one-time add-ons except monthly care. See STONE-017 for page-count UX.
+
+**QA check:** Estimator — Website → Business hides extra page; Premium marks cyber + lead included; mailto lists page count.
+
+---
+
+## STONE-015 — Estimator double-charges included add-ons
+
+| Field | Value |
+|-------|-------|
+| **Severity** | STRONG_RULE |
+| **Factory link** | DESIGN-029 |
+| **Status** | ACTIVE |
+
+**Problem:** Package estimators that list all add-ons for a service let buyers select items already bundled in a higher tier — inflating estimates and eroding trust.
+
+**Rule:** `pricingCatalog.ts` declares `includedAddOnIds` per package and `kind` (`one-time` / `hourly` / `monthly`) per add-on. Estimator hides included add-ons, lists them separately, and only sums one-time selections into the project total. Hourly/monthly items are notes or mailto lines — not false one-time totals.
+
+**QA check:** Business Website package hides Secure lead capture add-on; Premium hides lead capture + Stripe link; estimator breakdown separates monthly/hourly lines.
+
+---
+
+## STONE-014 — Inquiry-only pricing hides buyers
+
+| Field | Value |
+|-------|-------|
+| **Severity** | STRONG_RULE |
+| **Factory link** | DESIGN-029 |
+| **Status** | ACTIVE |
+
+**Problem:** Quote-only or “email for price” pages increase friction for local buyers who need a ballpark before calling — especially on mobile.
+
+**Rule:** Show **fixed package tiers** and **add-on prices** on `pricing.html` and each `public/services/*.html`. Use lightweight estimator (no checkout) when helpful. Keep mailto/tel/Supabase inquiry fallback. Mark custom/unclear work as quote-based in writing.
+
+**QA check:** Each service page shows 3 packages with $ labels; pricing overview matches `pricingCatalog.ts`; estimator updates total and mailto subject; no “instant checkout” copy.
+
+---
+
 ## STONE-012 — Sell security without overclaiming
 
 | Field | Value |

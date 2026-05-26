@@ -133,12 +133,84 @@ Run on live Netlify URL after deploy — https://stoneindustries.netlify.app/ �
 
 ---
 
+## Productized pricing check
+
+- [ ] `public/pricing.html` package overview shows website tiers from $399 / $799 / $1,199+
+- [ ] All five `public/services/*.html` show 3 fixed packages + add-on list with $ labels
+- [ ] `src/data/pricingCatalog.ts` matches static page prices (grep spot-check)
+- [ ] React Services section shows updated `startingAtLabel` from catalog
+- [ ] CTAs: Request This Package / Compare Packages — no “instant checkout” or embedded pay
+
+---
+
+## Package estimator check (`pricing.html`)
+
+- [ ] `#package-estimator` renders after selecting service + package
+- [ ] Add-ons hidden until package selected; only current service add-ons shown
+- [ ] Estimator has **no** standalone “What is secure lead capture?” block above add-ons
+- [ ] Add-on rows are compact with collapsed **Details** — grouped one-time / hourly / monthly
+- [ ] **Post-launch QA** does not appear in public catalog, Premium included list, or service pages
+- [ ] Tech Cleanup states **Windows only** — no phones/Linux; macOS case-by-case
+- [ ] Paid ads copy = setup/guidance only — no campaign management or guaranteed ROI
+- [ ] AI copy includes AI-agent-style workflows + human approval — no employee replacement
+- [ ] Premium Website included add-ons show **What this includes** details without double-charging
+- [ ] Service pages with `data-si-service-addons` render catalog-driven add-on accordions (5 service pages)
+- [ ] Business websites page clarifies secure lead capture vs Tier 1/Tier 2 cybersecurity
+- [ ] SEO copy distinguishes basic SEO/meta vs deeper SEO/ads/campaigns — no guaranteed rankings
+- [ ] AI copy mentions AI models, APIs, n8n-style automation — no employee replacement
+- [ ] Business: page-count defaults to 5; 8 pages → +$375 (3 × $125); 10+ shows final-quote note
+- [ ] Premium Website: page-count defaults to 7; 9 pages → +$250 (2 × $125); included add-ons not summed again
+- [ ] No separate “Extra page” checkbox — page count tied to selected website package only
+- [ ] Premium Website: lead capture + cyber tiers + Stripe + copy + QA listed included, not summed; monthly care still optional
+- [ ] Business Website does NOT include secure lead capture in package price (optional add-on) unless operator changed scope
+- [ ] Breakdown shows package line, one-time add-ons, hourly/monthly notes separately
+- [ ] Estimated **one-time total** excludes monthly retainer and hourly lines
+- [ ] Mailto body includes estimated pages, extra-page line, breakdown + hourly/monthly notes
+- [ ] `pricing-catalog.js` loads before `pricing-estimator.js` — no console errors
+- [ ] URL `?service=&package=&addons=` preselects when present
+
+---
+
+## Competitive positioning check
+
+- [ ] `pricing.html` and `services.html` include **Where Stone Industries fits** — no competitor names
+- [ ] `pricing.html` and `services.html` include **Local First. Bigger Vision.** — no defense/enterprise/MSP/3PL maturity claims
+- [ ] Copy does not claim full MSP, marketing agency, AI agency, freight broker, or 3PL
+- [ ] Operations service titled **Operations & Logistics Coordination Setup** (URL slug may remain `logistics-coordination`)
+- [ ] Logistics page includes freight broker / carrier / 3PL disclaimer
+- [ ] Website copy: basic SEO in package; advanced SEO/ads = custom — no guaranteed marketing results
+- [ ] AI copy: human approval, start one workflow — no employee replacement
+- [ ] Grep public pages: no AMARQUEZ, Kotman, Loops, or other competitor names
+
+---
+
+## Static page background check
+
+- [ ] `pricing.html`, `services.html`, all five service pages use `page-atmosphere--coastal`
+- [ ] `stone-coastal-tech-bg.webp` visible but text readable (no STONE-001 over-darkening)
+- [ ] Mobile 375px / 320px: no horizontal scroll; background `scroll` not broken
+- [ ] Homepage hero unchanged
+
+---
+
+## Payment protection copy check
+
+- [ ] `public/pricing.html` includes workflow, how payment works, scope protection, final delivery, approval, disputes/refunds
+- [ ] Copy states no card data on site and no instant checkout
+- [ ] Bluevine mentioned as near-term invoicing; no custom invoice generator implied on site
+- [ ] Deposit tiers ($300 / $1,000+) and balance-before-handoff present
+- [ ] Out-of-scope hourly range ($85–$125) and written change-order language present
+- [ ] No unlimited-refund promise; no “all deposits non-refundable” without counsel
+- [ ] [`SERVICE_AGREEMENT_BASELINE.md`](SERVICE_AGREEMENT_BASELINE.md) exists for operator use
+
+---
+
 ## Secure-by-default packaging check
 
 - [ ] Each `public/services/*.html` has “Secure-by-default” section with service-specific bullets
 - [ ] `public/pricing.html` and `public/services.html` include global disclaimer (not hacker-proof; no PCI/HIPAA/SOC 2 unless scoped)
 - [ ] No copy claims military-grade, hacker-proof, or formal PCI/HIPAA/SOC 2 compliance
-- [ ] Website package mentions privacy/terms, secure inquiry, headers, Stripe **hosted** payment readiness — not embedded card forms
+- [ ] Website package mentions privacy/terms, secure inquiry, headers, Stripe **Payment Link** setup add-on — not embedded card forms; **no Stripe SDK in repo**
 - [ ] AI package mentions human approval and no card handling by AI
 - [ ] `src/data/site.ts` `securityIncluded` arrays align with static pages
 

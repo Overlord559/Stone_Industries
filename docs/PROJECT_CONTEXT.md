@@ -31,7 +31,7 @@
 
 ## Services (current — sold today)
 
-Source of truth for copy: [`src/data/site.ts`](../src/data/site.ts)
+Source of truth for copy: [`src/data/site.ts`](../src/data/site.ts) · package tiers/add-ons: [`src/data/pricingCatalog.ts`](../src/data/pricingCatalog.ts)
 
 | # | Service | Package name |
 |---|---------|--------------|
@@ -41,7 +41,11 @@ Source of truth for copy: [`src/data/site.ts`](../src/data/site.ts)
 | 4 | **Logistics Coordination** | Logistics Coordination Support |
 | 5 | **AI Automation & Digital Assistant Systems** | Digital Assistant Setup |
 
-All pricing is **quote-based**. Scope confirmed before work begins.
+**Productized packages** with add-on `detail` blocks, compact grouped estimator UI, and scope guardrails: Windows-only Tech Cleanup, no customer-facing Post-launch QA (launch-ready handoff is standard delivery), paid-ads setup/guidance only (not campaign management), AI-agent-style workflows with human approval.
+
+**Static visuals:** Pricing/services pages use coastal-tech background (`stone-coastal-tech-bg.webp`) with glass sections — aligned with homepage lower parallax (STONE-001).
+
+**Competitive positioning (public):** Fixed-scope alternative for Fresno/Central Valley small businesses — not a full marketing agency, MSP, AI agency, or freight broker/3PL. **Local-first mission:** win Fresno/Central Valley trust with fixed-scope packages before claiming larger enterprise capability. **Future vision:** “Local First. Bigger Vision.” on pricing/services pages — grounded expansion path, no premature defense/enterprise/MSP/3PL/AI-platform claims. Service #4 public title: **Operations & Logistics Coordination Setup** (`logistics-coordination` slug unchanged). See `whereStoneFits` in `pricingCatalog.ts` and `#where-stone-fits` on pricing/services pages.
 
 **Secure-by-default packaging:** Each current service documents practical security-conscious deliverables (device safety, secure site launch basics, Wi-Fi/POS guidance, coordination handoffs, guarded AI workflows). Copy explicitly avoids hacker-proof, military-grade, and PCI/HIPAA/SOC 2 claims unless separately contracted. Global disclaimer on pricing/services pages.
 
@@ -93,9 +97,25 @@ Source of truth: [`src/data/site.ts`](../src/data/site.ts) — `serviceAreaPrima
 | 2 | **Fresno service-area copy + meta** | Done |
 | 3 | **Operator Netlify import + smoke test** | Done — https://stoneindustries.netlify.app/ |
 | 4 | **Google Business Profile / local SEO** | Pending — post-deploy, operator |
-| 5 | **Phone / paid domain / Stripe Payment Links** | Deferred — budget (Fri/Mon) |
+| 5 | **Phone / paid domain / Bluevine invoicing live** | Operator — use Bluevine for quotes/deposits per pricing page |
 | 6 | **Supabase inquiry capture** | Done — operator runs SQL + Netlify env before first live submit |
 | 7 | **Secure-by-default service packaging** | Done — static service pages + `site.ts`; honest scope, no compliance overclaims |
+| 8 | **Payment protection / agreement copy** | Done — `pricing.html` + [`SERVICE_AGREEMENT_BASELINE.md`](SERVICE_AGREEMENT_BASELINE.md) |
+
+---
+
+## Payment & business protection (near-term)
+
+| Item | Policy |
+|------|--------|
+| **Invoicing** | **Bluevine** invoices and payment links (recommended) — no custom invoice generator on site yet |
+| **Checkout** | None — no card data on stoneindustries.netlify.app |
+| **Quote flow** | Package or inquiry → written scope/quote → deposit on larger jobs → balance before handoff |
+| **Scope** | Fixed package price = listed scope only; changes need written approval |
+| **Out-of-scope** | Often $85–$125/hr or separate quote |
+| **Stripe** | Optional later for hosted links — not current primary workflow |
+
+Public: [`public/pricing.html`](../public/pricing.html) · Operator: [`SERVICE_AGREEMENT_BASELINE.md`](SERVICE_AGREEMENT_BASELINE.md)
 
 ---
 
