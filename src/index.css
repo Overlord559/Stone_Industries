@@ -210,6 +210,203 @@
     box-shadow: 0 -8px 32px rgba(15, 23, 42, 0.42);
   }
 
+  #contact {
+    scroll-margin-top: 5.5rem;
+  }
+
+  .si-service-object {
+    position: relative;
+    display: inline-flex;
+    width: 4.25rem;
+    height: 4.25rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: 1.25rem;
+    isolation: isolate;
+    transform: perspective(900px) rotateX(8deg) rotateY(-10deg);
+    transition:
+      transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+      box-shadow 0.35s ease,
+      border-color 0.35s ease;
+    border: 1px solid rgba(34, 211, 238, 0.28);
+    background:
+      linear-gradient(145deg, rgba(255, 255, 255, 0.14), rgba(15, 23, 42, 0.42)),
+      rgba(15, 23, 42, 0.55);
+    box-shadow:
+      0 18px 40px rgba(8, 145, 178, 0.18),
+      inset 0 1px 0 rgba(255, 255, 255, 0.16),
+      inset 0 -10px 18px rgba(2, 6, 23, 0.35);
+    color: #a5f3fc;
+    outline: none;
+  }
+
+  .si-service-object__halo {
+    position: absolute;
+    inset: -6px;
+    border-radius: 1.45rem;
+    background: radial-gradient(circle at 50% 40%, rgba(34, 211, 238, 0.22), transparent 68%);
+    opacity: 0.75;
+    z-index: -2;
+  }
+
+  .si-service-object__orbit {
+    position: absolute;
+    inset: -3px;
+    border-radius: 999px;
+    border: 1px dashed rgba(125, 211, 252, 0.35);
+    transform: rotate(-14deg);
+    z-index: -1;
+  }
+
+  .si-service-object__plate {
+    position: absolute;
+    inset: 6px;
+    border-radius: 0.95rem;
+    background: linear-gradient(160deg, rgba(255, 255, 255, 0.08), rgba(2, 6, 23, 0.2));
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    z-index: 0;
+  }
+
+  .si-service-object__icon {
+    position: relative;
+    z-index: 1;
+    filter: drop-shadow(0 6px 12px rgba(8, 145, 178, 0.35));
+  }
+
+  .si-service-object--tech-cleanup {
+    border-color: rgba(251, 191, 36, 0.35);
+    color: #fde68a;
+  }
+
+  .si-service-object--business-websites {
+    border-color: rgba(34, 211, 238, 0.38);
+    color: #a5f3fc;
+  }
+
+  .si-service-object--wifi-printer-pos {
+    border-color: rgba(52, 211, 153, 0.35);
+    color: #6ee7b7;
+  }
+
+  .si-service-object--logistics-coordination {
+    border-color: rgba(96, 165, 250, 0.35);
+    color: #93c5fd;
+  }
+
+  .si-service-object--ai-workflow-automation {
+    border-color: rgba(167, 139, 250, 0.35);
+    color: #c4b5fd;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .si-service-object:hover {
+      transform: perspective(900px) rotateX(2deg) rotateY(4deg) translateY(-3px) scale(1.04);
+      box-shadow:
+        0 22px 48px rgba(8, 145, 178, 0.24),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2),
+        inset 0 -10px 18px rgba(2, 6, 23, 0.35);
+    }
+  }
+
+  .si-service-object:focus-visible {
+    box-shadow:
+      0 0 0 2px rgba(15, 23, 42, 0.95),
+      0 0 0 4px rgba(34, 211, 238, 0.65),
+      0 18px 40px rgba(8, 145, 178, 0.18);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .si-service-object {
+      transform: none;
+    }
+
+    .si-service-object:hover {
+      transform: none;
+    }
+  }
+
+  .si-vision-object {
+    position: relative;
+    display: inline-flex;
+    width: 3.75rem;
+    height: 3.75rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: 1.15rem;
+    isolation: isolate;
+    transform: perspective(820px) rotateX(10deg) rotateY(-8deg);
+    transition:
+      transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+      box-shadow 0.35s ease,
+      border-color 0.35s ease;
+    border: 1px solid rgba(125, 211, 252, 0.28);
+    background:
+      linear-gradient(155deg, rgba(255, 255, 255, 0.12), rgba(8, 47, 73, 0.45)),
+      rgba(15, 23, 42, 0.5);
+    box-shadow:
+      0 16px 36px rgba(8, 145, 178, 0.16),
+      inset 0 1px 0 rgba(255, 255, 255, 0.14);
+    color: #bae6fd;
+    outline: none;
+  }
+
+  .si-vision-object__halo,
+  .si-vision-object__orbit,
+  .si-vision-object__plate {
+    position: absolute;
+    pointer-events: none;
+  }
+
+  .si-vision-object__halo {
+    inset: -5px;
+    border-radius: 1.35rem;
+    background: radial-gradient(circle at 50% 35%, rgba(56, 189, 248, 0.2), transparent 70%);
+    z-index: -2;
+  }
+
+  .si-vision-object__orbit {
+    inset: -2px;
+    border-radius: 999px;
+    border: 1px dashed rgba(125, 211, 252, 0.28);
+    transform: rotate(12deg);
+    z-index: -1;
+  }
+
+  .si-vision-object__plate {
+    inset: 5px;
+    border-radius: 0.85rem;
+    background: linear-gradient(160deg, rgba(255, 255, 255, 0.07), rgba(2, 6, 23, 0.22));
+    z-index: 0;
+  }
+
+  .si-vision-object__icon {
+    position: relative;
+    z-index: 1;
+  }
+
+  .si-vision-object--local-first { border-color: rgba(52, 211, 153, 0.35); color: #6ee7b7; }
+  .si-vision-object--current-focus { border-color: rgba(34, 211, 238, 0.38); color: #a5f3fc; }
+  .si-vision-object--next-phase { border-color: rgba(96, 165, 250, 0.35); color: #93c5fd; }
+  .si-vision-object--bigger-vision { border-color: rgba(167, 139, 250, 0.35); color: #c4b5fd; }
+
+  @media (hover: hover) and (pointer: fine) {
+    .si-vision-object:hover {
+      transform: perspective(820px) rotateX(4deg) rotateY(6deg) translateY(-2px) scale(1.03);
+    }
+  }
+
+  .si-vision-object:focus-visible {
+    box-shadow:
+      0 0 0 2px rgba(15, 23, 42, 0.95),
+      0 0 0 4px rgba(34, 211, 238, 0.65);
+  }
+
+  .si-email-actions__buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
   /* App.tsx gates below-hero sections in opacity:0 — content must stay readable */
   main > .relative {
     opacity: 1 !important;
@@ -221,6 +418,14 @@
 
   @media (prefers-reduced-motion: reduce) {
     .si-card-tilt:hover {
+      transform: none;
+    }
+
+    .si-vision-object {
+      transform: none;
+    }
+
+    .si-vision-object:hover {
       transform: none;
     }
   }

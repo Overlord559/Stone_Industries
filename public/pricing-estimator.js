@@ -257,8 +257,17 @@
       '</div>' +
       '<div class="cta-band si-estimator-ctas" data-estimator-ctas hidden>' +
       '<a class="cta cta-primary" data-estimator-mailto href="#">Request This Package</a>' +
-      '<a class="cta cta-call" href="tel:+15595799376">Text to Confirm</a>' +
+      '<a class="cta cta-secondary" href="./index.html#contact">Send an inquiry</a>' +
       '<a class="cta cta-secondary" href="#how-payment-works">Deposit &amp; payment info</a>' +
+      '</div>' +
+      '<div class="si-email-actions" data-estimator-email-actions hidden>' +
+      '<p class="si-email-line">Email: <a href="mailto:stoneindustries0.llc@gmail.com?subject=Stone%20Industries%20Inquiry">stoneindustries0.llc@gmail.com</a></p>' +
+      '<div class="si-email-buttons">' +
+      '<button type="button" class="cta cta-secondary" data-si-copy-email>Copy email</button>' +
+      '<a class="cta cta-secondary" data-si-mailto-inquiry href="mailto:stoneindustries0.llc@gmail.com?subject=Stone%20Industries%20Inquiry">Open email app</a>' +
+      '</div>' +
+      '<p class="si-copy-status" data-si-copy-status hidden aria-live="polite">Email copied.</p>' +
+      '<p class="note-muted">Prefer phone? <a href="tel:+15595799376">559-579-9376</a></p>' +
       '</div>' +
       '<p class="note-muted">' +
       (data.outOfScopeHourlyNote || '') +
@@ -281,7 +290,13 @@
     var totalValue = root.querySelector('[data-estimator-total-value]')
     var notesEl = root.querySelector('[data-estimator-notes]')
     var ctasWrap = root.querySelector('[data-estimator-ctas]')
+    var emailActionsWrap = root.querySelector('[data-estimator-email-actions]')
     var mailtoLink = root.querySelector('[data-estimator-mailto]')
+
+    function setEstimatorCtasVisible(visible) {
+      ctasWrap.hidden = !visible
+      if (emailActionsWrap) emailActionsWrap.hidden = !visible
+    }
 
     services.forEach(function (svc) {
       var opt = document.createElement('option')
@@ -353,7 +368,7 @@
       addonsWrap.hidden = !svc
       addonHint.hidden = !!svc
       breakdownWrap.hidden = true
-      ctasWrap.hidden = true
+      setEstimatorCtasVisible(false)
       if (!svc) return
 
       svc.packages.forEach(function (pkg) {
@@ -535,7 +550,7 @@
       var pkg = currentPackage()
       if (!svc || !pkg) {
         breakdownWrap.hidden = true
-        ctasWrap.hidden = true
+        setEstimatorCtasVisible(false)
         return
       }
 
@@ -585,7 +600,7 @@
       var noteParts = breakdown.extraNotes.slice()
       notesEl.textContent = noteParts.length ? noteParts.join(' ') : ''
       breakdownWrap.hidden = false
-      ctasWrap.hidden = false
+      setEstimatorCtasVisible(true)
       mailtoLink.href = buildMailto(svc, pkg, breakdown)
     }
 

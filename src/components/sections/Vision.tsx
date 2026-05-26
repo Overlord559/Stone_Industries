@@ -1,6 +1,8 @@
 import { motion } from 'framer-motion'
-import { futureVision } from '../../data/site'
+import { ArrowRight } from 'lucide-react'
+import { futureVision, visionDirections, visionPagePath } from '../../data/site'
 import { SectionHeading } from '../ui/SectionHeading'
+import { VisionObjectLink } from '../ui/VisionObjectLink'
 
 const revealViewport = { once: true, amount: 0.1, margin: '0px 0px -56px 0px' } as const
 
@@ -21,10 +23,36 @@ export function Vision() {
           description="These are future-direction research areas. They are not deployed products, certifications, or current contract offerings."
         />
 
+        <div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-4">
+          {visionDirections.map((item, index) => (
+            <motion.div
+              key={item.anchor}
+              initial={{ opacity: 0.76, y: 14 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={revealViewport}
+              transition={{ duration: 0.5, delay: index * 0.06, ease: [0.22, 1, 0.36, 1] }}
+              className="si-reveal-item flex flex-col gap-3"
+            >
+              <VisionObjectLink anchor={item.anchor} title={item.title} icon={item.icon} />
+              <div>
+                <h3 className="font-display text-lg font-semibold tracking-[-0.03em] text-white">
+                  {item.title}
+                </h3>
+                <p className="mt-2 text-sm leading-6 text-slate-400">{item.summary}</p>
+                <a
+                  href={`${visionPagePath}#${item.anchor}`}
+                  className="mt-3 inline-flex items-center gap-1.5 text-sm font-medium text-cyan-200/90 transition hover:text-cyan-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
+                >
+                  Read on vision page
+                  <ArrowRight size={14} />
+                </a>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
         <div className="mt-12 grid grid-cols-1 gap-5 md:grid-cols-2">
           {futureVision.map((item, index) => {
-            const Icon = item.icon
-
             return (
               <motion.article
                 key={item.title}
@@ -36,9 +64,11 @@ export function Vision() {
               >
                 <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cyan-300/45 to-transparent opacity-80" />
                 <div className="flex items-start justify-between gap-4">
-                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border border-cyan-400/25 bg-cyan-400/10 text-cyan-200 shadow-[0_0_24px_rgba(34,211,238,0.12)]">
-                    <Icon size={20} />
-                  </div>
+                  <VisionObjectLink
+                    anchor={item.visionAnchor}
+                    title={item.title}
+                    icon={item.icon}
+                  />
                   <span className="inline-flex rounded-full border border-cyan-400/25 bg-cyan-400/10 px-2.5 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.22em] text-cyan-200">
                     Future roadmap
                   </span>

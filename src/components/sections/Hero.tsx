@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { ArrowRight, FileText, Phone, Shield, Waypoints } from 'lucide-react'
+import { ArrowRight, FileText, Shield, Waypoints } from 'lucide-react'
 import {
   capabilityBriefPath,
   contactPhone,
@@ -74,11 +74,11 @@ export function Hero() {
               <ArrowRight size={16} />
             </a>
             <a
-              href={contactPhoneHref}
-              className="si-secondary-cta inline-flex items-center justify-center gap-2 rounded-full border border-cyan-400/25 bg-cyan-400/10 px-6 py-3 text-sm font-semibold !text-cyan-50 transition hover:border-cyan-300/40 hover:bg-cyan-400/15 hover:!text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 [&_svg]:stroke-current"
+              href="#contact"
+              className="si-secondary-cta inline-flex items-center justify-center gap-2 rounded-full border border-cyan-400/25 bg-cyan-400/10 px-6 py-3 text-sm font-semibold !text-cyan-50 transition hover:border-cyan-300/40 hover:bg-cyan-400/15 hover:!text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
             >
-              <Phone size={16} />
-              Call / Text · {contactPhone}
+              Send an inquiry
+              <ArrowRight size={16} />
             </a>
             <a
               href={capabilityBriefPath}
@@ -96,9 +96,13 @@ export function Hero() {
             </a>
           </div>
           <p className="mt-4 max-w-2xl text-sm leading-6 text-slate-400">
-            Browse starting packages and scope on the pricing pages, then email for a
-            confirmed quote. Capability brief available for subcontracting outreach. No
-            booking system on this site.
+            Browse starting packages and scope on the pricing pages, then submit an inquiry for a
+            confirmed quote. Capability brief available for subcontracting outreach. No booking
+            system on this site. Prefer phone?{' '}
+            <a className="font-medium text-slate-300 underline hover:text-white" href={contactPhoneHref}>
+              {contactPhone}
+            </a>
+            .
           </p>
 
           <div className="mt-5 max-w-2xl rounded-xl border border-cyan-400/20 bg-slate-900/28 px-4 py-3 backdrop-blur-sm si-section-glass">

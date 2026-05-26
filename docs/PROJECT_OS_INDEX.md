@@ -120,10 +120,18 @@ Document decision in final report.
 
 ## SaaS Factory reference rule
 
-When reusing factory patterns (orb, parallax, frame-scroll):
+**Also load relevant SaaS Factory docs, prompt agents, visual engines, conversion intelligence, and learning doctrine before major Stone Industries work.**
 
-- Read: `../priv-saas-factory/docs/project-baselines/`, `docs/visual-primitives/`, `packages/visual-world/`
-- Promote reusable lessons to factory DESIGN-NNN
+When reusing factory patterns (orb, parallax, frame-scroll, CSS-L3 conversion objects):
+
+| Always (serious pass) | `../priv-saas-factory/MASTER.md`, `docs/SAAS_FACTORY_SOURCE_OF_TRUTH.md`, `docs/SAAS_FACTORY_LEARNING_LOOP.md`, `docs/DESIGN_MISTAKE_LEDGER.md` |
+| Conversion / CTA / pricing | `docs/CONVERSION_INTELLIGENCE.md`, `docs/COMMERCIAL_PROTECTION_BASELINE.md` |
+| Visual / motion | `docs/VISUAL_INSPIRATION_LAB.md`, `docs/SAFE_3D_SITE_IMPORT_POLICY.md`, `docs/visual-engines/`, `docs/visual-primitives/` |
+| Agent discipline | `prompts/README.md`, `prompts/orchestrator.md`, relevant `prompts/agents/*.md` |
+| Templates | `docs/project-baselines/` |
+| Code reference | `packages/visual-world/README.md` |
+
+- Promote reusable Stone lessons to factory `DESIGN-NNN` (2026-05-25 batch → **DESIGN-036**)
 - **Do not** edit factory apps (`snocialclub-demo`, `saas-starter`) from Stone tasks unless explicitly scoped
 
 ---

@@ -113,9 +113,20 @@ Missing context → Context Request · Unsafe prompt → Prompt Risk Detected
 
 ## SaaS Factory reference rule
 
-Reuse factory visual/engine patterns from `../priv-saas-factory/` docs and `packages/visual-world/` — promote lessons to factory DESIGN-NNN. Do not edit factory apps from Stone tasks unless scoped.
+**Also load relevant SaaS Factory docs, prompt agents, visual engines, conversion intelligence, and learning doctrine before major Stone work.**
+
+Reuse factory visual/engine patterns from `../priv-saas-factory/` — promote lessons to factory `DESIGN-NNN`. Do not edit factory apps from Stone tasks unless scoped.
+
+| Load on Standard/Major passes | Paths |
+|-------------------------------|-------|
+| Factory brain + learning | `MASTER.md`, `docs/SAAS_FACTORY_SOURCE_OF_TRUTH.md`, `docs/SAAS_FACTORY_LEARNING_LOOP.md`, `docs/DESIGN_MISTAKE_LEDGER.md` |
+| Conversion + commercial | `docs/CONVERSION_INTELLIGENCE.md`, `docs/COMMERCIAL_PROTECTION_BASELINE.md` |
+| Visual doctrine | `docs/VISUAL_INSPIRATION_LAB.md`, `docs/SAFE_3D_SITE_IMPORT_POLICY.md`, `docs/visual-engines/`, `docs/visual-primitives/` |
+| Agent prompts | `prompts/README.md`, `prompts/agents/` (task-relevant) |
 
 Templates: [`../priv-saas-factory/docs/project-baselines/`](../priv-saas-factory/docs/project-baselines/)
+
+Every operator correction → Stone ledger or reason code; promote reusable patterns to factory (**DESIGN-036**).
 
 ---
 

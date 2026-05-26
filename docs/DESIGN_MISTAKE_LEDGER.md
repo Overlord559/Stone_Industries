@@ -86,9 +86,9 @@
 
 **Problem:** Premium service sites with mailto-only CTAs dead-end without package context — buyers bounce before quoting.
 
-**Rule:** Every current service gets a static pricing/detail page. Homepage card primary CTA → detail page; mailto secondary. Build static funnel before Supabase/Stripe.
+**Rule:** Every current service gets a static pricing/detail page. Homepage card **Compare** → `pricing.html?service=<slug>`. Homepage card **Request** → Supabase inquiry form with `?service=<slug>#contact` preselect — not mailto-only. Per-service detail pages remain at `public/services/*.html`.
 
-**QA check:** No service card mailto-only without detail page link.
+**QA check:** No service card mailto-only without working inquiry or pricing path.
 
 ---
 
@@ -341,6 +341,154 @@
 **Rule:** Package **practical secure-by-default bullets** per service (device safety, secure launch, Wi-Fi/POS guidance, handoffs, guarded AI). Add global disclaimer: included where applicable, **not** hacker-proof; **no** PCI/HIPAA/SOC 2/government compliance claims unless separately contracted. Stripe = hosted Payment Link readiness, not custom card capture.
 
 **QA check:** Service pages have secure-by-default section; pricing/services index has disclaimer; grep finds no hacker-proof / military-grade / false compliance claims.
+
+---
+
+## STONE-013 — Dead homepage CTAs and wrong nav targets
+
+| Field | Value |
+|-------|-------|
+| **Severity** | STRONG_RULE |
+| **Factory link** | DESIGN-003, DESIGN-029 |
+| **Status** | ACTIVE |
+| **First observed** | Live Netlify QA (2026-05-25) |
+
+**Problem:** Homepage service card **Request This Package** used `mailto:` links — dead clicks when no mail client is configured. Top nav **Services** pointed to `#services` instead of the full `/services.html` catalog page.
+
+**Why it hurts:**
+
+- Buyers think the site is broken after clicking Request
+- Services page and package context never reached from primary nav
+- Supabase inquiry funnel bypassed on the highest-intent card action
+
+**Rule:**
+
+1. **Request This Package** on homepage cards → `/?service=<slug>#contact` with inquiry dropdown preselect (React + static `inquiry-form.js` read `?service=` slug).
+2. **Compare packages** on homepage cards → `/pricing.html?service=<slug>` (estimator already supports query preselect).
+3. Top nav **Services** → `/services.html`; keep `#services` only for in-page hero scroll CTAs.
+4. Never ship card CTAs as `<button>` without handlers or mailto-only when Supabase inquiry is live.
+
+**QA check:** Click every homepage service card button on live Netlify; verify pricing URL, contact scroll, preselected service, and successful Supabase submit.
+
+---
+
+## STONE-014 — SPA hash scroll race on first inquiry deep link
+
+| Field | Value |
+|-------|-------|
+| **Severity** | STRONG_RULE |
+| **Factory link** | DESIGN-003 |
+| **Status** | ACTIVE |
+| **First observed** | Homepage Request CTA QA (2026-05-25) |
+
+**Problem:** Links like `/?service=<slug>#contact` triggered a full navigation/reload on the React homepage. Browser hash scroll ran before `#contact` mounted → first click landed at hero/top; second click worked.
+
+**Rule:** Same-page **Request This Package** must use `navigateToContactInquiry()` (`pushState` + custom event + `scrollIntoView`). On cold load with `#contact`, defer scroll until after React mount (`syncContactHashScroll` in `App.tsx`).
+
+**QA check:** Homepage Request works on first click; direct `/?service=business-websites#contact` lands on inquiry with service preselected.
+
+---
+
+## STONE-020 — Mailto-only email fallback fails without a configured client
+
+| Field | Value |
+|-------|-------|
+| **Severity** | STRONG_RULE |
+| **Factory link** | DESIGN-029 |
+| **Status** | ACTIVE |
+| **First observed** | Final site audit (2026-05-25) |
+
+**Problem:** “Email instead” buttons and mailto-only links dead-end when no desktop mail client is configured — buyers assume the site is broken even though the address is correct.
+
+**Rule:** Always show visible `stoneindustries0.llc@gmail.com` plus **Copy email** (clipboard with “Email copied.” status) and **Open email app** (`mailto:` with subject). Never use Gmail web compose / Google login URLs without copy fallback. Keep inquiry form primary; email is secondary fallback.
+
+**QA check:** Copy email on homepage contact, pricing inquiry footer, and one service detail page; grep finds no `mail.google.com` or `accounts.google.com` compose URLs.
+
+---
+
+## STONE-021 — Inquiry-first conversion when structured capture is live
+
+| Field | Value |
+|-------|-------|
+| **Severity** | STRONG_RULE |
+| **Factory link** | DESIGN-029, DESIGN-036 |
+| **Status** | ACTIVE |
+| **First observed** | Final site audit (2026-05-25) |
+
+**Problem:** After Supabase inquiry capture works, prominent Call/Text desktop buttons and mailto-only card CTAs still outrank the form — buyers skip the fastest structured path.
+
+**Rule:** Primary CTAs = inquiry form, pricing context, or estimator. Phone = visible **fallback text** (`Prefer phone? 559-579-9376`), not a hero-sized button. Mobile sticky bar = **Inquiry + Pricing** (max 2), not Call-first.
+
+**QA check:** Hero has no primary Call button; sticky bar matches inquiry-first pattern; Supabase submit succeeds on homepage + static pages.
+
+---
+
+## STONE-022 — CSS-L3 clickable conversion objects without WebGL
+
+| Field | Value |
+|-------|-------|
+| **Severity** | WARNING |
+| **Factory link** | DESIGN-003, DESIGN-026, DESIGN-036 |
+| **Status** | ACTIVE |
+| **First observed** | Final site audit (2026-05-25) |
+
+**Problem:** Teams defer all “3D” polish to WebGL/R3F and miss lightweight conversion affordances — or add WebGL that distracts from CTAs.
+
+**Rule:** Service and vision **CSS-L3 objects** (glass, halo, focus ring, reduced-motion safe) may link to **estimator**, **inquiry**, or **vision page** anchors. No new WebGL deps for marketing CTAs. Objects must not nest invalid links or cause horizontal scroll at 320px.
+
+**QA check:** Service objects → `pricing.html?service=<slug>`; vision objects → `vision.html#<anchor>`; keyboard focus visible; `prefers-reduced-motion` acceptable.
+
+---
+
+## STONE-023 — Serious Stone passes must load SaaS Factory reference material
+
+| Field | Value |
+|-------|-------|
+| **Severity** | STRONG_RULE |
+| **Factory link** | DESIGN-031, DESIGN-036 |
+| **Status** | ACTIVE |
+| **First observed** | Operator correction (2026-05-25) — audit prompt skipped factory agents/engines/conversion docs |
+
+**Problem:** Stone-only prompts rediscover conversion, scope, and visual rules already documented in SaaS Factory — and skip agent selection, learning promotion, and engine doctrine.
+
+**Rule:** Standard/Major Stone passes load factory `MASTER.md`, source-of-truth map, learning loop, factory ledger, conversion intelligence, visual import policy, and task-relevant `prompts/agents/*.md`. Final report lists **both** Stone and factory docs loaded.
+
+**QA check:** Final report includes factory paths; reusable lessons promoted to `DESIGN-NNN`.
+
+---
+
+## Recent Operator Corrections Backfill (2026-05-25)
+
+Index of operator corrections from pricing/estimator/nav/email/vision passes. Extend cited IDs — do not duplicate full lessons.
+
+| # | Correction | Stone ID | Factory | QA hint |
+|---|------------|----------|---------|---------|
+| 1 | Dead homepage service-card CTAs | STONE-013 | DESIGN-036 | Click every card Request/Compare |
+| 2 | Nav Services → real catalog page | STONE-013 | DESIGN-036 | Nav opens `/services.html` |
+| 3 | Request first-click hash/query race | STONE-014 | DESIGN-036 | First click lands on `#contact` |
+| 4 | Inquiry-first after Supabase live | STONE-021 | DESIGN-036 | Form primary; phone fallback text |
+| 5 | Phone not huge desktop CTA | STONE-021 | DESIGN-029 | No hero Call button |
+| 6 | Mailto-only email dead-end | STONE-020 | DESIGN-036 | Copy + mailto on contact pages |
+| 7 | Visible email + copy + mailto | STONE-020 | DESIGN-036 | “Email copied.” status |
+| 8 | Correct email address everywhere | STONE-020 | — | `stoneindustries0.llc@gmail.com` |
+| 9 | Secure lead capture ≠ cybersecurity | STONE-016 | DESIGN-033 | Lead capture details vs Tier 1/2 |
+| 10 | No standalone estimator clutter blocks | STONE-019 | DESIGN-036 | No top lead-capture callout |
+| 11 | Add-on education stays compact | STONE-018, STONE-019 | DESIGN-036 | `<details>` per row only |
+| 12 | Post-launch QA not a paid SKU | STONE-019 | DESIGN-036 | Not in public catalog |
+| 13 | Tech Cleanup Windows-only scope | STONE-019 | DESIGN-036 | No phones/Linux on page |
+| 14 | Paid ads setup/guidance only | STONE-019 | DESIGN-036 | No guaranteed ROI |
+| 15 | AI practical scope + human approval | STONE-006, STONE-019 | DESIGN-030 | No employee replacement |
+| 16 | Premium Local Website → Premium Website | STONE-017 | — | Grep old name |
+| 17 | Page-count avoids double-charging pages | STONE-015, STONE-017 | DESIGN-036 | Estimator included add-ons |
+| 18 | Premium bundles one-time add-ons | STONE-015 | DESIGN-036 | Monthly care separate |
+| 19 | Cyber add-ons need detail blocks | STONE-018 | DESIGN-036 | Details open on service pages |
+| 20 | CSS-3D service/vision objects, no WebGL | STONE-022 | DESIGN-036 | Links route to conversion |
+| 21 | Visual polish serves conversion | STONE-005 | DESIGN-003, DESIGN-029 | CTA readable without motion |
+| 22 | Grounded future vision page | STONE-017, STONE-022 | DESIGN-036 | `/vision.html` guardrails |
+| 23 | No full agency/MSP/3PL/enterprise AI claims | STONE-017 | DESIGN-029, DESIGN-030 | `#where-stone-fits` present |
+| 24 | Logistics ≠ freight broker/carrier/3PL | STONE-017 | DESIGN-036 | Disclaimer on logistics page |
+| 25 | Load SaaS Factory docs on serious Stone prompts | STONE-023 | DESIGN-031, DESIGN-036 | Report lists factory paths |
+| 26 | Every correction → learning engine | LEARNING_LOOP | SAAS_FACTORY_LEARNING_LOOP | Entry or reason_code |
 
 ---
 

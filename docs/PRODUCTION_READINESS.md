@@ -30,6 +30,9 @@
 | AI scope | AI models, APIs, n8n-style workflows, AI-agent-style automation with human approval |
 | Static page backgrounds | `page-atmosphere--coastal` on pricing/services — readable scrim (STONE-001) |
 | Competitive positioning | `#where-stone-fits` on pricing/services; logistics freight disclaimer; no competitor names |
+| Vision page | `public/vision.html` — grounded roadmap; homepage vision objects link to anchors |
+| Email fallback | Copy email + mailto on React + static pages; no Gmail-login-only URLs (STONE-020) |
+| Inquiry-first CTAs | Supabase forms primary; phone plain text; no mailto-only Request buttons |
 
 ---
 
@@ -64,8 +67,8 @@ Set `VITE_BASE_PATH` in `netlify.toml`. Set Supabase vars in **Netlify UI** (nev
 ```text
 1. Homepage 200 at /
 2. Background WebP 200 (Network tab)
-3. /pricing.html + /services.html + all 5 service detail pages 200
-4. Mailto opens with subject
+3. /pricing.html + /services.html + /vision.html + all 5 service detail pages 200
+4. Mailto opens with subject; Copy email shows confirmation
 5. tel:+15595799376 on hero, contact, static pages
 6. /privacy.html /terms.html /capability-brief.html 200
 7. Mobile sticky bar at 375px and 320px

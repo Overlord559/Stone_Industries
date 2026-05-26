@@ -905,3 +905,51 @@ ul {
   color: #67e8f9;
   font-style: normal;
 }
+
+/* Email contact fallback — copy + mailto (no Gmail web-login URLs) */
+.si-email-actions {
+  margin-top: 1.5rem;
+  padding: 1.25rem 1.5rem;
+  border-radius: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(15, 23, 42, 0.45);
+}
+
+.si-email-line {
+  margin: 0 0 0.75rem;
+  font-size: 0.9375rem;
+  color: #cbd5e1;
+}
+
+.si-email-line a {
+  color: #f8fafc;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 0.12em;
+}
+
+.si-email-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.si-copy-status {
+  margin: 0.65rem 0 0;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #6ee7b7;
+}
+
+.si-email-actions .note-muted {
+  margin-top: 0.75rem;
+  margin-bottom: 0;
+}
+
+@media (max-width: 375px) {
+  .si-email-buttons .cta {
+    flex: 1 1 calc(50% - 0.25rem);
+    min-width: 9.5rem;
+    justify-content: center;
+  }
+}

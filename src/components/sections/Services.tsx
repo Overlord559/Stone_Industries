@@ -1,8 +1,10 @@
 import { motion } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
-import { buildMailto, services } from '../../data/site'
+import { buildPricingServiceHref, services } from '../../data/site'
+import { navigateToContactInquiry } from '../../lib/inquiryNavigation'
 import { InteractiveOrbAccent } from '../scene/InteractiveOrbAccent'
 import { SectionHeading } from '../ui/SectionHeading'
+import { ServiceObjectLink } from '../ui/ServiceObjectLink'
 
 const revealViewport = { once: true, amount: 0.1, margin: '0px 0px -56px 0px' } as const
 
@@ -27,8 +29,6 @@ export function Services() {
 
       <div className="mt-14 grid gap-6 sm:grid-cols-2">
         {services.map((service, index) => {
-          const Icon = service.icon
-
           return (
             <motion.article
               key={service.title}
@@ -42,8 +42,8 @@ export function Services() {
               <span className="inline-flex w-fit rounded-full border border-cyan-400/25 bg-cyan-400/10 px-2.5 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.24em] text-cyan-200">
                 Current service
               </span>
-              <div className="mt-5 flex h-[3.25rem] w-[3.25rem] items-center justify-center rounded-2xl border border-cyan-400/20 bg-cyan-400/10 text-cyan-200 shadow-[0_12px_32px_rgba(8,145,178,0.16)]">
-                <Icon size={22} />
+              <div className="mt-5">
+                <ServiceObjectLink slug={service.slug} title={service.title} icon={service.icon} />
               </div>
               <p className="mt-5 text-xs font-semibold uppercase tracking-[0.28em] text-slate-500">
                 {service.packageName}
@@ -68,15 +68,19 @@ export function Services() {
               <p className="mt-2 text-sm text-slate-500">{service.pricingNote}</p>
               <div className="mt-auto flex flex-col gap-3 pt-6 sm:flex-row sm:flex-wrap">
                 <a
-                  href={service.detailPagePath}
+                  href={buildPricingServiceHref(service.slug)}
                   className="si-primary-cta inline-flex w-fit items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-semibold !text-slate-950 transition hover:bg-slate-200 hover:!text-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 [&_svg]:!stroke-slate-950"
                 >
                   {service.pricingPageLabel}
                   <ArrowRight size={15} />
                 </a>
                 <a
-                  href={buildMailto(service.inquirySubject)}
+                  href="#contact"
                   className="si-secondary-cta inline-flex w-fit items-center gap-2 rounded-full border border-white/15 bg-white/5 px-5 py-2.5 text-sm font-semibold !text-white transition hover:bg-white/10 hover:!text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 [&_svg]:!stroke-white"
+                  onClick={(event) => {
+                    event.preventDefault()
+                    navigateToContactInquiry(service.slug)
+                  }}
                 >
                   {service.inquiryLabel}
                 </a>

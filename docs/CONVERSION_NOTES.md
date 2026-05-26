@@ -9,12 +9,41 @@
 
 | Rank | Action | Where |
 |------|--------|-------|
-| 1 | Service pricing/detail page | Hero primary → `pricing.html`; cards → service pages |
-| 2 | Phone `559-579-9376` | Hero secondary (Call / Text), mobile sticky bar, Navbar mobile, Contact |
-| 3 | Service inquiry (mailto w/ subject) | Service pages, Contact, card secondary |
-| 4 | Capability brief | Footer / About — subcontracting only |
+| 1 | Service pricing + package context | Hero primary → `pricing.html`; homepage cards → `pricing.html?service=<slug>` |
+| 2 | Service inquiry (Supabase form) | Homepage cards → same-page `#contact` scroll + service preselect; pricing/services static forms |
+| 3 | Phone `559-579-9376` | Plain linked text near inquiry/contact — not a primary desktop button |
+| 4 | Email copy + mailto fallback | Visible address + Copy email + Open email app — not mailto-only |
+| 5 | Capability brief | Footer / About — subcontracting only |
 
-**Fail:** Mailto-only with no package context (STONE-007).
+**Fail:** Mailto-only request buttons (STONE-007, STONE-013). Mailto-only email fallback with no copy path (STONE-020). Inquiry buried by Call-first chrome (STONE-021). First-click `#contact` scroll race (STONE-014). Top nav **Services** must open `/services.html`.
+
+**Backfill index:** [`DESIGN_MISTAKE_LEDGER.md`](DESIGN_MISTAKE_LEDGER.md) → *Recent Operator Corrections Backfill* (26 items → STONE/DESIGN IDs).
+
+---
+
+## Email contact fallback (2026-05-25)
+
+| Pattern | Rule |
+|---------|------|
+| Visible address | `stoneindustries0.llc@gmail.com` on contact, footer, pricing, services, service detail pages |
+| Copy email | Clipboard copy with “Email copied.” status — legacy fallback if clipboard blocked |
+| Open email app | Standard `mailto:stoneindustries0.llc@gmail.com?subject=Stone%20Industries%20Inquiry` |
+| Forbidden | Gmail compose / Google account picker URLs without copy fallback |
+| React | `EmailContactActions` + `copyContactEmail()` |
+| Static | `public/contact-email.js` + `[data-si-copy-email]` |
+
+Inquiry form remains primary — email is fallback when Supabase fails or buyer prefers email client.
+
+---
+
+## Vision page + 3D objects (2026-05-25)
+
+| Element | Target |
+|---------|--------|
+| Top nav Vision | `vision.html` |
+| Homepage direction tiles | CSS 3D `VisionObjectLink` → `vision.html#local-first` etc. |
+| Future roadmap cards | Icon objects link to matching vision anchors |
+| Content guardrails | No defense contracts, mature enterprise platform, full MSP/agency/3PL, or autonomous AI “live today” |
 
 ---
 
@@ -39,7 +68,7 @@ React links use `import.meta.env.BASE_URL` via `site.ts`. Catalog source: `src/d
 | Add-ons | Visible $ amounts on service pages + estimator checkboxes |
 | Estimator | Running total + mailto prefill; **estimate only** disclaimer |
 | Custom work | Quote in writing — not hidden behind inquiry-only |
-| CTAs | Request This Package · Text to Confirm · Compare Packages · Get Final Quote |
+| CTAs | Request This Package → `#contact` scroll + service preselect · Compare → `pricing.html?service=<slug>` · 3D service object → estimator |
 | Checkout | **None** — do not imply instant pay |
 
 **Fail:** Inquiry-only pages with no visible package price (STONE-014).
@@ -112,9 +141,10 @@ Logistics guardrail: `logisticsFreightDisclaimer` in catalog + service page.
 
 | Element | Breakpoint | Actions |
 |---------|------------|---------|
-| Navbar top Call | `< md` | `tel:` quick dial |
-| Hero Call / Text | All | `tel:` with visible number |
-| Sticky bottom bar | `< md` | Call + View Pricing (max 2) |
+| Navbar phone | All | Plain linked text in menu/footer — not primary desktop button |
+| Hero phone | All | `Prefer phone?` linked text near inquiry |
+| Sticky bottom bar | `< md` | Inquiry + Pricing (max 2) |
+| Email fallback | All | Copy email + Open email app near inquiry clusters |
 
 Bottom bar uses safe-area padding and `#root` mobile padding so footer/contact is not covered.
 

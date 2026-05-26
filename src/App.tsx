@@ -1,4 +1,4 @@
-import type { CSSProperties } from 'react'
+import { useEffect, type CSSProperties } from 'react'
 import { Footer } from './components/layout/Footer'
 import { Navbar } from './components/layout/Navbar'
 import { About } from './components/sections/About'
@@ -6,6 +6,7 @@ import { Contact } from './components/sections/Contact'
 import { Hero } from './components/sections/Hero'
 import { Services } from './components/sections/Services'
 import { Vision } from './components/sections/Vision'
+import { syncContactHashScroll } from './lib/inquiryNavigation'
 
 const assetBase = import.meta.env.BASE_URL
 const backgroundStyle = {
@@ -14,6 +15,10 @@ const backgroundStyle = {
 } as CSSProperties
 
 function App() {
+  useEffect(() => {
+    syncContactHashScroll()
+  }, [])
+
   return (
     <div
       className="relative min-h-screen overflow-hidden bg-slate-900 text-slate-100"

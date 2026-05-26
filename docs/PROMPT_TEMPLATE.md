@@ -116,8 +116,24 @@ Safe to commit: [yes/no + exact git add paths]
 
 ---
 
-## SaaS Factory reference rule
+## SaaS Factory reference block (Standard / Major Stone prompts)
 
-When using factory visual patterns, cite `../priv-saas-factory/docs/` — do not edit factory apps unless scoped.
+Add after the mandatory tiny header when work touches conversion, visual, pricing, contact, audit, or launch:
 
-See [`PROJECT_OS_INDEX.md`](PROJECT_OS_INDEX.md) for full routing.
+```text
+SAAS FACTORY REFERENCE (also load before editing):
+- ../priv-saas-factory/MASTER.md
+- ../priv-saas-factory/docs/SAAS_FACTORY_SOURCE_OF_TRUTH.md
+- ../priv-saas-factory/docs/SAAS_FACTORY_LEARNING_LOOP.md
+- ../priv-saas-factory/docs/DESIGN_MISTAKE_LEDGER.md
+- ../priv-saas-factory/docs/CONVERSION_INTELLIGENCE.md
+- ../priv-saas-factory/docs/VISUAL_INSPIRATION_LAB.md
+- ../priv-saas-factory/docs/SAFE_3D_SITE_IMPORT_POLICY.md
+- ../priv-saas-factory/docs/visual-engines/ and visual-primitives/ (as relevant)
+- ../priv-saas-factory/prompts/README.md and task-relevant prompts/agents/*.md
+
+LEARNING: Every operator correction must update Stone STONE-NNN or factory DESIGN-NNN, or state reason_code.
+Do not edit factory apps unless explicitly scoped.
+```
+
+See [`PROJECT_OS_INDEX.md`](PROJECT_OS_INDEX.md) and [`LEARNING_LOOP.md`](LEARNING_LOOP.md) for full routing.

@@ -7,11 +7,19 @@
     'Same-Day Tech Cleanup',
     '24-Hour Business Websites',
     'Wi-Fi, Printer & POS Support',
-    'Operations & Logistics Coordination',
+    'Operations & Logistics Coordination Setup',
     'AI Automation & Digital Assistant Systems',
     'General Inquiry',
     'Subcontracting / Capability Brief',
   ]
+
+  const SERVICE_SLUG_TO_TITLE = {
+    'tech-cleanup': 'Same-Day Tech Cleanup',
+    'business-websites': '24-Hour Business Websites',
+    'wifi-printer-pos': 'Wi-Fi, Printer & POS Support',
+    'logistics-coordination': 'Operations & Logistics Coordination Setup',
+    'ai-workflow-automation': 'AI Automation & Digital Assistant Systems',
+  }
 
   const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
@@ -92,9 +100,16 @@
     )
   }
 
+  function defaultServiceFromQuery(fallback) {
+    var params = new URLSearchParams(window.location.search)
+    var slug = params.get('service')
+    if (slug && SERVICE_SLUG_TO_TITLE[slug]) return SERVICE_SLUG_TO_TITLE[slug]
+    return fallback || ''
+  }
+
   function renderForm(container) {
     const sourcePage = container.dataset.sourcePage || window.location.pathname
-    const defaultService = container.dataset.defaultService || ''
+    const defaultService = defaultServiceFromQuery(container.dataset.defaultService || '')
     const configured = isConfigured()
 
     container.innerHTML =
@@ -121,8 +136,15 @@
       '<button type="submit" class="cta cta-primary"' +
       (configured ? '' : ' disabled') +
       '>Submit inquiry</button>' +
-      '<a class="cta cta-secondary" href="mailto:stoneindustries0.llc@gmail.com?subject=Service%20Inquiry%20%E2%80%94%20Stone%20Industries">Email instead</a>' +
-      '<a class="cta cta-call" href="tel:+15595799376">Call 559-579-9376</a>' +
+      '</div>' +
+      '<div class="si-email-actions">' +
+      '<p class="si-email-line">Email: <a href="mailto:stoneindustries0.llc@gmail.com?subject=Stone%20Industries%20Inquiry">stoneindustries0.llc@gmail.com</a></p>' +
+      '<div class="si-email-buttons">' +
+      '<button type="button" class="cta cta-secondary" data-si-copy-email>Copy email</button>' +
+      '<a class="cta cta-secondary" data-si-mailto-inquiry href="mailto:stoneindustries0.llc@gmail.com?subject=Stone%20Industries%20Inquiry">Open email app</a>' +
+      '</div>' +
+      '<p class="si-copy-status" data-si-copy-status hidden aria-live="polite">Email copied.</p>' +
+      '<p class="note-muted">Prefer phone? <a href="tel:+15595799376">559-579-9376</a></p>' +
       '</div>' +
       (configured
         ? ''

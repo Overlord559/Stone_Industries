@@ -4,7 +4,11 @@ import {
   Boxes,
   BriefcaseBusiness,
   Cpu,
+  Crosshair,
+  Layers,
+  MapPin,
   Radar,
+  Rocket,
   Server,
   ShieldCheck,
 } from 'lucide-react'
@@ -26,6 +30,7 @@ export type Capability = {
 
 export type RoadmapCapability = Capability & {
   status: string
+  visionAnchor: string
 }
 
 export type InquiryType = {
@@ -46,16 +51,17 @@ export const serviceAreaRemote =
   'Remote support available for websites, AI workflow setup, and logistics coordination.'
 export const serviceAreaSeoPhrase = 'Fresno and Central Valley, California'
 
-export const navItems: NavItem[] = [
-  { label: 'Services', href: '#services' },
-  { label: 'Pricing', href: `${import.meta.env.BASE_URL}pricing.html` },
-  { label: 'About', href: '#about' },
-  { label: 'Vision', href: '#vision' },
-  { label: 'Contact', href: '#contact' },
-]
-
 export const pricingPagePath = `${import.meta.env.BASE_URL}pricing.html`
 export const servicesPagePath = `${import.meta.env.BASE_URL}services.html`
+export const visionPagePath = `${import.meta.env.BASE_URL}vision.html`
+
+export const navItems: NavItem[] = [
+  { label: 'Services', href: servicesPagePath },
+  { label: 'Pricing', href: pricingPagePath },
+  { label: 'About', href: '#about' },
+  { label: 'Vision', href: visionPagePath },
+  { label: 'Contact', href: '#contact' },
+]
 
 export const pricingDisclaimer =
   'Fixed package prices apply to listed scope. Final quote confirmed in writing before work begins.'
@@ -68,6 +74,31 @@ export const securityPackageDisclaimer =
   'Security-conscious setup is included where applicable, but no website or system can be guaranteed hacker-proof. Stone Industries does not claim PCI, HIPAA, SOC 2, or government compliance unless separately contracted and documented.'
 
 export const services = builtServices
+
+/** Map catalog slug → inquiry dropdown title (matches Supabase + static forms). */
+export const serviceSlugToTitle: Record<string, string> = Object.fromEntries(
+  services.map((service) => [service.slug, service.title]),
+)
+
+export function resolveServiceTitleFromSlug(slug: string): string | undefined {
+  return serviceSlugToTitle[slug]
+}
+
+export function resolveServiceFromQuery(): string {
+  if (typeof window === 'undefined') return ''
+  const slug = new URLSearchParams(window.location.search).get('service')
+  if (!slug) return ''
+  return resolveServiceTitleFromSlug(slug) ?? ''
+}
+
+export function buildPricingServiceHref(slug: string): string {
+  return `${pricingPagePath}?service=${encodeURIComponent(slug)}`
+}
+
+/** Homepage inquiry deep link — preselects service in Contact form via ?service= slug. */
+export function buildContactInquiryHref(slug: string): string {
+  return `${import.meta.env.BASE_URL}?service=${encodeURIComponent(slug)}#contact`
+}
 
 export const inquiryTypes: InquiryType[] = [
   { label: 'Tech Cleanup', subject: 'Tech Cleanup Inquiry — Stone Industries' },
@@ -148,6 +179,7 @@ export const futureVision: RoadmapCapability[] = [
     description:
       'Future research around resilient decision support, logistics awareness, and coordinated mission workflows.',
     status: 'Research direction — not sold today',
+    visionAnchor: 'bigger-vision',
     icon: Radar,
   },
   {
@@ -155,13 +187,15 @@ export const futureVision: RoadmapCapability[] = [
     description:
       'Planned capability to support analysis and operator workflows with human oversight—not a deployed product.',
     status: 'Planned capability — not deployed',
+    visionAnchor: 'next-phase',
     icon: Bot,
   },
   {
     title: 'Autonomous logistics',
     description:
       'Long-range development for movement, sustainment, and infrastructure systems that reduce logistics friction.',
-    status: 'Future capability â€” not available now',
+    status: 'Future capability — not available now',
+    visionAnchor: 'bigger-vision',
     icon: Boxes,
   },
   {
@@ -169,7 +203,42 @@ export const futureVision: RoadmapCapability[] = [
     description:
       'Future-direction work on dependable systems and operational continuity under stress.',
     status: 'Research roadmap — not for purchase',
+    visionAnchor: 'bigger-vision',
     icon: Server,
+  },
+]
+
+export type VisionDirection = {
+  anchor: string
+  title: string
+  summary: string
+  icon: LucideIcon
+}
+
+export const visionDirections: VisionDirection[] = [
+  {
+    anchor: 'local-first',
+    title: 'Local First',
+    summary: 'Earn trust in Fresno and the Central Valley with fixed-scope delivery.',
+    icon: MapPin,
+  },
+  {
+    anchor: 'current-focus',
+    title: 'Current Focus',
+    summary: 'Websites, secure lead capture, tech cleanup, AI workflows, and operations systems.',
+    icon: Crosshair,
+  },
+  {
+    anchor: 'next-phase',
+    title: 'Next Phase',
+    summary: 'Recurring care plans, stronger automation support, and software-style products.',
+    icon: Layers,
+  },
+  {
+    anchor: 'bigger-vision',
+    title: 'Bigger Vision',
+    summary: 'Larger infrastructure, coordination systems, and long-range research — when earned.',
+    icon: Rocket,
   },
 ]
 

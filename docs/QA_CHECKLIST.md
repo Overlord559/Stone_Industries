@@ -31,9 +31,9 @@ Optional preview: `npm run preview` — open printed local URL.
 - [ ] Hero: headline, subcopy, primary CTA readable
 - [ ] Primary CTA contrast on light buttons (dark text visible)
 - [ ] Services section: all 5 services visible with inquiry links
-- [ ] Vision section: future items labeled **not sold today**
-- [ ] Contact: mailto opens with subject; phone link uses `tel:+15595799376`
-- [ ] Navbar anchor links scroll to sections
+- [ ] Vision section: future items labeled **not sold today**; direction tiles link to `/vision.html` anchors
+- [ ] Contact: inquiry form primary; email shows copy + mailto fallback; phone link uses `tel:+15595799376`
+- [ ] Navbar: Services → `/services.html`; Pricing → `/pricing.html`; Vision → `/vision.html`
 - [ ] Footer links: privacy, terms, capability brief
 
 ---
@@ -73,10 +73,14 @@ Optional preview: `npm run preview` — open printed local URL.
 
 ---
 
-## Mailto / tel checks
+## Mailto / tel / email copy checks
 
-- [ ] Each service inquiry link includes correct subject (see `site.ts`)
-- [ ] Contact section mailto works
+- [ ] Visible email `stoneindustries0.llc@gmail.com` on homepage contact, footer, pricing, services, all five service detail pages
+- [ ] **Copy email** shows “Email copied.” on click (React + static `contact-email.js`)
+- [ ] **Open email app** uses `mailto:stoneindustries0.llc@gmail.com?subject=Stone%20Industries%20Inquiry`
+- [ ] No Gmail web compose / Google account picker URLs (`mail.google.com`, `accounts.google.com`)
+- [ ] Each service inquiry mailto (estimator) includes correct subject when used
+- [ ] Contact section mailto works when buyer has a mail client
 - [ ] `tel:+15595799376` dialable on mobile test device or emulator
 
 ---
@@ -106,9 +110,27 @@ Optional preview: `npm run preview` — open printed local URL.
 
 ---
 
+## Homepage navigation + service card CTAs
+
+- [ ] Top nav **Services** opens `/services.html` (not `#services` scroll only)
+- [ ] Top nav **Pricing** opens `/pricing.html`
+- [ ] Top nav **Contact** scrolls to `/#contact`
+- [ ] Hero “View services” (or equivalent) may still use `#services` internal anchor
+- [ ] Each homepage service card **Compare** button → `/pricing.html?service=<slug>` (estimator preselect)
+- [ ] Each homepage service card **Request This Package** → contact form on **first click** (no jump to hero/top)
+- [ ] Repeated Request clicks stay on contact section with correct service preselected
+- [ ] Each homepage **3D service object** → `/pricing.html?service=<slug>` with keyboard focus ring
+- [ ] Each homepage **3D vision object** / direction tile → `/vision.html#<anchor>` with keyboard focus ring
+- [ ] Hero has no prominent Call button — phone is plain text near inquiry path
+- [ ] Mobile sticky bar shows **Inquiry** + **Pricing** (not Call + Pricing)
+- [ ] Mobile nav opens Services/Pricing pages; inquiry CTA in menu
+
+---
+
 ## Inquiry form check (Supabase)
 
 - [ ] Homepage Contact section form loads without console errors
+- [ ] `/?service=business-websites#contact` preselects **24-Hour Business Websites** in service dropdown
 - [ ] `/pricing.html` and `/services.html` inquiry sections render
 - [ ] Client validation: name + message required; email **or** phone required
 - [ ] Honeypot field hidden; filled honeypot rejects submit
@@ -123,12 +145,14 @@ Optional preview: `npm run preview` — open printed local URL.
 
 Run on live Netlify URL after deploy — https://stoneindustries.netlify.app/ — see [`DEPLOYMENT.md`](DEPLOYMENT.md):
 
-- [ ] `/`, `/pricing.html`, `/services.html` — 200
+- [ ] `/`, `/pricing.html`, `/services.html`, `/vision.html` — 200
 - [ ] All five `/services/*.html` detail pages — 200
 - [ ] `/capability-brief.html`, `/privacy.html`, `/terms.html` — 200
 - [ ] Hero primary CTA → `/pricing.html`
+- [ ] Top nav Services → `/services.html`; Pricing → `/pricing.html`; Vision → `/vision.html`
+- [ ] Copy email works on pricing + one service detail page
 - [ ] `tel:+15595799376` on hero, contact, static pages
-- [ ] Mobile sticky bar (Call + View Pricing) at 375px and 320px
+- [ ] Mobile sticky bar (Inquiry + Pricing) at 375px and 320px
 - [ ] No horizontal scroll; sticky bar does not cover contact CTAs
 
 ---
@@ -254,4 +278,7 @@ git status --short
 
 ## Learning loop
 
-After QA, note: new `STONE-NNN` lesson or reason code per [`LEARNING_LOOP.md`](LEARNING_LOOP.md).
+After QA, note: new `STONE-NNN` lesson, factory `DESIGN-NNN` promotion, or reason code per [`LEARNING_LOOP.md`](LEARNING_LOOP.md).
+
+- [ ] Operator corrections backfill table reviewed when auditing conversion/pricing/contact (`DESIGN_MISTAKE_LEDGER.md` → 26-item index)
+- [ ] Serious passes report factory docs loaded (`STONE-023` / `DESIGN-036`)

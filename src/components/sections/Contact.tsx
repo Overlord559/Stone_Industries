@@ -14,6 +14,7 @@ import {
 } from '../../data/site'
 import { InquiryForm } from '../InquiryForm'
 import { InteractiveOrbAccent } from '../scene/InteractiveOrbAccent'
+import { EmailContactActions } from '../ui/EmailContactActions'
 import { SectionHeading } from '../ui/SectionHeading'
 
 
@@ -82,9 +83,9 @@ export function Contact() {
 
             eyebrow="Contact"
 
-            title="Email or call directly for the fastest response."
+            title="Submit an inquiry for the fastest response."
 
-            description={`For IT support, small-business websites, Wi-Fi and POS help, AI automation and digital assistant systems, logistics coordination, or subcontracting discussions, contact Stone Industries directly. ${serviceAreaOnSite} ${serviceAreaRemote} Use the inquiry form, email, or phone below. No booking system or online checkout on this site.`}
+            description={`For IT support, small-business websites, Wi-Fi and POS help, AI automation and digital assistant systems, logistics coordination, or subcontracting discussions, use the inquiry form first. ${serviceAreaOnSite} ${serviceAreaRemote} Email copy and phone fallback are below. No booking system or online checkout on this site.`}
           />
 
 
@@ -100,21 +101,12 @@ export function Contact() {
             <div className="mt-4 flex flex-wrap gap-2">
 
               {inquiryTypes.map((item) => (
-
-                <a
-
+                <span
                   key={item.label}
-
-                  href={buildMailto(item.subject)}
-
-                  className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-2 text-xs font-medium !text-slate-200 transition hover:border-cyan-400/30 hover:!text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
-
+                  className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-2 text-xs font-medium text-slate-200"
                 >
-
                   {item.label}
-
-                </a>
-
+                </span>
               ))}
 
             </div>
@@ -151,34 +143,16 @@ export function Contact() {
 
 
 
+          <EmailContactActions subject="Stone Industries Inquiry" />
+
           <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-
             <a
-
-              href={buildMailto('Stone Industries Inquiry')}
-
-              className="si-primary-cta inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold !text-slate-950 transition hover:bg-slate-200 hover:!text-slate-950 [&_svg]:!stroke-slate-950"
-
-            >
-
-              Email Stone Industries
-
-              <ArrowRight size={16} />
-
-            </a>
-
-            <a
-
               href={capabilityBriefPath}
-
               className="si-secondary-cta inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm font-semibold !text-white transition hover:bg-white/10 hover:!text-white [&_svg]:!stroke-white"
-
             >
-
               View Capability Brief
-
+              <ArrowRight size={16} />
             </a>
-
           </div>
 
         </div>

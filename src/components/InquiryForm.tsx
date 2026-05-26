@@ -1,4 +1,4 @@
-import { useState, type FormEvent } from 'react'
+import { useEffect, useState, type FormEvent } from 'react'
 
 import {
   buildMailto,
@@ -6,9 +6,13 @@ import {
   contactPhone,
   contactPhoneHref,
   inquiryServiceOptions,
+  resolveServiceFromQuery,
+  resolveServiceTitleFromSlug,
 } from '../data/site'
+import { INQUIRY_SERVICE_EVENT } from '../lib/inquiryNavigation'
 import { validateInquiryInput } from '../lib/inquiryTypes'
 import { inquiryFormAvailable, submitInquiry } from '../lib/submitInquiry'
+import { EmailContactActions } from './ui/EmailContactActions'
 
 type InquiryFormProps = {
   sourcePage: string
@@ -21,7 +25,21 @@ type FormStatus = 'idle' | 'submitting' | 'success' | 'error'
 export function InquiryForm({ sourcePage, defaultService = '', className = '' }: InquiryFormProps) {
   const [status, setStatus] = useState<FormStatus>('idle')
   const [errorMessage, setErrorMessage] = useState('')
+  const [selectedService, setSelectedService] = useState(
+    () => resolveServiceFromQuery() || defaultService,
+  )
   const configured = inquiryFormAvailable()
+
+  useEffect(() => {
+    function handleServiceSelect(event: Event) {
+      const detail = (event as CustomEvent<{ slug: string; title?: string }>).detail
+      const title = detail.title || resolveServiceTitleFromSlug(detail.slug) || ''
+      if (title) setSelectedService(title)
+    }
+
+    window.addEventListener(INQUIRY_SERVICE_EVENT, handleServiceSelect)
+    return () => window.removeEventListener(INQUIRY_SERVICE_EVENT, handleServiceSelect)
+  }, [])
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
@@ -61,6 +79,7 @@ export function InquiryForm({ sourcePage, defaultService = '', className = '' }:
       await submitInquiry(validation.payload)
       setStatus('success')
       form.reset()
+      setSelectedService(defaultService)
     } catch (error) {
       setStatus('error')
       setErrorMessage(
@@ -108,7 +127,7 @@ export function InquiryForm({ sourcePage, defaultService = '', className = '' }:
         </p>
         <p className="mt-2 text-sm leading-6 text-slate-300">
           {configured
-            ? 'Submit the form below or use email/phone if you prefer.'
+            ? 'Submit the form below — inquiry is the fastest path. Prefer phone? Call or text below.'
             : 'Online capture is not configured in this environment. Use email or phone below.'}
         </p>
       </div>
@@ -140,7 +159,8 @@ export function InquiryForm({ sourcePage, defaultService = '', className = '' }:
           <select
             name="service_requested"
             required
-            defaultValue={defaultService}
+            value={selectedService}
+            onChange={(event) => setSelectedService(event.target.value)}
             className="w-full rounded-xl border border-white/10 bg-slate-950/50 px-3 py-2.5 text-white outline-none ring-cyan-400/40 focus:border-cyan-400/40 focus:ring-2"
           >
             <option value="">Choose a service</option>
@@ -219,19 +239,16 @@ export function InquiryForm({ sourcePage, defaultService = '', className = '' }:
         >
           {status === 'submitting' ? 'Sending…' : 'Submit inquiry'}
         </button>
-        <a
-          href={buildMailto('Stone Industries Inquiry')}
-          className="si-secondary-cta inline-flex items-center justify-center rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm font-semibold !text-white transition hover:bg-white/10"
-        >
-          Email instead
-        </a>
-        <a
-          href={contactPhoneHref}
-          className="inline-flex items-center justify-center rounded-full border border-cyan-400/30 bg-cyan-400/10 px-6 py-3 text-sm font-semibold !text-cyan-100 transition hover:bg-cyan-400/15"
-        >
-          Call {contactPhone}
-        </a>
       </div>
+
+      <EmailContactActions subject="Stone Industries Inquiry" compact className="mt-1" />
+
+      <p className="text-sm text-slate-400">
+        Prefer phone?{' '}
+        <a className="font-medium text-slate-200 underline hover:text-white" href={contactPhoneHref}>
+          {contactPhone}
+        </a>
+      </p>
 
       {!configured ? (
         <p className="text-xs text-slate-400">

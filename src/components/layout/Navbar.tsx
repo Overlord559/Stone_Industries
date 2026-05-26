@@ -1,7 +1,7 @@
 import { AnimatePresence, motion } from 'framer-motion'
-import { Menu, Phone, X } from 'lucide-react'
+import { Menu, X } from 'lucide-react'
 import { useState } from 'react'
-import { contactPhoneHref, navItems, pricingPagePath } from '../../data/site'
+import { navItems, pricingPagePath } from '../../data/site'
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
@@ -46,13 +46,6 @@ export function Navbar() {
         </div>
 
         <div className="flex items-center gap-2 md:hidden">
-          <a
-            href={contactPhoneHref}
-            className="inline-flex min-h-11 items-center gap-1.5 rounded-full border border-cyan-400/30 bg-cyan-400/10 px-3.5 py-2 text-xs font-semibold !text-cyan-100 transition hover:border-cyan-300/50 hover:bg-cyan-300/15 hover:!text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 [&_svg]:stroke-current"
-          >
-            <Phone size={15} />
-            Call
-          </a>
           <button
             type="button"
             className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/15 !text-white transition hover:border-white/25 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 [&_svg]:stroke-current"
@@ -85,19 +78,11 @@ export function Navbar() {
                 </a>
               ))}
               <a
-                href={contactPhoneHref}
-                className="mt-2 inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-full border border-white/15 bg-white/5 px-5 py-3 text-sm font-medium !text-white transition hover:border-cyan-400/30 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
-                onClick={() => setIsOpen(false)}
-              >
-                <Phone size={16} />
-                Call Stone Industries
-              </a>
-              <a
                 href="#contact"
                 className="inline-flex min-h-11 w-full items-center justify-center rounded-full border border-cyan-400/30 bg-cyan-400/10 px-5 py-3 text-sm font-medium !text-cyan-100 transition hover:border-cyan-300/50 hover:bg-cyan-300/15 hover:!text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
                 onClick={() => setIsOpen(false)}
               >
-                Get in touch
+                Send an inquiry
               </a>
             </div>
           </motion.div>
@@ -112,17 +97,16 @@ export function Navbar() {
     >
       <div className="mx-auto flex max-w-7xl gap-2 px-4 py-3 pb-[max(0.75rem,env(safe-area-inset-bottom))]">
         <a
-          href={contactPhoneHref}
-          className="inline-flex min-h-11 flex-1 items-center justify-center gap-2 rounded-full border border-cyan-400/30 bg-cyan-400/10 px-4 text-sm font-semibold !text-cyan-50 transition hover:border-cyan-300/50 hover:bg-cyan-400/15 hover:!text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 [&_svg]:stroke-current"
+          href="#contact"
+          className="inline-flex min-h-11 flex-1 items-center justify-center rounded-full border border-cyan-400/30 bg-cyan-400/10 px-4 text-sm font-semibold !text-cyan-50 transition hover:border-cyan-300/50 hover:bg-cyan-400/15 hover:!text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
         >
-          <Phone size={16} />
-          Call
+          Inquiry
         </a>
         <a
           href={pricingPagePath}
           className="inline-flex min-h-11 flex-1 items-center justify-center rounded-full border border-white/15 bg-white/5 px-4 text-sm font-semibold !text-white transition hover:border-white/25 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
         >
-          View Pricing
+          Pricing
         </a>
       </div>
     </div>
