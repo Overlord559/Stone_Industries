@@ -99,9 +99,24 @@ Optional preview: `npm run preview` — open printed local URL.
 
 ## Asset path check
 
-- [ ] Backgrounds served from `/Stone_Industries/assets/` in production (or `/assets/` on Vercel after rebase)
+- [ ] Backgrounds served from `/assets/` on **Netlify production** (`VITE_BASE_PATH=/`)
+- [ ] GitHub Pages mirror (if enabled): `/Stone_Industries/assets/`
 - [ ] No references to repo-root draft images
 - [ ] `og-image.svg` and favicon load
+
+---
+
+## Netlify post-deploy smoke (production)
+
+Run on live Netlify URL after deploy — see [`DEPLOYMENT.md`](DEPLOYMENT.md):
+
+- [ ] `/`, `/pricing.html`, `/services.html` — 200
+- [ ] All five `/services/*.html` detail pages — 200
+- [ ] `/capability-brief.html`, `/privacy.html`, `/terms.html` — 200
+- [ ] Hero primary CTA → `/pricing.html`
+- [ ] `tel:+15595799376` on hero, contact, static pages
+- [ ] Mobile sticky bar (Call + View Pricing) at 375px and 320px
+- [ ] No horizontal scroll; sticky bar does not cover contact CTAs
 
 ---
 

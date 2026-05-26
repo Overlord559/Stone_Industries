@@ -106,6 +106,22 @@
 
 ---
 
+## STONE-008 — Commercial sites need hosting-platform compliance before “free” production
+
+| Field | Value |
+|-------|-------|
+| **Severity** | STRONG_RULE |
+| **Factory link** | — |
+| **Status** | ACTIVE |
+
+**Problem:** Vercel Hobby and GitHub Pages were documented as interchangeable free production options for a commercial service site with pricing pages — Hobby is non-commercial per platform terms; GitHub Pages is a poor canonical URL for local business SEO.
+
+**Rule:** **Netlify Free** is the recommended commercial production host. GitHub Pages = mirror/preview only. **Vercel Hobby = not for production** — Vercel Pro only if operator upgrades. Set `VITE_BASE_PATH=/` on Netlify. Update `og:url` after Netlify URL is live.
+
+**QA check:** Post-deploy smoke on Netlify root paths before adding backend (Supabase/Stripe).
+
+---
+
 ## How to add a lesson
 
 1. Assign next `STONE-NNN` ID

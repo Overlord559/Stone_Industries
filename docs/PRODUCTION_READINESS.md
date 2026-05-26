@@ -17,29 +17,34 @@
 | Legal | privacy, terms, capability-brief load |
 | Console | No uncaught errors on homepage |
 | Mobile | 375px + 320px QA pass |
+| Hosting compliance | Commercial site on **Netlify Free** — not Vercel Hobby |
 
 ---
 
 ## Environment variables
 
-| Var | GitHub Pages | Vercel (planned) |
-|-----|--------------|------------------|
-| `VITE_BASE_PATH` | `/Stone_Industries/` | `/` |
+| Var | Netlify (production) | GitHub Pages (mirror) | Vercel Pro (future) |
+|-----|----------------------|----------------------|---------------------|
+| `VITE_BASE_PATH` | `/` | `/Stone_Industries/` (CI default) | `/` |
 
-Set in `.env.local` for local prod preview; CI uses default in `vite.config.ts`.
+Set in `netlify.toml` for Netlify. GitHub Actions uses `vite.config.ts` default. Set in `.env.local` for local prod preview.
 
 ---
 
-## Smoke test (post-deploy)
+## Smoke test (post-deploy — Netlify)
 
 ```text
-1. Homepage 200
+1. Homepage 200 at /
 2. Background WebP 200 (Network tab)
-3. Mailto opens with subject
-4. tel: link present on mobile view
-5. /privacy.html /terms.html /capability-brief.html
-6. One scroll through Services + Contact
+3. /pricing.html + /services.html + all 5 service detail pages 200
+4. Mailto opens with subject
+5. tel:+15595799376 on hero, contact, static pages
+6. /privacy.html /terms.html /capability-brief.html 200
+7. Mobile sticky bar at 375px and 320px
+8. One scroll through Services + Contact — no console errors
 ```
+
+Full checklist: [`DEPLOYMENT.md`](DEPLOYMENT.md) post-deploy section.
 
 ---
 
@@ -47,8 +52,9 @@ Set in `.env.local` for local prod preview; CI uses default in `vite.config.ts`.
 
 | Host | Rollback |
 |------|----------|
+| **Netlify** | Publish previous successful deploy in Netlify dashboard |
 | GitHub Pages | Revert commit on `main`; workflow redeploys prior artifact |
-| Vercel | Redeploy previous production deployment in dashboard |
+| Vercel Pro (future) | Redeploy previous production deployment in dashboard |
 
 **Do not** force-push without operator approval.
 
@@ -56,8 +62,9 @@ Set in `.env.local` for local prod preview; CI uses default in `vite.config.ts`.
 
 ## SRE rules
 
-- Test production base path before switching hosts
+- Test production base path (`VITE_BASE_PATH=/`) before Netlify cutover
 - Do not push runtime to `main` without build/lint locally or CI green
 - Report dirty tree before deploy-related edits
+- **Vercel Hobby is not approved for commercial production**
 
 Cross-ref: [`QA_CHECKLIST.md`](QA_CHECKLIST.md), [`DEPLOYMENT.md`](DEPLOYMENT.md)

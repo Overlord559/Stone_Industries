@@ -1,0 +1,10 @@
+# Stone Industries — Netlify Free production (commercial-compatible)
+# Docs: docs/DEPLOYMENT.md
+
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  # Root deploy — required for React app + static pricing/service pages
+  VITE_BASE_PATH = "/"
