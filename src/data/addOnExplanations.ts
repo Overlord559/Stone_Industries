@@ -17,8 +17,18 @@ export const advancedSeoNotIncludedNote =
 export const advancedSeoPublicLine =
   'Basic SEO/meta is included where listed. Google/Meta ad setup guidance can be quoted separately, but ongoing ad management, advanced SEO campaigns, and monthly marketing retainers are custom or partner-level services.'
 
+export const aiReceptionistScopeNote =
+  'Stone Industries helps small businesses set up AI receptionist and lead follow-up workflows using third-party AI voice/workflow tools, configured with human handoff boundaries. Not emergency handling, legal/medical/financial advice, guaranteed bookings, employee replacement, or compliance certification.'
+
 export const aiWorkflowScopeNote =
-  'Stone Industries builds practical AI automation and AI-agent-style workflows using AI models, APIs, and tools like n8n where appropriate — forms, email/process automation, and human approval for important actions. Not a full enterprise AI agency, not employee replacement, not guaranteed AI accuracy, and no unsupervised payment, legal, medical, or financial decisions.'
+  aiReceptionistScopeNote +
+  ' Broader workflow automation may use AI models, APIs, and tools like n8n where appropriate — forms, email/process automation, and human approval for important actions. Not a full enterprise AI agency, not guaranteed AI accuracy, and no unsupervised payment, legal, medical, or financial decisions.'
+
+export const mobileMvpScopeNote =
+  'Clickable mobile app concepts and MVP prototypes for business owners who want to test an app idea before paying for full custom development. Not guaranteed App Store approval, full enterprise backend, regulated app compliance, or custom payment systems unless separately scoped.'
+
+export const operationsCoordinationScopeNote =
+  'Simple operations and technology project coordination: scheduling, vendor follow-up, rollout tracking, checklists, documentation, and tech project organization. Not freight brokerage, 3PL, carrier/dispatch, warehousing, fleet operations, or regulated transportation coordination.'
 
 export const techCleanupPlatformScopeNote =
   'Currently focused on Windows computers. No phones or Linux support right now. macOS may be considered case-by-case depending on the issue.'

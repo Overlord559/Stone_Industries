@@ -31,7 +31,11 @@ export function InteractiveOrbAccent({
   const tiltY = useSpring(useMotionValue(0), { stiffness: 140, damping: 22 })
 
   const heightClass =
-    variant === 'contact' ? 'h-[168px] sm:h-[188px]' : 'h-[200px] sm:h-[220px]'
+    variant === 'contact'
+      ? 'h-[168px] sm:h-[188px]'
+      : variant === 'hero'
+        ? 'h-[176px] sm:h-[192px]'
+        : 'h-[200px] sm:h-[220px]'
 
   useEffect(() => {
     return () => {

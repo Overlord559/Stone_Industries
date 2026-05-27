@@ -28,9 +28,11 @@
 | **Factory link** | DESIGN-026 |
 | **Status** | ACTIVE |
 
-**Problem:** Interactive orb accents can block embedded signage, logos, or hero art.
+**Problem:** Interactive orb accents can block embedded signage, logos, or hero art — especially the Stone Industries sign in `stone-main-dalrm-bg.webp`.
 
-**Rule:** Place orbs in section **empty space** only. Inspect focal points before placing WebGL accents. Hide/minimize below `lg`.
+**Rule:** Place orbs in section **empty space** only. Hero orb sits **upper-right** in a mapped clear zone — not centered over embedded signage. Inspect focal points before placing WebGL accents. Hide/minimize below `lg`. Reduce scale/opacity on hero variant when near art.
+
+**QA check:** Full-page desktop scroll at 1440px — orb does not overlap embedded sign; sign remains readable.
 
 ---
 
@@ -544,6 +546,176 @@ Index of operator corrections from pricing/estimator/nav/email/vision passes. Ex
 | 28 | Package-aware add-ons prevent double-charge | STONE-026, STONE-015 | DESIGN-037 | Included list not summed again |
 | 29 | Estimator dropdown labels stay short | STONE-026 | DESIGN-037 | No best-for text in `<option>` |
 | 30 | Simple vs Core defined by job complexity | STONE-026 | DESIGN-037 | Drop-in vs platform/power/cooling |
+| 31 | Real business plan replaces tool-only planning | STONE-027 | DESIGN-040 | `STONE_INDUSTRIES_BUSINESS_PLAN.md` exists |
+| 32 | Service stack reorder — PC + Tier 1 IT first | STONE-027 | DESIGN-040 | Homepage/catalog order matches |
+| 33 | Logistics downgraded to operations coordination | STONE-027 | DESIGN-040 | Secondary card + not-included freight |
+| 34 | Public/private vision separation | STONE-027 | DESIGN-040 | Vision page ≠ current services |
+| 35 | Vendor-powered services = managed outcomes | STONE-027 | DESIGN-040 | No Ulio/Rork public resale copy |
+| 36 | Mobile MVP added as productized service | STONE-027 | DESIGN-040 | `mobile-app-mvp.html` + catalog slug |
+| 37 | Duplicate contact modules near footer | STONE-029 | DESIGN-036 | One email fallback cluster per zone |
+| 38 | Pricing policy wall hurts scan speed | STONE-029 | DESIGN-029 | Progressive disclosure on pricing.html |
+| 39 | Hero orb overlapped embedded sign | STONE-002, STONE-030 | DESIGN-026 | Orb upper-right clear zone |
+| 40 | Persistent blue right-side rail on scroll | STONE-030 | DESIGN-026 | No 82% cyan glow; edge vignette |
+
+---
+
+## STONE-027 — Business plan sync: revenue-first service stack and public/private separation
+
+| Field | Value |
+|-------|-------|
+| **Severity** | STRONG_RULE |
+| **Factory link** | DESIGN-040 |
+| **Status** | ACTIVE |
+| **First observed** | Multi-repo business plan sync (2026-05-26) |
+
+**Problem:** Tool-budget docs and stale six-service copy caused agents to mis-order services, over-emphasize logistics, omit mobile MVP, and blur public offers with founder vision or internal vendor tools (Ulio, Rork).
+
+**Rule:**
+
+1. **Real business plan doc** — `docs/STONE_INDUSTRIES_BUSINESS_PLAN.md` is operator reference; public catalog stays in `pricingCatalog.ts` / `buildServices.ts`.
+2. **Service priority** — PC builds + Tier 1 IT first; operations coordination last/secondary; slug `logistics-coordination` may remain for URLs only.
+3. **Public/private split** — Vision page and internal docs may describe larger ambition; homepage/pricing/services sell practical local services today.
+4. **Vendor-powered offers** — AI receptionist and mobile MVP sell managed outcomes; do not publicly lead with Ulio/Rork as the product.
+5. **Cross-repo notes only** — govcontractapp and Opslayer get minimal operator-direction docs; no Stone marketing in unrelated runtime repos.
+6. **Funnel completeness** — new/changed services update catalog, estimator, inquiry preselect, static pages, homepage, and Project OS docs together.
+
+**QA check:** Grep public pages for Ulio/Rork/guaranteed claims; verify seven-service order on homepage, pricing, services, inquiry dropdown; operations page states not freight/3PL.
+
+---
+
+## STONE-028 — Desktop full-width QA after mobile/service passes
+
+| Field | Value |
+|-------|-------|
+| **Severity** | STRONG_RULE |
+| **Factory link** | DESIGN-036 (extend) |
+| **Status** | ACTIVE |
+| **First observed** | Desktop layout regression after 7-service sync (2026-05-26) |
+
+**Problem:** Hero desktop grid reserved a right column but shipped an empty placeholder — content read as a narrow left strip with a blank dark viewport. Prior QA checked 375px mobile only and missed desktop hamburger/full-width failures.
+
+**Rule:**
+
+1. **Hero desktop column must earn its space** — use `InteractiveOrbAccent` (`variant="hero"`) or remove the second column; never ship an empty `lg:grid-cols` slot.
+2. **Shell width explicit** — `html`, `body`, `#root`, and `main` stay `width: 100%` / `max-width: none`; section containers use `max-w-7xl mx-auto`, not a global mobile-width shell.
+3. **Breakpoint QA mandatory** — after mobile or copy passes, re-test **1280px + 1440px** desktop: full nav, no hamburger, no empty hero half-viewport, no horizontal scroll.
+4. **Mobile styles stay scoped** — `#root` bottom padding and sticky bar only inside `@media (max-width: 768px)`.
+
+**QA check:** At 1440px, `#root` width ≈ viewport; desktop nav links visible; hero right column shows orb accent; services grid uses full `max-w-7xl` container.
+
+---
+
+## STONE-029 — Progressive disclosure for policy copy; one email fallback cluster per page zone
+
+| Field | Value |
+|-------|-------|
+| **Severity** | STRONG_RULE |
+| **Factory link** | DESIGN-029, DESIGN-036 (extend) |
+| **Status** | ACTIVE |
+| **First observed** | Final readability / duplication cleanup (2026-05-26) |
+
+**Problem:** Duplicate `EmailContactActions` near contact + footer + inquiry form eroded trust and added scroll. Pricing pages stacked 8+ full policy boxes — contract-wall feel — while commercial protections still matter.
+
+**Rule:**
+
+1. **One strong email/phone fallback cluster** per page zone — keep copy + mailto with the inquiry form; footer = plain email/phone links only.
+2. **No standalone email box** after pages that already render `data-si-inquiry` (inquiry form includes fallback).
+3. **Pricing policy sections** — keep payment/scope/deposit guardrails visible in 2 compact sections; collapse positioning, disputes, service area, and security into `<details>` (`si-policy-details`).
+4. **Preserve premium visuals** — trim copy/cards, not parallax, orb, or 3D objects.
+5. **Full-page QA** must scroll contact → footer on homepage and pricing after any contact-module edit.
+
+**QA check:** Homepage contact shows one email fallback block (inside form); footer has links only; `pricing.html` has ≤3 visible policy sections before inquiry; `#how-payment-works` anchor still resolves.
+
+---
+
+## STONE-030 — Map background clear zones; kill persistent side-rail scrims
+
+| Field | Value |
+|-------|-------|
+| **Severity** | STRONG_RULE |
+| **Factory link** | DESIGN-026 (extend) |
+| **Status** | ACTIVE |
+| **First observed** | Pre-launch visual QA (2026-05-26) |
+
+**Problem:** Fixed parallax + weak right-edge scrim + cyan `radial-gradient` at `82% 18%` on `html`/`.page-atmosphere` read as a persistent bright blue vertical rail beside centered content. Hero cyan overlays at `78%` compounded the issue. Hero orb sat in the sign zone on `stone-main-dalrm-bg.webp`.
+
+**Rule:**
+
+1. **No right-biased global cyan glows** — keep atmospheric gradients center/top only.
+2. **Right-edge vignette** — scrims end at ~0.38–0.52 opacity, not ~0.1; optional fixed viewport edge gradient on React shell.
+3. **Background-position** — tune hero image (`~56% 24%`) so embedded signage stays in art zone without exposing bare cyan body fill.
+4. **Hero orb clear zone** — upper-right, slightly smaller/reduced opacity; never centered on embedded sign (**STONE-002**).
+5. **Full-page scroll QA** — desktop 1280px/1440px after any background/scrim pass.
+
+**QA check:** Scroll homepage + pricing at 1440px — no bright cyan rail on right; sign readable; orb not on sign; cinematic depth preserved.
+
+---
+
+## STONE-031 — Hero accents need mapped clear zones; avoid repeating orbital motifs
+
+| Field | Value |
+|-------|-------|
+| **Severity** | STRONG_RULE |
+| **Factory link** | DESIGN-026, DESIGN-029 (extend) |
+| **Status** | ACTIVE |
+| **First observed** | Pre-launch hero visual pass (2026-05-26) |
+
+**Problem:** Hero WebGL orb sat in a fixed glass panel with `justify-end` + `origin-top-right` scaling — orb looked off-center inside the square and repeated the same orbital motif used in Services/Contact. Operator-visible QA missed full first-viewport balance.
+
+**Rule:**
+
+1. **Map clear zones** — hero interactive accents sit in sky/landscape above embedded signage on `stone-main-dalrm-bg.webp`, never over logos/signs (**STONE-002**).
+2. **Distinct hero motif** — use a lightweight hero-only accent (SVG/CSS shuttle) instead of duplicating orb/network visuals.
+3. **No misaligned glass traps** — center accent in its container or free-float; do not shrink-scale into a corner box.
+4. **Lightweight interaction** — pointer tilt via CSS variables + `requestAnimationFrame`; hold-to-thrust only while pointer down; `prefers-reduced-motion` = static craft, no plume animation.
+5. **Full viewport QA** — desktop 1280px/1440px must inspect entire first viewport (background fill, sign readability, accent zone), not only nav width or orb rail.
+
+**QA check:** 1440px homepage — rocket/shuttle in upper-right sky zone; embedded Stone sign readable; hold pointer shows propulsion; release stops; mobile hides accent; Services/Contact orbs unchanged.
+
+---
+
+## STONE-032 — Hero accent shape and interaction must match intent before ship
+
+| Field | Value |
+|-------|-------|
+| **Severity** | STRONG_RULE |
+| **Factory link** | DESIGN-026 (extend) |
+| **Status** | ACTIVE |
+| **First observed** | Hero rocket correction pass (2026-05-26) |
+
+**Problem:** Replacing hero orb with a horizontal shuttle SVG + rotation read as UFO/hovercraft; propulsion plume misaligned; operator reported missing cursor/hold interaction despite partial wiring.
+
+**Rule:**
+
+1. **Shape-appropriate accents** — hero rocket = vertical retro-futuristic silhouette (nose cone, rounded body, port window, landing fins, exhaust); not generic hovercraft blobs.
+2. **Original reference-inspired art** — recreate silhouette in inline SVG/CSS; never copy watermarked reference assets.
+3. **Interaction must work** — pointer tilt (CSS vars + RAF), idle bob on separate layer, hold-to-thrust with visible plume, release/leave stops thrust; verify in runtime QA before claiming complete.
+4. **Stone palette** — slate/silver-blue body, cyan/teal window glow, cyan-white propulsion (no cartoon orange).
+5. **Plume alignment** — exhaust centered under vertical rocket (CSS plume + optional SVG flame group).
+
+**QA check:** Desktop 1280/1440 — vertical rocket in sky clear zone; move pointer → tilt; hold → plume + lift; release → stops; sign readable; reduced-motion static.
+
+---
+
+## STONE-033 — Hero interactive accents must win pointer stacking
+
+| Field | Value |
+|-------|-------|
+| **Severity** | STRONG_RULE |
+| **Factory link** | DESIGN-026 (extend) |
+| **Status** | ACTIVE |
+| **First observed** | Hero rocket pointer QA failure (2026-05-26) |
+
+**Problem:** Rocket handlers were wired but hero copy column (`z-10`, full-width block) sat above rocket mount (`z-6`), swallowing all pointer events. Automated DOM `dispatchEvent` falsely suggested handlers worked.
+
+**Rule:**
+
+1. **Stacking** — interactive hero accents mount at `z-index` above hero copy (e.g. `z-20`) and after copy in DOM, OR copy uses `pointer-events-none` with `pointer-events-auto` only on real CTAs/links.
+2. **Hit target** — use `<button type="button">` (or equivalent) with padded hitbox larger than visible art; `pointer-events: auto` on accent, `none` on mount shell.
+3. **Release safety** — `setPointerCapture` + window `pointerup`/`pointercancel`/`blur` so thrust stops when dragging off.
+4. **QA** — real browser pointer/hold QA mandatory; synthetic DOM events are insufficient for React pointer handlers.
+
+**QA check:** Desktop — hover hitbox glow; move → tilt; hold → plume; drag off → stops; Tab + Space/Enter → thrust; CTAs still clickable.
 
 ---
 

@@ -17,12 +17,12 @@ export function Services() {
         <SectionHeading
           eyebrow="Current Services"
           title="Fixed packages — faster to buy than a full agency, MSP, or 3PL contract."
-          description="Current offerings with clear scope and starting prices. Not a full marketing agency, managed IT provider, AI agency, or freight broker — practical fixed-scope work for Fresno and Central Valley small businesses."
+          description="Revenue-first local services with clear scope and starting prices. Not a full marketing agency, managed IT provider, AI agency, app studio, or freight broker."
         />
         <div className="hidden shrink-0 self-start lg:block">
           <InteractiveOrbAccent
             variant="services"
-            label="Interactive logistics network visual for service packages"
+            label="Interactive service network visual for package links"
           />
         </div>
       </div>
@@ -40,7 +40,7 @@ export function Services() {
             >
               <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cyan-300/40 to-transparent opacity-70" />
               <span className="inline-flex w-fit rounded-full border border-cyan-400/25 bg-cyan-400/10 px-2.5 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.24em] text-cyan-200">
-                Current service
+                {service.displayTier === 'secondary' ? 'Secondary capability' : 'Current service'}
               </span>
               <div className="mt-5">
                 <ServiceObjectLink slug={service.slug} title={service.title} icon={service.icon} />

@@ -476,7 +476,11 @@ export default function OrbScene({
 
   const reducedMotion = reducedMotionProp ?? isLiteMode
   const widthClass =
-    variant === 'contact' ? 'w-[180px] sm:w-[200px]' : 'w-[200px] sm:w-[220px]'
+    variant === 'contact'
+      ? 'w-[180px] sm:w-[200px]'
+      : variant === 'hero'
+        ? 'w-[176px] sm:w-[192px]'
+        : 'w-[200px] sm:w-[220px]'
 
   return (
     <div

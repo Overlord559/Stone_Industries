@@ -1,63 +1,15 @@
-import { ArrowRight, Mail, MapPinned, Phone } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 
 import {
-  buildMailto,
   capabilityBriefPath,
-  contactEmail,
-  contactPhone,
-  contactPhoneHref,
   inquiryTypes,
   messageChecklist,
-  serviceAreaContactLabel,
   serviceAreaOnSite,
   serviceAreaRemote,
 } from '../../data/site'
 import { InquiryForm } from '../InquiryForm'
 import { InteractiveOrbAccent } from '../scene/InteractiveOrbAccent'
-import { EmailContactActions } from '../ui/EmailContactActions'
 import { SectionHeading } from '../ui/SectionHeading'
-
-
-
-const contactMethods = [
-
-  {
-
-    title: 'Email',
-
-    value: contactEmail,
-
-    href: buildMailto('Stone Industries Inquiry'),
-
-    icon: Mail,
-
-  },
-
-  {
-
-    title: 'Phone',
-
-    value: contactPhone,
-
-    href: contactPhoneHref,
-
-    icon: Phone,
-
-  },
-
-  {
-
-    title: 'Service area',
-
-    value: serviceAreaContactLabel,
-
-    href: '#contact',
-
-    icon: MapPinned,
-
-  },
-
-]
 
 
 
@@ -85,7 +37,7 @@ export function Contact() {
 
             title="Submit an inquiry for the fastest response."
 
-            description={`For IT support, small-business websites, Wi-Fi and POS help, AI automation and digital assistant systems, logistics coordination, or subcontracting discussions, use the inquiry form first. ${serviceAreaOnSite} ${serviceAreaRemote} Email copy and phone fallback are below. No booking system or online checkout on this site.`}
+            description={`For custom PC builds, Tier 1 IT support, business websites, Wi-Fi and POS help, AI receptionist workflows, mobile MVP prototypes, operations coordination, or subcontracting discussions, use the inquiry form first. ${serviceAreaOnSite} ${serviceAreaRemote} Email copy and phone fallback are with the form. No booking system or online checkout on this site.`}
           />
 
 
@@ -143,8 +95,6 @@ export function Contact() {
 
 
 
-          <EmailContactActions subject="Stone Industries Inquiry" />
-
           <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
             <a
               href={capabilityBriefPath}
@@ -172,52 +122,6 @@ export function Contact() {
           </div>
 
 
-
-          {contactMethods.map((item) => {
-
-            const Icon = item.icon
-
-
-
-            return (
-
-              <a
-
-                key={item.title}
-
-                href={item.href}
-
-                className="si-section-glass rounded-[1.5rem] border border-white/[0.14] p-6 shadow-[0_18px_60px_rgba(15,23,42,0.12)] transition hover:border-cyan-400/32 hover:shadow-[0_22px_70px_rgba(8,145,178,0.14)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
-
-              >
-
-                <div className="flex items-center gap-4">
-
-                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-cyan-400/20 bg-cyan-400/10 text-cyan-200">
-
-                    <Icon size={20} />
-
-                  </div>
-
-                  <div>
-
-                    <p className="text-xs font-semibold uppercase tracking-[0.28em] text-slate-500">
-
-                      {item.title}
-
-                    </p>
-
-                    <p className="mt-2 text-lg font-medium text-white">{item.value}</p>
-
-                  </div>
-
-                </div>
-
-              </a>
-
-            )
-
-          })}
 
         </div>
 

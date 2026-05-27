@@ -5,8 +5,11 @@
 import {
   addOnDetailsById,
   advancedSeoPublicLine,
+  aiReceptionistScopeNote,
   aiWorkflowScopeNote,
   detailForAddOn,
+  mobileMvpScopeNote,
+  operationsCoordinationScopeNote,
   pcBuildCompetitorNote,
   pcBuildPartsPricingNote,
   pcBuildServiceScopeNote,
@@ -78,16 +81,29 @@ export const outOfScopeHourlyNote =
   'Extra out-of-scope work is often billed at $85–$125/hr or quoted separately in writing.'
 
 export const competitorPositioningNote =
-  'Fast fixed-scope tech, website, AI workflow, and operations setup for Fresno and Central Valley small businesses — without forcing every customer into a full agency, MSP, or 3PL contract.'
+  'Revenue-first local technology services for Fresno and Central Valley small businesses — PC builds, Tier 1 IT support, Wi-Fi/POS setup, websites, AI receptionist workflows, and mobile MVP prototypes — without forcing every customer into a full agency, MSP, or 3PL contract.'
+
+/** Public display order — PC builds and Tier 1 IT first; operations coordination last/secondary */
+export const catalogServiceOrder = [
+  'custom-pc-builds',
+  'tech-cleanup',
+  'wifi-printer-pos',
+  'business-websites',
+  'ai-workflow-automation',
+  'mobile-app-mvp',
+  'logistics-coordination',
+] as const
 
 /** Public “Where Stone fits” bullets — no competitor names */
 export const whereStoneFits = [
-  'Not a full marketing agency — fast, clear websites with page-count packages and secure lead capture. ' + advancedSeoPublicLine,
-  'Not a full MSP — fixed-scope tech cleanup, Wi-Fi/printer/POS help, and security-conscious setup. Ongoing retainers available by scope, not a full managed IT or compliance contract.',
+  'Not a full marketing agency — fast business websites with page-count packages, optional 3D/interactive sections (CSS/L3 patterns before heavy WebGL), and secure lead capture. ' +
+    advancedSeoPublicLine,
+  'Not a full MSP — Tier 1 IT cleanup, Wi-Fi/printer/POS help, and security-conscious setup. Ongoing retainers available by scope, not a full managed IT or compliance contract.',
   'Not a full AI agency — ' +
-    aiWorkflowScopeNote +
-    ' Start with one workflow, then expand.',
-  'Not a freight broker or 3PL — operations workflow setup, intake forms, handoffs, tracking sheets, and SOPs. Freight movement and regulated transportation require properly authorized providers.',
+    aiReceptionistScopeNote +
+    ' Broader workflow automation quoted separately.',
+  'Not an app development studio — ' + mobileMvpScopeNote,
+  'Not a freight broker or 3PL — ' + operationsCoordinationScopeNote,
   'Not a national PC builder warranty program — local Windows tower planning, upgrades, assembly, setup, and handoff. ' +
     pcBuildCompetitorNote,
 ] as const
@@ -131,7 +147,7 @@ export const cyberTier2Help = {
 const pricingCatalogRaw: CatalogService[] = [
   {
     slug: 'tech-cleanup',
-    title: 'Same-Day Tech Cleanup',
+    title: 'Tier 1 IT Support & Tech Cleanup',
     inquirySubject: 'Tech Cleanup Inquiry — Stone Industries',
     serviceDisclaimer: techCleanupPlatformScopeNote,
     packages: [
@@ -256,12 +272,12 @@ const pricingCatalogRaw: CatalogService[] = [
   },
   {
     slug: 'business-websites',
-    title: '24-Hour Business Websites',
+    title: 'Business Websites & 3D Interactive Websites',
     inquirySubject: 'Website Launch Inquiry — Stone Industries',
     serviceDisclaimer:
       'Final price depends on scope, content readiness, and timeline. ' +
       advancedSeoPublicLine +
-      ' Security layers are practical hardening — not formal compliance or managed security.',
+      ' Optional 3D/interactive sections use safe CSS/L3 patterns before heavy WebGL — quoted when the prospect needs more than a standard layout. Security layers are practical hardening — not formal compliance or managed security.',
     packages: [
       {
         id: 'starter-landing',
@@ -291,7 +307,7 @@ const pricingCatalogRaw: CatalogService[] = [
         isFrom: false,
         pagesIncluded: 5,
         pagesIncludedLabel: 'Up to 5 pages',
-        summary: 'Multi-page site for local businesses — home, services, pricing, contact, and legal pages.',
+        summary: 'Multi-page site for local businesses — home, services, pricing, contact, and legal pages. Optional interactive/3D sections quoted when needed.',
         includes: [
           'Up to 5 pages (e.g. home, services, pricing, contact, privacy/terms)',
           'Mobile-ready layout',
@@ -315,7 +331,7 @@ const pricingCatalogRaw: CatalogService[] = [
         isFrom: true,
         pagesIncluded: 7,
         pagesIncludedLabel: 'Up to 7 pages',
-        summary: 'Full Business scope plus secure lead capture, cybersecurity layers, Stripe readiness, and launch-ready handoff.',
+        summary: 'Full Business scope plus secure lead capture, cybersecurity layers, Stripe readiness, launch-ready handoff, and optional interactive/3D section planning.',
         includes: [
           'Up to 7 pages — everything in Business Website',
           'Secure lead capture setup (Supabase + RLS pattern)',
@@ -515,9 +531,9 @@ const pricingCatalogRaw: CatalogService[] = [
   },
   {
     slug: 'logistics-coordination',
-    title: 'Operations & Logistics Coordination Setup',
+    title: 'Operations & Technology Project Coordination',
     inquirySubject: 'Operations Coordination Inquiry — Stone Industries',
-    serviceDisclaimer: logisticsFreightDisclaimer,
+    serviceDisclaimer: logisticsFreightDisclaimer + ' ' + operationsCoordinationScopeNote,
     packages: [
       {
         id: 'basic',
@@ -595,41 +611,54 @@ const pricingCatalogRaw: CatalogService[] = [
   },
   {
     slug: 'ai-workflow-automation',
-    title: 'AI Automation & Digital Assistant Systems',
-    inquirySubject: 'AI Assistant Inquiry — Stone Industries',
+    title: 'AI Receptionist & Workflow Automation',
+    inquirySubject: 'AI Receptionist Inquiry — Stone Industries',
     serviceDisclaimer:
       aiWorkflowScopeNote +
-      ' Not a full AI agency or enterprise RAG program. Larger multi-workflow builds are quoted after scope review.',
+      ' Monthly tool costs vary — quoted separately. Not a full AI agency or enterprise RAG program.',
     packages: [
       {
         id: 'ai-starter',
-        name: 'AI Starter Automation',
+        name: 'AI Receptionist Starter',
         priceLabel: '$499',
         baseEstimate: 499,
         isFrom: false,
-        summary: 'One simple guarded workflow with a documented human approval step.',
+        summary: 'One AI receptionist or lead follow-up workflow with documented human handoff boundaries.',
         includes: [
-          'Workflow review',
-          'One automation or intake path',
-          'Human-in-loop checkpoints',
-          'Handoff notes',
+          'Workflow review and call/intake routing plan',
+          'One guarded receptionist or follow-up path using third-party AI voice/workflow tools',
+          'Human-in-loop checkpoints and escalation rules',
+          'Handoff notes and operator checklist',
         ],
-        notIncluded: ['Unsupervised 24/7 agents', 'Enterprise RAG'],
+        notIncluded: [
+          'Emergency handling',
+          'Legal, medical, or financial advice',
+          'Guaranteed bookings or response times',
+          'Employee replacement',
+          'Compliance certification',
+          'Unsupervised 24/7 agents',
+        ],
       },
       {
         id: 'ai-business',
-        name: 'AI Business Assistant',
+        name: 'AI Receptionist + Follow-up',
         priceLabel: '$999',
         baseEstimate: 999,
         isFrom: false,
-        summary: 'Intake/FAQ plus email/process automation with safety boundaries.',
+        summary: 'Receptionist plus lead follow-up sequences with approval gates and safety boundaries.',
         includes: [
-          'Intake or FAQ assistant setup',
-          'Email / process automation with approval gates',
-          'Secure prompt boundaries and safety documentation',
-          'Maintenance notes',
+          'AI receptionist or intake assistant setup',
+          'Lead follow-up workflow with human approval gates',
+          'Secure prompt boundaries and escalation documentation',
+          'Maintenance notes and monthly tool-cost guidance',
         ],
-        notIncluded: ['Compliance certifications', 'Payment handling by AI'],
+        notIncluded: [
+          'Emergency handling',
+          'Guaranteed bookings',
+          'Compliance certifications',
+          'Payment handling by AI',
+          'Employee replacement',
+        ],
         includedAddOnIds: ['prompt-bounds'],
       },
       {
@@ -685,11 +714,117 @@ const pricingCatalogRaw: CatalogService[] = [
       },
     ],
     secureBullets: [
-      'Human approval for important customer-facing actions',
-      'No sensitive data collection unless scoped and necessary',
+      'Human handoff boundaries for receptionist and follow-up workflows',
+      'No emergency, legal, medical, or financial advice by AI',
       'No payment or card handling by AI workflows',
-      'API keys documented for server-side use only',
+      'Third-party tool costs disclosed — managed setup, not proprietary platform claims',
       'Prompt boundaries and privacy/workflow documentation',
+    ],
+  },
+  {
+    slug: 'mobile-app-mvp',
+    title: 'Mobile App / MVP Prototyping',
+    inquirySubject: 'Mobile App MVP Inquiry — Stone Industries',
+    serviceDisclaimer: mobileMvpScopeNote,
+    packages: [
+      {
+        id: 'concept-prototype',
+        name: 'App Concept Prototype',
+        priceLabel: '$699',
+        baseEstimate: 699,
+        isFrom: false,
+        summary: 'Clickable mobile app concept with core screens and simple navigation — test the idea before full development.',
+        includes: [
+          'Discovery session on app goal and primary user flow',
+          'Clickable prototype with core screens (typically 3–5)',
+          'Simple navigation and placeholder content',
+          'Shareable preview link or export for stakeholder review',
+          'Written scope notes for a future build quote',
+        ],
+        notIncluded: [
+          'Guaranteed App Store or Play Store approval',
+          'Full custom backend or production database',
+          'Regulated app compliance (HIPAA, PCI, etc.)',
+          'Custom payment systems unless separately scoped',
+          'Ongoing app maintenance',
+        ],
+      },
+      {
+        id: 'mvp-prototype',
+        name: 'MVP Prototype',
+        priceLabel: '$1,499+',
+        baseEstimate: 1499,
+        isFrom: true,
+        summary: 'Broader clickable MVP with more screens, basic forms, and test-on-device handoff when scoped.',
+        includes: [
+          'Everything in App Concept Prototype',
+          'Additional screens and user paths (typically up to 8–12)',
+          'Basic form or intake flows in prototype',
+          'Device test handoff notes and next-step build roadmap',
+          '2 revision rounds on prototype scope',
+        ],
+        notIncluded: [
+          'Production app store submission',
+          'Enterprise backend, auth, or billing systems',
+          'Regulated industry compliance programs',
+          'Guaranteed user acquisition or revenue',
+        ],
+        includedAddOnIds: ['mvp-extra-screens'],
+      },
+      {
+        id: 'mvp-iteration',
+        name: 'Prototype + Iteration Sprint',
+        priceLabel: '$2,499+',
+        baseEstimate: 2499,
+        isFrom: true,
+        summary: 'MVP prototype plus one iteration sprint after stakeholder feedback — still pre-production scope.',
+        includes: [
+          'MVP Prototype deliverables',
+          'One structured iteration sprint after feedback',
+          'Updated flows and revised clickable prototype',
+          'Build-vs-buy and full-development quote outline',
+        ],
+        notIncluded: [
+          'Full native or cross-platform production app build',
+          'App Store compliance guarantees',
+          'Custom payment checkout unless separately quoted',
+        ],
+        includedAddOnIds: ['mvp-extra-screens', 'mvp-user-testing'],
+      },
+    ],
+    addOns: [
+      {
+        id: 'mvp-extra-screens',
+        name: 'Extra prototype screens',
+        priceLabel: '+$75/screen',
+        kind: 'per-unit',
+        estimateAdd: 75,
+        unitLabel: 'screen',
+        maxUnits: 12,
+        showForPackages: ['concept-prototype', 'mvp-prototype'],
+      },
+      {
+        id: 'mvp-user-testing',
+        name: 'User testing session notes',
+        priceLabel: '+$199',
+        kind: 'one-time',
+        estimateAdd: 199,
+        helpText: 'Structured notes from one stakeholder or friend-and-family test session — not formal UX research.',
+        showForPackages: ['mvp-prototype', 'mvp-iteration'],
+      },
+      {
+        id: 'monthly-mvp',
+        name: 'Monthly prototype support',
+        priceLabel: '$199–$499/mo',
+        kind: 'monthly',
+        estimateAdd: null,
+        estimateNote: 'Billed monthly upfront — separate from one-time prototype total',
+      },
+    ],
+    secureBullets: [
+      'Prototype-only scope — no production secrets in public previews unless scoped',
+      'No regulated compliance claims on MVP deliverables',
+      'Clear handoff boundary between prototype and full custom development quote',
     ],
   },
   {
@@ -1023,10 +1158,20 @@ function attachAddOnDetails(addon: CatalogAddOn): CatalogAddOn {
   return detail ? { ...addon, detail } : addon
 }
 
-export const pricingCatalog: CatalogService[] = pricingCatalogRaw.map((service) => ({
-  ...service,
-  addOns: service.addOns.map(attachAddOnDetails),
-}))
+function sortCatalogServices(services: CatalogService[]): CatalogService[] {
+  return services.slice().sort((a, b) => {
+    const ai = catalogServiceOrder.indexOf(a.slug as (typeof catalogServiceOrder)[number])
+    const bi = catalogServiceOrder.indexOf(b.slug as (typeof catalogServiceOrder)[number])
+    return (ai === -1 ? 999 : ai) - (bi === -1 ? 999 : bi)
+  })
+}
+
+export const pricingCatalog: CatalogService[] = sortCatalogServices(
+  pricingCatalogRaw.map((service) => ({
+    ...service,
+    addOns: service.addOns.map(attachAddOnDetails),
+  })),
+)
 
 export function catalogBySlug(slug: string) {
   return pricingCatalog.find((s) => s.slug === slug)

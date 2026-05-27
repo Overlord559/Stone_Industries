@@ -48,7 +48,7 @@ export const serviceAreaContactLabel = 'Fresno & Central Valley, CA'
 export const serviceAreaOnSite =
   'On-site support in the Fresno area and greater Central Valley when scheduling allows.'
 export const serviceAreaRemote =
-  'Remote support available for websites, AI workflow setup, and logistics coordination.'
+  'Remote support available for websites, AI receptionist setup, mobile MVP prototypes, and operations coordination.'
 export const serviceAreaSeoPhrase = 'Fresno and Central Valley, California'
 
 export const pricingPagePath = `${import.meta.env.BASE_URL}pricing.html`
@@ -101,14 +101,19 @@ export function buildContactInquiryHref(slug: string): string {
 }
 
 export const inquiryTypes: InquiryType[] = [
-  { label: 'Tech Cleanup', subject: 'Tech Cleanup Inquiry — Stone Industries' },
+  { label: 'Tier 1 IT / Tech Cleanup', subject: 'Tier 1 IT Support Inquiry — Stone Industries' },
   { label: 'Website Launch', subject: 'Website Launch Inquiry — Stone Industries' },
   { label: 'Wi-Fi / Printer / POS', subject: 'Tech Support Inquiry — Stone Industries' },
+  { label: 'Custom PC Build / Upgrade', subject: 'Custom PC Build / Upgrade Inquiry — Stone Industries' },
   {
-    label: 'Operations & Logistics Coordination',
+    label: 'AI Receptionist / Workflow',
+    subject: 'AI Receptionist Inquiry — Stone Industries',
+  },
+  { label: 'Mobile App / MVP Prototype', subject: 'Mobile App MVP Inquiry — Stone Industries' },
+  {
+    label: 'Operations & Technology Coordination',
     subject: 'Operations Coordination Inquiry — Stone Industries',
   },
-  { label: 'AI Digital Assistant', subject: 'AI Assistant Inquiry — Stone Industries' },
   {
     label: 'Subcontracting / Capability Brief',
     subject: 'Subcontracting / Capability Brief Inquiry — Stone Industries',
@@ -225,7 +230,7 @@ export const visionDirections: VisionDirection[] = [
   {
     anchor: 'current-focus',
     title: 'Current Focus',
-    summary: 'Websites, secure lead capture, tech cleanup, AI workflows, and operations systems.',
+    summary: 'Websites, secure lead capture, Tier 1 IT, AI receptionist workflows, and mobile MVP prototypes.',
     icon: Crosshair,
   },
   {

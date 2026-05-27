@@ -1,6 +1,6 @@
 # Stone Industries — QA Checklist
 
-**Last updated:** 2026-05-25 · **Project OS v2**  
+**Last updated:** 2026-05-26 · **Project OS v2**  
 **Routing:** [`PROJECT_OS_INDEX.md`](PROJECT_OS_INDEX.md) → deployment/technical rows  
 **Evals:** [`EVALS.md`](EVALS.md)  
 Run before commit or deploy when runtime files changed.
@@ -28,13 +28,22 @@ Optional preview: `npm run preview` — open printed local URL.
 
 ## Desktop QA (≥1024px)
 
+- [ ] **Full viewport shell:** `#root`, `main`, and app wrapper span 100% width — no ~375px column stuck on the left with blank dark area
+- [ ] **Navbar:** desktop links visible (`md:flex`); hamburger hidden at ≥768px
+- [ ] **Hero:** full-width content column; no empty dark half-viewport; hero rocket accent in mapped sky zone (desktop `lg+` only)
 - [ ] Hero: headline, subcopy, primary CTA readable
 - [ ] Primary CTA contrast on light buttons (dark text visible)
-- [ ] Services section: all **6** current services visible with inquiry links
+- [ ] Services section: all **7** current services visible with inquiry links
 - [ ] Vision section: future items labeled **not sold today**; direction tiles link to `/vision.html` anchors
-- [ ] Contact: inquiry form primary; email shows copy + mailto fallback; phone link uses `tel:+15595799376`
+- [ ] Contact: inquiry form primary; **one** email copy + mailto fallback block (inside form); footer = plain email/phone links only — no duplicate `EmailContactActions` card stack
 - [ ] Navbar: Services → `/services.html`; Pricing → `/pricing.html`; Vision → `/vision.html`
 - [ ] Footer links: privacy, terms, capability brief
+- [ ] Re-test at **1280px** and **1440px** after any mobile or service-copy pass — mobile QA alone is not enough
+- [ ] **Full-page scroll:** no persistent bright cyan/blue vertical rail on right edge at 1440px (homepage + static pricing)
+- [ ] **Hero rocket accent:** in clear sky zone above embedded sign — does not overlap Stone Industries sign in DALRM background; sign remains readable
+- [ ] **Hero rocket shape:** vertical retro silhouette (nose, body, window, fins, exhaust) — not hovercraft/UFO (**STONE-032**)
+- [ ] **Hero rocket interaction:** real browser QA — hover hitbox; pointer tilt; hold → plume; drag-off/window release stops; Tab + Space/Enter thrust (**STONE-033**)
+- [ ] **Hero rocket stacking:** accent above hero copy layer — pointer not blocked by full-width `z-10` text column
 
 ---
 
@@ -201,7 +210,7 @@ Run on live Netlify URL after deploy — https://stoneindustries.netlify.app/ �
 - [ ] Paid ads copy = setup/guidance only — no campaign management or guaranteed ROI
 - [ ] AI copy includes AI-agent-style workflows + human approval — no employee replacement
 - [ ] Premium Website included add-ons show **What this includes** details without double-charging
-- [ ] Service pages with `data-si-service-addons` render catalog-driven add-on accordions (**6** service pages)
+- [ ] Service pages with `data-si-service-addons` render catalog-driven add-on accordions (**7** service pages incl. `mobile-app-mvp.html`)
 - [ ] Business websites page clarifies secure lead capture vs Tier 1/Tier 2 cybersecurity
 - [ ] SEO copy distinguishes basic SEO/meta vs deeper SEO/ads/campaigns — no guaranteed rankings
 - [ ] AI copy mentions AI models, APIs, n8n-style automation — no employee replacement
@@ -223,7 +232,9 @@ Run on live Netlify URL after deploy — https://stoneindustries.netlify.app/ �
 - [ ] `pricing.html` and `services.html` include **Where Stone Industries fits** — no competitor names
 - [ ] `pricing.html` and `services.html` include **Local First. Bigger Vision.** — no defense/enterprise/MSP/3PL maturity claims
 - [ ] Copy does not claim full MSP, marketing agency, AI agency, freight broker, or 3PL
-- [ ] Operations service titled **Operations & Logistics Coordination Setup** (URL slug may remain `logistics-coordination`)
+- [ ] Operations service titled **Operations & Technology Project Coordination** (URL slug may remain `logistics-coordination`)
+- [ ] Mobile MVP service page exists at `public/services/mobile-app-mvp.html`
+- [ ] Homepage + catalog order: PC builds and Tier 1 IT before operations coordination
 - [ ] Logistics page includes freight broker / carrier / 3PL disclaimer
 - [ ] Website copy: basic SEO in package; advanced SEO/ads = custom — no guaranteed marketing results
 - [ ] AI copy: human approval, start one workflow — no employee replacement
@@ -233,7 +244,7 @@ Run on live Netlify URL after deploy — https://stoneindustries.netlify.app/ �
 
 ## Static page background check
 
-- [ ] `pricing.html`, `services.html`, all **six** service pages use `page-atmosphere--coastal`
+- [ ] `pricing.html`, `services.html`, all **seven** service pages use `page-atmosphere--coastal`
 - [ ] `stone-coastal-tech-bg.webp` visible but text readable (no STONE-001 over-darkening)
 - [ ] Mobile 375px / 320px: no horizontal scroll; background `scroll` not broken
 - [ ] Homepage hero unchanged
@@ -242,7 +253,8 @@ Run on live Netlify URL after deploy — https://stoneindustries.netlify.app/ �
 
 ## Payment protection copy check
 
-- [ ] `public/pricing.html` includes workflow, how payment works, scope protection, final delivery, approval, disputes/refunds
+- [ ] `public/pricing.html` includes consolidated quotes/payment + scope/handoff sections; secondary policy copy in `<details class="si-policy-details">`
+- [ ] `#how-payment-works` anchor resolves (service pages link here)
 - [ ] Copy states no card data on site and no instant checkout
 - [ ] Bluevine mentioned as near-term invoicing; no custom invoice generator implied on site
 - [ ] Deposit tiers ($300 / $1,000+) and balance-before-handoff present

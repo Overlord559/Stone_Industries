@@ -1,6 +1,6 @@
 # Stone Industries — Conversion Notes
 
-**Last updated:** 2026-05-25  
+**Last updated:** 2026-05-26  
 **Load when:** CTA, copy, service hierarchy, post-visual pass
 
 ---
@@ -17,9 +17,30 @@
 
 **Fail:** Mailto-only request buttons (STONE-007, STONE-013). Mailto-only email fallback with no copy path (STONE-020). Inquiry buried by Call-first chrome (STONE-021). First-click `#contact` scroll race (STONE-014). Top nav **Services** must open `/services.html`.
 
-**Backfill index:** [`DESIGN_MISTAKE_LEDGER.md`](DESIGN_MISTAKE_LEDGER.md) → *Recent Operator Corrections Backfill* (26 items → STONE/DESIGN IDs).
+**Backfill index:** [`DESIGN_MISTAKE_LEDGER.md`](DESIGN_MISTAKE_LEDGER.md) → *Recent Operator Corrections Backfill* (38 items → STONE/DESIGN IDs).
 
 ---
+
+## Readability and progressive disclosure (2026-05-26)
+
+| Pattern | Rule |
+|---------|------|
+| Email fallback | One strong cluster with inquiry form (`EmailContactActions` in `InquiryForm`); footer = plain email + phone links |
+| Static inquiry pages | Remove standalone `si-email-actions` after `data-si-inquiry` — form already includes copy + mailto |
+| Pricing policies | Two visible sections (quotes/payment + scope/handoff); `<details class="si-policy-details">` for positioning, disputes, service area, security |
+| Service pages | Collapse “What to send” into `<details>`; remove duplicate package cards when guide repeats same tiers |
+
+See **STONE-029**.
+
+## Hero visual accent (2026-05-26)
+
+| Pattern | Rule |
+|---------|------|
+| Hero motif | Vertical retro `HeroRocketAccent` (original SVG) in mapped sky zone — not orbital WebGL orb |
+| Conversion | Accent is visual delight only; CTAs stay left-column primary; no fake “launch” interaction |
+| QA | Full first viewport at 1440px — sign readable, accent not on sign, no empty navy hero third |
+
+See **STONE-031**, **STONE-002**.
 
 ## Email contact fallback (2026-05-25)
 
@@ -44,6 +65,22 @@ Inquiry form remains primary — email is fallback when Supabase fails or buyer 
 | Homepage direction tiles | CSS 3D `VisionObjectLink` → `vision.html#local-first` etc. |
 | Future roadmap cards | Icon objects link to matching vision anchors |
 | Content guardrails | No defense contracts, mature enterprise platform, full MSP/agency/3PL, or autonomous AI “live today” |
+
+---
+
+## Service hierarchy (2026-05-26 — revenue-first)
+
+| Priority | Service | Conversion note |
+|----------|---------|-----------------|
+| 1 | Custom PC Builds & Upgrades | Hero + first card; parts fee separate on every path |
+| 2 | Tier 1 IT Support & Tech Cleanup | Urgent local pain; same-day when scheduling allows |
+| 3 | Wi-Fi, Printer & POS Support | Bundle on same visit when natural |
+| 4 | Business Websites & 3D Interactive Websites | Page-count packages; 3D/interactive as scoped add-on |
+| 5 | AI Receptionist & Workflow Automation | Managed monthly possible; human handoff; no vendor resale copy |
+| 6 | Mobile App / MVP Prototyping | Prototype before production; no App Store guarantees |
+| 7 | Operations & Technology Project Coordination | Secondary card styling; not freight/3PL |
+
+Operator reference: [`STONE_INDUSTRIES_BUSINESS_PLAN.md`](STONE_INDUSTRIES_BUSINESS_PLAN.md)
 
 ---
 

@@ -1,11 +1,12 @@
 import {
+  buildMailto,
+  contactEmail,
   contactPhone,
   contactPhoneHref,
   pricingPagePath,
   servicesPagePath,
   visionPagePath,
 } from '../../data/site'
-import { EmailContactActions } from '../ui/EmailContactActions'
 
 const legalBasePath = import.meta.env.BASE_URL
 
@@ -18,12 +19,14 @@ export function Footer() {
             Stone Industries
           </p>
           <p className="max-w-xl leading-6">
-            Veteran-led IT support, business websites, and logistics coordination today—with
+            Veteran-led local technology services—PC builds, Tier 1 IT, websites, AI receptionist setup, and mobile MVP prototypes today—with
             a disciplined long-range roadmap, not hype.
           </p>
-          <EmailContactActions subject="Stone Industries Inquiry" compact />
           <p className="text-sm text-slate-400">
-            Prefer phone?{' '}
+            <a className="font-medium text-slate-200 underline hover:text-white" href={buildMailto('Stone Industries Inquiry')}>
+              {contactEmail}
+            </a>
+            {' · '}
             <a className="font-medium text-slate-200 underline hover:text-white" href={contactPhoneHref}>
               {contactPhone}
             </a>

@@ -1,5 +1,5 @@
 import type { LucideIcon } from 'lucide-react'
-import { Bot, Boxes, Globe, Map, Wifi, Wrench } from 'lucide-react'
+import { Bot, Boxes, Globe, Map, Smartphone, Wifi, Wrench } from 'lucide-react'
 
 import {
   lowestPackagePrice,
@@ -19,14 +19,34 @@ type ServiceMeta = {
   icon: LucideIcon
   detailPath: string
   pricingPageLabel: string
+  displayTier?: 'primary' | 'secondary'
 }
 
 const metaBySlug: Record<string, ServiceMeta> = {
+  'custom-pc-builds': {
+    packageName: 'Desktop Tower Build & Upgrade',
+    description:
+      'Windows desktop tower builds and upgrades from compatible parts — planning, assembly, setup, and local handoff. Parts quoted separately; Stone charges a clear service fee.',
+    tag: 'First-money priority — local help choosing parts, upgrading a tower, or getting a desktop assembled.',
+    whoFor:
+      'Gamers, creators, and home-office users with desktop towers who want local planning, upgrades, assembly, and handoff — not laptop or phone repair.',
+    scope: [
+      'New tower desktop builds and existing Windows desktop tower upgrades',
+      'GPU, RAM, SSD, CPU, motherboard, PSU, Wi-Fi card, and fan upgrades when compatible',
+      'Parts list / upgrade planning, assembly, BIOS/boot check, and optional Windows setup',
+      'Mini, mid, and full tower cases — Windows only',
+    ],
+    securityIncluded: [],
+    icon: Boxes,
+    detailPath: 'services/custom-pc-builds.html',
+    pricingPageLabel: 'Compare PC Build Packages',
+    displayTier: 'primary',
+  },
   'tech-cleanup': {
     packageName: 'Tech Cleanup Sprint',
     description:
-      'Windows computer cleanup — virus and pop-up troubleshooting, and practical same-day support when scheduling allows. No phones or Linux; macOS case-by-case only.',
-    tag: 'Windows PCs · home offices and small teams · urgent fix requests.',
+      'Tier 1 IT support and Windows cleanup — virus and pop-up troubleshooting, and practical same-day help when scheduling allows. No phones or Linux; macOS case-by-case only.',
+    tag: 'First-money priority — urgent Windows PC fixes for home offices and small teams.',
     whoFor:
       'Windows PC users with urgent pop-ups, slow devices, or basic cleanup needs — not phone repair or Linux support.',
     scope: [
@@ -38,23 +58,8 @@ const metaBySlug: Record<string, ServiceMeta> = {
     securityIncluded: [],
     icon: Wrench,
     detailPath: 'services/tech-cleanup.html',
-    pricingPageLabel: 'Compare Tech Cleanup Packages',
-  },
-  'business-websites': {
-    packageName: '24-Hour Website Launch',
-    description:
-      'Transparent page-count website packages for local businesses — fast launch, secure lead capture options, and clear scope. Not a full marketing or SEO agency replacement.',
-    tag: 'For local businesses that need a credible site fast — not a full agency contract.',
-    whoFor:
-      'Local vendors and service businesses that want fixed website packages instead of open-ended agency retainers.',
-    scope: [
-      'Page-count packages (1 / 5 / 7 pages) with basic SEO/meta — ad setup guidance or deeper campaigns quoted separately',
-      'Secure lead capture and cybersecurity layers where scoped',
-    ],
-    securityIncluded: [],
-    icon: Globe,
-    detailPath: 'services/business-websites.html',
-    pricingPageLabel: 'Compare Website Packages',
+    pricingPageLabel: 'Compare Tier 1 IT Packages',
+    displayTier: 'primary',
   },
   'wifi-printer-pos': {
     packageName: 'Small Business Tech Support',
@@ -71,58 +76,81 @@ const metaBySlug: Record<string, ServiceMeta> = {
     icon: Wifi,
     detailPath: 'services/wifi-printer-pos.html',
     pricingPageLabel: 'Compare Wi-Fi / POS Packages',
+    displayTier: 'primary',
+  },
+  'business-websites': {
+    packageName: '24-Hour Website Launch',
+    description:
+      'Transparent page-count website packages for local businesses — fast launch, optional 3D/interactive sections (safe CSS/L3 patterns before heavy WebGL), secure lead capture, and clear scope.',
+    tag: 'When the prospect has a weak or missing site — not a full marketing or SEO agency replacement.',
+    whoFor:
+      'Local vendors and service businesses that want fixed website packages instead of open-ended agency retainers.',
+    scope: [
+      'Page-count packages (1 / 5 / 7 pages) with basic SEO/meta',
+      'Optional interactive/3D sections quoted when the business needs more than flat layout',
+      'Secure lead capture and cybersecurity layers where scoped',
+    ],
+    securityIncluded: [],
+    icon: Globe,
+    detailPath: 'services/business-websites.html',
+    pricingPageLabel: 'Compare Website Packages',
+    displayTier: 'primary',
+  },
+  'ai-workflow-automation': {
+    packageName: 'AI Receptionist Setup',
+    description:
+      'Stone Industries helps small businesses set up AI receptionist and lead follow-up workflows using third-party AI voice/workflow tools, configured with human handoff boundaries.',
+    tag: 'Managed monthly service possible where tool costs vary — quoted separately.',
+    whoFor:
+      'Small businesses that miss calls or slow-follow leads — not employee replacement or guaranteed bookings.',
+    scope: [
+      'AI receptionist and lead follow-up workflow setup',
+      'Third-party AI voice/workflow tools configured with human escalation',
+      'Starter packages from one guarded workflow upward',
+      'Not emergency handling, legal/medical/financial advice, or compliance certification',
+    ],
+    securityIncluded: [],
+    icon: Bot,
+    detailPath: 'services/ai-workflow-automation.html',
+    pricingPageLabel: 'Compare AI Receptionist Packages',
+    displayTier: 'primary',
+  },
+  'mobile-app-mvp': {
+    packageName: 'Mobile MVP Prototype',
+    description:
+      'Clickable mobile app concepts and MVP prototypes for business owners who want to test an app idea before paying for full custom development.',
+    tag: 'Prototype-first — full production apps quoted separately after validation.',
+    whoFor:
+      'Business owners with an app idea who need a clickable concept before committing to full custom development.',
+    scope: [
+      'Clickable prototype with core screens and navigation',
+      'Shareable preview for stakeholder feedback',
+      'Written next-step quote outline for production build',
+      'Not guaranteed App Store approval or enterprise backend',
+    ],
+    securityIncluded: [],
+    icon: Smartphone,
+    detailPath: 'services/mobile-app-mvp.html',
+    pricingPageLabel: 'Compare Mobile MVP Packages',
+    displayTier: 'primary',
   },
   'logistics-coordination': {
-    packageName: 'Operations & Logistics Coordination',
+    packageName: 'Operations & Technology Project Coordination',
     description:
-      'Operations coordination systems — intake forms, vendor organization, tracking sheets, handoffs, and SOPs. Not freight brokerage, carrier service, or 3PL.',
-    tag: 'For teams that need workflow structure — not regulated freight movement.',
+      'Simple operations and technology project coordination: scheduling, vendor follow-up, rollout tracking, checklists, documentation, and tech project organization.',
+    tag: 'Secondary capability — narrow coordination help, not freight or regulated logistics.',
     whoFor:
-      'Small teams that need operations setup and follow-through — not a freight broker, carrier, or 3PL.',
+      'Small teams that need rollout tracking and vendor follow-through — not a freight broker, carrier, or 3PL.',
     scope: [
-      'Intake forms, tracking, handoff checklists, and workflow cleanup',
-      'Vendor/contact organization and documentation',
-      'Not freight movement, carrier selection, or 3PL services',
+      'Scheduling, checklists, documentation, and tech project organization',
+      'Vendor follow-up and rollout tracking sheets',
+      'Not freight brokerage, 3PL, carrier/dispatch, warehousing, or fleet operations',
     ],
     securityIncluded: [],
     icon: Map,
     detailPath: 'services/logistics-coordination.html',
     pricingPageLabel: 'Compare Operations Packages',
-  },
-  'custom-pc-builds': {
-    packageName: 'Desktop Tower Build & Upgrade',
-    description:
-      'Windows desktop tower builds and upgrades from compatible parts — planning, assembly, setup, and local handoff. Parts quoted separately; Stone charges a clear service fee.',
-    tag: 'For customers who want local help choosing parts, upgrading a tower, or getting a desktop assembled — not national warranty scale.',
-    whoFor:
-      'Gamers, creators, and home-office users with desktop towers who want local planning, upgrades, assembly, and handoff — not laptop or phone repair.',
-    scope: [
-      'New tower desktop builds and existing Windows desktop tower upgrades',
-      'GPU, RAM, SSD, CPU, motherboard, PSU, Wi-Fi card, and fan upgrades when compatible',
-      'Parts list / upgrade planning, assembly, BIOS/boot check, and optional Windows setup',
-      'Mini, mid, and full tower cases — Windows only; no laptops, phones, consoles, or Linux right now',
-    ],
-    securityIncluded: [],
-    icon: Boxes,
-    detailPath: 'services/custom-pc-builds.html',
-    pricingPageLabel: 'Compare PC Build Packages',
-  },
-  'ai-workflow-automation': {
-    packageName: 'Digital Assistant Setup',
-    description:
-      'Practical AI automation and AI-agent-style workflows using AI models, APIs, and n8n-style tools — human approval required. Not a full AI agency or unsupervised agent platform.',
-    tag: 'Start with one workflow — expand when ready. Human approval required.',
-    whoFor:
-      'Operators who want a practical first AI workflow, intake assistant, or AI-agent-style automation — not employee replacement.',
-    scope: [
-      'AI models, APIs, and n8n-style workflow automation where appropriate',
-      'Starter packages from one guarded workflow upward',
-      'Human approval for important customer-facing actions',
-    ],
-    securityIncluded: [],
-    icon: Bot,
-    detailPath: 'services/ai-workflow-automation.html',
-    pricingPageLabel: 'Compare AI Assistant Packages',
+    displayTier: 'secondary',
   },
 }
 
@@ -142,6 +170,7 @@ function buildService(cat: CatalogService): Service {
 
   return {
     slug: cat.slug,
+    displayTier: meta.displayTier ?? 'primary',
     packageName: meta.packageName,
     title: cat.title,
     description: meta.description,

@@ -4,23 +4,25 @@
  */
 (function () {
   const SERVICE_OPTIONS = [
-    'Same-Day Tech Cleanup',
-    '24-Hour Business Websites',
-    'Wi-Fi, Printer & POS Support',
-    'Operations & Logistics Coordination Setup',
-    'AI Automation & Digital Assistant Systems',
     'Custom PC Builds & Upgrades',
+    'Tier 1 IT Support & Tech Cleanup',
+    'Wi-Fi, Printer & POS Support',
+    'Business Websites & 3D Interactive Websites',
+    'AI Receptionist & Workflow Automation',
+    'Mobile App / MVP Prototyping',
+    'Operations & Technology Project Coordination',
     'General Inquiry',
     'Subcontracting / Capability Brief',
   ]
 
   const SERVICE_SLUG_TO_TITLE = {
-    'tech-cleanup': 'Same-Day Tech Cleanup',
-    'business-websites': '24-Hour Business Websites',
-    'wifi-printer-pos': 'Wi-Fi, Printer & POS Support',
-    'logistics-coordination': 'Operations & Logistics Coordination Setup',
-    'ai-workflow-automation': 'AI Automation & Digital Assistant Systems',
     'custom-pc-builds': 'Custom PC Builds & Upgrades',
+    'tech-cleanup': 'Tier 1 IT Support & Tech Cleanup',
+    'business-websites': 'Business Websites & 3D Interactive Websites',
+    'wifi-printer-pos': 'Wi-Fi, Printer & POS Support',
+    'logistics-coordination': 'Operations & Technology Project Coordination',
+    'ai-workflow-automation': 'AI Receptionist & Workflow Automation',
+    'mobile-app-mvp': 'Mobile App / MVP Prototyping',
   }
 
   const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/

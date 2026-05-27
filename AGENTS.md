@@ -1,6 +1,6 @@
 # Stone Industries — Project OS (Agent Baseline)
 
-**Last updated:** 2026-05-25 · **Project OS v2**  
+**Last updated:** 2026-05-26 · **Project OS v2**  
 **Audience:** ChatGPT (strategy), Cursor (implementation), operator
 
 **Routing hub:** [`docs/PROJECT_OS_INDEX.md`](docs/PROJECT_OS_INDEX.md) — read on every serious task.
@@ -9,7 +9,7 @@
 
 ## Project purpose
 
-Marketing site for **Stone Industries LLC** — veteran-led local tech support, fast business websites, logistics coordination, and practical AI workflow setup for small businesses in the Central Valley (Fresno area).
+Marketing site for **Stone Industries LLC** — veteran-led local technology services for Fresno and the Central Valley: custom PC builds, Tier 1 IT support, Wi-Fi/POS help, business websites (including 3D/interactive sections), AI receptionist workflows, mobile MVP prototyping, and narrow operations coordination.
 
 **Tagline:** *Reliable Today. Autonomous Tomorrow.* — current services deliver today; autonomous/future items stay in Vision only.
 
@@ -50,14 +50,18 @@ Every serious Cursor/ChatGPT pass:
 
 ## Current services (sold today)
 
-| Service | Summary |
-|---------|---------|
-| Same-Day Tech Cleanup | Device cleanup, virus/pop-up fixes |
-| 24-Hour Business Websites | One-page local business sites |
-| Wi-Fi, Printer & POS Support | Small-business network/POS support |
-| Custom PC Builds & Upgrades | Windows tower planning, upgrades, assembly, and handoff |
-| Logistics Coordination | Planning, documentation, coordination |
-| AI Workflow Automation | Guarded automation, human review |
+Canonical operator business plan: [`docs/STONE_INDUSTRIES_BUSINESS_PLAN.md`](docs/STONE_INDUSTRIES_BUSINESS_PLAN.md)  
+Public catalog source: [`src/data/pricingCatalog.ts`](src/data/pricingCatalog.ts)
+
+| # | Service | Summary |
+|---|---------|---------|
+| 1 | Custom PC Builds & Upgrades | Windows tower planning, upgrades, assembly, handoff — parts separate |
+| 2 | Tier 1 IT Support & Tech Cleanup | Windows cleanup, virus/pop-up fixes, same-day when scheduling allows |
+| 3 | Wi-Fi, Printer & POS Support | Quick fixes and setup visits — not full MSP |
+| 4 | Business Websites & 3D Interactive Websites | Page-count packages, optional interactive sections, secure lead capture |
+| 5 | AI Receptionist & Workflow Automation | Managed outcomes via third-party tools — human handoff required |
+| 6 | Mobile App / MVP Prototyping | Clickable concepts before full custom development |
+| 7 | Operations & Technology Project Coordination | Secondary — scheduling, vendor follow-up — **not** freight/3PL |
 
 **Future only:** DALRM, AI-assisted operations, autonomous logistics, resilient infrastructure → [`docs/PROJECT_CONTEXT.md`](docs/PROJECT_CONTEXT.md)
 

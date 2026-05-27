@@ -21,12 +21,16 @@ function App() {
 
   return (
     <div
-      className="relative min-h-screen overflow-hidden bg-slate-900 text-slate-100"
+      className="relative min-h-screen w-full overflow-hidden bg-[#0c1222] text-slate-100"
       style={backgroundStyle}
     >
-      <div className="pointer-events-none absolute inset-0 -z-20 bg-[radial-gradient(circle_at_top,_rgba(14,165,233,0.07),_transparent_28%)]" />
+      <div className="pointer-events-none absolute inset-0 -z-20 bg-[radial-gradient(circle_at_50%_-8%,_rgba(14,165,233,0.06),_transparent_32%)]" />
+      <div
+        className="pointer-events-none fixed inset-0 -z-[5] bg-[linear-gradient(90deg,transparent_58%,rgba(12,18,34,0.42)_78%,rgba(10,16,30,0.68)_100%)]"
+        aria-hidden="true"
+      />
       <Navbar />
-      <main>
+      <main className="w-full">
         <div className="relative isolate">
           <div
             className="si-main-parallax-bg pointer-events-none absolute inset-0 -z-10 min-h-[100vh]"

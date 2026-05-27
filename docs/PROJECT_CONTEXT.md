@@ -1,6 +1,6 @@
 # Stone Industries — Project Context
 
-**Last updated:** 2026-05-25 · **Project OS v2**  
+**Last updated:** 2026-05-26 · **Project OS v2**  
 **Live production:** https://stoneindustries.netlify.app/ (Netlify Free, `VITE_BASE_PATH=/`) — see [`DEPLOYMENT.md`](DEPLOYMENT.md)  
 **Mirror / preview:** https://overlord559.github.io/Stone_Industries/ (GitHub Pages)  
 **Repo:** `stone_industries website` · branch `main`  
@@ -10,7 +10,9 @@
 
 ## Positioning
 
-**Tagline:** *Reliable Today. Autonomous Tomorrow.* — current six services are “today”; Vision section is “tomorrow” only.
+**Tagline:** *Reliable Today. Autonomous Tomorrow.* — current seven services are “today”; Vision section is “tomorrow” only.
+
+**Operator business plan:** [`STONE_INDUSTRIES_BUSINESS_PLAN.md`](STONE_INDUSTRIES_BUSINESS_PLAN.md) — revenue-first local services; tool stack must not become the business.
 
 ---
 
@@ -34,26 +36,31 @@
 
 **Runtime note:** Uncommitted WIP may exist in `src/` — agents must not assume working tree is clean.
 
+**Readability pass (2026-05-26):** Duplicate contact modules removed (footer light links; inquiry form keeps copy/mailto). `pricing.html` policy sections consolidated with progressive disclosure (**STONE-029**).
+
+**Background balance pass (2026-05-26):** Right-edge scrim vignette + removed 82% cyan glow; hero accent moved to sky clear zone (**STONE-030**). **Hero rocket pass (2026-05-26):** Replaced hero WebGL orb with `HeroRocketAccent` — vertical retro SVG, pointer tilt, hold-to-thrust plume (**STONE-031**, **STONE-032**).
+
 ---
 
 ## Services (current — sold today)
 
-Source of truth for copy: [`src/data/site.ts`](../src/data/site.ts) · package tiers/add-ons: [`src/data/pricingCatalog.ts`](../src/data/pricingCatalog.ts)
+Source of truth for copy: [`src/data/site.ts`](../src/data/site.ts) · package tiers/add-ons: [`src/data/pricingCatalog.ts`](../src/data/pricingCatalog.ts) · display order: `catalogServiceOrder` in pricing catalog.
 
-| # | Service | Package name |
-|---|---------|--------------|
-| 1 | **Same-Day Tech Cleanup** | Tech Cleanup Sprint |
-| 2 | **24-Hour Business Websites** | 24-Hour Website Launch |
-| 3 | **Wi-Fi, Printer & POS Support** | Small Business Tech Support |
-| 4 | **Custom PC Builds & Upgrades** | Desktop Tower Build & Upgrade |
-| 5 | **Logistics Coordination** | Logistics Coordination Support |
-| 6 | **AI Automation & Digital Assistant Systems** | Digital Assistant Setup |
+| # | Service | Package name | Tier |
+|---|---------|--------------|------|
+| 1 | **Custom PC Builds & Upgrades** | Desktop Tower Build & Upgrade | Primary — first-money |
+| 2 | **Tier 1 IT Support & Tech Cleanup** | Tech Cleanup Sprint | Primary — first-money |
+| 3 | **Wi-Fi, Printer & POS Support** | Small Business Tech Support | Primary |
+| 4 | **Business Websites & 3D Interactive Websites** | 24-Hour Website Launch | Primary |
+| 5 | **AI Receptionist & Workflow Automation** | AI Receptionist Setup | Primary |
+| 6 | **Mobile App / MVP Prototyping** | Mobile MVP Prototype | Primary |
+| 7 | **Operations & Technology Project Coordination** | Operations & Technology Project Coordination | Secondary — narrow |
 
-**Productized packages** with add-on `detail` blocks, compact grouped estimator UI, package-aware add-on filtering (`includedAddOnIds`, `showForPackages`), and scope guardrails: Windows-only Tech Cleanup, PC builds/upgrades (Windows towers only; parts vs service fee separated; seven differentiated tiers), no customer-facing Post-launch QA (launch-ready handoff is standard delivery), paid-ads setup/guidance only (not campaign management), AI-agent-style workflows with human approval.
+**Productized packages** with add-on `detail` blocks, compact grouped estimator UI, package-aware add-on filtering (`includedAddOnIds`, `showForPackages`), and scope guardrails: Windows-only Tech Cleanup, PC builds/upgrades (Windows towers only; parts vs service fee separated; seven differentiated tiers), no customer-facing Post-launch QA (launch-ready handoff is standard delivery), paid-ads setup/guidance only (not campaign management), AI receptionist workflows with human handoff (do not publicly resell Ulio), mobile MVP prototypes (do not publicly lead with Rork), operations coordination only (not freight/3PL/carrier).
 
 **Static visuals:** Pricing/services pages use coastal-tech background (`stone-coastal-tech-bg.webp`) with glass sections — aligned with homepage lower parallax (STONE-001).
 
-**Competitive positioning (public):** Fixed-scope alternative for Fresno/Central Valley small businesses — not a full marketing agency, MSP, AI agency, or freight broker/3PL. **Local-first mission:** win Fresno/Central Valley trust with fixed-scope packages before claiming larger enterprise capability. **Future vision:** “Local First. Bigger Vision.” on pricing/services pages — grounded expansion path, no premature defense/enterprise/MSP/3PL/AI-platform claims. Service #4 public title: **Operations & Logistics Coordination Setup** (`logistics-coordination` slug unchanged). See `whereStoneFits` in `pricingCatalog.ts` and `#where-stone-fits` on pricing/services pages.
+**Competitive positioning (public):** Fixed-scope alternative for Fresno/Central Valley small businesses — not a full marketing agency, MSP, AI agency, app studio, or freight broker/3PL. **Local-first mission:** win Fresno/Central Valley trust with fixed-scope packages before claiming larger enterprise capability. **Future vision:** “Local First. Bigger Vision.” on pricing/services pages — grounded expansion path, no premature defense/enterprise/MSP/3PL/AI-platform claims. Operations service public title: **Operations & Technology Project Coordination** (`logistics-coordination` slug unchanged for URLs). See `whereStoneFits` in `pricingCatalog.ts` and `#where-stone-fits` on pricing/services pages.
 
 **Secure-by-default packaging:** Each current service documents practical security-conscious deliverables (device safety, secure site launch basics, Wi-Fi/POS guidance, coordination handoffs, guarded AI workflows). Copy explicitly avoids hacker-proof, military-grade, and PCI/HIPAA/SOC 2 claims unless separately contracted. Global disclaimer on pricing/services pages.
 
@@ -101,7 +108,7 @@ Source of truth: [`src/data/site.ts`](../src/data/site.ts) — `serviceAreaPrima
 
 | Priority | Task | Status |
 |----------|------|--------|
-| 1 | **Static pricing funnel** | Done — `pricing.html` + 6 service pages |
+| 1 | **Static pricing funnel** | Done — `pricing.html` + 7 service pages (incl. `mobile-app-mvp.html`) |
 | 2 | **Fresno service-area copy + meta** | Done |
 | 3 | **Operator Netlify import + smoke test** | Done — https://stoneindustries.netlify.app/ |
 | 4 | **Google Business Profile / local SEO** | Pending — post-deploy, operator |

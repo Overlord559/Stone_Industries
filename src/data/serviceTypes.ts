@@ -10,6 +10,8 @@ export type ServiceTier = {
 
 export type Service = {
   slug: string
+  /** Primary = first-money services; secondary = narrow/optional capability */
+  displayTier?: 'primary' | 'secondary'
   packageName: string
   title: string
   description: string
