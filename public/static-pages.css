@@ -406,6 +406,26 @@ ul {
   font-size: 0.9rem;
 }
 
+.footer-trust-line {
+  margin-top: 2rem;
+  font-size: 0.78rem;
+  line-height: 1.55;
+  color: #64748b;
+}
+
+.footer-trust-line strong {
+  color: #94a3b8;
+  font-weight: 600;
+}
+
+.footer-trust-disclaimer {
+  margin-top: 0.45rem;
+  max-width: 42rem;
+  font-size: 0.72rem;
+  line-height: 1.5;
+  color: #475569;
+}
+
 .service-grid {
   display: grid;
   gap: 1rem;

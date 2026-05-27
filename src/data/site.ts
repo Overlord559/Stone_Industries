@@ -63,6 +63,72 @@ export const navItems: NavItem[] = [
   { label: 'Contact', href: '#contact' },
 ]
 
+export const businessEntityLabel = 'Stone Industries LLC — certified LLC'
+
+/** Factual certifications — do not imply awarded contracts or agency endorsement. */
+export const businessCertifications = [
+  {
+    label: 'Certified VOSB',
+    short: 'Certified Veteran-Owned Small Business',
+  },
+  {
+    label: 'Certified SDVOSB',
+    short: 'Certified Service-Disabled Veteran-Owned Small Business',
+  },
+  {
+    label: 'SAM.gov-registered contractor',
+    short: 'Active SAM.gov registration for contractor, subcontractor, and teaming visibility',
+  },
+] as const
+
+export const govContractingTrustDisclaimer =
+  'Certifications and SAM.gov registration support contractor, subcontractor, and teaming conversations. They do not imply awarded federal contracts, agency endorsement, DoD approval, or federal past performance.'
+
+/** One-line footer / static-page trust signal — factual only. */
+export const footerCertificationsCompact = `${businessCertifications.map((cert) => cert.label).join(' · ')} · ${serviceAreaShort}`
+
+/** Hero micro-row — factual only; full disclaimer lives in About/Footer (STONE-034). */
+export const heroCertificationsMicro =
+  'Certified VOSB · Certified SDVOSB · SAM.gov Registered'
+
+export const heroEntityMicro = 'Stone Industries LLC'
+
+export const qualityTrustPoints = [
+  'Written scope before work begins',
+  'Clear quotes and service boundaries',
+  'Secure inquiry capture and no card storage on this site',
+  'Professional handoff, documentation, and follow-up',
+] as const
+
+export type RecurringCarePath = {
+  name: string
+  detail: string
+  pricingHref: string
+}
+
+export const recurringCarePaths: RecurringCarePath[] = [
+  {
+    name: 'Website Care',
+    detail: 'Monthly website updates and small support after launch — optional add-on on website packages.',
+    pricingHref: `${import.meta.env.BASE_URL}pricing.html?service=business-websites#package-estimator`,
+  },
+  {
+    name: 'Tech Support Retainer',
+    detail: 'Monthly on-call support for small offices — scoped, not full MSP.',
+    pricingHref: `${import.meta.env.BASE_URL}pricing.html?service=wifi-printer-pos#package-estimator`,
+  },
+  {
+    name: 'AI Receptionist Management',
+    detail: 'Monthly workflow tuning and support — third-party tool costs quoted separately.',
+    pricingHref: `${import.meta.env.BASE_URL}pricing.html?service=ai-workflow-automation#package-estimator`,
+  },
+  {
+    name: 'Operations / Automation Care',
+    detail: 'Monthly coordination support for tracking, vendors, and workflow follow-through.',
+    pricingHref: `${import.meta.env.BASE_URL}pricing.html?service=logistics-coordination#package-estimator`,
+  },
+]
+
 export const pricingDisclaimer =
   'Fixed package prices apply to listed scope. Final quote confirmed in writing before work begins.'
 

@@ -28,6 +28,7 @@
 | Paid ads at scale | **Delayed** |
 | Custom Stripe checkout | **Delayed** |
 | GoHighLevel / heavy CRM | **Delayed** |
+| Gov contracting credentials | **Public** — certified VOSB, SDVOSB, SAM.gov registration, certified LLC (with disclaimer — no contract-win claims) |
 
 ---
 

@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
-import { buildPricingServiceHref, services } from '../../data/site'
+import { buildPricingServiceHref, recurringCarePaths, services } from '../../data/site'
 import { navigateToContactInquiry } from '../../lib/inquiryNavigation'
 import { InteractiveOrbAccent } from '../scene/InteractiveOrbAccent'
 import { SectionHeading } from '../ui/SectionHeading'
@@ -88,6 +88,34 @@ export function Services() {
             </motion.article>
           )
         })}
+      </div>
+
+      <div
+        id="recurring-care"
+        className="si-section-glass mt-14 rounded-[1.75rem] border border-white/[0.14] p-6 shadow-[0_18px_60px_rgba(15,23,42,0.14)] lg:p-8"
+      >
+        <p className="text-xs font-semibold uppercase tracking-[0.32em] text-cyan-300/80">
+          Optional recurring care
+        </p>
+        <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-400">
+          After a one-time package — scoped monthly support, not a full MSP or agency contract.
+        </p>
+        <ul className="mt-5 grid gap-3 sm:grid-cols-2">
+          {recurringCarePaths.map((path) => (
+            <li key={path.name}>
+              <a
+                href={path.pricingHref}
+                className="group block rounded-xl border border-white/10 bg-white/[0.03] p-4 transition hover:border-cyan-400/25 hover:bg-cyan-400/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
+              >
+                <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-white group-hover:text-cyan-100">
+                  {path.name}
+                  <ArrowRight size={14} className="opacity-70" />
+                </span>
+                <span className="mt-1.5 block text-sm leading-6 text-slate-400">{path.detail}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   )

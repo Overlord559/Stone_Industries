@@ -3,6 +3,8 @@ import {
   contactEmail,
   contactPhone,
   contactPhoneHref,
+  footerCertificationsCompact,
+  govContractingTrustDisclaimer,
   pricingPagePath,
   servicesPagePath,
   visionPagePath,
@@ -31,6 +33,8 @@ export function Footer() {
               {contactPhone}
             </a>
           </p>
+          <p className="text-xs leading-5 text-slate-500">{footerCertificationsCompact}</p>
+          <p className="max-w-xl text-xs leading-5 text-slate-600">{govContractingTrustDisclaimer}</p>
         </div>
         <div className="space-y-3 text-left lg:text-right">
           <p className="text-slate-200">Reliable Today. Autonomous Tomorrow.</p>

@@ -1,30 +1,41 @@
 STONE INDUSTRIES — CAPABILITY BRIEF
 Reliable Today. Autonomous Tomorrow.
-Last updated: May 25, 2026
+Last updated: May 26, 2026
 
 OVERVIEW
-Stone Industries provides veteran-led operational services for practical work
-clients can use today: IT troubleshooting, small-business websites, Wi-Fi and
-POS support, AI automation and digital assistant systems, and logistics coordination.
+Stone Industries provides veteran-led technology services for practical work
+clients can use today: custom Windows PC builds and upgrades, Tier 1 IT support,
+Wi-Fi and POS help, business websites, AI receptionist workflows, mobile MVP
+prototypes, and narrow operations coordination.
+
+CERTIFICATIONS (FACTUAL — NOT CONTRACT WINS)
+- Certified VOSB
+- Certified SDVOSB
+- SAM.gov-registered contractor
+Credentials do not imply awarded federal contracts, agency endorsement, DoD
+approval, or federal past performance.
 
 CURRENT SERVICE LINES (AVAILABLE TODAY)
-1. Same-Day Tech Cleanup
-   - Device cleanup, virus/pop-up troubleshooting, practical same-day support
+1. Custom PC Builds & Upgrades
+   - Windows tower planning, upgrades, assembly, handoff — parts separate
 
-2. 24-Hour Business Websites
-   - One-page sites for local vendors, contractors, and service businesses
+2. Tier 1 IT Support & Tech Cleanup
+   - Windows cleanup, virus/pop-up troubleshooting, same-day when scheduling allows
 
 3. Wi-Fi, Printer & POS Support
-   - Setup, cleanup, and basic troubleshooting for small-business tech
+   - Setup, cleanup, and basic troubleshooting — not full MSP
 
-4. Logistics Coordination
-   - Planning support, documentation, coordination, operational follow-through
+4. Business Websites & 3D Interactive Websites
+   - Page-count packages for local businesses — optional interactive sections
 
-5. AI Automation & Digital Assistant Systems
-   - Practical workflow automation with intake helpers, document/checklist drafts,
-     and website or customer inquiry support
-   - Human review and approval required; not unsupervised autonomous agents
-   - No enterprise-scale AI systems or compliance certifications promised
+5. AI Receptionist & Workflow Automation
+   - Guarded workflows with human handoff — not guaranteed bookings or unsupervised agents
+
+6. Mobile App / MVP Prototyping
+   - Clickable concepts before full development — not guaranteed App Store approval
+
+7. Operations & Technology Project Coordination
+   - Scheduling, vendor follow-up, rollout tracking — not freight brokerage or 3PL
 
 BUYER TYPES
 - Local small businesses
@@ -34,10 +45,12 @@ BUYER TYPES
 - Early operational / technical teams
 
 CURRENT CAPABILITIES
-- IT troubleshooting and device cleanup
+- Custom PC builds, upgrades, and Windows handoff
+- Tier 1 IT troubleshooting and device cleanup
 - Small-business website launch support
 - Wi-Fi/printer/POS setup and cleanup support
-- Guarded AI workflow setup with human review and approval
+- Guarded AI receptionist and workflow setup with human review
+- Mobile MVP prototypes and narrow operations coordination
 - Documentation, coordination, and follow-through
 
 FUTURE ROADMAP (NOT SOLD TODAY)
@@ -46,13 +59,14 @@ FUTURE ROADMAP (NOT SOLD TODAY)
 - Autonomous logistics
 - Resilient infrastructure
 
-CONTACT (FASTEST RESPONSE: EMAIL OR CALL)
+CONTACT (FASTEST RESPONSE: INQUIRY FORM OR EMAIL)
+Website inquiry: https://stoneindustries.netlify.app/#contact
 Email: stoneindustries0.llc@gmail.com
 Phone: 559-579-9376
 Location: Fresno & Central Valley, California — on-site when scheduling allows; remote support available where appropriate
 
 INCLUDE IN YOUR MESSAGE
-- Inquiry type (tech cleanup, website, tech support, AI workflow, logistics, subcontracting)
+- Inquiry type (PC build, Tier 1 IT, website, tech support, AI receptionist, mobile MVP, operations coordination, subcontracting)
 - What you need and desired outcome
 - Location or remote support need
 - Timeline/deadline
@@ -63,7 +77,8 @@ HONEST LIMITATIONS
 - Static website; no booking system or online payment
 - No unsupervised autonomous agents or enterprise AI systems sold today
 - No autonomous logistics systems product available for purchase today
-- No fabricated certifications, contracts, clients, or past performance claims
+- Certifications are factual credentials — not awarded contract wins or past performance
+- No client logos or fabricated contract wins
 - Quote-based pricing confirmed before work begins
 
 WEB

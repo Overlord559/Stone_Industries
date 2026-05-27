@@ -38,6 +38,9 @@ Optional preview: `npm run preview` — open printed local URL.
 - [ ] Contact: inquiry form primary; **one** email copy + mailto fallback block (inside form); footer = plain email/phone links only — no duplicate `EmailContactActions` card stack
 - [ ] Navbar: Services → `/services.html`; Pricing → `/pricing.html`; Vision → `/vision.html`
 - [ ] Footer links: privacy, terms, capability brief
+- [ ] **Certification trust (STONE-034):** Hero micro-row (VOSB/SDVOSB/SAM.gov, no disclaimer); About section full strip with disclaimer; footer compact line; pricing/services static footer trust line; no contract-win claims
+- [ ] **Recurring care (STONE-035):** Homepage `#recurring-care` block links to pricing anchors; pricing payment bullet mentions optional monthly care
+- [ ] **Capability brief parity (STONE-035):** `capability-brief.html` + `.txt` list seven current services and bounded certification language
 - [ ] Re-test at **1280px** and **1440px** after any mobile or service-copy pass — mobile QA alone is not enough
 - [ ] **Full-page scroll:** no persistent bright cyan/blue vertical rail on right edge at 1440px (homepage + static pricing)
 - [ ] **Hero rocket accent:** in clear sky zone above embedded sign — does not overlap Stone Industries sign in DALRM background; sign remains readable
@@ -229,7 +232,7 @@ Run on live Netlify URL after deploy — https://stoneindustries.netlify.app/ �
 
 ## Competitive positioning check
 
-- [ ] `pricing.html` and `services.html` include **Where Stone Industries fits** — no competitor names
+- [ ] `pricing.html` and `services.html` include **Built for practical local execution** (`#where-stone-fits`) — positive bullets + one bounded scope sentence; no competitor names
 - [ ] `pricing.html` and `services.html` include **Local First. Bigger Vision.** — no defense/enterprise/MSP/3PL maturity claims
 - [ ] Copy does not claim full MSP, marketing agency, AI agency, freight broker, or 3PL
 - [ ] Operations service titled **Operations & Technology Project Coordination** (URL slug may remain `logistics-coordination`)

@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { credibilitySignals, trustChips, whoWeWorkWith } from '../../data/site'
 import { SectionHeading } from '../ui/SectionHeading'
+import { TrustCertificationsStrip } from '../ui/TrustCertificationsStrip'
 
 const revealViewport = { once: true, amount: 0.1, margin: '0px 0px -56px 0px' } as const
 
@@ -28,6 +29,7 @@ export function About() {
               </span>
             ))}
           </div>
+          <TrustCertificationsStrip variant="section" />
           <div className="si-section-glass rounded-[1.75rem] border border-white/[0.14] p-8">
             <p className="text-xs font-semibold uppercase tracking-[0.32em] text-cyan-300/80">
               Who we work with

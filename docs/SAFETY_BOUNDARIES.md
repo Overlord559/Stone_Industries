@@ -9,7 +9,7 @@
 
 | Claim | Rule |
 |-------|------|
-| SDVOSB / certification | Only if actually obtained |
+| SDVOSB / certification | Only if actually obtained — **operator confirmed** (VOSB, SDVOSB, SAM.gov registration, certified LLC) |
 | Contract wins / prime awards | Never fabricate |
 | Client logos / testimonials | Never fabricate |
 | 24/7 support | Only if truly offered |
@@ -21,6 +21,7 @@
 ## Allowed honest signals
 
 - Veteran-led discipline (background-based — not implying certification)
+- Certified VOSB, certified SDVOSB, SAM.gov-registered contractor, certified LLC — **with disclaimer** that these do not imply awarded contracts, agency endorsement, DoD approval, or federal past performance
 - Direct small-business support
 - Subcontracting inquiries welcome
 - Quote-based scope confirmation

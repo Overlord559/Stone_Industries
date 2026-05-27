@@ -40,6 +40,10 @@
 
 **Background balance pass (2026-05-26):** Right-edge scrim vignette + removed 82% cyan glow; hero accent moved to sky clear zone (**STONE-030**). **Hero rocket pass (2026-05-26):** Replaced hero WebGL orb with `HeroRocketAccent` — vertical retro SVG, pointer tilt, hold-to-thrust plume (**STONE-031**, **STONE-032**).
 
+**Certification trust pass (2026-05-26):** Operator-confirmed VOSB, SDVOSB, SAM.gov registration, and certified LLC surfaced via hero micro-row, `TrustCertificationsStrip` (About), footer compact line, and pricing/services static footers — with gov-contracting disclaimer in About/Footer only (**STONE-034**). No contract-award claims.
+
+**Final launch critic pass (2026-05-26):** Recurring care paths wired on homepage; capability brief updated to seven services + bounded certs; duplicate hero operating-posture card removed (**STONE-035**). Launch status: READY WITH FIXES pending operator visual QA and Supabase env on Netlify.
+
 ---
 
 ## Services (current — sold today)
@@ -60,7 +64,7 @@ Source of truth for copy: [`src/data/site.ts`](../src/data/site.ts) · package t
 
 **Static visuals:** Pricing/services pages use coastal-tech background (`stone-coastal-tech-bg.webp`) with glass sections — aligned with homepage lower parallax (STONE-001).
 
-**Competitive positioning (public):** Fixed-scope alternative for Fresno/Central Valley small businesses — not a full marketing agency, MSP, AI agency, app studio, or freight broker/3PL. **Local-first mission:** win Fresno/Central Valley trust with fixed-scope packages before claiming larger enterprise capability. **Future vision:** “Local First. Bigger Vision.” on pricing/services pages — grounded expansion path, no premature defense/enterprise/MSP/3PL/AI-platform claims. Operations service public title: **Operations & Technology Project Coordination** (`logistics-coordination` slug unchanged for URLs). See `whereStoneFits` in `pricingCatalog.ts` and `#where-stone-fits` on pricing/services pages.
+**Competitive positioning (public):** `#where-stone-fits` — **Built for practical local execution** with positive capability bullets and one bounded sentence for enterprise/full-scope work (not repeated defensive “Not a full…” lists). **Local-first mission:** win Fresno/Central Valley trust with fixed-scope packages before claiming larger enterprise capability. **Future vision:** “Local First. Bigger Vision.” on pricing/services pages — grounded expansion path, no premature defense/enterprise/MSP/3PL/AI-platform claims. Operations service public title: **Operations & Technology Project Coordination** (`logistics-coordination` slug unchanged for URLs). See `whereStoneFits` in `pricingCatalog.ts` and `#where-stone-fits` on pricing/services pages.
 
 **Secure-by-default packaging:** Each current service documents practical security-conscious deliverables (device safety, secure site launch basics, Wi-Fi/POS guidance, coordination handoffs, guarded AI workflows). Copy explicitly avoids hacker-proof, military-grade, and PCI/HIPAA/SOC 2 claims unless separately contracted. Global disclaimer on pricing/services pages.
 

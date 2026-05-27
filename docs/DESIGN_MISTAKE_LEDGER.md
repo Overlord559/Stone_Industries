@@ -228,7 +228,7 @@
 
 **Problem:** Small vendors get compared to agencies, MSPs, AI shops, and freight/3PL providers — vague copy causes buyers to expect the wrong service class or triggers regulated-logistics misread.
 
-**Rule:** Position Stone as **fast fixed-scope** for Fresno/Central Valley SMBs. Public `#where-stone-fits` section: not full agency/MSP/AI agency/freight broker. Operations service = coordination systems (intake, handoffs, SOPs) with **freight broker/carrier/3PL disclaimer**. No competitor names, trade dress, or guaranteed marketing/security/logistics outcomes on public pages.
+**Rule:** Position Stone as **fast fixed-scope** for Fresno/Central Valley SMBs. Public `#where-stone-fits` section: lead with **what Stone delivers** (positive capability bullets); close with **one bounded sentence** for enterprise compliance, freight brokerage, full MSP, advanced paid ads, or full custom software — not repeated “Not a full…” bullets. Operations service = coordination systems (intake, handoffs, SOPs) with **freight broker/carrier/3PL disclaimer**. No competitor names, trade dress, or guaranteed marketing/security/logistics outcomes on public pages.
 
 **QA check:** Grep competitor names on `public/`; logistics disclaimer present; no MSP/compliance/incident-response claims.
 
@@ -716,6 +716,53 @@ Index of operator corrections from pricing/estimator/nav/email/vision passes. Ex
 4. **QA** — real browser pointer/hold QA mandatory; synthetic DOM events are insufficient for React pointer handlers.
 
 **QA check:** Desktop — hover hitbox glow; move → tilt; hold → plume; drag off → stops; Tab + Space/Enter → thrust; CTAs still clickable.
+
+---
+
+## STONE-034 — Certification trust signals must stay compact and bounded
+
+| Field | Value |
+|-------|-------|
+| **Severity** | STRONG_RULE |
+| **Factory link** | DESIGN-033 (extend) |
+| **Status** | ACTIVE |
+| **First observed** | Final launch certification pass after Cursor crash (2026-05-26) |
+
+**Problem:** VOSB/SDVOSB/SAM.gov registration can build trust for subcontracting partners, but full trust blocks in the hero crowd conversion CTAs; unwired components after a crash create false “done” state; missing disclaimers imply awarded contracts or agency endorsement.
+
+**Rule:**
+
+1. **Factual only** — public copy may state certified VOSB, certified SDVOSB, SAM.gov-registered contractor, and certified LLC when operator-confirmed.
+2. **Bounded disclaimer** — always pair certification signals with language that they do not imply awarded federal contracts, agency endorsement, DoD approval, or federal past performance.
+3. **Compact placement** — hero micro-row (`heroCertificationsMicro`) near veteran-led badge only — no full strip or card in hero; full strip in About (`TrustCertificationsStrip`); one-line footer + tiny disclaimer; optional short line on pricing/services static pages.
+4. **Crash recovery** — audit untracked components and `git status` before commit; wire or delete orphan UI.
+5. **No government seals / fake badges** — text chips only unless operator supplies licensed assets.
+
+**QA check:** Homepage hero shows compact certification micro-row (no disclaimer); About + footer show certifications with disclaimer; hero CTAs and rocket unchanged; pricing/services footer trust line present; no contract-win or past-performance claims anywhere.
+
+---
+
+## STONE-035 — Final launch critic pass discipline
+
+| Field | Value |
+|-------|-------|
+| **Severity** | STRONG_RULE |
+| **Factory link** | DESIGN-036 (extend) |
+| **Status** | ACTIVE |
+| **First observed** | Multi-agent launch critic pass (2026-05-26) |
+
+**Problem:** Pre-launch passes can score well visually while stale static pages (capability brief), unused recurring-revenue data, and duplicate hero copy hide conversion and legal gaps. Broad redesigns delay ship.
+
+**Rule:**
+
+1. **Scorecard before scope** — rate trust, conversion, legal, and technical readiness; backlog A–F before coding.
+2. **High-confidence only** — implement small copy, CTA, dedup, and wiring fixes; defer Stripe, redesign, and new backend.
+3. **Recurring paths visible** — surface `recurringCarePaths` compactly after services; do not bloat hero.
+4. **Static page parity** — capability brief and `.txt` must match current seven services and bounded certification language.
+5. **Hero length** — remove duplicate posture blocks; keep micro-row + CTAs + rocket.
+6. **Defer with reason_code** — CAPTCHA, CSP, domain email, Stripe, Supabase hardening until operator-ready.
+
+**QA check:** Capability brief lists seven current services + bounded certs; homepage `#recurring-care` links to pricing; hero has no duplicate operating-posture card.
 
 ---
 

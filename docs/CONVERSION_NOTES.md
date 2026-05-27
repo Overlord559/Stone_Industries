@@ -42,6 +42,30 @@ See **STONE-029**.
 
 See **STONE-031**, **STONE-002**.
 
+## Certification trust strip (2026-05-26)
+
+| Pattern | Rule |
+|---------|------|
+| Source of truth | `businessCertifications`, `heroCertificationsMicro`, `govContractingTrustDisclaimer`, `footerCertificationsCompact` in `src/data/site.ts` |
+| Hero | Micro-row only (`heroCertificationsMicro`) — no entity name line, no full strip, no disclaimer; brand from nav + background |
+| Homepage placement | Full `TrustCertificationsStrip` in **About** |
+| Footer | One-line certifications + tiny disclaimer |
+| Static pages | Short footer trust line on `pricing.html` and `services.html` only |
+| Forbidden | Awarded contracts, federal past performance, DoD approval, agency endorsement, government seals |
+
+See **STONE-034**.
+
+## Recurring care paths (2026-05-26)
+
+| Pattern | Rule |
+|---------|------|
+| Source | `recurringCarePaths` in `src/data/site.ts` |
+| Placement | Compact `#recurring-care` block after homepage service cards — links to scoped pricing anchors |
+| Tone | Optional monthly support after one-time packages — not full MSP/agency |
+| Pricing page | One bullet under payment workflow — no new page section required |
+
+See **STONE-035**.
+
 ## Email contact fallback (2026-05-25)
 
 | Pattern | Rule |
@@ -167,7 +191,7 @@ React links use `import.meta.env.BASE_URL` via `site.ts`. Catalog source: `src/d
 | AI automation vendors | Starter workflows, human approval, expand later | Autonomous agents, employee replacement, enterprise RAG |
 | Freight/3PL/logistics operators | Operations coordination systems | Broker, carrier, 3PL, transportation arrangement |
 
-Public section: `#where-stone-fits` on `pricing.html` and `services.html`. **Local First. Bigger Vision.** (`#local-first-vision`) on pricing/services — grounded expansion, no premature enterprise claims. **No competitor names** on public pages.
+Public section: `#where-stone-fits` on `pricing.html` and `services.html` — **Built for practical local execution** (positive capability bullets + one bounded scope sentence; avoid repeated “Not a full…” lists). **Local First. Bigger Vision.** (`#local-first-vision`) on pricing/services — grounded expansion, no premature enterprise claims. **No competitor names** on public pages.
 
 Logistics guardrail: `logisticsFreightDisclaimer` in catalog + service page.
 

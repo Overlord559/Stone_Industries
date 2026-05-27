@@ -5,6 +5,7 @@ import {
   capabilityBriefPath,
   contactPhone,
   contactPhoneHref,
+  heroCertificationsMicro,
   pricingPagePath,
   serviceAreaOnSite,
   serviceAreaPrimary,
@@ -23,18 +24,24 @@ export function Hero() {
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           className="si-hero-copy si-reveal-item relative z-10 flex flex-col justify-center pointer-events-none"
         >
-          <p className="text-sm font-semibold uppercase tracking-[0.45em] text-slate-500">
-            Stone Industries
-          </p>
           <div className="inline-flex w-fit items-center gap-2 rounded-full border border-cyan-400/20 bg-cyan-400/10 px-4 py-2 text-xs font-medium uppercase tracking-[0.28em] text-cyan-100">
             <Shield size={14} />
             Veteran-led. Practical services. Disciplined execution.
           </div>
-          <h1 className="mt-7 max-w-4xl font-display text-4xl font-semibold tracking-[-0.065em] text-white sm:text-5xl lg:text-6xl lg:leading-[1.02]">
+          <div
+            className="si-hero-cert-micro mt-2.5 max-w-2xl"
+            role="note"
+            aria-label="Business certifications"
+          >
+            <p className="text-[0.62rem] font-semibold uppercase leading-relaxed tracking-[0.2em] text-cyan-300/80 sm:text-[0.65rem] sm:tracking-[0.24em]">
+              {heroCertificationsMicro}
+            </p>
+          </div>
+          <h1 className="mt-6 max-w-4xl font-display text-4xl font-semibold tracking-[-0.065em] text-white sm:text-5xl lg:text-6xl lg:leading-[1.02]">
             Custom PC builds, Tier 1 IT support, and practical local technology services—delivered reliably today.
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300 sm:text-xl">
-            Stone Industries helps Fresno and Central Valley small businesses with custom Windows PC builds,
+            We help Fresno and Central Valley small businesses with custom Windows PC builds,
             Tier 1 IT cleanup, Wi-Fi and POS support, business websites, AI receptionist workflows, and mobile
             MVP prototypes—plus narrow operations coordination when a project needs structure.
           </p>
@@ -104,16 +111,6 @@ export function Hero() {
             </a>
             .
           </p>
-
-          <div className="mt-5 max-w-2xl rounded-xl border border-cyan-400/20 bg-slate-900/28 px-4 py-3 backdrop-blur-sm si-section-glass">
-            <p className="text-[0.62rem] font-semibold uppercase tracking-[0.32em] text-cyan-300/75">
-              Operating posture
-            </p>
-            <p className="mt-1.5 text-sm leading-6 text-slate-300">
-              Practical support for Fresno and Central Valley businesses who need responsive delivery today.
-              PC builds, Tier 1 IT, websites, AI receptionist setup, and mobile MVP prototypes—with a disciplined long-range roadmap, not hype.
-            </p>
-          </div>
 
           <div className="mt-12 grid gap-6 border-t border-white/10 pt-8 sm:grid-cols-3">
             {[

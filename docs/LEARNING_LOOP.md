@@ -22,7 +22,7 @@ Capture mistakes once so ChatGPT and Cursor do not repeat them across sessions.
 
 No silent dismissals. Visual QA passing does not exempt learning capture.
 
-**Backfill index:** [`DESIGN_MISTAKE_LEDGER.md`](DESIGN_MISTAKE_LEDGER.md) → *Recent Operator Corrections Backfill* (2026-05-25) and **STONE-027**–**STONE-033** (2026-05-26).
+**Backfill index:** [`DESIGN_MISTAKE_LEDGER.md`](DESIGN_MISTAKE_LEDGER.md) → *Recent Operator Corrections Backfill* (2026-05-25) and **STONE-027**–**STONE-035** (2026-05-26).
 
 ---
 
