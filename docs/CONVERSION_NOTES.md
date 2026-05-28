@@ -1,6 +1,6 @@
 # Stone Industries — Conversion Notes
 
-**Last updated:** 2026-05-27  
+**Last updated:** 2026-05-27
 **Load when:** CTA, copy, company voice, service hierarchy, post-visual pass, outreach readiness
 
 ---
@@ -56,6 +56,50 @@ Use before cold outreach, GBP campaigns, or paid tools. Check each when ready �
 **Priority order:** domain → Google Workspace / pro email → GBP → Stripe payment path → paid outreach / content tools.
 
 Do not mark Instantly or Predis as active in site copy or ops docs until deployed.
+
+---
+
+## Analytics stack
+
+| Tool | Role | When to enable |
+|------|------|----------------|
+| **Google Analytics 4** | Traffic, acquisition, custom funnel events | Set `VITE_GA_MEASUREMENT_ID` in Netlify / `.env.local` |
+| **Microsoft Clarity** | Heatmaps, session replays (no form field capture in custom events) | Set `VITE_CLARITY_PROJECT_ID` |
+| **Google Search Console** | Search impressions / queries | After `.com` domain is connected and verified |
+| **Cloudflare Web Analytics** | Lightweight traffic (optional) | If domain DNS uses Cloudflare |
+
+React homepage loads analytics from `src/lib/analytics.ts`. Static HTML pages load `analytics-config.js` + `public/site-analytics.js` (build injects env IDs).
+
+**Env vars (optional):**
+
+- `VITE_GA_MEASUREMENT_ID`
+- `VITE_CLARITY_PROJECT_ID`
+
+If unset, build and runtime behave normally — no analytics scripts load.
+
+### Tracking KPIs
+
+Measure before scaling outreach:
+
+- visitors / sessions
+- source / referrer
+- audit CTA clicks (`audit_cta_click`)
+- audit form starts (`audit_form_start`)
+- audit form submits (`audit_form_submit_success` / `audit_form_submit_error`)
+- mailto fallback clicks (`mailto_fallback_click`)
+- pricing CTA clicks (`pricing_cta_click`)
+- services CTA clicks (`services_cta_click`)
+- mobile vs desktop traffic (GA4 device dimension; Clarity filters)
+- top pages / landing paths
+- scroll and click behavior (Clarity)
+
+### Privacy rules (implemented)
+
+Custom events send **only** non-sensitive metadata: `page_path`, `cta_location`, `error_type`, `context`.
+
+**Never sent to analytics:** names, emails, phones, business names, messages, form field values, GBP URLs, or website URLs entered in forms.
+
+**Follow-up:** Update `public/privacy.html` when GA4 / Clarity go live in production.
 
 ---
 

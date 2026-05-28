@@ -1,6 +1,7 @@
-import { useState, type FormEvent, type MouseEvent } from 'react'
+import { useRef, useState, type FormEvent, type MouseEvent } from 'react'
 
 import { auditBiggestProblemOptions } from '../data/revenueLeakAudit'
+import { trackEvent, trackMailtoFallbackClick } from '../lib/analytics'
 import { contactPhone, contactPhoneHref } from '../data/site'
 import {
   buildAuditMailtoHref,
@@ -25,7 +26,14 @@ const labelClass =
 export function RevenueLeakAuditForm({ sourcePage, className = '' }: RevenueLeakAuditFormProps) {
   const [status, setStatus] = useState<FormStatus>('idle')
   const [errorMessage, setErrorMessage] = useState('')
+  const formStartedRef = useRef(false)
   const configured = inquiryFormAvailable()
+
+  function handleFormStart() {
+    if (formStartedRef.current) return
+    formStartedRef.current = true
+    trackEvent('audit_form_start')
+  }
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
@@ -50,6 +58,7 @@ export function RevenueLeakAuditForm({ sourcePage, className = '' }: RevenueLeak
     if (!validation.ok) {
       setStatus('error')
       setErrorMessage(validation.error)
+      trackEvent('audit_form_submit_error', { error_type: 'validation' })
       return
     }
 
@@ -58,6 +67,7 @@ export function RevenueLeakAuditForm({ sourcePage, className = '' }: RevenueLeak
       setErrorMessage(
         'Online capture is not configured in this environment. Use “Send audit request via email” below or call Stone Industries directly.',
       )
+      trackEvent('audit_form_submit_error', { error_type: 'not_configured' })
       return
     }
 
@@ -66,10 +76,13 @@ export function RevenueLeakAuditForm({ sourcePage, className = '' }: RevenueLeak
 
     try {
       await submitInquiry(validation.payload)
+      trackEvent('audit_form_submit_success')
       setStatus('success')
       form.reset()
+      formStartedRef.current = false
     } catch (error) {
       setStatus('error')
+      trackEvent('audit_form_submit_error', { error_type: 'submit' })
       setErrorMessage(
         error instanceof Error
           ? error.message
@@ -109,6 +122,7 @@ export function RevenueLeakAuditForm({ sourcePage, className = '' }: RevenueLeak
     <form
       className={`relative si-section-glass space-y-4 rounded-[1.75rem] border border-white/[0.14] p-5 shadow-[0_18px_60px_rgba(15,23,42,0.14)] sm:p-6 ${className}`}
       onSubmit={handleSubmit}
+      onFocusCapture={handleFormStart}
       noValidate
     >
       <div>
@@ -253,6 +267,7 @@ export function RevenueLeakAuditForm({ sourcePage, className = '' }: RevenueLeak
           subject="Free Revenue Leak Audit Request — Stone Industries"
           compact
           className="mt-1"
+          trackMailtoFallback="audit"
         />
       </div>
 
@@ -295,6 +310,7 @@ function AuditMailtoButton({
       return
     }
 
+    trackMailtoFallbackClick('audit')
     window.location.href = buildAuditMailtoHref(validation.mailtoBody)
   }
 

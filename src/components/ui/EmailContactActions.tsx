@@ -1,18 +1,21 @@
 import { useState } from 'react'
 
 import { buildMailto, contactEmail } from '../../data/site'
+import { trackMailtoFallbackClick } from '../../lib/analytics'
 import { copyContactEmail } from '../../lib/emailContact'
 
 type EmailContactActionsProps = {
   subject?: string
   className?: string
   compact?: boolean
+  trackMailtoFallback?: 'audit' | 'inquiry'
 }
 
 export function EmailContactActions({
   subject = 'Stone Industries Inquiry',
   className = '',
   compact = false,
+  trackMailtoFallback,
 }: EmailContactActionsProps) {
   const [copied, setCopied] = useState(false)
   const [copyFailed, setCopyFailed] = useState(false)
@@ -27,6 +30,12 @@ export function EmailContactActions({
       return
     }
     setCopyFailed(true)
+  }
+
+  function handleOpenEmailApp() {
+    if (trackMailtoFallback) {
+      trackMailtoFallbackClick(trackMailtoFallback)
+    }
   }
 
   return (
@@ -50,6 +59,7 @@ export function EmailContactActions({
         </button>
         <a
           href={mailtoHref}
+          onClick={handleOpenEmailApp}
           className="si-secondary-cta inline-flex min-h-10 items-center justify-center rounded-full border border-white/15 bg-white/5 px-4 py-2 text-sm font-semibold !text-white transition hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
         >
           Open email app

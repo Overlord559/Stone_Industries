@@ -11,6 +11,11 @@ import {
   serviceAreaPrimary,
 } from '../../data/site'
 import { revenueLeakAuditSectionId } from '../../data/revenueLeakAudit'
+import {
+  trackAuditCtaClick,
+  trackPricingCtaClick,
+  trackServicesCtaClick,
+} from '../../lib/analytics'
 
 export function Hero() {
   return (
@@ -73,6 +78,7 @@ export function Hero() {
           <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:items-center">
             <a
               href={`#${revenueLeakAuditSectionId}`}
+              onClick={() => trackAuditCtaClick('hero')}
               className="si-primary-cta pointer-events-auto inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold !text-slate-950 transition hover:bg-slate-200 hover:!text-slate-950 [&_svg]:!stroke-slate-950"
             >
               Get Free Revenue Leak Audit
@@ -80,6 +86,7 @@ export function Hero() {
             </a>
             <a
               href={pricingPagePath}
+              onClick={() => trackPricingCtaClick('hero')}
               className="si-secondary-cta pointer-events-auto inline-flex items-center justify-center gap-2 rounded-full border border-cyan-400/25 bg-cyan-400/10 px-6 py-3 text-sm font-semibold !text-cyan-50 transition hover:border-cyan-300/40 hover:bg-cyan-400/15 hover:!text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
             >
               View Pricing &amp; Packages
@@ -101,6 +108,7 @@ export function Hero() {
             </a>
             <a
               href="#services"
+              onClick={() => trackServicesCtaClick('hero')}
               className="pointer-events-auto inline-flex items-center justify-center gap-2 rounded-full px-2 py-3 text-sm font-medium !text-slate-300 transition hover:!text-white sm:px-4"
             >
               View Service Lines

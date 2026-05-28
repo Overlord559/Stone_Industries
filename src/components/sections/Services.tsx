@@ -2,6 +2,7 @@ import { motion } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
 import { buildPricingServiceHref, recurringCarePaths, services } from '../../data/site'
 import { revenueLeakAuditSectionId } from '../../data/revenueLeakAudit'
+import { trackAuditCtaClick, trackPricingCtaClick } from '../../lib/analytics'
 import { navigateToContactInquiry } from '../../lib/inquiryNavigation'
 import { InteractiveOrbAccent } from '../scene/InteractiveOrbAccent'
 import { SectionHeading } from '../ui/SectionHeading'
@@ -70,6 +71,7 @@ export function Services() {
               <div className="mt-auto flex flex-col gap-3 pt-6 sm:flex-row sm:flex-wrap">
                 <a
                   href={buildPricingServiceHref(service.slug)}
+                  onClick={() => trackPricingCtaClick('service_card')}
                   className="si-primary-cta inline-flex w-fit items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-semibold !text-slate-950 transition hover:bg-slate-200 hover:!text-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 [&_svg]:!stroke-slate-950"
                 >
                   {service.pricingPageLabel}
@@ -127,6 +129,7 @@ export function Services() {
         </p>
         <a
           href={`#${revenueLeakAuditSectionId}`}
+          onClick={() => trackAuditCtaClick('services_promo')}
           className="si-secondary-cta mt-4 inline-flex min-h-11 items-center gap-2 rounded-full border border-cyan-400/30 bg-cyan-400/10 px-5 py-2.5 text-sm font-semibold !text-cyan-50 transition hover:border-cyan-300/50 hover:bg-cyan-400/15 hover:!text-white"
         >
           Get Free Revenue Leak Audit

@@ -7,6 +7,7 @@ import { Hero } from './components/sections/Hero'
 import { RevenueLeakAudit } from './components/sections/RevenueLeakAudit'
 import { Services } from './components/sections/Services'
 import { Vision } from './components/sections/Vision'
+import { trackPageView } from './lib/analytics'
 import { syncHashScroll } from './lib/inquiryNavigation'
 
 const assetBase = import.meta.env.BASE_URL
@@ -18,6 +19,13 @@ const backgroundStyle = {
 function App() {
   useEffect(() => {
     syncHashScroll()
+
+    const onHashChange = () => {
+      trackPageView()
+    }
+
+    window.addEventListener('hashchange', onHashChange)
+    return () => window.removeEventListener('hashchange', onHashChange)
   }, [])
 
   return (

@@ -24,10 +24,30 @@ function inquiryEnv(mode: string) {
   }
 }
 
+function analyticsEnv(mode: string) {
+  const fileEnv = loadEnv(mode, process.cwd(), '')
+  return {
+    VITE_GA_MEASUREMENT_ID:
+      process.env.VITE_GA_MEASUREMENT_ID ?? fileEnv.VITE_GA_MEASUREMENT_ID ?? '',
+    VITE_CLARITY_PROJECT_ID:
+      process.env.VITE_CLARITY_PROJECT_ID ?? fileEnv.VITE_CLARITY_PROJECT_ID ?? '',
+  }
+}
+
 function inquiryConfigSource(env: { VITE_SUPABASE_URL?: string; VITE_SUPABASE_ANON_KEY?: string }) {
   return `window.__SI_INQUIRY_CONFIG__=${JSON.stringify({
     url: env.VITE_SUPABASE_URL ?? '',
     anonKey: env.VITE_SUPABASE_ANON_KEY ?? '',
+  })};\n`
+}
+
+function analyticsConfigSource(env: {
+  VITE_GA_MEASUREMENT_ID?: string
+  VITE_CLARITY_PROJECT_ID?: string
+}) {
+  return `window.__SI_ANALYTICS_CONFIG__=${JSON.stringify({
+    gaMeasurementId: env.VITE_GA_MEASUREMENT_ID ?? '',
+    clarityProjectId: env.VITE_CLARITY_PROJECT_ID ?? '',
   })};\n`
 }
 
@@ -67,12 +87,21 @@ function stoneStaticAssetsPlugin(): Plugin {
           res.end(pricingCatalogSource())
           return
         }
+        if (path === '/analytics-config.js') {
+          const env = analyticsEnv(server.config.mode)
+          res.setHeader('Content-Type', 'application/javascript; charset=utf-8')
+          res.end(analyticsConfigSource(env))
+          return
+        }
         next()
       })
     },
     closeBundle() {
-      const env = inquiryEnv(process.env.NODE_ENV === 'production' ? 'production' : 'development')
-      writeFileSync(join(outDir, 'inquiry-config.js'), inquiryConfigSource(env), 'utf8')
+      const mode = process.env.NODE_ENV === 'production' ? 'production' : 'development'
+      const inquiry = inquiryEnv(mode)
+      const analytics = analyticsEnv(mode)
+      writeFileSync(join(outDir, 'inquiry-config.js'), inquiryConfigSource(inquiry), 'utf8')
+      writeFileSync(join(outDir, 'analytics-config.js'), analyticsConfigSource(analytics), 'utf8')
       writeFileSync(join(outDir, 'pricing-catalog.js'), pricingCatalogSource(), 'utf8')
     },
   }
