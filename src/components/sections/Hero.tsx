@@ -10,6 +10,7 @@ import {
   serviceAreaOnSite,
   serviceAreaPrimary,
 } from '../../data/site'
+import { revenueLeakAuditSectionId } from '../../data/revenueLeakAudit'
 
 export function Hero() {
   return (
@@ -69,17 +70,24 @@ export function Hero() {
               </span>
             ))}
           </div>
-          <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center">
+          <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:items-center">
+            <a
+              href={`#${revenueLeakAuditSectionId}`}
+              className="si-primary-cta pointer-events-auto inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold !text-slate-950 transition hover:bg-slate-200 hover:!text-slate-950 [&_svg]:!stroke-slate-950"
+            >
+              Get Free Revenue Leak Audit
+              <ArrowRight size={16} />
+            </a>
             <a
               href={pricingPagePath}
-              className="si-primary-cta pointer-events-auto inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold !text-slate-950 transition hover:bg-slate-200 hover:!text-slate-950 [&_svg]:!stroke-slate-950"
+              className="si-secondary-cta pointer-events-auto inline-flex items-center justify-center gap-2 rounded-full border border-cyan-400/25 bg-cyan-400/10 px-6 py-3 text-sm font-semibold !text-cyan-50 transition hover:border-cyan-300/40 hover:bg-cyan-400/15 hover:!text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
             >
               View Pricing &amp; Packages
               <ArrowRight size={16} />
             </a>
             <a
               href="#contact"
-              className="si-secondary-cta pointer-events-auto inline-flex items-center justify-center gap-2 rounded-full border border-cyan-400/25 bg-cyan-400/10 px-6 py-3 text-sm font-semibold !text-cyan-50 transition hover:border-cyan-300/40 hover:bg-cyan-400/15 hover:!text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
+              className="si-secondary-cta pointer-events-auto inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm font-semibold !text-white transition hover:bg-white/10 hover:!text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
             >
               Send an inquiry
               <ArrowRight size={16} />

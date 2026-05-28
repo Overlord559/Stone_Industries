@@ -11,6 +11,7 @@
     'AI Receptionist & Workflow Automation',
     'Mobile App / MVP Prototyping',
     'Operations & Technology Project Coordination',
+    'Free Revenue Leak Audit',
     'General Inquiry',
     'Subcontracting / Capability Brief',
   ]

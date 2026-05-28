@@ -2,15 +2,34 @@ import { resolveServiceTitleFromSlug } from '../data/site'
 
 export const INQUIRY_SERVICE_EVENT = 'si-inquiry-service'
 
-export function scrollToContactSection(): void {
-  const contact = document.getElementById('contact')
-  if (!contact) return
+export function syncContactHashScroll(): void {
+  syncHashScroll()
+}
+
+export function syncHashScroll(): void {
+  const hash = window.location.hash.replace('#', '')
+  if (hash !== 'contact' && hash !== 'revenue-leak-audit') return
+
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      scrollToSection(hash)
+    })
+  })
+}
+
+function scrollToSection(sectionId: string): void {
+  const section = document.getElementById(sectionId)
+  if (!section) return
 
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-  contact.scrollIntoView({
+  section.scrollIntoView({
     behavior: reducedMotion ? 'auto' : 'smooth',
     block: 'start',
   })
+}
+
+export function scrollToContactSection(): void {
+  scrollToSection('contact')
 }
 
 /** Same-page inquiry navigation — avoids full reload that breaks first #contact scroll. */
@@ -33,15 +52,5 @@ export function navigateToContactInquiry(slug: string): void {
 
   requestAnimationFrame(() => {
     scrollToContactSection()
-  })
-}
-
-export function syncContactHashScroll(): void {
-  if (window.location.hash !== '#contact') return
-
-  requestAnimationFrame(() => {
-    requestAnimationFrame(() => {
-      scrollToContactSection()
-    })
   })
 }

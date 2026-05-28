@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
 import { buildPricingServiceHref, recurringCarePaths, services } from '../../data/site'
+import { revenueLeakAuditSectionId } from '../../data/revenueLeakAudit'
 import { navigateToContactInquiry } from '../../lib/inquiryNavigation'
 import { InteractiveOrbAccent } from '../scene/InteractiveOrbAccent'
 import { SectionHeading } from '../ui/SectionHeading'
@@ -116,6 +117,21 @@ export function Services() {
             </li>
           ))}
         </ul>
+      </div>
+
+      <div className="si-section-glass mt-10 rounded-[1.75rem] border border-cyan-400/20 bg-cyan-400/[0.06] p-5 sm:p-6">
+        <p className="text-sm font-semibold text-white">Free Revenue Leak Audit for local service businesses</p>
+        <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-300">
+          Send your website and Google Business Profile — get a human-reviewed leak report and recommended fix
+          plan for Fresno and Central Valley operators.
+        </p>
+        <a
+          href={`#${revenueLeakAuditSectionId}`}
+          className="si-secondary-cta mt-4 inline-flex min-h-11 items-center gap-2 rounded-full border border-cyan-400/30 bg-cyan-400/10 px-5 py-2.5 text-sm font-semibold !text-cyan-50 transition hover:border-cyan-300/50 hover:bg-cyan-400/15 hover:!text-white"
+        >
+          Get Free Revenue Leak Audit
+          <ArrowRight size={15} />
+        </a>
       </div>
     </section>
   )

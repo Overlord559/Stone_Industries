@@ -188,6 +188,7 @@ export const inquiryTypes: InquiryType[] = [
 
 export const inquiryServiceOptions = [
   ...services.map((service) => service.title),
+  'Free Revenue Leak Audit',
   'General Inquiry',
   'Subcontracting / Capability Brief',
 ] as const
