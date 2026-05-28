@@ -199,7 +199,7 @@ export const whoWeWorkWith = [
     description: 'Shops, vendors, and operators who need practical tech or web help without enterprise overhead.',
   },
   {
-    title: 'Contractors and solo operators',
+    title: 'Independent contractors and small operators',
     description: 'Fixed packages for defined scope, plus custom quotes when work is unclear.',
   },
   {
@@ -322,7 +322,7 @@ export const trustChips = [
   'No inflated claims',
 ] as const
 
-export const inquiryBodyTemplate = `What I need:
+export const inquiryBodyTemplate = `Service needed:
 Location (city/area — on-site or remote):
 Timeline/deadline:
 Photos/screenshots (if relevant):

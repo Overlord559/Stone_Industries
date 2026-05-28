@@ -52,7 +52,7 @@ export const secondShiftPackages = [
 ] as const
 
 export const auditOfferCopy =
-  'Send me your website, Google Business Profile, and business type. I’ll send back a revenue leak report and fix plan.'
+  'Send us your website, Google Business Profile, and business type. Our team sends back a revenue leak report and fix plan.'
 
 export const auditPositioningCopy =
-  'Most small businesses do not lose customers because their service is bad. They lose customers because they reply too late, forget follow-ups, ignore old leads, miss reviews, and have weak offers. Stone Industries audits those leaks and gives the owner a fix plan.'
+  'Most small businesses do not lose customers because their service is bad. They lose customers because they reply too late, forget follow-ups, ignore old leads, miss reviews, and have weak offers. Stone Industries reviews your website, Google Business Profile, and follow-up path, then our team delivers a fix plan.'

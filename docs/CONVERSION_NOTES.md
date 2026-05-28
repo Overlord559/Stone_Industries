@@ -1,7 +1,7 @@
 # Stone Industries — Conversion Notes
 
-**Last updated:** 2026-05-26  
-**Load when:** CTA, copy, service hierarchy, post-visual pass
+**Last updated:** 2026-05-27  
+**Load when:** CTA, copy, company voice, service hierarchy, post-visual pass, outreach readiness
 
 ---
 
@@ -9,15 +9,53 @@
 
 | Rank | Action | Where |
 |------|--------|-------|
-| 1 | Service pricing + package context | Hero primary → `pricing.html`; homepage cards → `pricing.html?service=<slug>` |
-| 2 | Service inquiry (Supabase form) | Homepage cards → same-page `#contact` scroll + service preselect; pricing/services static forms |
-| 3 | Phone `559-579-9376` | Plain linked text near inquiry/contact — not a primary desktop button |
-| 4 | Email copy + mailto fallback | Visible address + Copy email + Open email app — not mailto-only |
-| 5 | Capability brief | Footer / About — subcontracting only |
+| 1 | **Get Free Revenue Leak Audit** | Homepage hero primary → `#revenue-leak-audit`; navbar desktop/mobile; mobile sticky bar (short label: Free Audit); services promo; static `pricing.html` / `services.html` secondary |
+| 2 | View Pricing & Packages / Compare services | Hero secondary; service cards → `pricing.html?service=<slug>`; static pages context-appropriate primary where buyer is browsing packages |
+| 3 | Service inquiry (Supabase form) | Homepage `#contact`; pricing/services static forms; service card secondary |
+| 4 | Phone `559-579-9376` | Plain linked text near inquiry/contact — not a primary desktop button |
+| 5 | Email copy + mailto fallback | Visible address + Copy email + Open email app — not mailto-only |
+| 6 | Capability brief | Footer / About — subcontracting only |
 
-**Fail:** Mailto-only request buttons (STONE-007, STONE-013). Mailto-only email fallback with no copy path (STONE-020). Inquiry buried by Call-first chrome (STONE-021). First-click `#contact` scroll race (STONE-014). Top nav **Services** must open `/services.html`.
+**Primary outreach CTA:** Get Free Revenue Leak Audit — company voice (`we` / `our team`), not solo-founder language.
+
+**Secondary CTAs:** View Services, View Pricing, Request This Package, Send an inquiry.
+
+**Fail:** Mailto-only request buttons (STONE-007, STONE-013). Mailto-only email fallback with no copy path (STONE-020). Inquiry buried by Call-first chrome (STONE-021). First-click `#contact` scroll race (STONE-014). Top nav **Services** must open `/services.html`. Solo-founder copy on audit funnel (`Send me`, `I'll`, `my audit`).
 
 **Backfill index:** [`DESIGN_MISTAKE_LEDGER.md`](DESIGN_MISTAKE_LEDGER.md) → *Recent Operator Corrections Backfill* (38 items → STONE/DESIGN IDs).
+
+---
+
+## Stone Trust Stack Before Outreach
+
+Use before cold outreach, GBP campaigns, or paid tools. Check each when ready — not all are live yet.
+
+- [ ] `.com` domain connected
+- [ ] Professional email created
+- [ ] SPF / DKIM / DMARC configured
+- [ ] Google Business Profile created / verified
+- [ ] Stripe account connected or Stripe Payment Links ready
+- [ ] Supabase inquiry form tested in production
+- [ ] Phone / contact path verified
+- [ ] Free Revenue Leak Audit CTA tested (homepage `#revenue-leak-audit`, form submit + mailto fallback)
+- [ ] Mobile 375px and 320px checked
+- [ ] No solo-founder copy on public pages
+- [ ] No fake claims (testimonials, contracts, guaranteed revenue, autonomous CEO software)
+
+**Outreach rule:** Wait until domain, email, GBP, and payment path look professional — unless contacting warm personal leads manually.
+
+---
+
+## Potential Friday Tools (not active yet)
+
+| Tool | Status | Priority note |
+|------|--------|---------------|
+| **Instantly.ai** | Candidate for outbound | After professional domain + email + DNS authentication (SPF/DKIM/DMARC) |
+| **Predis.ai** | Candidate for social content | Later — not first priority |
+
+**Priority order:** domain → Google Workspace / pro email → GBP → Stripe payment path → paid outreach / content tools.
+
+Do not mark Instantly or Predis as active in site copy or ops docs until deployed.
 
 ---
 

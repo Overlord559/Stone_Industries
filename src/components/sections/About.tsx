@@ -17,7 +17,7 @@ export function About() {
           <SectionHeading
             eyebrow="About"
             title="Grounded, veteran-led, and built to earn trust through execution."
-            description="Stone Industries is an early-stage company with an operator-minded posture: practical services for local businesses and partners today, consistent follow-through, and a long-range commitment to building credible capability—not selling vision ahead of delivery."
+            description="Stone Industries is an early-stage company with a disciplined, execution-focused team posture: practical services for local businesses and partners today, consistent follow-through, and a long-range commitment to building credible capability—not selling vision ahead of delivery."
           />
           <div className="flex flex-wrap gap-2">
             {trustChips.map((chip) => (

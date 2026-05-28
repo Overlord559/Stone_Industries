@@ -122,8 +122,8 @@ export function Services() {
       <div className="si-section-glass mt-10 rounded-[1.75rem] border border-cyan-400/20 bg-cyan-400/[0.06] p-5 sm:p-6">
         <p className="text-sm font-semibold text-white">Free Revenue Leak Audit for local service businesses</p>
         <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-300">
-          Send your website and Google Business Profile — get a human-reviewed leak report and recommended fix
-          plan for Fresno and Central Valley operators.
+          Send us your website and Google Business Profile — our team sends a human-reviewed leak report and
+          recommended fix plan for Fresno and Central Valley service businesses.
         </p>
         <a
           href={`#${revenueLeakAuditSectionId}`}

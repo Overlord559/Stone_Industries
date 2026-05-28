@@ -204,7 +204,7 @@
 
     lines.push('', 'Estimated one-time total: ' + breakdown.totalLabel)
     lines.push('', 'Estimate only — final quote depends on scope, content readiness, and timeline.')
-    lines.push('', 'What I need:')
+    lines.push('', 'Service needed:')
     lines.push('Location (city/area — on-site or remote):')
     lines.push('Timeline/deadline:')
     lines.push('Best callback time:')
