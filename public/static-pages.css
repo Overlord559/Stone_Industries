@@ -75,7 +75,15 @@ body.si-static {
 @media (max-width: 768px) {
   .page-atmosphere--coastal::before {
     background-attachment: scroll;
-    background-position: center 32%;
+    background-size: 100% auto;
+    background-position: center top;
+    background-repeat: no-repeat;
+  }
+}
+
+@media (max-width: 480px) {
+  .page-atmosphere--coastal::before {
+    background-position: center 6%;
   }
 }
 

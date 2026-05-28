@@ -76,6 +76,15 @@
     background-attachment: fixed;
   }
 
+  .si-viewport-edge-vignette {
+    background: linear-gradient(
+      90deg,
+      transparent 58%,
+      rgba(12, 18, 34, 0.42) 78%,
+      rgba(10, 16, 30, 0.68) 100%
+    );
+  }
+
   .si-main-bg-scrim {
     background:
       linear-gradient(90deg, rgba(var(--si-scrim-rgb), 0.84) 0%, rgba(var(--si-scrim-rgb), 0.54) 34%, rgba(var(--si-scrim-rgb), 0.3) 56%, rgba(var(--si-scrim-rgb), 0.42) 78%, rgba(var(--si-scrim-rgb), 0.52) 100%),
@@ -734,16 +743,42 @@
     background-attachment: scroll;
   }
 
+  /* Tall mobile sections: cover over-zooms; width-fit keeps coastal/sign subject visible (STONE-001) */
   .si-main-parallax-bg {
-    background-position: 54% 26%;
+    background-size: 100% auto;
+    background-position: 68% top;
+    background-repeat: no-repeat;
+    background-color: var(--si-bg-deep);
   }
 
   .si-lower-parallax-bg {
-    background-position: center 32%;
+    background-size: 100% auto;
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-color: var(--si-bg-deep);
+  }
+
+  .si-viewport-edge-vignette {
+    background: linear-gradient(
+      90deg,
+      transparent 72%,
+      rgba(12, 18, 34, 0.26) 88%,
+      rgba(10, 16, 30, 0.36) 100%
+    );
   }
 
   #root {
     padding-bottom: calc(4.75rem + env(safe-area-inset-bottom, 0px));
+  }
+}
+
+@media (max-width: 480px) {
+  .si-main-parallax-bg {
+    background-position: 74% top;
+  }
+
+  .si-lower-parallax-bg {
+    background-position: center 6%;
   }
 }
 
