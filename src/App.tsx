@@ -4,6 +4,7 @@ import { Navbar } from './components/layout/Navbar'
 import { About } from './components/sections/About'
 import { Contact } from './components/sections/Contact'
 import { Hero } from './components/sections/Hero'
+import { MobileQuickJump } from './components/sections/MobileQuickJump'
 import { RevenueLeakAudit } from './components/sections/RevenueLeakAudit'
 import { Services } from './components/sections/Services'
 import { Vision } from './components/sections/Vision'
@@ -50,6 +51,7 @@ function App() {
             aria-hidden="true"
           />
           <Hero />
+          <MobileQuickJump />
         </div>
         <div className="relative isolate">
           <div

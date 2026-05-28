@@ -10,13 +10,35 @@ export function Vision() {
   return (
     <section
       id="vision"
-      className="si-vision-shell relative overflow-hidden border-y border-white/[0.12] bg-[linear-gradient(180deg,rgba(15,23,42,0.1),rgba(15,23,42,0.03))] py-20"
+      className="si-vision-shell relative overflow-hidden border-y border-white/[0.12] bg-[linear-gradient(180deg,rgba(15,23,42,0.1),rgba(15,23,42,0.03))] py-12 md:py-20"
     >
       <div className="pointer-events-none absolute inset-0 si-vision-grid" aria-hidden="true" />
       <div className="pointer-events-none absolute inset-0 si-vision-glow" aria-hidden="true" />
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cyan-400/25 to-transparent" />
 
-      <div className="relative mx-auto w-full max-w-7xl px-6 lg:px-10">
+      <div className="relative mx-auto w-full max-w-7xl px-6 md:hidden">
+        <div className="si-section-glass rounded-[1.75rem] border border-white/[0.14] p-6 shadow-[0_18px_60px_rgba(15,23,42,0.14)]">
+          <p className="text-xs font-semibold uppercase tracking-[0.32em] text-cyan-300/80">
+            Future Vision
+          </p>
+          <h2 className="mt-3 font-display text-2xl font-semibold tracking-[-0.05em] text-white">
+            Long-range roadmap — not sold today
+          </h2>
+          <p className="mt-3 text-sm leading-6 text-slate-400">
+            DALRM, AI-assisted operations, and autonomous logistics are documented separately. They are
+            future-direction research areas — not current products or contract offerings.
+          </p>
+          <a
+            href={`${visionPagePath}#local-first`}
+            className="si-secondary-cta mt-5 inline-flex min-h-11 items-center gap-2 rounded-full border border-cyan-400/25 bg-cyan-400/10 px-5 py-2.5 text-sm font-semibold !text-cyan-50 transition hover:border-cyan-300/40 hover:bg-cyan-400/15 hover:!text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
+          >
+            Explore future roadmap
+            <ArrowRight size={15} />
+          </a>
+        </div>
+      </div>
+
+      <div className="relative mx-auto hidden w-full max-w-7xl px-6 md:block lg:px-10">
         <SectionHeading
           eyebrow="Future Vision"
           title="Long-range roadmap—not what Stone Industries sells today."

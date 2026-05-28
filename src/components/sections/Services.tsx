@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
-import { buildPricingServiceHref, recurringCarePaths, services } from '../../data/site'
+import { buildPricingServiceHref, recurringCarePaths, services, servicesPagePath } from '../../data/site'
 import { revenueLeakAuditSectionId } from '../../data/revenueLeakAudit'
 import { trackAuditCtaClick, trackPricingCtaClick } from '../../lib/analytics'
 import { navigateToContactInquiry } from '../../lib/inquiryNavigation'
@@ -38,7 +38,7 @@ export function Services() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={revealViewport}
               transition={{ duration: 0.55, delay: index * 0.07, ease: [0.22, 1, 0.36, 1] }}
-              className="si-reveal-item si-section-glass si-card-tilt group relative flex flex-col overflow-hidden rounded-[1.75rem] border border-white/[0.14] p-7 shadow-[0_24px_80px_rgba(15,23,42,0.22)] lg:p-8"
+              className={`si-reveal-item si-section-glass si-card-tilt group relative flex flex-col overflow-hidden rounded-[1.75rem] border border-white/[0.14] p-7 shadow-[0_24px_80px_rgba(15,23,42,0.22)] lg:p-8${index >= 3 ? ' hidden md:flex' : ''}`}
             >
               <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cyan-300/40 to-transparent opacity-70" />
               <span className="inline-flex w-fit rounded-full border border-cyan-400/25 bg-cyan-400/10 px-2.5 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.24em] text-cyan-200">
@@ -92,6 +92,14 @@ export function Services() {
           )
         })}
       </div>
+
+      <a
+        href={servicesPagePath}
+        className="si-secondary-cta mt-6 inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-full border border-white/15 bg-white/5 px-5 py-3 text-sm font-semibold !text-white transition hover:bg-white/10 hover:!text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 md:hidden"
+      >
+        View all 7 services
+        <ArrowRight size={15} />
+      </a>
 
       <div
         id="recurring-care"

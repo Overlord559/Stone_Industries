@@ -23,7 +23,7 @@ export function Hero() {
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(6,182,212,0.07),_transparent_34%)]" />
       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-[linear-gradient(180deg,rgba(15,23,42,0),rgba(15,23,42,0.68))]" />
 
-      <div className="relative mx-auto w-full max-w-7xl px-6 py-20 lg:px-10 lg:py-28">
+      <div className="relative mx-auto w-full max-w-7xl px-6 py-14 md:py-20 lg:px-10 lg:py-28">
         <motion.div
           initial={{ opacity: 0.82, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
@@ -51,14 +51,14 @@ export function Hero() {
             Tier 1 IT cleanup, Wi-Fi and POS support, business websites, AI receptionist workflows, and mobile
             MVP prototypes—plus narrow operations coordination when a project needs structure.
           </p>
-          <p className="mt-5 text-sm font-medium uppercase tracking-[0.32em] text-slate-400">
+          <p className="mt-5 hidden text-sm font-medium uppercase tracking-[0.32em] text-slate-400 md:block">
             Reliable Today. Autonomous Tomorrow.
           </p>
           <p className="mt-3 max-w-2xl text-sm leading-6 text-slate-400">
             <span className="font-medium text-slate-300">Service area:</span> {serviceAreaPrimary}.{' '}
-            {serviceAreaOnSite}
+            <span className="hidden md:inline">{serviceAreaOnSite}</span>
           </p>
-          <div className="mt-6 flex flex-wrap gap-2">
+          <div className="mt-6 hidden flex-wrap gap-2 md:flex">
             {[
               'Custom PC builds & upgrades',
               'Tier 1 IT support',
@@ -75,11 +75,11 @@ export function Hero() {
               </span>
             ))}
           </div>
-          <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:items-center">
+          <div className="mt-8 flex flex-col gap-3 md:mt-10 md:gap-4 sm:flex-row sm:flex-wrap sm:items-center">
             <a
               href={`#${revenueLeakAuditSectionId}`}
               onClick={() => trackAuditCtaClick('hero')}
-              className="si-primary-cta pointer-events-auto inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold !text-slate-950 transition hover:bg-slate-200 hover:!text-slate-950 [&_svg]:!stroke-slate-950"
+              className="si-primary-cta pointer-events-auto inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold !text-slate-950 transition hover:bg-slate-200 hover:!text-slate-950 [&_svg]:!stroke-slate-950"
             >
               Get Free Revenue Leak Audit
               <ArrowRight size={16} />
@@ -87,21 +87,21 @@ export function Hero() {
             <a
               href={pricingPagePath}
               onClick={() => trackPricingCtaClick('hero')}
-              className="si-secondary-cta pointer-events-auto inline-flex items-center justify-center gap-2 rounded-full border border-cyan-400/25 bg-cyan-400/10 px-6 py-3 text-sm font-semibold !text-cyan-50 transition hover:border-cyan-300/40 hover:bg-cyan-400/15 hover:!text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
+              className="si-secondary-cta pointer-events-auto inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-cyan-400/25 bg-cyan-400/10 px-6 py-3 text-sm font-semibold !text-cyan-50 transition hover:border-cyan-300/40 hover:bg-cyan-400/15 hover:!text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
             >
               View Pricing &amp; Packages
               <ArrowRight size={16} />
             </a>
             <a
               href="#contact"
-              className="si-secondary-cta pointer-events-auto inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm font-semibold !text-white transition hover:bg-white/10 hover:!text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
+              className="si-secondary-cta pointer-events-auto hidden min-h-11 items-center justify-center gap-2 rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm font-semibold !text-white transition hover:bg-white/10 hover:!text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 md:inline-flex"
             >
               Send an inquiry
               <ArrowRight size={16} />
             </a>
             <a
               href={capabilityBriefPath}
-              className="si-secondary-cta pointer-events-auto inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm font-semibold !text-white transition hover:bg-white/10 hover:!text-white [&_svg]:!stroke-white"
+              className="si-secondary-cta pointer-events-auto hidden min-h-11 items-center justify-center gap-2 rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm font-semibold !text-white transition hover:bg-white/10 hover:!text-white md:inline-flex [&_svg]:!stroke-white"
             >
               View Capability Brief
               <FileText size={16} />
@@ -109,16 +109,26 @@ export function Hero() {
             <a
               href="#services"
               onClick={() => trackServicesCtaClick('hero')}
-              className="pointer-events-auto inline-flex items-center justify-center gap-2 rounded-full px-2 py-3 text-sm font-medium !text-slate-300 transition hover:!text-white sm:px-4"
+              className="pointer-events-auto hidden min-h-11 items-center justify-center gap-2 rounded-full px-2 py-3 text-sm font-medium !text-slate-300 transition hover:!text-white sm:px-4 md:inline-flex"
             >
               View Service Lines
               <Waypoints size={16} className="stroke-current" />
             </a>
           </div>
+          <a
+            href={`#${revenueLeakAuditSectionId}`}
+            onClick={() => trackAuditCtaClick('hero')}
+            className="pointer-events-auto mt-3 inline-flex min-h-11 items-center text-sm font-medium text-cyan-200/90 underline-offset-4 hover:text-cyan-100 hover:underline md:hidden"
+          >
+            Skip to free audit ↓
+          </a>
           <p className="mt-4 max-w-2xl text-sm leading-6 text-slate-400">
-            Browse starting packages and scope on the pricing pages, then submit an inquiry for a
-            confirmed quote. Capability brief available for subcontracting outreach. No booking
-            system on this site. Prefer phone?{' '}
+            <span className="hidden md:inline">
+              Browse starting packages and scope on the pricing pages, then submit an inquiry for a
+              confirmed quote. Capability brief available for subcontracting outreach. No booking
+              system on this site.{' '}
+            </span>
+            Prefer phone?{' '}
             <a
               className="pointer-events-auto font-medium text-slate-300 underline hover:text-white"
               href={contactPhoneHref}
@@ -128,7 +138,7 @@ export function Hero() {
             .
           </p>
 
-          <div className="mt-12 grid gap-6 border-t border-white/10 pt-8 sm:grid-cols-3">
+          <div className="mt-12 hidden gap-6 border-t border-white/10 pt-8 sm:grid-cols-3 md:grid">
             {[
               ['Available today', 'Custom PC builds, Tier 1 IT, websites, Wi-Fi/POS, AI receptionist workflows, and mobile MVP prototypes for operators who need practical help now.'],
               ['Who we serve', 'Local small businesses, home offices, and partners evaluating subcontracting or scoped operational support.'],

@@ -458,6 +458,10 @@
     scroll-margin-top: 5.5rem;
   }
 
+  #revenue-leak-audit {
+    scroll-margin-top: 5.5rem;
+  }
+
   .si-service-object {
     position: relative;
     display: inline-flex;
