@@ -38,8 +38,19 @@
     appEl.classList.toggle('si-hidden', !show)
   }
 
-  function apiBase() {
-    return '/.netlify/functions'
+  /** Netlify rollback vs Cloudflare Pages Functions — see docs/CLOUDFLARE_MIGRATION.md */
+  function adminApiPaths() {
+    var host = (window.location.hostname || '').toLowerCase()
+    if (host.indexOf('netlify.app') !== -1) {
+      return {
+        list: '/.netlify/functions/admin-leads',
+        update: '/.netlify/functions/admin-lead-update',
+      }
+    }
+    return {
+      list: '/admin/leads',
+      update: '/admin/lead-update',
+    }
   }
 
   function formatDate(value) {
@@ -80,7 +91,7 @@
     statusEl.className = 'si-loading'
     listEl.innerHTML = ''
 
-    var response = await fetch(apiBase() + '/admin-leads?' + buildQuery(), {
+    var response = await fetch(adminApiPaths().list + '?' + buildQuery(), {
       headers: { 'X-Stone-Admin-Token': getToken() },
     })
 
@@ -241,7 +252,7 @@
     var msg = document.getElementById('si-save-status-msg')
     msg.textContent = 'Saving…'
 
-    var response = await fetch(apiBase() + '/admin-lead-update', {
+    var response = await fetch(adminApiPaths().update, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
