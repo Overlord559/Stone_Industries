@@ -276,9 +276,11 @@
       '<button type="button" class="si-package-modal__close" data-si-package-close aria-label="Close request form">&times;</button>' +
       '<p class="eyebrow">Package request</p>' +
       '<h2 id="si-package-modal-title">Request This Package</h2>' +
-      '<p class="page-lead si-package-modal__lead">Tell us how to reach you. Stone Industries helps Fresno/Clovis homes and small businesses with practical tech problems — final quote confirmed in writing before work begins.</p>' +
+      '<p class="page-lead si-package-modal__lead">Works for Fresno/Clovis homes and small businesses. Final quote confirmed in writing before work begins — no payment on this site today.</p>' +
+      '<h3 class="si-package-section-title">Package summary</h3>' +
       '<div class="si-package-summary" data-si-package-summary></div>' +
       '<form class="si-inquiry-form si-package-request-form" data-si-package-form novalidate>' +
+      '<h3 class="si-package-section-title si-package-section-title--contact">Tell us where to send the quote</h3>' +
       '<div class="si-inquiry-honeypot" aria-hidden="true"><label>Website<input name="website" type="text" tabindex="-1" autocomplete="off"></label></div>' +
       '<div class="si-inquiry-grid">' +
       '<label>Name *<input name="name" required autocomplete="name"></label>' +

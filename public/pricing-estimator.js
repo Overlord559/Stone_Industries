@@ -262,6 +262,8 @@
       '</div>' +
       '<p class="note-muted" data-estimator-notes></p>' +
       '</div>' +
+      '<p class="si-estimator-request-hint" data-estimator-request-hint hidden>' +
+      'Ready for help? <strong>Request this package</strong> and we’ll contact you with a quote or next available service window. Works for homes and small businesses in Fresno/Clovis.</p>' +
       '<div class="cta-band si-estimator-ctas" data-estimator-ctas hidden>' +
       '<button type="button" class="cta cta-primary" data-estimator-request data-analytics-event="pricing_request_open">Request This Package</button>' +
       '<a class="cta cta-secondary" href="./index.html#contact">Send an inquiry</a>' +
@@ -305,11 +307,13 @@
     var totalValue = root.querySelector('[data-estimator-total-value]')
     var notesEl = root.querySelector('[data-estimator-notes]')
     var ctasWrap = root.querySelector('[data-estimator-ctas]')
+    var requestHint = root.querySelector('[data-estimator-request-hint]')
     var emailActionsWrap = root.querySelector('[data-estimator-email-actions]')
     var requestButton = root.querySelector('[data-estimator-request]')
 
     function setEstimatorCtasVisible(visible) {
       ctasWrap.hidden = !visible
+      if (requestHint) requestHint.hidden = !visible
       if (emailActionsWrap) emailActionsWrap.hidden = !visible
     }
 

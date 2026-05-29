@@ -174,7 +174,9 @@ ul {
 
 .site-nav {
   display: flex;
+  flex-direction: row;
   flex-wrap: wrap;
+  align-items: center;
   gap: 0.5rem 0.85rem;
   margin-bottom: 1.25rem;
   padding-bottom: 1rem;
@@ -182,52 +184,64 @@ ul {
   font-size: 0.875rem;
 }
 
-/* Sticky semi-transparent nav — static HTML pages only */
-body.si-static .site-nav {
-  position: fixed;
+/* Sticky top nav — shell sits outside .page-hero (backdrop-filter breaks fixed positioning) */
+body.si-static .site-nav-bar {
+  position: sticky;
   top: 0;
-  left: 0;
-  right: 0;
   z-index: 200;
-  margin: 0;
-  padding: 0.65rem max(1.25rem, calc((100vw - 56rem) / 2 + 1.25rem));
+  width: 100%;
   border-bottom: 1px solid rgba(255, 255, 255, 0.14);
-  border-radius: 0;
-  background: rgba(12, 18, 34, 0.88);
+  background: rgba(12, 18, 34, 0.92);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   box-shadow: 0 8px 28px rgba(2, 6, 23, 0.38);
 }
 
-body.si-static .page-hero {
-  padding-top: 4.5rem;
+body.si-static .site-nav-bar .site-nav {
+  flex-wrap: nowrap;
+  gap: 0.35rem 0.65rem;
+  max-width: 56rem;
+  margin: 0 auto;
+  padding: 0.55rem 1.25rem;
+  border-bottom: 0;
+  margin-bottom: 0;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
 }
 
-body.si-static .site-nav a {
+body.si-static .site-nav-bar .site-nav::-webkit-scrollbar {
+  display: none;
+}
+
+body.si-static .site-nav-bar .site-nav a {
+  flex: 0 0 auto;
+  white-space: nowrap;
   color: #cbd5e1 !important;
 }
 
-body.si-static .site-nav a:hover,
-body.si-static .site-nav a:focus-visible {
+body.si-static .site-nav-bar .site-nav a:hover,
+body.si-static .site-nav-bar .site-nav a:focus-visible {
   color: #ffffff !important;
   background: rgba(255, 255, 255, 0.1);
 }
 
-@media (max-width: 375px) {
-  body.si-static .site-nav {
-    padding-top: 0.55rem;
-    padding-bottom: 0.55rem;
-    gap: 0.35rem 0.55rem;
-    font-size: 0.8125rem;
-  }
+body.si-static .page-main {
+  padding-top: 0.85rem;
+}
 
-  body.si-static .page-hero {
-    padding-top: 4.75rem;
+@media (max-width: 375px) {
+  body.si-static .site-nav-bar .site-nav {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    gap: 0.3rem 0.5rem;
+    font-size: 0.8125rem;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  body.si-static .site-nav {
+  body.si-static .site-nav-bar {
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
     background: rgba(12, 18, 34, 0.96);
@@ -651,8 +665,35 @@ body.si-package-modal-open {
 }
 
 .si-package-modal__lead {
-  margin-top: 0.75rem;
-  font-size: 0.95rem;
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+  line-height: 1.55;
+}
+
+.si-package-section-title {
+  margin: 0.85rem 0 0.45rem;
+  font-family: 'IBM Plex Sans', system-ui, sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #a5f3fc;
+}
+
+.si-package-section-title--contact {
+  margin-top: 1rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.si-estimator-request-hint {
+  margin: 0.75rem 0 0;
+  padding: 0.75rem 0.9rem;
+  border: 1px solid rgba(34, 211, 238, 0.2);
+  border-radius: 0.75rem;
+  background: rgba(6, 182, 212, 0.06);
+  font-size: 0.875rem;
+  line-height: 1.55;
 }
 
 .si-package-modal__close {
@@ -671,11 +712,13 @@ body.si-package-modal-open {
 }
 
 .si-package-summary {
-  margin-top: 1rem;
+  margin-top: 0.35rem;
   padding: 0.85rem 0.95rem;
   border-radius: 0.9rem;
   border: 1px solid rgba(34, 211, 238, 0.18);
   background: rgba(34, 211, 238, 0.06);
+  max-height: 7.5rem;
+  overflow: auto;
 }
 
 .si-package-summary p {
