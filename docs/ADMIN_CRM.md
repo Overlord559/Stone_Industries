@@ -91,11 +91,28 @@ Existing public vars unchanged:
 
 ---
 
+## Phase 2 optional fields (not required before Friday deploy)
+
+Future Supabase / CRM columns for PaymentOps — **schema not implemented yet**:
+
+| Field | Purpose |
+|-------|---------|
+| `payment_status` | e.g. `none`, `link_sent`, `paid`, `refunded` |
+| `payment_link_sent_at` | When Edward sent Stripe Payment Link |
+| `stripe_payment_link` | URL or Stripe link ID (operator reference) |
+| `deposit_required` | Boolean — scope requires deposit before book |
+| `deposit_paid` | Boolean — deposit confirmed in Stripe Dashboard |
+| `quoted_amount` | Written quote amount in USD |
+
+Track manually in CRM notes until migration + Admin UI update. See [`PAYMENTOPS.md`](PAYMENTOPS.md).
+
+---
+
 ## Intentionally not built (v0)
 
 - No deletes
 - No bulk actions
-- No payment actions
+- No payment actions in Admin UI
 - No outbound email from admin
 - No Stripe integration
 - No customer-facing portal
@@ -120,4 +137,5 @@ Existing public vars unchanged:
 - Booking (Calendly v0): [`BOOKINGOPS_PHASE2.md`](BOOKINGOPS_PHASE2.md)
 - Deployment: [`DEPLOYMENT.md`](DEPLOYMENT.md)
 - Outbound email/SMS (Phase 2): [`EMAIL_PHASE2.md`](EMAIL_PHASE2.md)
+- PaymentOps (manual v0): [`PAYMENTOPS.md`](PAYMENTOPS.md)
 - Payments (Phase 2): [`PAYMENT_PHASE2.md`](PAYMENT_PHASE2.md)

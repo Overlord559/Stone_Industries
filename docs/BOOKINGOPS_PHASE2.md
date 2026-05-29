@@ -16,6 +16,9 @@
 | **Do not build** | Custom booking app, queue engine, ETA calculator, SMS bot |
 | **Website truth** | Package/inquiry form captures **intent**; Calendly captures **confirmed time** only after customer books |
 | **Admin CRM** | Lead status `booked` = operator confirmed (Calendly event or manual) |
+| **Payment** | **Separate from booking** — Stripe Payment Link sent manually after quote — see [`PAYMENTOPS.md`](PAYMENTOPS.md) |
+
+**Booking ≠ payment.** Calendly confirms **time**. Payment Link confirms **deposit/payment** when needed. Same-day service still requires **≥2 hours minimum notice** when available. No automated ETA or payment system yet.
 
 ---
 
@@ -71,7 +74,8 @@ Create one primary event:
 - Queue position / “you are #3 in line”
 - Automated confirmation **email** or **SMS**
 - Booking confirmed until Calendly (or operator) confirms
-- Payment collected on website
+- Payment collected on website (Payment Links sent manually after quote only)
+- Deposit charged automatically at booking
 
 ---
 
@@ -108,5 +112,6 @@ Outbound automation is **not** part of BookingOps v0. See [`EMAIL_PHASE2.md`](EM
 ## Related
 
 - Admin CRM: [`ADMIN_CRM.md`](ADMIN_CRM.md)
+- PaymentOps (manual links): [`PAYMENTOPS.md`](PAYMENTOPS.md)
 - Email/SMS Phase 2: [`EMAIL_PHASE2.md`](EMAIL_PHASE2.md)
-- Payments: [`PAYMENT_PHASE2.md`](PAYMENT_PHASE2.md)
+- Payments Phase 2: [`PAYMENT_PHASE2.md`](PAYMENT_PHASE2.md)
