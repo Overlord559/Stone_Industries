@@ -19,6 +19,8 @@
     window.gtag('event', event, payload)
   }
 
+  window.__SI_trackEvent = track
+
   function initGa() {
     if (!gaId) return
     window.dataLayer = window.dataLayer || []
@@ -52,6 +54,7 @@
   function inferLocation(el) {
     if (el.classList && el.classList.contains('cta-primary')) return 'static_primary'
     if (el.classList && el.classList.contains('cta-secondary')) return 'static_secondary'
+    if (el.tagName === 'BUTTON') return 'static_button'
     return 'static_page'
   }
 
@@ -59,6 +62,18 @@
     document.addEventListener('click', function (event) {
       var target = event.target
       if (!target || !target.closest) return
+
+      var analyticsEl = target.closest('[data-analytics-event]')
+      if (analyticsEl) {
+        track(analyticsEl.getAttribute('data-analytics-event'), {
+          cta_location: analyticsEl.getAttribute('data-analytics-location') || inferLocation(analyticsEl),
+          context:
+            analyticsEl.getAttribute('data-package-name') ||
+            analyticsEl.getAttribute('data-customer-type') ||
+            undefined,
+        })
+      }
+
       var link = target.closest('a')
       if (!link) return
       var href = (link.getAttribute('href') || '').toLowerCase()

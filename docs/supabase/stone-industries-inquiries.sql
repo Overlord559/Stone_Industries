@@ -40,3 +40,5 @@ grant insert (name, email, phone, service_requested, city, message, source_page)
 
 -- Authenticated dashboard access is out of scope for this pass.
 -- Use Supabase Table Editor or service role in a trusted admin context only.
+--
+-- Extended package-request columns (optional): see stone-industries-inquiries-extended-fields.sql

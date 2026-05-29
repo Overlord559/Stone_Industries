@@ -45,7 +45,8 @@
 | Invoicing | **Bluevine** invoices/payment links near-term — no custom invoice app |
 | Checkout | None on website; no card data collection |
 | Quote | Fixed packages for defined scope; written confirmation before work; deposits per tier on pricing page |
-| Stripe | **Not implemented** — Payment Links/invoices planned after quote; no card data on site |
+| Stripe | **Not implemented** — Payment Links/invoices planned after quote; no card data on site. See [`PAYMENT_PHASE2.md`](PAYMENT_PHASE2.md) |
+| Package request structured fields | Apply [`docs/supabase/stone-industries-inquiries-extended-fields.sql`](supabase/stone-industries-inquiries-extended-fields.sql) in Supabase for `selected_package`, `package_price_or_estimate`, etc. Frontend falls back to legacy columns until migration applied. |
 | Handoff | Final balance before launch/transfer/credentials unless written exception |
 | Change orders | Written approval for out-of-scope; hourly or re-quote |
 | Internal template | [`SERVICE_AGREEMENT_BASELINE.md`](SERVICE_AGREEMENT_BASELINE.md) |

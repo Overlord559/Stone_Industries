@@ -158,22 +158,51 @@
     if (phone) payload.phone = phone
     if (city) payload.city = city
 
-    return { ok: true, payload: payload }
+    return { ok: true, payload: payload, enhanced: buildEnhancedFields(input, prefill) }
   }
 
-  async function submitPayload(payload) {
-    var cfg = config()
-    var response = await fetch(cfg.url.replace(/\/$/, '') + '/rest/v1/inquiries', {
-      method: 'POST',
-      headers: {
-        apikey: cfg.anonKey,
-        Authorization: 'Bearer ' + cfg.anonKey,
-        'Content-Type': 'application/json',
-        Prefer: 'return=minimal',
+  function buildEnhancedFields(input, prefill) {
+    return {
+      customer_type: input.customerType,
+      business_name: input.businessName ? input.businessName.slice(0, 120) : null,
+      selected_package: (prefill.selectedPackage || '').slice(0, 200),
+      package_price_or_estimate: (prefill.packagePriceOrEstimate || '').slice(0, 120),
+      urgency: input.urgency,
+      preferred_contact: input.preferredContact,
+      service_address_or_area: input.serviceAddressOrArea.slice(0, 200),
+      best_time_to_contact: input.bestTimeToContact
+        ? input.bestTimeToContact.slice(0, 120)
+        : null,
+      wants_deposit_link: input.wantsDepositLink === 'yes',
+      estimator_selections: {
+        serviceSlug: prefill.serviceSlug || null,
+        packageId: prefill.packageId || null,
+        selectedPackage: prefill.selectedPackage || null,
+        packagePriceOrEstimate: prefill.packagePriceOrEstimate || null,
+        packageIncludes: prefill.packageIncludes || [],
+        summary: buildEstimatorSummary(prefill),
       },
-      body: JSON.stringify(payload),
-    })
-    if (!response.ok) throw new Error('submit_failed')
+      request_metadata: {
+        sourcePage: SOURCE_PAGE,
+        submittedAt: new Date().toISOString(),
+        customerType: input.customerType,
+        serviceCategory: prefill.serviceCategory || null,
+        descriptionPreview: input.description.slice(0, 200),
+      },
+    }
+  }
+
+  function trackPricingEvent(eventName, detail) {
+    if (typeof window.__SI_trackEvent === 'function') {
+      window.__SI_trackEvent(eventName, detail || {})
+    }
+  }
+
+  async function submitPayload(basePayload, enhancedFields) {
+    if (typeof window.SI_submitInquiryWithFallback !== 'function') {
+      throw new Error('submit_unavailable')
+    }
+    return window.SI_submitInquiryWithFallback(basePayload, enhancedFields)
   }
 
   var modalEl
@@ -229,6 +258,10 @@
     if (businessWrap) businessWrap.hidden = true
     modalEl.hidden = false
     setBodyScrollLocked(true)
+    trackPricingEvent('pricing_request_open', {
+      context: prefill.selectedPackage || prefill.serviceCategory || 'pricing',
+      cta_location: 'package_modal',
+    })
     var firstField = formEl.querySelector('input[name="name"]')
     if (firstField) firstField.focus()
   }
@@ -268,7 +301,7 @@
       '<label class="si-package-checkbox"><input type="checkbox" name="wants_deposit_link" value="yes"> After quote confirmation, I may want a deposit link to lock scheduling (no payment on this site today).</label>' +
       '<p class="si-inquiry-status" data-si-package-status role="alert" aria-live="polite" hidden></p>' +
       '<div class="cta-band si-package-modal__actions">' +
-      '<button type="submit" class="cta cta-primary">Submit package request</button>' +
+      '<button type="submit" class="cta cta-primary" data-analytics-event="pricing_request_submit">Submit package request</button>' +
       '<button type="button" class="cta cta-secondary" data-si-package-close>Cancel</button>' +
       '</div>' +
       '<div class="si-email-actions">' +
@@ -327,6 +360,7 @@
       if (!validation.ok) {
         statusEl.textContent = validation.error
         statusEl.classList.add('is-error')
+        trackPricingEvent('pricing_request_error', { context: 'validation' })
         if (mailtoFallback) mailtoFallback.hidden = true
         return
       }
@@ -335,6 +369,7 @@
         statusEl.textContent =
           'Online capture is not configured in this environment. Use “Send this request via email app” or call 559-579-9376.'
         statusEl.classList.add('is-error')
+        trackPricingEvent('pricing_request_error', { context: 'not_configured' })
         if (mailtoFallback) {
           mailtoFallback.hidden = false
           mailtoFallback.href = buildMailtoHref(
@@ -362,7 +397,11 @@
       if (mailtoFallback) mailtoFallback.hidden = true
 
       try {
-        await submitPayload(validation.payload)
+        await submitPayload(validation.payload, validation.enhanced)
+        trackPricingEvent('pricing_request_success', {
+          context: currentPrefill.selectedPackage || 'package',
+          cta_location: currentPrefill.serviceCategory || 'pricing',
+        })
         statusEl.textContent =
           'Package request received. Stone Industries will follow up by your preferred contact method. For urgent help, call 559-579-9376.'
         statusEl.classList.add('is-success')
@@ -370,6 +409,7 @@
           el.disabled = true
         })
       } catch (_error) {
+        trackPricingEvent('pricing_request_error', { context: 'submit' })
         statusEl.textContent =
           'We could not save your request right now. Use email or call 559-579-9376 — your details are still in the form.'
         statusEl.classList.add('is-error')

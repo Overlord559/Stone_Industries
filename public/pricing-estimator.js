@@ -197,6 +197,11 @@
 
   function openPackageRequest(svc, pkg, breakdown) {
     if (typeof window.SI_openPackageRequest !== 'function') return
+    var requestButton = document.querySelector('[data-estimator-request]')
+    if (requestButton) {
+      requestButton.setAttribute('data-package-name', pkg.name)
+      requestButton.setAttribute('data-analytics-location', svc.slug)
+    }
     window.SI_openPackageRequest({
       serviceCategory: svc.title,
       serviceSlug: svc.slug,
@@ -258,7 +263,7 @@
       '<p class="note-muted" data-estimator-notes></p>' +
       '</div>' +
       '<div class="cta-band si-estimator-ctas" data-estimator-ctas hidden>' +
-      '<button type="button" class="cta cta-primary" data-estimator-request>Request This Package</button>' +
+      '<button type="button" class="cta cta-primary" data-estimator-request data-analytics-event="pricing_request_open">Request This Package</button>' +
       '<a class="cta cta-secondary" href="./index.html#contact">Send an inquiry</a>' +
       '<a class="cta cta-secondary" href="#how-payment-works">Deposit &amp; payment info</a>' +
       '</div>' +

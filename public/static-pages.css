@@ -182,6 +182,58 @@ ul {
   font-size: 0.875rem;
 }
 
+/* Sticky semi-transparent nav — static HTML pages only */
+body.si-static .site-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 200;
+  margin: 0;
+  padding: 0.65rem max(1.25rem, calc((100vw - 56rem) / 2 + 1.25rem));
+  border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 0;
+  background: rgba(12, 18, 34, 0.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 8px 28px rgba(2, 6, 23, 0.38);
+}
+
+body.si-static .page-hero {
+  padding-top: 4.5rem;
+}
+
+body.si-static .site-nav a {
+  color: #cbd5e1 !important;
+}
+
+body.si-static .site-nav a:hover,
+body.si-static .site-nav a:focus-visible {
+  color: #ffffff !important;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+@media (max-width: 375px) {
+  body.si-static .site-nav {
+    padding-top: 0.55rem;
+    padding-bottom: 0.55rem;
+    gap: 0.35rem 0.55rem;
+    font-size: 0.8125rem;
+  }
+
+  body.si-static .page-hero {
+    padding-top: 4.75rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.si-static .site-nav {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: rgba(12, 18, 34, 0.96);
+  }
+}
+
 .site-nav a {
   padding: 0.35rem 0.65rem;
   border-radius: 9999px;
