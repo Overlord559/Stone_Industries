@@ -120,7 +120,7 @@
     container.innerHTML =
       '<section class="page-section si-inquiry-section">' +
       '<h2><span class="label">Inquiry</span> Send a service inquiry</h2>' +
-      '<p class="page-lead">Submit the form below or use email/phone if you prefer. Final quote confirmed before work begins.</p>' +
+      '<p class="page-lead">Homes and small businesses welcome. Submit the form below or use email/phone if you prefer. Final quote confirmed before work begins.</p>' +
       '<form class="si-inquiry-form" data-si-inquiry-form novalidate>' +
       '<div class="si-inquiry-honeypot" aria-hidden="true">' +
       '<label>Website<input name="website" type="text" tabindex="-1" autocomplete="off"></label>' +

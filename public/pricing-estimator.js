@@ -145,9 +145,8 @@
     })
   }
 
-  function buildMailto(svc, pkg, breakdown) {
+  function buildEstimatorSummary(svc, pkg, breakdown) {
     var lines = [
-      'Package interest (estimate):',
       'Service: ' + svc.title,
       'Package: ' + pkg.name + ' (' + pkg.priceLabel + ')',
     ]
@@ -160,59 +159,53 @@
     }
 
     if (breakdown.extraPagesLine) lines.push(breakdown.extraPagesLine)
-
     if (pkg.pageLimitNote && breakdown.estimatedPages == null) lines.push('Page note: ' + pkg.pageLimitNote)
 
-    lines.push('', 'Package price: ' + breakdown.packageLabel)
+    lines.push('Package price: ' + breakdown.packageLabel)
 
     if (breakdown.includedAddons.length) {
-      lines.push('Included in package (not charged again):')
-      breakdown.includedAddons.forEach(function (n) {
-        lines.push('  - ' + n)
-      })
+      lines.push('Included in package (not charged again): ' + breakdown.includedAddons.join('; '))
     }
 
     if (breakdown.oneTimeAddons.length) {
-      lines.push('Selected one-time add-ons:')
-      breakdown.oneTimeAddons.forEach(function (row) {
-        lines.push('  - ' + row.label)
-      })
-    } else {
-      lines.push('Selected one-time add-ons: None')
+      lines.push(
+        'Selected one-time add-ons: ' +
+          breakdown.oneTimeAddons
+            .map(function (row) {
+              return row.label
+            })
+            .join('; '),
+      )
     }
 
     if (breakdown.hourlyNotes.length) {
-      lines.push('Hourly / variable (not in one-time total):')
-      breakdown.hourlyNotes.forEach(function (n) {
-        lines.push('  - ' + n)
-      })
+      lines.push('Hourly / variable: ' + breakdown.hourlyNotes.join('; '))
     }
 
     if (breakdown.monthlyNotes.length) {
-      lines.push('Monthly care (billed separately):')
-      breakdown.monthlyNotes.forEach(function (n) {
-        lines.push('  - ' + n)
-      })
+      lines.push('Monthly care (separate): ' + breakdown.monthlyNotes.join('; '))
     }
 
     if (breakdown.customNotes.length) {
-      lines.push('Notes:')
-      breakdown.customNotes.forEach(function (n) {
-        lines.push('  - ' + n)
-      })
+      lines.push('Notes: ' + breakdown.customNotes.join(' '))
     }
 
-    lines.push('', 'Estimated one-time total: ' + breakdown.totalLabel)
-    lines.push('', 'Estimate only — final quote depends on scope, content readiness, and timeline.')
-    lines.push('', 'Service needed:')
-    lines.push('Location (city/area — on-site or remote):')
-    lines.push('Timeline/deadline:')
-    lines.push('Best callback time:')
+    lines.push('Estimated one-time total: ' + breakdown.totalLabel)
+    lines.push('Estimate only — final quote depends on scope, content readiness, and timeline.')
+    return lines.join('\n')
+  }
 
-    var params = new URLSearchParams()
-    params.set('subject', svc.inquirySubject)
-    params.set('body', lines.join('\n'))
-    return 'mailto:stoneindustries0.llc@gmail.com?' + params.toString()
+  function openPackageRequest(svc, pkg, breakdown) {
+    if (typeof window.SI_openPackageRequest !== 'function') return
+    window.SI_openPackageRequest({
+      serviceCategory: svc.title,
+      serviceSlug: svc.slug,
+      selectedPackage: pkg.name,
+      packageId: pkg.id,
+      packagePriceOrEstimate: breakdown.totalLabel,
+      packageIncludes: pkg.includes || [],
+      estimatorSummary: buildEstimatorSummary(svc, pkg, breakdown),
+    })
   }
 
   function render() {
@@ -265,7 +258,7 @@
       '<p class="note-muted" data-estimator-notes></p>' +
       '</div>' +
       '<div class="cta-band si-estimator-ctas" data-estimator-ctas hidden>' +
-      '<a class="cta cta-primary" data-estimator-mailto href="#">Request This Package</a>' +
+      '<button type="button" class="cta cta-primary" data-estimator-request>Request This Package</button>' +
       '<a class="cta cta-secondary" href="./index.html#contact">Send an inquiry</a>' +
       '<a class="cta cta-secondary" href="#how-payment-works">Deposit &amp; payment info</a>' +
       '</div>' +
@@ -308,7 +301,7 @@
     var notesEl = root.querySelector('[data-estimator-notes]')
     var ctasWrap = root.querySelector('[data-estimator-ctas]')
     var emailActionsWrap = root.querySelector('[data-estimator-email-actions]')
-    var mailtoLink = root.querySelector('[data-estimator-mailto]')
+    var requestButton = root.querySelector('[data-estimator-request]')
 
     function setEstimatorCtasVisible(visible) {
       ctasWrap.hidden = !visible
@@ -706,7 +699,17 @@
       notesEl.textContent = noteParts.length ? noteParts.join(' ') : ''
       breakdownWrap.hidden = false
       setEstimatorCtasVisible(true)
-      mailtoLink.href = buildMailto(svc, pkg, breakdown)
+    }
+
+    if (requestButton) {
+      requestButton.addEventListener('click', function () {
+        var svc = currentService()
+        var pkg = currentPackage()
+        if (!svc || !pkg) return
+        var breakdown = computeBreakdown()
+        if (!breakdown) return
+        openPackageRequest(svc, pkg, breakdown)
+      })
     }
 
     function onServiceChange() {

@@ -550,6 +550,124 @@ ul {
   overflow: hidden;
 }
 
+/* Package request modal (pricing.html) */
+html.si-package-modal-open,
+body.si-package-modal-open {
+  overflow: hidden;
+}
+
+.si-package-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+}
+
+.si-package-modal[hidden] {
+  display: none !important;
+}
+
+.si-package-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(2, 6, 23, 0.72);
+  backdrop-filter: blur(4px);
+}
+
+.si-package-modal__panel {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 42rem);
+  max-height: min(92vh, 900px);
+  overflow: auto;
+  border-radius: 1.25rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: linear-gradient(
+    180deg,
+    rgba(15, 23, 42, 0.96),
+    rgba(12, 18, 34, 0.98)
+  );
+  padding: 1.25rem 1.1rem 1.35rem;
+  box-shadow: 0 24px 80px rgba(2, 6, 23, 0.55);
+}
+
+.si-package-modal__panel h2 {
+  margin: 0.35rem 0 0;
+  font-size: clamp(1.35rem, 4vw, 1.75rem);
+}
+
+.si-package-modal__lead {
+  margin-top: 0.75rem;
+  font-size: 0.95rem;
+}
+
+.si-package-modal__close {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  border: 0;
+  background: rgba(255, 255, 255, 0.06);
+  color: #e2e8f0;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 9999px;
+  font-size: 1.35rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.si-package-summary {
+  margin-top: 1rem;
+  padding: 0.85rem 0.95rem;
+  border-radius: 0.9rem;
+  border: 1px solid rgba(34, 211, 238, 0.18);
+  background: rgba(34, 211, 238, 0.06);
+}
+
+.si-package-summary p {
+  margin: 0.35rem 0;
+  font-size: 0.9rem;
+  color: #e2e8f0;
+}
+
+.si-package-request-form {
+  margin-top: 1rem;
+}
+
+.si-package-checkbox {
+  display: flex;
+  gap: 0.55rem;
+  align-items: flex-start;
+  font-size: 0.85rem;
+  color: rgba(203, 213, 225, 0.95);
+}
+
+.si-package-checkbox input {
+  margin-top: 0.2rem;
+}
+
+.si-package-modal__actions {
+  margin-top: 0.5rem;
+}
+
+@media (max-width: 375px) {
+  .si-package-modal {
+    padding: 0.5rem;
+  }
+
+  .si-package-modal__panel {
+    padding: 1rem 0.85rem 1.1rem;
+    max-height: 96vh;
+  }
+
+  .si-package-modal__actions .cta {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
 /* Package estimator (pricing.html) */
 .si-estimator {
   min-width: 0;
