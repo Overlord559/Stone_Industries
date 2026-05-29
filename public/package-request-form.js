@@ -298,6 +298,7 @@
       '<label>How soon do you need help? *<select name="urgency" required><option value="">Choose urgency</option><option value="today">Today / ASAP</option><option value="this_week">This week</option><option value="this_month">This month</option><option value="planning">Planning / flexible</option></select></label>' +
       '<label>Preferred contact *<select name="preferred_contact" required><option value="">Choose method</option><option value="phone">Phone call</option><option value="email">Email</option><option value="text">Text message</option></select></label>' +
       '</div>' +
+      '<p class="si-inquiry-note">Need help today? We\u2019ll respond using your preferred contact method. Same-day visits are scheduled in 1-hour windows with at least 2 hours of notice when available. Automated confirmation emails and texts are not enabled yet.</p>' +
       '<label>Best time to contact (optional)<input name="best_time" placeholder="Weekday mornings, after 5pm, etc."></label>' +
       '<label>What do you need help with? *<textarea name="description" required rows="4" placeholder="Example: home Wi-Fi drops in the back rooms, or business POS printer stopped working after update."></textarea></label>' +
       '<label class="si-package-checkbox"><input type="checkbox" name="wants_deposit_link" value="yes"> After quote confirmation, I may want a deposit link to lock scheduling (no payment on this site today).</label>' +
@@ -405,7 +406,7 @@
           cta_location: currentPrefill.serviceCategory || 'pricing',
         })
         statusEl.textContent =
-          'Package request received. Stone Industries will follow up by your preferred contact method. For urgent help, call 559-579-9376.'
+          'Package request received. We\u2019ll respond using your preferred contact method \u2014 automated confirmation emails are not enabled yet. For urgent help, call 559-579-9376.'
         statusEl.classList.add('is-success')
         formEl.querySelectorAll('input, select, textarea, button[type="submit"]').forEach(function (el) {
           el.disabled = true

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Stone Admin — Leads</title>
+  <link rel="stylesheet" href="/admin/leads.css">
+</head>
+<body>
+  <section id="si-admin-gate" class="si-panel si-gate">
+    <h1>Stone Admin CRM</h1>
+    <p>Internal lead dashboard. Enter your admin token to continue. Token is stored in this browser session only.</p>
+    <div class="si-token-row">
+      <label>
+        Admin token
+        <input id="si-admin-token-input" type="password" autocomplete="off" placeholder="STONE_ADMIN_TOKEN">
+      </label>
+      <button type="button" class="si-btn" id="si-admin-token-save">Unlock</button>
+    </div>
+    <p class="note-muted">TODO: Replace token gate with proper auth when outbound email + operator login are ready.</p>
+  </section>
+
+  <div id="si-admin-app" class="si-hidden">
+    <header class="si-admin-header">
+      <div>
+        <h1>Stone Admin — Leads</h1>
+        <p>Package requests and inquiries from Supabase. Read + status update only.</p>
+      </div>
+      <div class="si-token-row">
+        <button type="button" class="si-btn si-btn-secondary" id="si-admin-refresh">Refresh</button>
+        <button type="button" class="si-btn si-btn-secondary" id="si-admin-logout">Lock</button>
+      </div>
+    </header>
+
+    <main id="si-admin-layout" class="si-admin-layout">
+      <section class="si-panel">
+        <div class="si-filters">
+          <label>
+            Search
+            <input id="filter-search" type="search" placeholder="Name, email, phone, package">
+          </label>
+          <label>
+            Status
+            <select id="filter-status">
+              <option value="">All</option>
+              <option value="new">new</option>
+              <option value="contacted">contacted</option>
+              <option value="quoted">quoted</option>
+              <option value="booked">booked</option>
+              <option value="won">won</option>
+              <option value="lost">lost</option>
+            </select>
+          </label>
+          <label>
+            Source page
+            <input id="filter-source" type="text" placeholder="/pricing.html">
+          </label>
+          <label>
+            Customer type
+            <select id="filter-customer-type">
+              <option value="">All</option>
+              <option value="residential">residential</option>
+              <option value="business">business</option>
+            </select>
+          </label>
+          <label>
+            Urgency
+            <select id="filter-urgency">
+              <option value="">All</option>
+              <option value="today">today</option>
+              <option value="this_week">this_week</option>
+              <option value="this_month">this_month</option>
+              <option value="planning">planning</option>
+            </select>
+          </label>
+        </div>
+        <p><strong id="si-leads-count">0</strong> leads shown</p>
+        <p id="si-admin-status" class="si-loading">Loading…</p>
+        <div id="si-leads-list" class="si-leads-list"></div>
+      </section>
+
+      <aside id="si-lead-detail" class="si-panel si-detail">
+        <p class="si-empty">Select a lead to view details.</p>
+      </aside>
+    </main>
+  </div>
+
+  <script src="/admin/leads.js" defer></script>
+</body>
+</html>

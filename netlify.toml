@@ -5,10 +5,15 @@
   command = "npm run build"
   publish = "dist"
 
+[functions]
+  directory = "netlify/functions"
+
 [build.environment]
   # Root deploy — required for React app + static pricing/service pages
   VITE_BASE_PATH = "/"
-# Set in Netlify UI (never commit): VITE_SUPABASE_URL, VITE_SUPABASE_ANON_KEY
+# Set in Netlify UI (never commit):
+#   VITE_SUPABASE_URL, VITE_SUPABASE_ANON_KEY (public build-time)
+#   SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY, STONE_ADMIN_TOKEN (functions only)
 
 [[headers]]
   for = "/*"
