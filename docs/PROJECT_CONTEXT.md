@@ -23,13 +23,13 @@
 - Cinematic parallax backgrounds (main DALRM hero + lower coastal-tech support image)
 - **Netlify Free** — recommended commercial production host (`netlify.toml`, root base path)
 - GitHub Pages mirror via `.github/workflows/deploy.yml` on push to `main` (fallback, not primary commercial URL)
-- Contact: `stoneindustries0.llc@gmail.com` · `559-579-9376`
+- Contact: `edward@stoneindustriesusa.com` · `559-579-9376` (Google Workspace live May 2026)
 - Inquiry capture: Supabase `public.inquiries` (anon insert + RLS) when env configured; mailto/tel fallback always available
 - **Navigation (2026-05-25):** Top nav **Services** → `services.html`; **Pricing** → `pricing.html`. Homepage `#services` anchor kept for hero scroll only.
 - **Homepage service cards:** Compare → `pricing.html?service=<slug>`; Request → same-page inquiry scroll with service preselect (`navigateToContactInquiry`). CSS **3D service objects** link to estimator — no WebGL.
 - **Inquiry-first conversion:** Hero and form clusters use inquiry CTAs; phone shown as plain linked text (`Prefer phone? 559-579-9376`). Mobile sticky bar: Inquiry + Pricing.
 - **Vision page:** `public/vision.html` — grounded roadmap (local-first → bigger vision). Top nav **Vision** → vision page. Homepage vision direction tiles use CSS **3D vision objects** linking to anchored sections — no WebGL.
-- **Email contact fallback:** Visible `stoneindustries0.llc@gmail.com` + **Copy email** + **Open email app** (`mailto:`) on React contact/footer/inquiry clusters and static pages via `contact-email.js` — no Gmail web-login-only URLs.
+- **Email contact fallback:** Visible `edward@stoneindustriesusa.com` + **Copy email** + **Open email app** (`mailto:`) on React contact/footer/inquiry clusters and static pages via `contact-email.js` — no Gmail web-login-only URLs.
 - Legal pages: `public/privacy.html`, `public/terms.html`, `public/capability-brief.html`, `public/vision.html`
 
 - **Learning backfill (2026-05-25):** 26 operator corrections indexed in [`DESIGN_MISTAKE_LEDGER.md`](DESIGN_MISTAKE_LEDGER.md) → *Recent Operator Corrections Backfill*; promoted to factory **DESIGN-036**.

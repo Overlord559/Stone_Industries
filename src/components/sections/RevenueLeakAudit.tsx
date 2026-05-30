@@ -1,9 +1,17 @@
+import { ArrowRight } from 'lucide-react'
+
 import {
   auditOfferCopy,
   auditPositioningCopy,
   revenueLeakAuditSectionId,
   secondShiftPackages,
 } from '../../data/revenueLeakAudit'
+import {
+  calendlyRevenueLeakAuditUrl,
+  ctaBookRevenueLeakAudit,
+  externalBookingLinkProps,
+} from '../../data/site'
+import { trackAuditCtaClick } from '../../lib/analytics'
 import { RevenueLeakAuditForm } from '../RevenueLeakAuditForm'
 import { SectionHeading } from '../ui/SectionHeading'
 
@@ -76,7 +84,7 @@ export function RevenueLeakAudit() {
           <div className="space-y-8 lg:col-start-1 lg:row-start-1">
             <SectionHeading
               eyebrow="SecondShift AI"
-              title="Free Revenue Leak Audit"
+              title="AI Revenue Leak Audit"
               description={auditOfferCopy}
             />
 
@@ -86,7 +94,19 @@ export function RevenueLeakAudit() {
             </div>
           </div>
 
-          <div className="self-start lg:col-start-2 lg:row-start-1">
+          <div className="self-start space-y-4 lg:col-start-2 lg:row-start-1">
+            <a
+              href={calendlyRevenueLeakAuditUrl}
+              {...externalBookingLinkProps}
+              onClick={() => trackAuditCtaClick('revenue_leak_audit_section')}
+              className="si-primary-cta inline-flex w-full items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold !text-slate-950 transition hover:bg-slate-200 hover:!text-slate-950 sm:w-auto [&_svg]:!stroke-slate-950"
+            >
+              {ctaBookRevenueLeakAudit}
+              <ArrowRight size={16} />
+            </a>
+            <p className="text-sm text-slate-400">
+              Prefer async review? Submit the form below — we respond by email with your leak report.
+            </p>
             <RevenueLeakAuditForm sourcePage="/#revenue-leak-audit" />
           </div>
 

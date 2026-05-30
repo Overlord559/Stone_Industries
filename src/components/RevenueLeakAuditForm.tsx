@@ -264,7 +264,7 @@ export function RevenueLeakAuditForm({ sourcePage, className = '' }: RevenueLeak
         />
 
         <EmailContactActions
-          subject="Free Revenue Leak Audit Request — Stone Industries"
+          subject="AI Revenue Leak Audit Request — Stone Industries"
           compact
           className="mt-1"
           trackMailtoFallback="audit"

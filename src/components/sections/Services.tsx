@@ -1,7 +1,14 @@
 import { motion } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
-import { buildPricingServiceHref, recurringCarePaths, services, servicesPagePath } from '../../data/site'
-import { revenueLeakAuditSectionId } from '../../data/revenueLeakAudit'
+import {
+  buildPricingServiceHref,
+  calendlyRevenueLeakAuditUrl,
+  ctaBookRevenueLeakAudit,
+  externalBookingLinkProps,
+  recurringCarePaths,
+  services,
+  servicesPagePath,
+} from '../../data/site'
 import { trackAuditCtaClick, trackPricingCtaClick } from '../../lib/analytics'
 import { navigateToContactInquiry } from '../../lib/inquiryNavigation'
 import { InteractiveOrbAccent } from '../scene/InteractiveOrbAccent'
@@ -17,9 +24,9 @@ export function Services() {
 
       <div className="flex flex-col gap-8 lg:flex-row lg:items-start lg:justify-between lg:gap-10">
         <SectionHeading
-          eyebrow="Current Services"
-          title="Fixed packages — faster to buy than a full agency, MSP, or 3PL contract."
-          description="Revenue-first local services with clear scope and starting prices. Not a full marketing agency, managed IT provider, AI agency, app studio, or freight broker."
+          eyebrow="Supporting services"
+          title="Fixed local packages when you need PC, IT, web, or coordination help."
+          description="These remain available with clear scope and starting prices — secondary to AI Revenue Leak Audit, AI Customer Engine, Managed AI Ops, and BidSignal First Award Sprint."
         />
         <div className="hidden shrink-0 self-start lg:block">
           <InteractiveOrbAccent
@@ -130,17 +137,18 @@ export function Services() {
       </div>
 
       <div className="si-section-glass mt-10 rounded-[1.75rem] border border-cyan-400/20 bg-cyan-400/[0.06] p-5 sm:p-6">
-        <p className="text-sm font-semibold text-white">Free Revenue Leak Audit for local service businesses</p>
+        <p className="text-sm font-semibold text-white">AI Revenue Leak Audit for local service businesses</p>
         <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-300">
           Send us your website and Google Business Profile — our team sends a human-reviewed leak report and
           recommended fix plan for Fresno and Central Valley service businesses.
         </p>
         <a
-          href={`#${revenueLeakAuditSectionId}`}
+          href={calendlyRevenueLeakAuditUrl}
+          {...externalBookingLinkProps}
           onClick={() => trackAuditCtaClick('services_promo')}
           className="si-secondary-cta mt-4 inline-flex min-h-11 items-center gap-2 rounded-full border border-cyan-400/30 bg-cyan-400/10 px-5 py-2.5 text-sm font-semibold !text-cyan-50 transition hover:border-cyan-300/50 hover:bg-cyan-400/15 hover:!text-white"
         >
-          Get Free Revenue Leak Audit
+          {ctaBookRevenueLeakAudit}
           <ArrowRight size={15} />
         </a>
       </div>

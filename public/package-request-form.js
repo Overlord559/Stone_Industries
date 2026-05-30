@@ -72,7 +72,7 @@
     var params = new URLSearchParams()
     params.set('subject', subject)
     params.set('body', body)
-    return 'mailto:stoneindustries0.llc@gmail.com?' + params.toString()
+    return 'mailto:edward@stoneindustriesusa.com?' + params.toString()
   }
 
   function validateInput(input, prefill) {
@@ -308,7 +308,7 @@
       '<button type="button" class="cta cta-secondary" data-si-package-close>Cancel</button>' +
       '</div>' +
       '<div class="si-email-actions">' +
-      '<p class="si-email-line">Fallback: <a href="mailto:stoneindustries0.llc@gmail.com?subject=Stone%20Industries%20Package%20Request">stoneindustries0.llc@gmail.com</a> · <a href="tel:+15595799376">559-579-9376</a></p>' +
+      '<p class="si-email-line">Email: <a href="mailto:edward@stoneindustriesusa.com?subject=Stone%20Industries%20Package%20Request">edward@stoneindustriesusa.com</a> · <a href="tel:+15595799376">559-579-9376</a></p>' +
       '<a class="cta cta-secondary" data-si-package-mailto href="#" hidden>Send this request via email app</a>' +
       '</div>' +
       '</form>' +

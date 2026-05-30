@@ -4,6 +4,10 @@
  */
 (function () {
   const SERVICE_OPTIONS = [
+    'AI Revenue Leak Audit',
+    'AI Customer Engine Sprint',
+    'Managed AI Ops',
+    'BidSignal First Award Sprint',
     'Custom PC Builds & Upgrades',
     'Tier 1 IT Support & Tech Cleanup',
     'Wi-Fi, Printer & POS Support',
@@ -11,7 +15,6 @@
     'AI Receptionist & Workflow Automation',
     'Mobile App / MVP Prototyping',
     'Operations & Technology Project Coordination',
-    'Free Revenue Leak Audit',
     'General Inquiry',
     'Subcontracting / Capability Brief',
   ]
@@ -143,10 +146,10 @@
       '>Submit inquiry</button>' +
       '</div>' +
       '<div class="si-email-actions">' +
-      '<p class="si-email-line">Email: <a href="mailto:stoneindustries0.llc@gmail.com?subject=Stone%20Industries%20Inquiry">stoneindustries0.llc@gmail.com</a></p>' +
+      '<p class="si-email-line">Email: <a href="mailto:edward@stoneindustriesusa.com?subject=Stone%20Industries%20Inquiry">edward@stoneindustriesusa.com</a></p>' +
       '<div class="si-email-buttons">' +
       '<button type="button" class="cta cta-secondary" data-si-copy-email>Copy email</button>' +
-      '<a class="cta cta-secondary" data-si-mailto-inquiry href="mailto:stoneindustries0.llc@gmail.com?subject=Stone%20Industries%20Inquiry">Open email app</a>' +
+      '<a class="cta cta-secondary" data-si-mailto-inquiry href="mailto:edward@stoneindustriesusa.com?subject=Stone%20Industries%20Inquiry">Open email app</a>' +
       '</div>' +
       '<p class="si-copy-status" data-si-copy-status hidden aria-live="polite">Email copied.</p>' +
       '<p class="note-muted">Prefer phone? <a href="tel:+15595799376">559-579-9376</a></p>' +
@@ -197,7 +200,7 @@
         statusEl.classList.add('is-success')
       } catch (_error) {
         statusEl.textContent =
-          'We could not save your inquiry right now. Please call 559-579-9376 or email stoneindustries0.llc@gmail.com.'
+          'We could not save your inquiry right now. Please call 559-579-9376 or email edward@stoneindustriesusa.com.'
         statusEl.classList.add('is-error')
       } finally {
         submitButton.disabled = false

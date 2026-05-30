@@ -1,12 +1,19 @@
 import {
   buildMailto,
+  calendlyGeneralConsultationUrl,
+  calendlyRevenueLeakAuditUrl,
   contactEmail,
   contactPhone,
   contactPhoneHref,
+  ctaBookRevenueLeakAudit,
+  ctaScheduleGeneralConsultation,
+  externalBookingLinkProps,
   footerCertificationsCompact,
   govContractingTrustDisclaimer,
   pricingPagePath,
   servicesPagePath,
+  siteLastUpdated,
+  siteLaunchStatus,
   visionPagePath,
 } from '../../data/site'
 
@@ -21,9 +28,10 @@ export function Footer() {
             Stone Industries
           </p>
           <p className="max-w-xl leading-6">
-            Veteran-led local technology services—PC builds, Tier 1 IT, websites, AI receptionist setup, and mobile MVP prototypes today—with
-            a disciplined long-range roadmap, not hype.
+            AI Revenue Leak Audit, AI Customer Engine, Managed AI Ops, and BidSignal First Award Sprint—plus supporting PC, IT, and website
+            packages for Fresno and the Central Valley.
           </p>
+          <p className="max-w-xl text-xs leading-5 text-slate-500">{siteLaunchStatus}</p>
           <p className="text-sm text-slate-400">
             <a className="font-medium text-slate-200 underline hover:text-white" href={buildMailto('Stone Industries Inquiry')}>
               {contactEmail}
@@ -39,6 +47,20 @@ export function Footer() {
         <div className="space-y-3 text-left lg:text-right">
           <p className="text-slate-200">Reliable Today. Autonomous Tomorrow.</p>
           <div className="flex flex-wrap gap-x-4 gap-y-1 lg:justify-end">
+            <a
+              href={calendlyRevenueLeakAuditUrl}
+              {...externalBookingLinkProps}
+              className="transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
+            >
+              {ctaBookRevenueLeakAudit}
+            </a>
+            <a
+              href={calendlyGeneralConsultationUrl}
+              {...externalBookingLinkProps}
+              className="transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
+            >
+              {ctaScheduleGeneralConsultation}
+            </a>
             <a
               href={pricingPagePath}
               className="transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
@@ -77,7 +99,7 @@ export function Footer() {
             </a>
           </div>
           <p className="text-xs text-slate-500">
-            Hosted invoice / Stripe Payment Link readiness later — no checkout on this site today.
+            Last updated {siteLastUpdated}. Hosted invoice / Stripe Payment Link readiness later — no checkout on this site.
           </p>
         </div>
       </div>

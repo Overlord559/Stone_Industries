@@ -40,7 +40,7 @@ const metaBySlug: Record<string, ServiceMeta> = {
     icon: Boxes,
     detailPath: 'services/custom-pc-builds.html',
     pricingPageLabel: 'Compare PC Build Packages',
-    displayTier: 'primary',
+    displayTier: 'secondary',
   },
   'tech-cleanup': {
     packageName: 'Tech Cleanup Sprint',
@@ -59,7 +59,7 @@ const metaBySlug: Record<string, ServiceMeta> = {
     icon: Wrench,
     detailPath: 'services/tech-cleanup.html',
     pricingPageLabel: 'Compare Tier 1 IT Packages',
-    displayTier: 'primary',
+    displayTier: 'secondary',
   },
   'wifi-printer-pos': {
     packageName: 'Small Business Tech Support',
@@ -76,7 +76,7 @@ const metaBySlug: Record<string, ServiceMeta> = {
     icon: Wifi,
     detailPath: 'services/wifi-printer-pos.html',
     pricingPageLabel: 'Compare Wi-Fi / POS Packages',
-    displayTier: 'primary',
+    displayTier: 'secondary',
   },
   'business-websites': {
     packageName: '24-Hour Website Launch',
@@ -94,7 +94,7 @@ const metaBySlug: Record<string, ServiceMeta> = {
     icon: Globe,
     detailPath: 'services/business-websites.html',
     pricingPageLabel: 'Compare Website Packages',
-    displayTier: 'primary',
+    displayTier: 'secondary',
   },
   'ai-workflow-automation': {
     packageName: 'AI Receptionist Setup',
@@ -113,7 +113,7 @@ const metaBySlug: Record<string, ServiceMeta> = {
     icon: Bot,
     detailPath: 'services/ai-workflow-automation.html',
     pricingPageLabel: 'Compare AI Receptionist Packages',
-    displayTier: 'primary',
+    displayTier: 'secondary',
   },
   'mobile-app-mvp': {
     packageName: 'Mobile MVP Prototype',
@@ -170,7 +170,7 @@ function buildService(cat: CatalogService): Service {
 
   return {
     slug: cat.slug,
-    displayTier: meta.displayTier ?? 'primary',
+    displayTier: meta.displayTier ?? 'secondary',
     packageName: meta.packageName,
     title: cat.title,
     description: meta.description,

@@ -4,6 +4,7 @@ import { Navbar } from './components/layout/Navbar'
 import { About } from './components/sections/About'
 import { Contact } from './components/sections/Contact'
 import { Hero } from './components/sections/Hero'
+import { PrimaryOffers } from './components/sections/PrimaryOffers'
 import { MobileQuickJump } from './components/sections/MobileQuickJump'
 import { RevenueLeakAudit } from './components/sections/RevenueLeakAudit'
 import { Services } from './components/sections/Services'
@@ -67,6 +68,7 @@ function App() {
               className="si-lower-bg-scrim pointer-events-none absolute inset-0 -z-10"
               aria-hidden="true"
             />
+            <PrimaryOffers />
             <Services />
             <About />
           </div>

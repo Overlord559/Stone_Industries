@@ -1,13 +1,21 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
 import { useState } from 'react'
-import { revenueLeakAuditSectionId } from '../../data/revenueLeakAudit'
 import {
   trackAuditCtaClick,
   trackPricingCtaClick,
   trackServicesCtaClick,
 } from '../../lib/analytics'
-import { navItems, pricingPagePath, servicesPagePath } from '../../data/site'
+import {
+  buildMailto,
+  calendlyRevenueLeakAuditUrl,
+  ctaBookRevenueLeakAudit,
+  ctaContactEdward,
+  externalBookingLinkProps,
+  navItems,
+  pricingPagePath,
+  servicesPagePath,
+} from '../../data/site'
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
@@ -48,11 +56,18 @@ export function Navbar() {
             </a>
           ))}
           <a
-            href={`#${revenueLeakAuditSectionId}`}
+            href={calendlyRevenueLeakAuditUrl}
+            {...externalBookingLinkProps}
             onClick={() => trackAuditCtaClick('navbar_desktop')}
             className="rounded-full border border-cyan-400/30 bg-cyan-400/10 px-5 py-2.5 text-sm font-medium !text-cyan-100 transition hover:border-cyan-300/50 hover:bg-cyan-300/15 hover:!text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
           >
-            Get Free Revenue Leak Audit
+            {ctaBookRevenueLeakAudit}
+          </a>
+          <a
+            href={buildMailto('Stone Industries Inquiry — Contact Edward')}
+            className="rounded-full border border-white/15 bg-white/5 px-5 py-2.5 text-sm font-medium !text-white transition hover:bg-white/10 hover:!text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
+          >
+            {ctaContactEdward}
           </a>
         </div>
 
@@ -93,14 +108,22 @@ export function Navbar() {
                 </a>
               ))}
               <a
-                href={`#${revenueLeakAuditSectionId}`}
+                href={calendlyRevenueLeakAuditUrl}
+                {...externalBookingLinkProps}
                 className="inline-flex min-h-11 w-full items-center justify-center rounded-full border border-cyan-400/30 bg-cyan-400/10 px-5 py-3 text-sm font-medium !text-cyan-100 transition hover:border-cyan-300/50 hover:bg-cyan-300/15 hover:!text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
                 onClick={() => {
                   setIsOpen(false)
                   trackAuditCtaClick('navbar_mobile')
                 }}
               >
-                Get Free Revenue Leak Audit
+                {ctaBookRevenueLeakAudit}
+              </a>
+              <a
+                href={buildMailto('Stone Industries Inquiry — Contact Edward')}
+                className="inline-flex min-h-11 w-full items-center justify-center rounded-full border border-white/15 bg-white/5 px-5 py-3 text-sm font-medium !text-white transition hover:border-white/25 hover:bg-white/10 hover:!text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
+                onClick={() => setIsOpen(false)}
+              >
+                {ctaContactEdward}
               </a>
             </div>
           </motion.div>
@@ -115,11 +138,12 @@ export function Navbar() {
     >
       <div className="mx-auto flex max-w-7xl gap-2 px-4 py-3 pb-[max(0.75rem,env(safe-area-inset-bottom))]">
         <a
-          href={`#${revenueLeakAuditSectionId}`}
+          href={calendlyRevenueLeakAuditUrl}
+          {...externalBookingLinkProps}
           onClick={() => trackAuditCtaClick('mobile_sticky')}
           className="inline-flex min-h-11 flex-1 items-center justify-center rounded-full border border-cyan-400/30 bg-cyan-400/10 px-4 text-sm font-semibold !text-cyan-50 transition hover:border-cyan-300/50 hover:bg-cyan-400/15 hover:!text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
         >
-          Free Audit
+          Book Audit
         </a>
         <a
           href={pricingPagePath}

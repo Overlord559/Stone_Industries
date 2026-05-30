@@ -402,7 +402,7 @@
 
 **Problem:** “Email instead” buttons and mailto-only links dead-end when no desktop mail client is configured — buyers assume the site is broken even though the address is correct.
 
-**Rule:** Always show visible `stoneindustries0.llc@gmail.com` plus **Copy email** (clipboard with “Email copied.” status) and **Open email app** (`mailto:` with subject). Never use Gmail web compose / Google login URLs without copy fallback. Keep inquiry form primary; email is secondary fallback.
+**Rule:** Always show visible `edward@stoneindustriesusa.com` plus **Copy email** (clipboard with “Email copied.” status) and **Open email app** (`mailto:` with subject). Never use Gmail web compose / Google login URLs without copy fallback. Keep inquiry form primary; email is secondary fallback.
 
 **QA check:** Copy email on homepage contact, pricing inquiry footer, and one service detail page; grep finds no `mail.google.com` or `accounts.google.com` compose URLs.
 
@@ -523,7 +523,7 @@ Index of operator corrections from pricing/estimator/nav/email/vision passes. Ex
 | 5 | Phone not huge desktop CTA | STONE-021 | DESIGN-029 | No hero Call button |
 | 6 | Mailto-only email dead-end | STONE-020 | DESIGN-036 | Copy + mailto on contact pages |
 | 7 | Visible email + copy + mailto | STONE-020 | DESIGN-036 | “Email copied.” status |
-| 8 | Correct email address everywhere | STONE-020 | — | `stoneindustries0.llc@gmail.com` |
+| 8 | Correct email address everywhere | STONE-020 | — | `edward@stoneindustriesusa.com` |
 | 9 | Secure lead capture ≠ cybersecurity | STONE-016 | DESIGN-033 | Lead capture details vs Tier 1/2 |
 | 10 | No standalone estimator clutter blocks | STONE-019 | DESIGN-036 | No top lead-capture callout |
 | 11 | Add-on education stays compact | STONE-018, STONE-019 | DESIGN-036 | `<details>` per row only |

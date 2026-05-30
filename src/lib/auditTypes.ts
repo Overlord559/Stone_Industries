@@ -32,7 +32,7 @@ function isValidProblem(value: string): value is AuditBiggestProblem {
 
 export function buildAuditMailtoBody(input: Omit<AuditFormInput, 'honeypot' | 'permissionGranted'>): string {
   return [
-    'Free Revenue Leak Audit Request',
+    'AI Revenue Leak Audit Request',
     '',
     `Business name: ${input.businessName.trim()}`,
     `Website: ${input.website.trim()}`,
@@ -49,7 +49,7 @@ export function buildAuditMailtoBody(input: Omit<AuditFormInput, 'honeypot' | 'p
 
 export function buildAuditMailtoHref(body: string): string {
   const params = new URLSearchParams()
-  params.set('subject', 'Free Revenue Leak Audit Request — Stone Industries')
+  params.set('subject', 'AI Revenue Leak Audit Request — Stone Industries')
   params.set('body', body)
   return `mailto:${contactEmail}?${params.toString()}`
 }
@@ -118,7 +118,7 @@ export function validateAuditInput(input: AuditFormInput): AuditValidationResult
   })
 
   const message = [
-    'Free Revenue Leak Audit request',
+    'AI Revenue Leak Audit request',
     '',
     `Website: ${website}`,
     `Google Business Profile: ${googleBusinessProfile}`,

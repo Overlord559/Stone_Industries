@@ -1,6 +1,6 @@
 export const revenueLeakAuditSectionId = 'revenue-leak-audit'
 
-export const auditServiceLabel = 'Free Revenue Leak Audit'
+export const auditServiceLabel = 'AI Revenue Leak Audit'
 
 export const auditBiggestProblemOptions = [
   'Calls',

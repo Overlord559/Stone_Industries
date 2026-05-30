@@ -87,9 +87,9 @@ Optional preview: `npm run preview` — open printed local URL.
 
 ## Mailto / tel / email copy checks
 
-- [ ] Visible email `stoneindustries0.llc@gmail.com` on homepage contact, footer, pricing, services, all **six** service detail pages
+- [ ] Visible email `edward@stoneindustriesusa.com` on homepage contact, footer, pricing, services, all **six** service detail pages
 - [ ] **Copy email** shows “Email copied.” on click (React + static `contact-email.js`)
-- [ ] **Open email app** uses `mailto:stoneindustries0.llc@gmail.com?subject=Stone%20Industries%20Inquiry`
+- [ ] **Open email app** uses `mailto:edward@stoneindustriesusa.com?subject=Stone%20Industries%20Inquiry`
 - [ ] No Gmail web compose / Google account picker URLs (`mail.google.com`, `accounts.google.com`)
 - [ ] Each service inquiry mailto (estimator) includes correct subject when used
 - [ ] Contact section mailto works when buyer has a mail client

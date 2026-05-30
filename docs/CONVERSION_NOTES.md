@@ -9,14 +9,14 @@
 
 | Rank | Action | Where |
 |------|--------|-------|
-| 1 | **Get Free Revenue Leak Audit** | Homepage hero primary → `#revenue-leak-audit`; navbar desktop/mobile; mobile sticky bar (short label: Free Audit); services promo; static `pricing.html` / `services.html` secondary |
+| 1 | **Book an AI Revenue Leak Audit** | Homepage hero primary → `#revenue-leak-audit`; navbar desktop/mobile; mobile sticky bar (short label: Book Audit); services promo; static `pricing.html` / `services.html` secondary |
 | 2 | View Pricing & Packages / Compare services | Hero secondary; service cards → `pricing.html?service=<slug>`; static pages context-appropriate primary where buyer is browsing packages |
 | 3 | Service inquiry (Supabase form) | Homepage `#contact`; pricing/services static forms; service card secondary |
 | 4 | Phone `559-579-9376` | Plain linked text near inquiry/contact — not a primary desktop button |
 | 5 | Email copy + mailto fallback | Visible address + Copy email + Open email app — not mailto-only |
 | 6 | Capability brief | Footer / About — subcontracting only |
 
-**Primary outreach CTA:** Get Free Revenue Leak Audit — company voice (`we` / `our team`), not solo-founder language.
+**Primary outreach CTA:** Book an AI Revenue Leak Audit — company voice (`we` / `our team`); **Contact Edward** for direct mailto; **Request an AI Customer Engine Sprint** on hero secondary.
 
 **Secondary CTAs:** View Services, View Pricing, Request This Package, Send an inquiry.
 
@@ -152,9 +152,9 @@ See **STONE-035**.
 
 | Pattern | Rule |
 |---------|------|
-| Visible address | `stoneindustries0.llc@gmail.com` on contact, footer, pricing, services, service detail pages |
+| Visible address | `edward@stoneindustriesusa.com` on contact, footer, pricing, services, service detail pages |
 | Copy email | Clipboard copy with “Email copied.” status — legacy fallback if clipboard blocked |
-| Open email app | Standard `mailto:stoneindustries0.llc@gmail.com?subject=Stone%20Industries%20Inquiry` |
+| Open email app | Standard `mailto:edward@stoneindustriesusa.com?subject=Stone%20Industries%20Inquiry` |
 | Forbidden | Gmail compose / Google account picker URLs without copy fallback |
 | React | `EmailContactActions` + `copyContactEmail()` |
 | Static | `public/contact-email.js` + `[data-si-copy-email]` |

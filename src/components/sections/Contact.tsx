@@ -1,12 +1,21 @@
 import { ArrowRight } from 'lucide-react'
 
 import {
+  buildMailto,
+  calendlyGeneralConsultationUrl,
+  calendlyRevenueLeakAuditUrl,
   capabilityBriefPath,
+  ctaBookRevenueLeakAudit,
+  ctaContactEdward,
+  ctaScheduleGeneralConsultation,
+  externalBookingLinkProps,
   inquiryTypes,
   messageChecklist,
   serviceAreaOnSite,
   serviceAreaRemote,
+  siteLaunchStatus,
 } from '../../data/site'
+import { trackAuditCtaClick } from '../../lib/analytics'
 import { InquiryForm } from '../InquiryForm'
 import { InteractiveOrbAccent } from '../scene/InteractiveOrbAccent'
 import { SectionHeading } from '../ui/SectionHeading'
@@ -37,7 +46,7 @@ export function Contact() {
 
             title="Submit an inquiry for the fastest response."
 
-            description={`For custom PC builds, Tier 1 IT support, business websites, Wi-Fi and POS help, AI receptionist workflows, mobile MVP prototypes, operations coordination, or subcontracting discussions, use the inquiry form first. ${serviceAreaOnSite} ${serviceAreaRemote} Email copy and phone fallback are with the form. No booking system or online checkout on this site.`}
+            description={`For AI Revenue Leak Audit, AI Customer Engine, Managed AI Ops, BidSignal First Award Sprint, supporting IT/website packages, or subcontracting discussions, use the inquiry form or Calendly links below. ${serviceAreaOnSite} ${serviceAreaRemote} ${siteLaunchStatus} No online checkout on this site.`}
           />
 
 
@@ -96,6 +105,30 @@ export function Contact() {
 
 
           <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+            <a
+              href={calendlyRevenueLeakAuditUrl}
+              {...externalBookingLinkProps}
+              onClick={() => trackAuditCtaClick('contact')}
+              className="si-primary-cta inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold !text-slate-950 transition hover:bg-slate-200 hover:!text-slate-950 [&_svg]:!stroke-slate-950"
+            >
+              {ctaBookRevenueLeakAudit}
+              <ArrowRight size={16} />
+            </a>
+            <a
+              href={calendlyGeneralConsultationUrl}
+              {...externalBookingLinkProps}
+              className="si-secondary-cta inline-flex items-center gap-2 rounded-full border border-cyan-400/25 bg-cyan-400/10 px-6 py-3 text-sm font-semibold !text-cyan-50 transition hover:border-cyan-300/40 hover:bg-cyan-400/15 hover:!text-white [&_svg]:!stroke-cyan-50"
+            >
+              {ctaScheduleGeneralConsultation}
+              <ArrowRight size={16} />
+            </a>
+            <a
+              href={buildMailto('Stone Industries Inquiry — Contact Edward')}
+              className="si-secondary-cta inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm font-semibold !text-white transition hover:bg-white/10 hover:!text-white [&_svg]:!stroke-white"
+            >
+              {ctaContactEdward}
+              <ArrowRight size={16} />
+            </a>
             <a
               href={capabilityBriefPath}
               className="si-secondary-cta inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm font-semibold !text-white transition hover:bg-white/10 hover:!text-white [&_svg]:!stroke-white"

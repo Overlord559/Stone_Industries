@@ -79,7 +79,10 @@
       var href = (link.getAttribute('href') || '').toLowerCase()
       if (!href) return
 
-      if (href.indexOf('revenue-leak-audit') !== -1) {
+      if (
+        href.indexOf('revenue-leak-audit') !== -1 ||
+        href.indexOf('calendly.com/edward-stoneindustriesusa/30min') !== -1
+      ) {
         track('audit_cta_click', { cta_location: inferLocation(link) })
         return
       }

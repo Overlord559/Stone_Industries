@@ -38,9 +38,37 @@ export type InquiryType = {
   subject: string
 }
 
-export const contactEmail = 'stoneindustries0.llc@gmail.com'
+export const contactEmail = 'edward@stoneindustriesusa.com'
 export const contactPhone = '559-579-9376'
 export const contactPhoneHref = 'tel:+15595799376'
+
+/** Public-facing launch / contact freshness (Google Workspace + Gmail live). */
+export const siteLastUpdated = 'May 29, 2026'
+export const siteLaunchStatus =
+  'Official business email is live on Google Workspace (Gmail activated May 2026). Reach Edward directly at edward@stoneindustriesusa.com.'
+
+export const ctaBookRevenueLeakAudit = 'Book an AI Revenue Leak Audit'
+export const ctaRequestCustomerEngineSprint = 'Request an AI Customer Engine Sprint'
+export const ctaScheduleGeneralConsultation = 'Schedule a General Consultation'
+export const ctaContactEdward = 'Contact Edward'
+
+/** Official Calendly booking URLs (May 2026). */
+export const calendlyRevenueLeakAuditUrl =
+  'https://calendly.com/edward-stoneindustriesusa/30min'
+export const calendlyGeneralConsultationUrl =
+  'https://calendly.com/edward-stoneindustriesusa/general-business-tech-consultation'
+
+/** Safe defaults for off-site booking links (Calendly). */
+export const externalBookingLinkProps = {
+  target: '_blank',
+  rel: 'noopener noreferrer',
+} as const
+
+export function isCalendlyBookingUrl(href: string): boolean {
+  return (
+    href === calendlyRevenueLeakAuditUrl || href === calendlyGeneralConsultationUrl
+  )
+}
 
 export const serviceAreaPrimary = 'Fresno & Central Valley, California'
 export const serviceAreaShort = 'Fresno / Central Valley'
@@ -187,8 +215,11 @@ export const inquiryTypes: InquiryType[] = [
 ]
 
 export const inquiryServiceOptions = [
+  'AI Revenue Leak Audit',
+  'AI Customer Engine Sprint',
+  'Managed AI Ops',
+  'BidSignal First Award Sprint',
   ...services.map((service) => service.title),
-  'Free Revenue Leak Audit',
   'General Inquiry',
   'Subcontracting / Capability Brief',
 ] as const

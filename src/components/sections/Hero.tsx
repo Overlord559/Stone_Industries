@@ -2,20 +2,22 @@ import { motion } from 'framer-motion'
 import { ArrowRight, FileText, Shield, Waypoints } from 'lucide-react'
 import { HeroRocketAccent } from '../scene/HeroRocketAccent'
 import {
+  buildMailto,
+  calendlyRevenueLeakAuditUrl,
   capabilityBriefPath,
   contactPhone,
   contactPhoneHref,
+  ctaBookRevenueLeakAudit,
+  ctaContactEdward,
+  ctaRequestCustomerEngineSprint,
+  externalBookingLinkProps,
   heroCertificationsMicro,
-  pricingPagePath,
   serviceAreaOnSite,
   serviceAreaPrimary,
+  siteLaunchStatus,
 } from '../../data/site'
 import { revenueLeakAuditSectionId } from '../../data/revenueLeakAudit'
-import {
-  trackAuditCtaClick,
-  trackPricingCtaClick,
-  trackServicesCtaClick,
-} from '../../lib/analytics'
+import { trackAuditCtaClick, trackServicesCtaClick } from '../../lib/analytics'
 
 export function Hero() {
   return (
@@ -44,13 +46,14 @@ export function Hero() {
             </p>
           </div>
           <h1 className="mt-6 max-w-4xl font-display text-4xl font-semibold tracking-[-0.065em] text-white sm:text-5xl lg:text-6xl lg:leading-[1.02]">
-            Custom PC builds, Tier 1 IT support, and practical local technology services—delivered reliably today.
+            AI revenue and customer systems for Fresno operators—plus disciplined local tech support when scoped.
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300 sm:text-xl">
-            We help Fresno and Central Valley small businesses with custom Windows PC builds,
-            Tier 1 IT cleanup, Wi-Fi and POS support, business websites, AI receptionist workflows, and mobile
-            MVP prototypes—plus narrow operations coordination when a project needs structure.
+            Stone Industries is live on Google Workspace with direct business email. Primary work: AI Revenue Leak
+            Audit, AI Customer Engine sprints, Managed AI Ops, and BidSignal First Award Sprint for GovCon teams.
+            PC builds, Tier 1 IT, websites, and Wi-Fi/POS remain supporting services.
           </p>
+          <p className="mt-4 max-w-2xl text-sm leading-6 text-slate-400">{siteLaunchStatus}</p>
           <p className="mt-5 hidden text-sm font-medium uppercase tracking-[0.32em] text-slate-400 md:block">
             Reliable Today. Autonomous Tomorrow.
           </p>
@@ -60,12 +63,11 @@ export function Hero() {
           </p>
           <div className="mt-6 hidden flex-wrap gap-2 md:flex">
             {[
-              'Custom PC builds & upgrades',
-              'Tier 1 IT support',
-              'Wi-Fi & POS support',
-              'Websites & 3D sections',
-              'AI receptionist workflows',
-              'Mobile MVP prototypes',
+              'AI Revenue Leak Audit',
+              'AI Customer Engine',
+              'Managed AI Ops',
+              'BidSignal First Award Sprint',
+              'Tier 1 IT & websites (supporting)',
             ].map((label) => (
               <span
                 key={label}
@@ -77,26 +79,26 @@ export function Hero() {
           </div>
           <div className="mt-8 flex flex-col gap-3 md:mt-10 md:gap-4 sm:flex-row sm:flex-wrap sm:items-center">
             <a
-              href={`#${revenueLeakAuditSectionId}`}
+              href={calendlyRevenueLeakAuditUrl}
+              {...externalBookingLinkProps}
               onClick={() => trackAuditCtaClick('hero')}
               className="si-primary-cta pointer-events-auto inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold !text-slate-950 transition hover:bg-slate-200 hover:!text-slate-950 [&_svg]:!stroke-slate-950"
             >
-              Get Free Revenue Leak Audit
+              {ctaBookRevenueLeakAudit}
               <ArrowRight size={16} />
             </a>
             <a
-              href={pricingPagePath}
-              onClick={() => trackPricingCtaClick('hero')}
+              href={buildMailto('AI Customer Engine Sprint Request — Stone Industries')}
               className="si-secondary-cta pointer-events-auto inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-cyan-400/25 bg-cyan-400/10 px-6 py-3 text-sm font-semibold !text-cyan-50 transition hover:border-cyan-300/40 hover:bg-cyan-400/15 hover:!text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
             >
-              View Pricing &amp; Packages
+              {ctaRequestCustomerEngineSprint}
               <ArrowRight size={16} />
             </a>
             <a
-              href="#contact"
-              className="si-secondary-cta pointer-events-auto hidden min-h-11 items-center justify-center gap-2 rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm font-semibold !text-white transition hover:bg-white/10 hover:!text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 md:inline-flex"
+              href={buildMailto('Stone Industries Inquiry — Contact Edward')}
+              className="si-secondary-cta pointer-events-auto inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm font-semibold !text-white transition hover:bg-white/10 hover:!text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
             >
-              Send an inquiry
+              {ctaContactEdward}
               <ArrowRight size={16} />
             </a>
             <a
@@ -117,16 +119,15 @@ export function Hero() {
           </div>
           <a
             href={`#${revenueLeakAuditSectionId}`}
-            onClick={() => trackAuditCtaClick('hero')}
             className="pointer-events-auto mt-3 inline-flex min-h-11 items-center text-sm font-medium text-cyan-200/90 underline-offset-4 hover:text-cyan-100 hover:underline md:hidden"
           >
-            Skip to free audit ↓
+            Request audit via form ↓
           </a>
           <p className="mt-4 max-w-2xl text-sm leading-6 text-slate-400">
             <span className="hidden md:inline">
-              Browse starting packages and scope on the pricing pages, then submit an inquiry for a
-              confirmed quote. Capability brief available for subcontracting outreach. No booking
-              system on this site.{' '}
+              Book audit calls on Calendly, or submit the audit form below for async review. Browse
+              starting packages on pricing pages, then use the inquiry form for a confirmed quote.
+              Capability brief available for subcontracting outreach. No online checkout on this site.{' '}
             </span>
             Prefer phone?{' '}
             <a
@@ -140,7 +141,7 @@ export function Hero() {
 
           <div className="mt-12 hidden gap-6 border-t border-white/10 pt-8 sm:grid-cols-3 md:grid">
             {[
-              ['Available today', 'Custom PC builds, Tier 1 IT, websites, Wi-Fi/POS, AI receptionist workflows, and mobile MVP prototypes for operators who need practical help now.'],
+              ['Available today', 'AI Revenue Leak Audit, AI Customer Engine sprints, Managed AI Ops, and BidSignal First Award Sprint — with supporting PC, IT, website, and Wi-Fi/POS packages when scoped.'],
               ['Who we serve', 'Local small businesses, home offices, and partners evaluating subcontracting or scoped operational support.'],
               ['Future roadmap', 'DALRM, AI-assisted operations, and autonomous logistics—long-range direction, not current products.'],
             ].map(([title, copy]) => (

@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { credibilitySignals, trustChips, whoWeWorkWith } from '../../data/site'
+import { credibilitySignals, siteLaunchStatus, trustChips, whoWeWorkWith } from '../../data/site'
 import { SectionHeading } from '../ui/SectionHeading'
 import { TrustCertificationsStrip } from '../ui/TrustCertificationsStrip'
 
@@ -17,8 +17,9 @@ export function About() {
           <SectionHeading
             eyebrow="About"
             title="Grounded, veteran-led, and built to earn trust through execution."
-            description="Stone Industries is an early-stage company with a disciplined, execution-focused team posture: practical services for local businesses and partners today, consistent follow-through, and a long-range commitment to building credible capability—not selling vision ahead of delivery."
+            description="Stone Industries is a veteran-led operator with live Google Workspace business email and a launch focus on AI revenue systems, customer-engine sprints, and GovCon bid-path discipline—plus supporting local tech packages when scoped."
           />
+          <p className="max-w-2xl text-sm leading-6 text-slate-400">{siteLaunchStatus}</p>
           <div className="flex flex-wrap gap-2">
             {trustChips.map((chip) => (
               <span
