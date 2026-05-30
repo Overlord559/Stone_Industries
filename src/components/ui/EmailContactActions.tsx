@@ -1,6 +1,14 @@
 import { useState } from 'react'
 
-import { buildMailto, contactEmail } from '../../data/site'
+import {
+  buildGmailComposeUrl,
+  buildMailto,
+  contactEmail,
+  defaultInquiryMailtoSubject,
+  emailMailto,
+  externalBookingLinkProps,
+  gmailComposeUrl,
+} from '../../data/site'
 import { trackMailtoFallbackClick } from '../../lib/analytics'
 import { copyContactEmail } from '../../lib/emailContact'
 
@@ -12,14 +20,17 @@ type EmailContactActionsProps = {
 }
 
 export function EmailContactActions({
-  subject = 'Stone Industries Inquiry',
+  subject = defaultInquiryMailtoSubject,
   className = '',
   compact = false,
   trackMailtoFallback,
 }: EmailContactActionsProps) {
   const [copied, setCopied] = useState(false)
   const [copyFailed, setCopyFailed] = useState(false)
-  const mailtoHref = buildMailto(subject)
+  const mailtoHref =
+    subject === defaultInquiryMailtoSubject ? emailMailto : buildMailto(subject)
+  const gmailHref =
+    subject === defaultInquiryMailtoSubject ? gmailComposeUrl : buildGmailComposeUrl(subject)
 
   async function handleCopyEmail() {
     setCopyFailed(false)
@@ -32,7 +43,7 @@ export function EmailContactActions({
     setCopyFailed(true)
   }
 
-  function handleOpenEmailApp() {
+  function handleMailtoAnalytics() {
     if (trackMailtoFallback) {
       trackMailtoFallbackClick(trackMailtoFallback)
     }
@@ -59,10 +70,17 @@ export function EmailContactActions({
         </button>
         <a
           href={mailtoHref}
-          onClick={handleOpenEmailApp}
+          onClick={handleMailtoAnalytics}
           className="si-secondary-cta inline-flex min-h-10 items-center justify-center rounded-full border border-white/15 bg-white/5 px-4 py-2 text-sm font-semibold !text-white transition hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
         >
           Open email app
+        </a>
+        <a
+          href={gmailHref}
+          {...externalBookingLinkProps}
+          className="si-secondary-cta inline-flex min-h-10 items-center justify-center rounded-full border border-white/15 bg-white/5 px-4 py-2 text-sm font-semibold !text-white transition hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
+        >
+          Open Gmail draft
         </a>
       </div>
       {copied ? (
@@ -72,7 +90,7 @@ export function EmailContactActions({
       ) : null}
       {copyFailed ? (
         <p className="mt-2 text-xs text-slate-400" role="status">
-          Copy unavailable — use the email link above or Open email app.
+          Copy unavailable — use the email link above, Open email app, or Open Gmail draft.
         </p>
       ) : null}
     </div>

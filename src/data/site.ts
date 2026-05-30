@@ -39,8 +39,20 @@ export type InquiryType = {
 }
 
 export const contactEmail = 'edward@stoneindustriesusa.com'
+/** SSOT email address — alias of contactEmail for new imports. */
+export const emailAddress = contactEmail
 export const contactPhone = '559-579-9376'
 export const contactPhoneHref = 'tel:+15595799376'
+/** SSOT phone tel: href — alias of contactPhoneHref for new imports. */
+export const phoneHref = contactPhoneHref
+
+/** Standard subject-only mailto (no body) — reliable default for visible email + Open email app. */
+export const emailMailto =
+  'mailto:edward@stoneindustriesusa.com?subject=Stone%20Industries%20Inquiry'
+
+/** Optional Gmail web compose fallback when no desktop mail client is configured. */
+export const gmailComposeUrl =
+  'https://mail.google.com/mail/?view=cm&fs=1&to=edward@stoneindustriesusa.com&su=Stone%20Industries%20Inquiry'
 
 export const siteLastUpdated = 'May 30, 2026'
 export const siteContactBlurb =
@@ -362,11 +374,22 @@ Photos/screenshots (if relevant):
 Best callback time:
 `
 
-export function buildMailto(subject: string, body: string = inquiryBodyTemplate) {
+export function buildMailto(subject: string, body?: string) {
   const params = new URLSearchParams()
   params.set('subject', subject)
-  params.set('body', body)
-  return `mailto:${contactEmail}?${params.toString()}`
+  if (body) params.set('body', body)
+  // Use %20 — some mail clients ignore or break mailto when query uses + for spaces.
+  return `mailto:${contactEmail}?${params.toString().replace(/\+/g, '%20')}`
+}
+
+export function buildGmailComposeUrl(subject: string): string {
+  const params = new URLSearchParams({
+    view: 'cm',
+    fs: '1',
+    to: contactEmail,
+    su: subject,
+  })
+  return `https://mail.google.com/mail/?${params.toString()}`
 }
 
 export const capabilityBriefPath = `${import.meta.env.BASE_URL}capability-brief.html`

@@ -1,9 +1,9 @@
-import { contactEmail } from '../data/site'
+import { emailAddress } from '../data/site'
 
 export async function copyContactEmail(): Promise<boolean> {
   if (typeof navigator !== 'undefined' && navigator.clipboard?.writeText) {
     try {
-      await navigator.clipboard.writeText(contactEmail)
+      await navigator.clipboard.writeText(emailAddress)
       return true
     } catch {
       /* fall through to legacy copy */
@@ -14,7 +14,7 @@ export async function copyContactEmail(): Promise<boolean> {
 
   try {
     const textarea = document.createElement('textarea')
-    textarea.value = contactEmail
+    textarea.value = emailAddress
     textarea.setAttribute('readonly', 'true')
     textarea.style.position = 'absolute'
     textarea.style.left = '-9999px'

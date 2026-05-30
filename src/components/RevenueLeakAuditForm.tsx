@@ -287,7 +287,6 @@ function AuditMailtoButton({
   onError: (message: string) => void
 }) {
   function handleMailtoClick(event: MouseEvent<HTMLAnchorElement>) {
-    event.preventDefault()
     const form = event.currentTarget.closest('form')
     if (!form) return
 
@@ -306,12 +305,13 @@ function AuditMailtoButton({
     })
 
     if (!validation.ok) {
+      event.preventDefault()
       onError(validation.error)
       return
     }
 
+    event.currentTarget.href = buildAuditMailtoHref(validation.mailtoBody)
     trackMailtoFallbackClick('audit')
-    window.location.href = buildAuditMailtoHref(validation.mailtoBody)
   }
 
   return (

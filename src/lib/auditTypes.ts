@@ -1,4 +1,4 @@
-import { contactEmail } from '../data/site'
+import { emailAddress } from '../data/site'
 import {
   auditBiggestProblemOptions,
   auditServiceLabel,
@@ -51,7 +51,7 @@ export function buildAuditMailtoHref(body: string): string {
   const params = new URLSearchParams()
   params.set('subject', 'AI Revenue Leak Audit Request — Stone Industries')
   params.set('body', body)
-  return `mailto:${contactEmail}?${params.toString()}`
+  return `mailto:${emailAddress}?${params.toString().replace(/\+/g, '%20')}`
 }
 
 export function validateAuditInput(input: AuditFormInput): AuditValidationResult {

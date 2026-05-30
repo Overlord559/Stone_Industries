@@ -309,6 +309,12 @@
       '</div>' +
       '<div class="si-email-actions">' +
       '<p class="si-email-line">Email: <a href="mailto:edward@stoneindustriesusa.com?subject=Stone%20Industries%20Package%20Request">edward@stoneindustriesusa.com</a> · <a href="tel:+15595799376">559-579-9376</a></p>' +
+      '<div class="si-email-buttons">' +
+      '<button type="button" class="cta cta-secondary" data-si-copy-email>Copy email</button>' +
+      '<a class="cta cta-secondary" href="mailto:edward@stoneindustriesusa.com?subject=Stone%20Industries%20Package%20Request">Open email app</a>' +
+      '<a class="cta cta-secondary" href="https://mail.google.com/mail/?view=cm&fs=1&to=edward@stoneindustriesusa.com&su=Stone%20Industries%20Package%20Request" target="_blank" rel="noopener noreferrer">Open Gmail draft</a>' +
+      '</div>' +
+      '<p class="si-copy-status" data-si-copy-status hidden aria-live="polite">Email copied.</p>' +
       '<a class="cta cta-secondary" data-si-package-mailto href="mailto:edward@stoneindustriesusa.com?subject=Stone%20Industries%20Package%20Request" hidden>Send this request via email app</a>' +
       '</div>' +
       '</form>' +

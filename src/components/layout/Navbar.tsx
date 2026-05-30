@@ -7,11 +7,10 @@ import {
   trackServicesCtaClick,
 } from '../../lib/analytics'
 import {
-  buildMailto,
   calendlyRevenueLeakAuditUrl,
   ctaBookRevenueLeakAudit,
   ctaContactCompany,
-  defaultInquiryMailtoSubject,
+  emailMailto,
   externalBookingLinkProps,
   navItems,
   pricingPagePath,
@@ -65,7 +64,7 @@ export function Navbar() {
             {ctaBookRevenueLeakAudit}
           </a>
           <a
-            href={buildMailto(defaultInquiryMailtoSubject)}
+            href={emailMailto}
             className="rounded-full border border-white/15 bg-white/5 px-5 py-2.5 text-sm font-medium !text-white transition hover:bg-white/10 hover:!text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
           >
             {ctaContactCompany}
@@ -120,7 +119,7 @@ export function Navbar() {
                 {ctaBookRevenueLeakAudit}
               </a>
               <a
-                href={buildMailto(defaultInquiryMailtoSubject)}
+                href={emailMailto}
                 className="inline-flex min-h-11 w-full items-center justify-center rounded-full border border-white/15 bg-white/5 px-5 py-3 text-sm font-medium !text-white transition hover:border-white/25 hover:bg-white/10 hover:!text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
                 onClick={() => setIsOpen(false)}
               >

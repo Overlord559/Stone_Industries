@@ -1,10 +1,10 @@
 import {
-  buildMailto,
   calendlyGeneralConsultationUrl,
   calendlyRevenueLeakAuditUrl,
   contactEmail,
   contactPhone,
   contactPhoneHref,
+  emailMailto,
   ctaBookRevenueLeakAudit,
   ctaScheduleGeneralConsultation,
   externalBookingLinkProps,
@@ -32,7 +32,7 @@ export function Footer() {
           </p>
           <p className="max-w-xl text-xs leading-5 text-slate-500">{siteContactBlurb}</p>
           <p className="text-sm text-slate-400">
-            <a className="font-medium text-slate-200 underline hover:text-white" href={buildMailto('Stone Industries Inquiry')}>
+            <a className="font-medium text-slate-200 underline hover:text-white" href={emailMailto}>
               {contactEmail}
             </a>
             {' · '}

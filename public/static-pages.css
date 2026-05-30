@@ -1213,7 +1213,7 @@ body.si-package-modal-open {
   font-style: normal;
 }
 
-/* Email contact fallback — copy + mailto (no Gmail web-login URLs) */
+/* Email contact fallback — copy + mailto + optional Gmail compose */
 .si-email-actions {
   margin-top: 1.5rem;
   padding: 1.25rem 1.5rem;
