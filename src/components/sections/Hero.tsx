@@ -8,13 +8,14 @@ import {
   contactPhone,
   contactPhoneHref,
   ctaBookRevenueLeakAudit,
-  ctaContactEdward,
+  ctaContactCompany,
   ctaRequestCustomerEngineSprint,
+  defaultInquiryMailtoSubject,
   externalBookingLinkProps,
   heroCertificationsMicro,
   serviceAreaOnSite,
   serviceAreaPrimary,
-  siteLaunchStatus,
+  siteContactBlurb,
 } from '../../data/site'
 import { revenueLeakAuditSectionId } from '../../data/revenueLeakAudit'
 import { trackAuditCtaClick, trackServicesCtaClick } from '../../lib/analytics'
@@ -49,11 +50,11 @@ export function Hero() {
             AI revenue and customer systems for Fresno operators—plus disciplined local tech support when scoped.
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300 sm:text-xl">
-            Stone Industries is live on Google Workspace with direct business email. Primary work: AI Revenue Leak
-            Audit, AI Customer Engine sprints, Managed AI Ops, and BidSignal First Award Sprint for GovCon teams.
-            PC builds, Tier 1 IT, websites, and Wi-Fi/POS remain supporting services.
+            Primary work: AI Revenue Leak Audit, AI Customer Engine sprints, Managed AI Ops, and BidSignal First
+            Award Sprint for GovCon teams. PC builds, Tier 1 IT, websites, and Wi-Fi/POS remain supporting
+            services.
           </p>
-          <p className="mt-4 max-w-2xl text-sm leading-6 text-slate-400">{siteLaunchStatus}</p>
+          <p className="mt-4 max-w-2xl text-sm leading-6 text-slate-400">{siteContactBlurb}</p>
           <p className="mt-5 hidden text-sm font-medium uppercase tracking-[0.32em] text-slate-400 md:block">
             Reliable Today. Autonomous Tomorrow.
           </p>
@@ -95,10 +96,10 @@ export function Hero() {
               <ArrowRight size={16} />
             </a>
             <a
-              href={buildMailto('Stone Industries Inquiry — Contact Edward')}
+              href={buildMailto(defaultInquiryMailtoSubject)}
               className="si-secondary-cta pointer-events-auto inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm font-semibold !text-white transition hover:bg-white/10 hover:!text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
             >
-              {ctaContactEdward}
+              {ctaContactCompany}
               <ArrowRight size={16} />
             </a>
             <a

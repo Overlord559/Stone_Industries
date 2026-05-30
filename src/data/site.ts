@@ -42,15 +42,17 @@ export const contactEmail = 'edward@stoneindustriesusa.com'
 export const contactPhone = '559-579-9376'
 export const contactPhoneHref = 'tel:+15595799376'
 
-/** Public-facing launch / contact freshness (Google Workspace + Gmail live). */
-export const siteLastUpdated = 'May 29, 2026'
-export const siteLaunchStatus =
-  'Official business email is live on Google Workspace (Gmail activated May 2026). Reach Edward directly at edward@stoneindustriesusa.com.'
+export const siteLastUpdated = 'May 30, 2026'
+export const siteContactBlurb =
+  'Stone Industries accepts project inquiries by email, phone, and scheduled consultation.'
+/** @deprecated Use siteContactBlurb — kept for import compatibility during cleanup */
+export const siteLaunchStatus = siteContactBlurb
 
 export const ctaBookRevenueLeakAudit = 'Book an AI Revenue Leak Audit'
 export const ctaRequestCustomerEngineSprint = 'Request an AI Customer Engine Sprint'
 export const ctaScheduleGeneralConsultation = 'Schedule a General Consultation'
-export const ctaContactEdward = 'Contact Edward'
+export const ctaContactCompany = 'Contact Stone Industries'
+export const defaultInquiryMailtoSubject = 'Stone Industries Inquiry'
 
 /** Official Calendly booking URLs (May 2026). */
 export const calendlyRevenueLeakAuditUrl =
@@ -110,7 +112,7 @@ export const businessCertifications = [
 ] as const
 
 export const govContractingTrustDisclaimer =
-  'Certifications and SAM.gov registration support contractor, subcontractor, and teaming conversations. They do not imply awarded federal contracts, agency endorsement, DoD approval, or federal past performance.'
+  'Certifications and registrations are provided for qualification context only and do not imply agency endorsement, contract award, or past performance.'
 
 /** One-line footer / static-page trust signal — factual only. */
 export const footerCertificationsCompact = `${businessCertifications.map((cert) => cert.label).join(' · ')} · ${serviceAreaShort}`

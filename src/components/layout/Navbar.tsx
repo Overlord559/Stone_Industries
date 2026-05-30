@@ -10,7 +10,8 @@ import {
   buildMailto,
   calendlyRevenueLeakAuditUrl,
   ctaBookRevenueLeakAudit,
-  ctaContactEdward,
+  ctaContactCompany,
+  defaultInquiryMailtoSubject,
   externalBookingLinkProps,
   navItems,
   pricingPagePath,
@@ -64,10 +65,10 @@ export function Navbar() {
             {ctaBookRevenueLeakAudit}
           </a>
           <a
-            href={buildMailto('Stone Industries Inquiry — Contact Edward')}
+            href={buildMailto(defaultInquiryMailtoSubject)}
             className="rounded-full border border-white/15 bg-white/5 px-5 py-2.5 text-sm font-medium !text-white transition hover:bg-white/10 hover:!text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
           >
-            {ctaContactEdward}
+            {ctaContactCompany}
           </a>
         </div>
 
@@ -119,11 +120,11 @@ export function Navbar() {
                 {ctaBookRevenueLeakAudit}
               </a>
               <a
-                href={buildMailto('Stone Industries Inquiry — Contact Edward')}
+                href={buildMailto(defaultInquiryMailtoSubject)}
                 className="inline-flex min-h-11 w-full items-center justify-center rounded-full border border-white/15 bg-white/5 px-5 py-3 text-sm font-medium !text-white transition hover:border-white/25 hover:bg-white/10 hover:!text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
                 onClick={() => setIsOpen(false)}
               >
-                {ctaContactEdward}
+                {ctaContactCompany}
               </a>
             </div>
           </motion.div>

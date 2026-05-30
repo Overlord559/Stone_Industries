@@ -9,11 +9,10 @@ import {
   ctaScheduleGeneralConsultation,
   externalBookingLinkProps,
   footerCertificationsCompact,
-  govContractingTrustDisclaimer,
   pricingPagePath,
   servicesPagePath,
+  siteContactBlurb,
   siteLastUpdated,
-  siteLaunchStatus,
   visionPagePath,
 } from '../../data/site'
 
@@ -31,7 +30,7 @@ export function Footer() {
             AI Revenue Leak Audit, AI Customer Engine, Managed AI Ops, and BidSignal First Award Sprint—plus supporting PC, IT, and website
             packages for Fresno and the Central Valley.
           </p>
-          <p className="max-w-xl text-xs leading-5 text-slate-500">{siteLaunchStatus}</p>
+          <p className="max-w-xl text-xs leading-5 text-slate-500">{siteContactBlurb}</p>
           <p className="text-sm text-slate-400">
             <a className="font-medium text-slate-200 underline hover:text-white" href={buildMailto('Stone Industries Inquiry')}>
               {contactEmail}
@@ -42,7 +41,6 @@ export function Footer() {
             </a>
           </p>
           <p className="text-xs leading-5 text-slate-500">{footerCertificationsCompact}</p>
-          <p className="max-w-xl text-xs leading-5 text-slate-600">{govContractingTrustDisclaimer}</p>
         </div>
         <div className="space-y-3 text-left lg:text-right">
           <p className="text-slate-200">Reliable Today. Autonomous Tomorrow.</p>

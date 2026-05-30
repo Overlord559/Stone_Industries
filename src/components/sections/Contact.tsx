@@ -6,14 +6,15 @@ import {
   calendlyRevenueLeakAuditUrl,
   capabilityBriefPath,
   ctaBookRevenueLeakAudit,
-  ctaContactEdward,
+  ctaContactCompany,
   ctaScheduleGeneralConsultation,
+  defaultInquiryMailtoSubject,
   externalBookingLinkProps,
   inquiryTypes,
   messageChecklist,
   serviceAreaOnSite,
   serviceAreaRemote,
-  siteLaunchStatus,
+  siteContactBlurb,
 } from '../../data/site'
 import { trackAuditCtaClick } from '../../lib/analytics'
 import { InquiryForm } from '../InquiryForm'
@@ -46,7 +47,7 @@ export function Contact() {
 
             title="Submit an inquiry for the fastest response."
 
-            description={`For AI Revenue Leak Audit, AI Customer Engine, Managed AI Ops, BidSignal First Award Sprint, supporting IT/website packages, or subcontracting discussions, use the inquiry form or Calendly links below. ${serviceAreaOnSite} ${serviceAreaRemote} ${siteLaunchStatus} No online checkout on this site.`}
+            description={`For AI Revenue Leak Audit, AI Customer Engine, Managed AI Ops, BidSignal First Award Sprint, supporting IT/website packages, or subcontracting discussions, use the inquiry form or Calendly links below. ${serviceAreaOnSite} ${serviceAreaRemote} ${siteContactBlurb} No online checkout on this site.`}
           />
 
 
@@ -123,10 +124,10 @@ export function Contact() {
               <ArrowRight size={16} />
             </a>
             <a
-              href={buildMailto('Stone Industries Inquiry — Contact Edward')}
+              href={buildMailto(defaultInquiryMailtoSubject)}
               className="si-secondary-cta inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm font-semibold !text-white transition hover:bg-white/10 hover:!text-white [&_svg]:!stroke-white"
             >
-              {ctaContactEdward}
+              {ctaContactCompany}
               <ArrowRight size={16} />
             </a>
             <a

@@ -309,7 +309,7 @@
       '</div>' +
       '<div class="si-email-actions">' +
       '<p class="si-email-line">Email: <a href="mailto:edward@stoneindustriesusa.com?subject=Stone%20Industries%20Package%20Request">edward@stoneindustriesusa.com</a> · <a href="tel:+15595799376">559-579-9376</a></p>' +
-      '<a class="cta cta-secondary" data-si-package-mailto href="#" hidden>Send this request via email app</a>' +
+      '<a class="cta cta-secondary" data-si-package-mailto href="mailto:edward@stoneindustriesusa.com?subject=Stone%20Industries%20Package%20Request" hidden>Send this request via email app</a>' +
       '</div>' +
       '</form>' +
       '</div>'
@@ -370,7 +370,7 @@
 
       if (!configured) {
         statusEl.textContent =
-          'Online capture is not configured in this environment. Use “Send this request via email app” or call 559-579-9376.'
+          'Prefer email? Use “Send this request via email app” below or call 559-579-9376.'
         statusEl.classList.add('is-error')
         trackPricingEvent('pricing_request_error', { context: 'not_configured' })
         if (mailtoFallback) {

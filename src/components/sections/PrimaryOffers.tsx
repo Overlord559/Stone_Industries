@@ -6,11 +6,12 @@ import {
   buildMailto,
   calendlyGeneralConsultationUrl,
   calendlyRevenueLeakAuditUrl,
-  ctaContactEdward,
+  ctaContactCompany,
   ctaScheduleGeneralConsultation,
+  defaultInquiryMailtoSubject,
   externalBookingLinkProps,
   isCalendlyBookingUrl,
-  siteLaunchStatus,
+  siteContactBlurb,
 } from '../../data/site'
 import { trackAuditCtaClick } from '../../lib/analytics'
 import { SectionHeading } from '../ui/SectionHeading'
@@ -25,7 +26,7 @@ export function PrimaryOffers() {
         title="AI systems and GovCon sprint work — live and taking inquiries."
         description={primaryOffersIntro}
       />
-      <p className="mt-4 max-w-3xl text-sm leading-6 text-slate-400">{siteLaunchStatus}</p>
+      <p className="mt-4 max-w-3xl text-sm leading-6 text-slate-400">{siteContactBlurb}</p>
 
       <div className="mt-10 grid gap-5 sm:grid-cols-2">
         {primaryOffers.map((offer, index) => {
@@ -83,10 +84,10 @@ export function PrimaryOffers() {
           <ArrowRight size={15} />
         </a>
         <a
-          href={buildMailto('Stone Industries Inquiry — Contact Edward')}
+          href={buildMailto(defaultInquiryMailtoSubject)}
           className="si-secondary-cta inline-flex min-h-11 items-center gap-2 rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm font-semibold !text-white transition hover:bg-white/10 hover:!text-white"
         >
-          {ctaContactEdward}
+          {ctaContactCompany}
           <ArrowRight size={15} />
         </a>
       </div>

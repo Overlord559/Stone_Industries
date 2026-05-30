@@ -156,7 +156,7 @@
       '</div>' +
       (configured
         ? ''
-        : '<p class="si-inquiry-note">Online capture is not configured in this environment. Email or call using the buttons above.</p>') +
+        : '<p class="si-inquiry-note">Prefer email? Contact Stone Industries at <a href="mailto:edward@stoneindustriesusa.com?subject=Stone%20Industries%20Inquiry">edward@stoneindustriesusa.com</a>.</p>') +
       '</form></section>'
 
     const form = container.querySelector('[data-si-inquiry-form]')

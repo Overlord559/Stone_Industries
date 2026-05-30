@@ -23,7 +23,7 @@
 - Cinematic parallax backgrounds (main DALRM hero + lower coastal-tech support image)
 - **Netlify Free** — recommended commercial production host (`netlify.toml`, root base path)
 - GitHub Pages mirror via `.github/workflows/deploy.yml` on push to `main` (fallback, not primary commercial URL)
-- Contact: `edward@stoneindustriesusa.com` · `559-579-9376` (Google Workspace live May 2026)
+- Contact: `edward@stoneindustriesusa.com` · `559-579-9376`
 - Inquiry capture: Supabase `public.inquiries` (anon insert + RLS) when env configured; mailto/tel fallback always available
 - **Navigation (2026-05-25):** Top nav **Services** → `services.html`; **Pricing** → `pricing.html`. Homepage `#services` anchor kept for hero scroll only.
 - **Homepage service cards:** Compare → `pricing.html?service=<slug>`; Request → same-page inquiry scroll with service preselect (`navigateToContactInquiry`). CSS **3D service objects** link to estimator — no WebGL.
@@ -36,7 +36,7 @@
 
 **Runtime note:** Uncommitted WIP may exist in `src/` — agents must not assume working tree is clean.
 
-**Readability pass (2026-05-26):** Duplicate contact modules removed (footer light links; inquiry form keeps copy/mailto). `pricing.html` policy sections consolidated with progressive disclosure (**STONE-029**).
+**Credibility cleanup pass (2026-05-30):** Removed customer-facing setup/status language (Google Workspace/Gmail live copy). Fixed mailto/contact UX with company-level CTAs (`Contact Stone Industries`). Shortened/relocated GovCon disclaimer. Upgraded privacy/terms baseline copy. Made pricing quotes/payment and handoff/delivery sections collapsible.
 
 **Background balance pass (2026-05-26):** Right-edge scrim vignette + removed 82% cyan glow; hero accent moved to sky clear zone (**STONE-030**). **Hero rocket pass (2026-05-26):** Replaced hero WebGL orb with `HeroRocketAccent` — vertical retro SVG, pointer tilt, hold-to-thrust plume (**STONE-031**, **STONE-032**).
 

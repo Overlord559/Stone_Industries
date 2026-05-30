@@ -766,6 +766,31 @@ Index of operator corrections from pricing/estimator/nav/email/vision passes. Ex
 
 ---
 
+## STONE-036 — Customer-facing credibility: company voice, mailto, no setup/status leaks
+
+| Field | Value |
+|-------|-------|
+| **Severity** | STRONG_RULE |
+| **Factory link** | DESIGN-036 (extend) |
+| **Status** | ACTIVE |
+| **First observed** | Live QA credibility cleanup pass (2026-05-30) |
+
+**Problem:** “Contact Edward”, Google Workspace/Gmail setup copy, and environment fallback messages make Stone look like a solo founder finishing tooling — not a serious LLC. Broken or JS-only email UX erodes trust. Long GovCon disclaimers repeated on every static page footer add scroll fatigue.
+
+**Rule:**
+
+1. **Company CTAs** — public copy uses “Contact Stone Industries” / “Contact Our Team”; Edward only in founder/about context if needed.
+2. **Professional contact blurb** — `siteContactBlurb` replaces setup/status language; no “Gmail activated” or “live on Google Workspace” on customer pages.
+3. **Mailto everywhere** — visible email + Open email app use real `mailto:edward@stoneindustriesusa.com?subject=Stone%20Industries%20Inquiry`; copy email is secondary.
+4. **No environment leaks** — never show “Online capture is not configured in this environment” to customers; use email/phone fallback copy instead.
+5. **Short GovCon disclaimer** — full text only on capability brief, About/GovCon sections, and terms; remove from pricing/services footers.
+6. **Legal pages** — privacy/terms are professional plain-English baselines without “simple baseline / not reviewed by counsel” footers.
+7. **Pricing collapsibles** — quotes/payment and handoff/delivery sections use `<details>` default closed.
+
+**QA check:** Grep clean for Contact Edward, setup copy, environment fallback; build passes; mailto opens from visible email; Calendly CTAs preserved.
+
+---
+
 ## How to add a lesson
 
 1. Assign next `STONE-NNN` ID

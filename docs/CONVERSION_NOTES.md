@@ -16,7 +16,7 @@
 | 5 | Email copy + mailto fallback | Visible address + Copy email + Open email app — not mailto-only |
 | 6 | Capability brief | Footer / About — subcontracting only |
 
-**Primary outreach CTA:** Book an AI Revenue Leak Audit — company voice (`we` / `our team`); **Contact Edward** for direct mailto; **Request an AI Customer Engine Sprint** on hero secondary.
+**Primary outreach CTA:** Book an AI Revenue Leak Audit — company voice (`we` / `our team`); **Contact Stone Industries** for direct mailto; **Request an AI Customer Engine Sprint** on hero secondary.
 
 **Secondary CTAs:** View Services, View Pricing, Request This Package, Send an inquiry.
 

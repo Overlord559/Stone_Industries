@@ -65,7 +65,7 @@ export function RevenueLeakAuditForm({ sourcePage, className = '' }: RevenueLeak
     if (!configured) {
       setStatus('error')
       setErrorMessage(
-        'Online capture is not configured in this environment. Use “Send audit request via email” below or call Stone Industries directly.',
+        'Prefer email? Use “Send audit request via email” below or call Stone Industries directly.',
       )
       trackEvent('audit_form_submit_error', { error_type: 'not_configured' })
       return
@@ -132,7 +132,7 @@ export function RevenueLeakAuditForm({ sourcePage, className = '' }: RevenueLeak
         <p className="mt-2 text-sm leading-6 text-slate-300">
           {configured
             ? 'Submit the form below. Stone Industries will send a human-reviewed revenue leak report and recommended fix plan by email.'
-            : 'Online capture is not configured here. Use the email button below — your email app will open with a pre-filled audit request.'}
+            : 'Fill out the form, then send your request through email — your email app will open with a pre-filled audit request.'}
         </p>
       </div>
 

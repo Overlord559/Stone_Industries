@@ -38,7 +38,8 @@ Optional preview: `npm run preview` — open printed local URL.
 - [ ] Contact: inquiry form primary; **one** email copy + mailto fallback block (inside form); footer = plain email/phone links only — no duplicate `EmailContactActions` card stack
 - [ ] Navbar: Services → `/services.html`; Pricing → `/pricing.html`; Vision → `/vision.html`
 - [ ] Footer links: privacy, terms, capability brief
-- [ ] **Certification trust (STONE-034):** Hero micro-row (VOSB/SDVOSB/SAM.gov, no disclaimer); About section full strip with disclaimer; footer compact line; pricing/services static footer trust line; no contract-win claims
+- [ ] **Certification trust (STONE-034):** Hero micro-row (VOSB/SDVOSB/SAM.gov, no disclaimer); About section full strip with short disclaimer; footer compact line only (no repeated long disclaimer); capability brief + terms retain short GovCon disclaimer; no contract-win claims
+- [ ] **Credibility cleanup (2026-05-30):** No “Contact Edward”, Google Workspace setup copy, or “Online capture is not configured” on customer-facing pages; visible email is clickable mailto; pricing **Quotes and payment** + **Handoff, delivery, and changes** collapsible (default closed)
 - [ ] **Recurring care (STONE-035):** Homepage `#recurring-care` block links to pricing anchors; pricing payment bullet mentions optional monthly care
 - [ ] **Capability brief parity (STONE-035):** `capability-brief.html` + `.txt` list seven current services and bounded certification language
 - [ ] Re-test at **1280px** and **1440px** after any mobile or service-copy pass — mobile QA alone is not enough
@@ -99,8 +100,8 @@ Optional preview: `npm run preview` — open printed local URL.
 
 ## Legal / capability checks
 
-- [ ] `/privacy.html` loads — inquiry form data collection accurately described (with base path in production)
-- [ ] `/terms.html` loads
+- [ ] `/privacy.html` loads — professional sections (effective date, collection, use, providers, retention, rights); no “simple baseline” / counsel disclaimer
+- [ ] `/terms.html` loads — professional sections including GovCon disclaimer, payment rules, no-guarantee language
 - [ ] `/capability-brief.html` loads — positioned as subcontracting, not primary local CTA
 - [ ] No fake testimonials or contract logos
 

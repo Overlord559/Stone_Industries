@@ -67,7 +67,7 @@ export function InquiryForm({ sourcePage, defaultService = '', className = '' }:
     if (!configured) {
       setStatus('error')
       setErrorMessage(
-        'Online inquiry capture is not configured yet. Please call or email Stone Industries directly.',
+        'Please use email or phone below to reach Stone Industries directly.',
       )
       return
     }
@@ -128,7 +128,7 @@ export function InquiryForm({ sourcePage, defaultService = '', className = '' }:
         <p className="mt-2 text-sm leading-6 text-slate-300">
           {configured
             ? 'Submit the form below — inquiry is the fastest path. Prefer phone? Call or text below.'
-            : 'Online capture is not configured in this environment. Use email or phone below.'}
+            : 'Prefer email? Contact Stone Industries using the options below, or call us directly.'}
         </p>
       </div>
 
