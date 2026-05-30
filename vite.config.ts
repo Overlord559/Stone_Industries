@@ -13,7 +13,8 @@ import {
 } from './src/data/pricingCatalog'
 import { advancedSeoNotIncludedNote, advancedSeoPublicLine, aiWorkflowScopeNote } from './src/data/addOnExplanations'
 
-const repoBasePath = process.env.VITE_BASE_PATH ?? '/Stone_Industries/'
+/** Root deploy (Cloudflare Pages, Netlify). Override with VITE_BASE_PATH for GitHub Pages mirror only. */
+const basePath = process.env.VITE_BASE_PATH ?? '/'
 
 function inquiryEnv(mode: string) {
   const fileEnv = loadEnv(mode, process.cwd(), '')
@@ -107,9 +108,9 @@ function stoneStaticAssetsPlugin(): Plugin {
   }
 }
 
-export default defineConfig(({ mode }) => ({
+export default defineConfig(() => ({
   plugins: [react(), tailwindcss(), stoneStaticAssetsPlugin()],
-  base: mode === 'production' ? repoBasePath : '/',
+  base: basePath,
   build: {
     chunkSizeWarningLimit: 900,
     rollupOptions: {
