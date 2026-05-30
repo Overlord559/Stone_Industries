@@ -1,6 +1,6 @@
 import { useRef, useState, type FormEvent, type MouseEvent } from 'react'
 
-import { auditBiggestProblemOptions } from '../data/revenueLeakAudit'
+import { auditBiggestProblemOptions, auditFormSectionId } from '../data/revenueLeakAudit'
 import { trackEvent, trackMailtoFallbackClick } from '../lib/analytics'
 import { contactPhone, contactPhoneHref } from '../data/site'
 import {
@@ -13,6 +13,7 @@ import { EmailContactActions } from './ui/EmailContactActions'
 type RevenueLeakAuditFormProps = {
   sourcePage: string
   className?: string
+  formId?: string
 }
 
 type FormStatus = 'idle' | 'submitting' | 'success' | 'error'
@@ -23,7 +24,11 @@ const fieldClass =
 const labelClass =
   'mb-1 block text-xs font-semibold uppercase tracking-[0.2em] text-slate-400'
 
-export function RevenueLeakAuditForm({ sourcePage, className = '' }: RevenueLeakAuditFormProps) {
+export function RevenueLeakAuditForm({
+  sourcePage,
+  className = '',
+  formId = auditFormSectionId,
+}: RevenueLeakAuditFormProps) {
   const [status, setStatus] = useState<FormStatus>('idle')
   const [errorMessage, setErrorMessage] = useState('')
   const formStartedRef = useRef(false)
@@ -45,11 +50,12 @@ export function RevenueLeakAuditForm({ sourcePage, className = '' }: RevenueLeak
       businessName: String(data.get('business_name') ?? ''),
       website: String(data.get('website') ?? ''),
       googleBusinessProfile: String(data.get('google_business_profile') ?? ''),
+      contactName: String(data.get('contact_name') ?? ''),
       phone: String(data.get('phone') ?? ''),
-      services: String(data.get('services') ?? ''),
       city: String(data.get('city') ?? ''),
       biggestProblem: String(data.get('biggest_problem') ?? ''),
       email: String(data.get('email') ?? ''),
+      notes: String(data.get('notes') ?? ''),
       permissionGranted: data.get('permission') === 'on',
       honeypot: String(data.get('bot_check') ?? ''),
       sourcePage,
@@ -65,7 +71,7 @@ export function RevenueLeakAuditForm({ sourcePage, className = '' }: RevenueLeak
     if (!configured) {
       setStatus('error')
       setErrorMessage(
-        'Prefer email? Use “Send audit request via email” below or call Stone Industries directly.',
+        'Prefer email? Use Copy email or Open Gmail below, or call Stone Industries directly.',
       )
       trackEvent('audit_form_submit_error', { error_type: 'not_configured' })
       return
@@ -99,8 +105,8 @@ export function RevenueLeakAuditForm({ sourcePage, className = '' }: RevenueLeak
       >
         <p className="text-sm font-semibold text-emerald-100">Audit request received</p>
         <p className="mt-2 text-sm leading-6 text-slate-200">
-          Thank you. Stone Industries will review your business details and send a revenue leak report and fix
-          plan by email. For urgent help, call{' '}
+          Thank you. Stone Industries will review your business details and follow up by email. For
+          urgent help, call{' '}
           <a className="font-medium text-white underline" href={contactPhoneHref}>
             {contactPhone}
           </a>
@@ -117,9 +123,9 @@ export function RevenueLeakAuditForm({ sourcePage, className = '' }: RevenueLeak
     )
   }
 
-
   return (
     <form
+      id={formId}
       className={`relative si-section-glass space-y-4 rounded-[1.75rem] border border-white/[0.14] p-5 shadow-[0_18px_60px_rgba(15,23,42,0.14)] sm:p-6 ${className}`}
       onSubmit={handleSubmit}
       onFocusCapture={handleFormStart}
@@ -131,8 +137,8 @@ export function RevenueLeakAuditForm({ sourcePage, className = '' }: RevenueLeak
         </p>
         <p className="mt-2 text-sm leading-6 text-slate-300">
           {configured
-            ? 'Submit the form below. Stone Industries will send a human-reviewed revenue leak report and recommended fix plan by email.'
-            : 'Fill out the form, then use Send audit request via email or Open Gmail below.'}
+            ? 'Submit the form below. Stone Industries will follow up with your audit review by email.'
+            : 'Fill out the form, then use Copy email or Open Gmail below — fields are included in the message body.'}
         </p>
       </div>
 
@@ -177,8 +183,8 @@ export function RevenueLeakAuditForm({ sourcePage, className = '' }: RevenueLeak
 
       <div className="grid gap-4 sm:grid-cols-2">
         <label className="block text-sm text-slate-200">
-          <span className={labelClass}>Phone *</span>
-          <input name="phone" required type="tel" autoComplete="tel" className={fieldClass} />
+          <span className={labelClass}>Contact name *</span>
+          <input name="contact_name" required autoComplete="name" className={fieldClass} />
         </label>
 
         <label className="block text-sm text-slate-200">
@@ -187,36 +193,41 @@ export function RevenueLeakAuditForm({ sourcePage, className = '' }: RevenueLeak
         </label>
       </div>
 
+      <div className="grid gap-4 sm:grid-cols-2">
+        <label className="block text-sm text-slate-200">
+          <span className={labelClass}>Phone *</span>
+          <input name="phone" required type="tel" autoComplete="tel" className={fieldClass} />
+        </label>
+
+        <label className="block text-sm text-slate-200">
+          <span className={labelClass}>City</span>
+          <input name="city" autoComplete="address-level2" className={fieldClass} />
+        </label>
+      </div>
+
       <label className="block text-sm text-slate-200">
-        <span className={labelClass}>Services *</span>
-        <input
-          name="services"
-          required
-          placeholder="e.g. Auto detailing, mobile mechanic, barber shop"
+        <span className={labelClass}>Biggest problem *</span>
+        <select name="biggest_problem" required defaultValue="" className={fieldClass}>
+          <option value="" disabled>
+            Choose one
+          </option>
+          {auditBiggestProblemOptions.map((option) => (
+            <option key={option} value={option}>
+              {option}
+            </option>
+          ))}
+        </select>
+      </label>
+
+      <label className="block text-sm text-slate-200">
+        <span className={labelClass}>Notes</span>
+        <textarea
+          name="notes"
+          rows={3}
+          placeholder="Optional context about your business or goals"
           className={fieldClass}
         />
       </label>
-
-      <div className="grid gap-4 sm:grid-cols-2">
-        <label className="block text-sm text-slate-200">
-          <span className={labelClass}>City *</span>
-          <input name="city" required autoComplete="address-level2" className={fieldClass} />
-        </label>
-
-        <label className="block text-sm text-slate-200">
-          <span className={labelClass}>Biggest problem *</span>
-          <select name="biggest_problem" required defaultValue="" className={fieldClass}>
-            <option value="" disabled>
-              Choose one
-            </option>
-            {auditBiggestProblemOptions.map((option) => (
-              <option key={option} value={option}>
-                {option}
-              </option>
-            ))}
-          </select>
-        </label>
-      </div>
 
       <label className="flex items-start gap-3 text-sm leading-6 text-slate-300">
         <input
@@ -226,8 +237,8 @@ export function RevenueLeakAuditForm({ sourcePage, className = '' }: RevenueLeak
           className="mt-1 h-4 w-4 rounded border-white/20 bg-slate-950/50 text-cyan-400 focus:ring-cyan-400/40"
         />
         <span>
-          I give Stone Industries permission to review my public business details and send a revenue leak
-          audit report to the email above. *
+          I give Stone Industries permission to review my public business details and send a revenue
+          leak audit report to the email above. *
         </span>
       </label>
 
@@ -245,13 +256,15 @@ export function RevenueLeakAuditForm({ sourcePage, className = '' }: RevenueLeak
           <button
             type="submit"
             disabled={status === 'submitting'}
+            data-cta="request-audit-review"
             className="si-primary-cta inline-flex min-h-11 items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-semibold !text-slate-950 transition hover:bg-slate-200 disabled:cursor-not-allowed disabled:opacity-60"
           >
-            {status === 'submitting' ? 'Sending…' : 'Request free audit'}
+            {status === 'submitting' ? 'Sending…' : 'Request Audit Review'}
           </button>
         ) : (
           <p className="text-sm text-slate-300">
-            Fill out the form, then send your request via email or Open Gmail — fields are included in the message body.
+            Fill out the form, then send your request via email — fields are included in the message
+            body.
           </p>
         )}
 
@@ -272,8 +285,7 @@ export function RevenueLeakAuditForm({ sourcePage, className = '' }: RevenueLeak
       </div>
 
       <p className="text-xs leading-5 text-slate-400">
-        Managed service with human-reviewed drafts and an approval queue — not fully autonomous software. No
-        revenue guarantees.
+        Human-reviewed recommendations — not fully autonomous software. No revenue guarantees.
       </p>
     </form>
   )
@@ -295,11 +307,12 @@ function AuditMailtoButton({
       businessName: String(data.get('business_name') ?? ''),
       website: String(data.get('website') ?? ''),
       googleBusinessProfile: String(data.get('google_business_profile') ?? ''),
+      contactName: String(data.get('contact_name') ?? ''),
       phone: String(data.get('phone') ?? ''),
-      services: String(data.get('services') ?? ''),
       city: String(data.get('city') ?? ''),
       biggestProblem: String(data.get('biggest_problem') ?? ''),
       email: String(data.get('email') ?? ''),
+      notes: String(data.get('notes') ?? ''),
       permissionGranted: data.get('permission') === 'on',
       sourcePage,
     })
@@ -318,6 +331,7 @@ function AuditMailtoButton({
     <a
       href={buildAuditMailtoHref('')}
       onClick={handleMailtoClick}
+      data-cta="request-audit-review"
       className="si-secondary-cta inline-flex min-h-11 items-center justify-center rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm font-semibold !text-white transition hover:bg-white/10 hover:!text-white"
     >
       Send audit request via email

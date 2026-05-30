@@ -98,9 +98,10 @@ Runtime QA: desktop, 375px, 320px — [`docs/QA_CHECKLIST.md`](docs/QA_CHECKLIST
 
 ## Deployment
 
-- **Live (production):** https://stoneindustries.netlify.app/ (Netlify Free, `VITE_BASE_PATH=/`)
-- **Mirror / fallback:** https://overlord559.github.io/Stone_Industries/ (GitHub Pages, base `/Stone_Industries/`)
-- **Deploy runbook:** [`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md)
+- **Live (production):** https://stoneindustriesusa.com/ (Cloudflare Pages + DNS, `VITE_BASE_PATH=/`)
+- **Rollback mirror:** https://stoneindustries.netlify.app/ (Netlify — keep until CF smoke-tested)
+- **GitHub Pages preview:** https://overlord559.github.io/Stone_Industries/ (base `/Stone_Industries/`)
+- **Deploy runbooks:** [`docs/CLOUDFLARE_MIGRATION.md`](docs/CLOUDFLARE_MIGRATION.md) · [`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md) (Netlify legacy)
 
 ---
 

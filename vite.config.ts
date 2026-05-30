@@ -1,7 +1,7 @@
 import tailwindcss from '@tailwindcss/vite'
 import react from '@vitejs/plugin-react'
 import { writeFileSync } from 'node:fs'
-import { join } from 'node:path'
+import { join, resolve } from 'node:path'
 import { defineConfig, loadEnv, type Plugin } from 'vite'
 import {
   competitorPositioningNote,
@@ -114,6 +114,10 @@ export default defineConfig(() => ({
   build: {
     chunkSizeWarningLimit: 900,
     rollupOptions: {
+      input: {
+        main: resolve(process.cwd(), 'index.html'),
+        audit: resolve(process.cwd(), 'ai-revenue-leak-audit/index.html'),
+      },
       output: {
         manualChunks(id) {
           if (id.includes('@react-three/fiber')) {

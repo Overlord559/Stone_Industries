@@ -1,0 +1,2 @@
+# Serve MPA audit entry without trailing slash (Cloudflare Pages / Netlify)
+/ai-revenue-leak-audit  /ai-revenue-leak-audit/index.html  200

@@ -1,6 +1,6 @@
 # Stone Industries — QA Checklist
 
-**Last updated:** 2026-05-26 · **Project OS v2**  
+**Last updated:** 2026-05-30 · **Project OS v2**  
 **Routing:** [`PROJECT_OS_INDEX.md`](PROJECT_OS_INDEX.md) → deployment/technical rows  
 **Evals:** [`EVALS.md`](EVALS.md)  
 Run before commit or deploy when runtime files changed.
@@ -117,7 +117,7 @@ Optional preview: `npm run preview` — open printed local URL.
 
 ## Asset path check
 
-- [ ] Backgrounds served from `/assets/` on **Netlify production** (`VITE_BASE_PATH=/`)
+- [ ] Backgrounds served from `/assets/` on **Cloudflare Pages production** (`VITE_BASE_PATH=/`)
 - [ ] GitHub Pages mirror (if enabled): `/Stone_Industries/assets/`
 - [ ] No references to repo-root draft images
 - [ ] `og-image.svg` and favicon load
@@ -155,11 +155,11 @@ Optional preview: `npm run preview` — open printed local URL.
 
 ---
 
-## Netlify post-deploy smoke (production)
+## Cloudflare Pages post-deploy smoke (production)
 
-Run on live Netlify URL after deploy — https://stoneindustries.netlify.app/ — see [`DEPLOYMENT.md`](DEPLOYMENT.md):
+Run on live production URL after deploy — https://stoneindustriesusa.com/ — see [`CLOUDFLARE_MIGRATION.md`](CLOUDFLARE_MIGRATION.md) (Netlify rollback: [`DEPLOYMENT.md`](DEPLOYMENT.md)):
 
-- [ ] `/`, `/pricing.html`, `/services.html`, `/vision.html` — 200
+- [ ] `/`, `/ai-revenue-leak-audit`, `/pricing.html`, `/services.html`, `/vision.html` — 200
 - [ ] All **six** `/services/*.html` detail pages — 200
 - [ ] `/capability-brief.html`, `/privacy.html`, `/terms.html` — 200
 - [ ] Hero primary CTA → `/pricing.html`
@@ -168,6 +168,21 @@ Run on live Netlify URL after deploy — https://stoneindustries.netlify.app/ �
 - [ ] `tel:+15595799376` on hero, contact, static pages
 - [ ] Mobile sticky bar (Inquiry + Pricing) at 375px and 320px
 - [ ] No horizontal scroll; sticky bar does not cover contact CTAs
+
+---
+
+## AI Revenue Leak Audit landing (2026-05-30)
+
+- [ ] `/ai-revenue-leak-audit` loads — hero, checklist, form, after-audit options, final CTA
+- [ ] Homepage `#revenue-leak-audit` teaser — **See Audit Details** → `/ai-revenue-leak-audit`; **Book Audit Call** → Calendly
+- [ ] No Starter/Growth/Operator ($199/$499/$999 setup) cards on audit landing or homepage audit section
+- [ ] $497 audit price visible on landing page
+- [ ] **Book AI Revenue Leak Audit Call** → `https://calendly.com/edward-stoneindustriesusa/30min`
+- [ ] Audit form: business name, website, GBP link, contact name, email, phone, biggest problem, permission; optional city + notes
+- [ ] **Request Audit Review** submit + **Copy email** + **Open Gmail** on audit form
+- [ ] `data-cta="book-ai-revenue-leak-audit"` and `data-cta="request-audit-review"` on landing CTAs
+- [ ] `data-page="ai-revenue-leak-audit"` on landing root
+- [ ] 375px / 320px — form usable; no horizontal scroll
 
 ---
 
@@ -295,7 +310,7 @@ Run on live Netlify URL after deploy — https://stoneindustries.netlify.app/ �
 - [ ] `docs/supabase/stone-industries-inquiries.sql` applied in Supabase before first production submit
 - [ ] RLS enabled on `public.inquiries`; anon has INSERT only (no SELECT/UPDATE/DELETE policies)
 - [ ] Column-scoped INSERT grant; REST POST with `status: closed` fails
-- [ ] Netlify env: `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY` only — never service role in `VITE_*`
+- [ ] Cloudflare Pages build env: `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY` only — never service role in `VITE_*`
 - [ ] `inquiry-config.js` in `dist/` exposes only public URL + anon key (expected when configured)
 - [ ] Privacy page matches form fields + sensitive-data warning + retention note
 - [ ] Security headers present in `netlify.toml` (X-Frame-Options, nosniff, Referrer-Policy, Permissions-Policy)

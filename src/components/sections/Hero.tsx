@@ -17,7 +17,9 @@ import {
   serviceAreaPrimary,
   siteContactBlurb,
 } from '../../data/site'
-import { revenueLeakAuditSectionId } from '../../data/revenueLeakAudit'
+import {
+  auditPagePath,
+} from '../../data/revenueLeakAudit'
 import { trackAuditCtaClick, trackServicesCtaClick } from '../../lib/analytics'
 
 export function Hero() {
@@ -120,10 +122,10 @@ export function Hero() {
             </a>
           </div>
           <a
-            href={`#${revenueLeakAuditSectionId}`}
+            href={auditPagePath}
             className="pointer-events-auto mt-3 inline-flex min-h-11 items-center text-sm font-medium text-cyan-200/90 underline-offset-4 hover:text-cyan-100 hover:underline md:hidden"
           >
-            Request audit via form ↓
+            See audit details ↓
           </a>
           <p className="mt-4 max-w-2xl text-sm leading-6 text-slate-400">
             <span className="hidden md:inline">

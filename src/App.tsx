@@ -6,11 +6,13 @@ import { Contact } from './components/sections/Contact'
 import { Hero } from './components/sections/Hero'
 import { PrimaryOffers } from './components/sections/PrimaryOffers'
 import { MobileQuickJump } from './components/sections/MobileQuickJump'
-import { RevenueLeakAudit } from './components/sections/RevenueLeakAudit'
+import { RevenueLeakAuditTeaser } from './components/sections/RevenueLeakAuditTeaser'
 import { Services } from './components/sections/Services'
 import { Vision } from './components/sections/Vision'
+import { AiRevenueLeakAuditPage } from './pages/AiRevenueLeakAuditPage'
 import { trackPageView } from './lib/analytics'
 import { syncHashScroll } from './lib/inquiryNavigation'
+import { isAiRevenueLeakAuditPath } from './lib/routePath'
 
 const assetBase = import.meta.env.BASE_URL
 const backgroundStyle = {
@@ -18,9 +20,84 @@ const backgroundStyle = {
   '--si-lower-bg-image': `url(${assetBase}assets/stone-coastal-tech-bg.webp)`,
 } as CSSProperties
 
+function HomePage() {
+  return (
+    <>
+      <div className="relative isolate">
+        <div
+          className="si-main-parallax-bg pointer-events-none absolute inset-0 -z-10 min-h-[100vh]"
+          aria-hidden="true"
+        />
+        <div
+          className="si-main-bg-scrim pointer-events-none absolute inset-0 -z-10 min-h-[100vh]"
+          aria-hidden="true"
+        />
+        <Hero />
+        <MobileQuickJump />
+      </div>
+      <div className="relative isolate">
+        <div
+          className="si-lower-parallax-bg pointer-events-none absolute inset-0 -z-10"
+          aria-hidden="true"
+        />
+        <div
+          className="si-bg-transition pointer-events-none absolute inset-x-0 top-0 -z-10 h-36 sm:h-44"
+          aria-hidden="true"
+        />
+        <div className="relative">
+          <div
+            className="si-lower-bg-scrim pointer-events-none absolute inset-0 -z-10"
+            aria-hidden="true"
+          />
+          <PrimaryOffers />
+          <Services />
+          <About />
+        </div>
+        <div className="relative">
+          <div
+            className="si-lower-bg-scrim si-lower-bg-scrim--vision pointer-events-none absolute inset-0 -z-10"
+            aria-hidden="true"
+          />
+          <Vision />
+        </div>
+        <div className="relative">
+          <div
+            className="si-lower-bg-scrim si-lower-bg-scrim--contact pointer-events-none absolute inset-0 -z-10"
+            aria-hidden="true"
+          />
+          <RevenueLeakAuditTeaser />
+          <Contact />
+        </div>
+      </div>
+    </>
+  )
+}
+
+function AuditLandingShell() {
+  return (
+    <div className="relative isolate">
+      <div
+        className="si-lower-parallax-bg pointer-events-none absolute inset-0 -z-10 min-h-full"
+        aria-hidden="true"
+      />
+      <div
+        className="si-lower-bg-scrim pointer-events-none absolute inset-0 -z-10 min-h-full"
+        aria-hidden="true"
+      />
+      <AiRevenueLeakAuditPage />
+    </div>
+  )
+}
+
 function App() {
+  const isAuditLanding = isAiRevenueLeakAuditPath()
+
   useEffect(() => {
-    syncHashScroll()
+    if (!isAuditLanding) {
+      syncHashScroll()
+    } else {
+      trackPageView()
+    }
 
     const onHashChange = () => {
       trackPageView()
@@ -28,7 +105,7 @@ function App() {
 
     window.addEventListener('hashchange', onHashChange)
     return () => window.removeEventListener('hashchange', onHashChange)
-  }, [])
+  }, [isAuditLanding])
 
   return (
     <div
@@ -41,54 +118,7 @@ function App() {
         aria-hidden="true"
       />
       <Navbar />
-      <main className="w-full">
-        <div className="relative isolate">
-          <div
-            className="si-main-parallax-bg pointer-events-none absolute inset-0 -z-10 min-h-[100vh]"
-            aria-hidden="true"
-          />
-          <div
-            className="si-main-bg-scrim pointer-events-none absolute inset-0 -z-10 min-h-[100vh]"
-            aria-hidden="true"
-          />
-          <Hero />
-          <MobileQuickJump />
-        </div>
-        <div className="relative isolate">
-          <div
-            className="si-lower-parallax-bg pointer-events-none absolute inset-0 -z-10"
-            aria-hidden="true"
-          />
-          <div
-            className="si-bg-transition pointer-events-none absolute inset-x-0 top-0 -z-10 h-36 sm:h-44"
-            aria-hidden="true"
-          />
-          <div className="relative">
-            <div
-              className="si-lower-bg-scrim pointer-events-none absolute inset-0 -z-10"
-              aria-hidden="true"
-            />
-            <PrimaryOffers />
-            <Services />
-            <About />
-          </div>
-          <div className="relative">
-            <div
-              className="si-lower-bg-scrim si-lower-bg-scrim--vision pointer-events-none absolute inset-0 -z-10"
-              aria-hidden="true"
-            />
-            <Vision />
-          </div>
-          <div className="relative">
-            <div
-              className="si-lower-bg-scrim si-lower-bg-scrim--contact pointer-events-none absolute inset-0 -z-10"
-              aria-hidden="true"
-            />
-            <RevenueLeakAudit />
-            <Contact />
-          </div>
-        </div>
-      </main>
+      <main className="w-full">{isAuditLanding ? <AuditLandingShell /> : <HomePage />}</main>
       <Footer />
     </div>
   )

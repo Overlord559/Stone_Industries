@@ -1,6 +1,6 @@
 # Stone Industries — Conversion Notes
 
-**Last updated:** 2026-05-27
+**Last updated:** 2026-05-30
 **Load when:** CTA, copy, company voice, service hierarchy, post-visual pass, outreach readiness
 
 ---
@@ -9,7 +9,7 @@
 
 | Rank | Action | Where |
 |------|--------|-------|
-| 1 | **Book an AI Revenue Leak Audit** | Homepage hero primary → `#revenue-leak-audit`; navbar desktop/mobile; mobile sticky bar (short label: Book Audit); services promo; static `pricing.html` / `services.html` secondary |
+| 1 | **Book an AI Revenue Leak Audit** | Dedicated landing `/ai-revenue-leak-audit` (Google Ads destination); Calendly book CTAs on landing + homepage teaser; navbar desktop/mobile; mobile sticky bar (Book Audit); static `pricing.html` / `services.html` secondary |
 | 2 | View Pricing & Packages / Compare services | Hero secondary; service cards → `pricing.html?service=<slug>`; static pages context-appropriate primary where buyer is browsing packages |
 | 3 | Service inquiry (Supabase form) | Homepage `#contact`; pricing/services static forms; service card secondary |
 | 4 | Phone `559-579-9376` | Plain linked text near inquiry/contact — not a primary desktop button |
@@ -37,7 +37,7 @@ Use before cold outreach, GBP campaigns, or paid tools. Check each when ready �
 - [ ] Stripe account connected or Stripe Payment Links ready
 - [ ] Supabase inquiry form tested in production
 - [ ] Phone / contact path verified
-- [ ] Free Revenue Leak Audit CTA tested (homepage `#revenue-leak-audit`, form submit + mailto fallback)
+- [ ] AI Revenue Leak Audit landing tested (`/ai-revenue-leak-audit`, form submit + Copy email / Open Gmail fallback)
 - [ ] Mobile 375px and 320px checked
 - [ ] No solo-founder copy on public pages
 - [ ] No fake claims (testimonials, contracts, guaranteed revenue, autonomous CEO software)
@@ -63,7 +63,7 @@ Do not mark Instantly or Predis as active in site copy or ops docs until deploye
 
 | Tool | Role | When to enable |
 |------|------|----------------|
-| **Google Analytics 4** | Traffic, acquisition, custom funnel events | Set `VITE_GA_MEASUREMENT_ID` in Netlify / `.env.local` |
+| **Google Analytics 4** | Traffic, acquisition, custom funnel events | Set `VITE_GA_MEASUREMENT_ID` in Cloudflare Pages / `.env.local` |
 | **Microsoft Clarity** | Heatmaps, session replays (no form field capture in custom events) | Set `VITE_CLARITY_PROJECT_ID` |
 | **Google Search Console** | Search impressions / queries | After `.com` domain is connected and verified |
 | **Cloudflare Web Analytics** | Lightweight traffic (optional) | If domain DNS uses Cloudflare |
@@ -100,6 +100,21 @@ Custom events send **only** non-sensitive metadata: `page_path`, `cta_location`,
 **Never sent to analytics:** names, emails, phones, business names, messages, form field values, GBP URLs, or website URLs entered in forms.
 
 **Follow-up:** Update `public/privacy.html` when GA4 / Clarity go live in production.
+
+---
+
+## Google Ads — AI Revenue Leak Audit funnel (2026-05-30)
+
+| Item | Value |
+|------|-------|
+| **Ad destination URL** | `/ai-revenue-leak-audit` (https://stoneindustriesusa.com/ai-revenue-leak-audit) |
+| **Campaign goal** | Leads / Schedule Appointment |
+| **Front-door offer** | AI Revenue Leak Audit — **$497** |
+| **Primary CTA** | Book AI Revenue Leak Audit Call → `https://calendly.com/edward-stoneindustriesusa/30min` |
+| **Secondary CTA** | Request Audit Review (form on landing page) |
+| **Removed from ad funnel** | Starter ($199 + $99/mo), Growth ($499 + $249/mo), Operator ($999 + $499/mo) package cards |
+| **Homepage** | Teaser section links to landing page — full form + offer detail live on `/ai-revenue-leak-audit` only |
+| **CTA data attributes** | `data-cta="book-ai-revenue-leak-audit"`, `data-cta="request-audit-review"`, `data-page="ai-revenue-leak-audit"` |
 
 ---
 

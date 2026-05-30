@@ -1,7 +1,7 @@
 # Stone Industries — Project Context
 
-**Last updated:** 2026-05-26 · **Project OS v2**  
-**Live production:** https://stoneindustries.netlify.app/ (Netlify Free, `VITE_BASE_PATH=/`) — see [`DEPLOYMENT.md`](DEPLOYMENT.md)  
+**Last updated:** 2026-05-30 · **Project OS v2**  
+**Live production:** https://stoneindustriesusa.com (primary) · https://stoneindustries.netlify.app/ (Netlify) — see [`DEPLOYMENT.md`](DEPLOYMENT.md)  
 **Mirror / preview:** https://overlord559.github.io/Stone_Industries/ (GitHub Pages)  
 **Repo:** `stone_industries website` · branch `main`  
 **Routing:** [`PROJECT_OS_INDEX.md`](PROJECT_OS_INDEX.md)
@@ -21,7 +21,8 @@
 - React + TypeScript + Vite + Tailwind CSS marketing site
 - React Three Fiber for restrained interactive orb accents (desktop)
 - Cinematic parallax backgrounds (main DALRM hero + lower coastal-tech support image)
-- **Netlify Free** — recommended commercial production host (`netlify.toml`, root base path)
+- **Cloudflare Pages** — production host (`stoneindustriesusa.com`, `VITE_BASE_PATH=/`, `public/_headers`, `public/_redirects`)
+- **Netlify** — rollback only (`netlify.toml` preserved; not primary)
 - GitHub Pages mirror via `.github/workflows/deploy.yml` on push to `main` (fallback, not primary commercial URL)
 - Contact: `edward@stoneindustriesusa.com` · `559-579-9376`
 - Inquiry capture: Supabase `public.inquiries` (anon insert + RLS) when env configured; mailto/tel fallback always available
@@ -35,6 +36,8 @@
 - **Learning backfill (2026-05-25):** 26 operator corrections indexed in [`DESIGN_MISTAKE_LEDGER.md`](DESIGN_MISTAKE_LEDGER.md) → *Recent Operator Corrections Backfill*; promoted to factory **DESIGN-036**.
 
 **Runtime note:** Uncommitted WIP may exist in `src/` — agents must not assume working tree is clean.
+
+**Audit landing pass (2026-05-30):** Dedicated `/ai-revenue-leak-audit` React landing page (Vite MPA entry) for Google Ads — $497 audit offer, simplified request form, after-audit upsell options (Fix Sprint / Managed AI Ops / custom build). Homepage `#revenue-leak-audit` section shrunk to teaser linking to landing page. Removed Starter/Growth/Operator SecondShift package cards from audit funnel.
 
 **Credibility cleanup pass (2026-05-30):** Removed customer-facing setup/status language (Google Workspace/Gmail live copy). Fixed mailto/contact UX with company-level CTAs (`Contact Stone Industries`). Shortened/relocated GovCon disclaimer. Upgraded privacy/terms baseline copy. Made pricing quotes/payment and handoff/delivery sections collapsible.
 

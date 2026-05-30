@@ -181,6 +181,7 @@ Cloudflare additions do not remove Netlify compatibility.
 Run on Cloudflare `*.pages.dev` URL (then custom domain when added):
 
 - [ ] `/` — homepage, assets 200
+- [ ] `/ai-revenue-leak-audit` — dedicated audit landing (200, audit title/meta, $497, no Starter/Growth/Operator cards)
 - [ ] `/pricing.html` — package request form submits to Supabase
 - [ ] `/services.html` and one service detail page
 - [ ] `/privacy.html`, `/terms.html`

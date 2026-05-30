@@ -10,11 +10,12 @@ export type AuditFormInput = {
   businessName: string
   website: string
   googleBusinessProfile: string
+  contactName: string
   phone: string
-  services: string
-  city: string
+  city?: string
   biggestProblem: string
   email: string
+  notes?: string
   permissionGranted: boolean
   honeypot?: string
   sourcePage?: string
@@ -30,21 +31,31 @@ function isValidProblem(value: string): value is AuditBiggestProblem {
   return auditBiggestProblemOptions.includes(value as AuditBiggestProblem)
 }
 
-export function buildAuditMailtoBody(input: Omit<AuditFormInput, 'honeypot' | 'permissionGranted'>): string {
-  return [
+export function buildAuditMailtoBody(
+  input: Omit<AuditFormInput, 'honeypot' | 'permissionGranted'>,
+): string {
+  const lines = [
     'AI Revenue Leak Audit Request',
     '',
     `Business name: ${input.businessName.trim()}`,
     `Website: ${input.website.trim()}`,
     `Google Business Profile: ${input.googleBusinessProfile.trim()}`,
+    `Contact name: ${input.contactName.trim()}`,
     `Phone: ${input.phone.trim()}`,
-    `Services: ${input.services.trim()}`,
-    `City: ${input.city.trim()}`,
-    `Biggest problem: ${input.biggestProblem.trim()}`,
     `Email: ${input.email.trim()}`,
-    '',
-    'Permission to send audit: Yes',
-  ].join('\n')
+    `Biggest problem: ${input.biggestProblem.trim()}`,
+  ]
+
+  const city = input.city?.trim()
+  if (city) lines.push(`City: ${city}`)
+
+  const notes = input.notes?.trim()
+  if (notes) {
+    lines.push('', 'Notes:', notes)
+  }
+
+  lines.push('', 'Permission to send audit: Yes')
+  return lines.join('\n')
 }
 
 export function buildAuditMailtoHref(body: string): string {
@@ -62,11 +73,12 @@ export function validateAuditInput(input: AuditFormInput): AuditValidationResult
   const businessName = input.businessName.trim()
   const website = input.website.trim()
   const googleBusinessProfile = input.googleBusinessProfile.trim()
+  const contactName = input.contactName.trim()
   const phone = input.phone.trim()
-  const services = input.services.trim()
-  const city = input.city.trim()
+  const city = input.city?.trim() ?? ''
   const biggestProblem = input.biggestProblem.trim()
   const email = input.email.trim()
+  const notes = input.notes?.trim() ?? ''
   const sourcePage = input.sourcePage?.trim()
 
   if (businessName.length < 2 || businessName.length > 120) {
@@ -81,16 +93,16 @@ export function validateAuditInput(input: AuditFormInput): AuditValidationResult
     return { ok: false, error: 'Please enter your Google Business Profile link.' }
   }
 
+  if (contactName.length < 2 || contactName.length > 100) {
+    return { ok: false, error: 'Please enter your contact name (2–100 characters).' }
+  }
+
   if (phone.length < 7 || phone.length > 40) {
     return { ok: false, error: 'Please enter a valid phone number.' }
   }
 
-  if (services.length < 2 || services.length > 500) {
-    return { ok: false, error: 'Please describe your services.' }
-  }
-
-  if (city.length < 2 || city.length > 100) {
-    return { ok: false, error: 'Please enter your city.' }
+  if (city.length > 100) {
+    return { ok: false, error: 'City is too long (max 100 characters).' }
   }
 
   if (!isValidProblem(biggestProblem)) {
@@ -101,6 +113,10 @@ export function validateAuditInput(input: AuditFormInput): AuditValidationResult
     return { ok: false, error: 'Please enter a valid email address.' }
   }
 
+  if (notes.length > 2000) {
+    return { ok: false, error: 'Notes are too long (max 2000 characters).' }
+  }
+
   if (!input.permissionGranted) {
     return { ok: false, error: 'Please confirm permission to send your audit report.' }
   }
@@ -109,31 +125,38 @@ export function validateAuditInput(input: AuditFormInput): AuditValidationResult
     businessName,
     website,
     googleBusinessProfile,
+    contactName,
     phone,
-    services,
-    city,
+    city: city || undefined,
     biggestProblem,
     email,
+    notes: notes || undefined,
     sourcePage,
   })
 
-  const message = [
+  const messageParts = [
     'AI Revenue Leak Audit request',
     '',
+    `Business: ${businessName}`,
     `Website: ${website}`,
     `Google Business Profile: ${googleBusinessProfile}`,
-    `Services: ${services}`,
     `Biggest problem: ${biggestProblem}`,
-    'Permission to send audit: Yes',
-  ].join('\n')
+  ]
+
+  if (city) messageParts.push(`City: ${city}`)
+  if (notes) {
+    messageParts.push('', 'Notes:', notes)
+  }
+
+  messageParts.push('', 'Permission to send audit: Yes')
 
   const payload: InquiryPayload = {
-    name: businessName,
+    name: contactName,
     email,
     phone,
-    city,
+    city: city || undefined,
     service_requested: auditServiceLabel,
-    message,
+    message: messageParts.join('\n'),
   }
 
   if (sourcePage) payload.source_page = sourcePage.slice(0, 500)
