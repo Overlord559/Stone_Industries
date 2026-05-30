@@ -32,7 +32,7 @@ function App() {
 
   return (
     <div
-      className="relative min-h-screen w-full overflow-hidden bg-[#0c1222] text-slate-100"
+      className="relative min-h-screen w-full overflow-x-clip bg-[#0c1222] text-slate-100"
       style={backgroundStyle}
     >
       <div className="pointer-events-none absolute inset-0 -z-20 bg-[radial-gradient(circle_at_50%_-8%,_rgba(14,165,233,0.06),_transparent_32%)]" />

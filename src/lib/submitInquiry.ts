@@ -13,7 +13,7 @@ export async function submitInquiry(payload: InquiryPayload): Promise<void> {
 
   if (!url || !anonKey) {
     throw new InquirySubmitError(
-      'Inquiry form is not configured yet. Please call or email Stone Industries directly.',
+      'We could not save your inquiry right now. Please call or email Stone Industries directly.',
     )
   }
 

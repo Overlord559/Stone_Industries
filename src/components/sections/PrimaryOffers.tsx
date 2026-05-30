@@ -7,8 +7,8 @@ import {
   calendlyRevenueLeakAuditUrl,
   ctaContactCompany,
   ctaScheduleGeneralConsultation,
-  emailMailto,
   externalBookingLinkProps,
+  gmailComposeUrl,
   isCalendlyBookingUrl,
   siteContactBlurb,
 } from '../../data/site'
@@ -83,7 +83,8 @@ export function PrimaryOffers() {
           <ArrowRight size={15} />
         </a>
         <a
-          href={emailMailto}
+          href={gmailComposeUrl}
+          {...externalBookingLinkProps}
           className="si-secondary-cta inline-flex min-h-11 items-center gap-2 rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm font-semibold !text-white transition hover:bg-white/10 hover:!text-white"
         >
           {ctaContactCompany}

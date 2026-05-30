@@ -7,8 +7,8 @@ import {
   ctaBookRevenueLeakAudit,
   ctaContactCompany,
   ctaScheduleGeneralConsultation,
-  emailMailto,
   externalBookingLinkProps,
+  gmailComposeUrl,
   inquiryTypes,
   messageChecklist,
   serviceAreaOnSite,
@@ -123,7 +123,8 @@ export function Contact() {
               <ArrowRight size={16} />
             </a>
             <a
-              href={emailMailto}
+              href={gmailComposeUrl}
+              {...externalBookingLinkProps}
               className="si-secondary-cta inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm font-semibold !text-white transition hover:bg-white/10 hover:!text-white [&_svg]:!stroke-white"
             >
               {ctaContactCompany}

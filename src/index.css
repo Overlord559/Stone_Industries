@@ -12,6 +12,7 @@
     --si-bg-base: #0f172a;
     --si-scrim-rgb: 15, 23, 42;
     --si-scrim-soft-rgb: 30, 41, 59;
+    --si-navbar-height: 5.25rem;
     color: #e2e8f0;
     background-color: var(--si-bg-deep);
     font-family: 'IBM Plex Sans', sans-serif;
@@ -454,12 +455,31 @@
     box-shadow: 0 -8px 32px rgba(15, 23, 42, 0.42);
   }
 
+  header.si-site-navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    width: 100%;
+  }
+
+  .si-navbar-spacer {
+    height: var(--si-navbar-height, 5.25rem);
+    flex-shrink: 0;
+    pointer-events: none;
+  }
+
+  #top {
+    scroll-margin-top: var(--si-navbar-height, 5.25rem);
+  }
+
   #contact {
-    scroll-margin-top: 5.5rem;
+    scroll-margin-top: var(--si-navbar-height, 5.25rem);
   }
 
   #revenue-leak-audit {
-    scroll-margin-top: 5.5rem;
+    scroll-margin-top: var(--si-navbar-height, 5.25rem);
   }
 
   .si-service-object {

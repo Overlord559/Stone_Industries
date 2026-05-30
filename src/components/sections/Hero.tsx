@@ -10,8 +10,8 @@ import {
   ctaBookRevenueLeakAudit,
   ctaContactCompany,
   ctaRequestCustomerEngineSprint,
-  emailMailto,
   externalBookingLinkProps,
+  gmailComposeUrl,
   heroCertificationsMicro,
   serviceAreaOnSite,
   serviceAreaPrimary,
@@ -96,7 +96,8 @@ export function Hero() {
               <ArrowRight size={16} />
             </a>
             <a
-              href={emailMailto}
+              href={gmailComposeUrl}
+              {...externalBookingLinkProps}
               className="si-secondary-cta pointer-events-auto inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm font-semibold !text-white transition hover:bg-white/10 hover:!text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
             >
               {ctaContactCompany}

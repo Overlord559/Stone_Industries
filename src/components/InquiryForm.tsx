@@ -1,10 +1,8 @@
 import { useEffect, useState, type FormEvent } from 'react'
 
 import {
-  contactEmail,
   contactPhone,
   contactPhoneHref,
-  emailMailto,
   inquiryServiceOptions,
   resolveServiceFromQuery,
   resolveServiceTitleFromSlug,
@@ -252,14 +250,7 @@ export function InquiryForm({ sourcePage, defaultService = '', className = '' }:
 
       {!configured ? (
         <p className="text-xs text-slate-400">
-          Fallback:{' '}
-          <a className="underline" href={emailMailto}>
-            {contactEmail}
-          </a>{' '}
-          ·{' '}
-          <a className="underline" href={contactPhoneHref}>
-            {contactPhone}
-          </a>
+          Prefer email? Use Copy email or Open Gmail below.
         </p>
       ) : null}
     </form>

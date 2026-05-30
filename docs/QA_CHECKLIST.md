@@ -35,11 +35,12 @@ Optional preview: `npm run preview` — open printed local URL.
 - [ ] Primary CTA contrast on light buttons (dark text visible)
 - [ ] Services section: all **7** current services visible with inquiry links
 - [ ] Vision section: future items labeled **not sold today**; direction tiles link to `/vision.html` anchors
-- [ ] Contact: inquiry form primary; **one** email copy + mailto fallback block (inside form); footer = plain email/phone links only — no duplicate `EmailContactActions` card stack
+- [ ] Contact: inquiry form primary; **Copy email** + **Open Gmail** in `EmailContactActions` (inside form); footer = plain email/phone links only — no duplicate email action stack
+- [ ] Homepage navbar stays visible while scrolling (sticky; not broken by root `overflow-hidden`)
 - [ ] Navbar: Services → `/services.html`; Pricing → `/pricing.html`; Vision → `/vision.html`
 - [ ] Footer links: privacy, terms, capability brief
 - [ ] **Certification trust (STONE-034):** Hero micro-row (VOSB/SDVOSB/SAM.gov, no disclaimer); About section full strip with short disclaimer; footer compact line only (no repeated long disclaimer); capability brief + terms retain short GovCon disclaimer; no contract-win claims
-- [ ] **Credibility cleanup (2026-05-30):** No “Contact Edward”, Google Workspace setup copy, or “Online capture is not configured” on customer-facing pages; visible email is clickable mailto; pricing **Quotes and payment** + **Handoff, delivery, and changes** collapsible (default closed)
+- [ ] **Credibility cleanup (2026-05-30):** No “Contact Edward”, Google Workspace setup copy, or “Online capture is not configured” on customer-facing pages; email actions are **Copy email** + **Open Gmail** (no “Open email app” / “Open Gmail draft”); pricing **Quotes and payment** + **Handoff, delivery, and changes** collapsible (default closed)
 - [ ] **Recurring care (STONE-035):** Homepage `#recurring-care` block links to pricing anchors; pricing payment bullet mentions optional monthly care
 - [ ] **Capability brief parity (STONE-035):** `capability-brief.html` + `.txt` list seven current services and bounded certification language
 - [ ] Re-test at **1280px** and **1440px** after any mobile or service-copy pass — mobile QA alone is not enough

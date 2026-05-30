@@ -132,7 +132,7 @@ export function RevenueLeakAuditForm({ sourcePage, className = '' }: RevenueLeak
         <p className="mt-2 text-sm leading-6 text-slate-300">
           {configured
             ? 'Submit the form below. Stone Industries will send a human-reviewed revenue leak report and recommended fix plan by email.'
-            : 'Fill out the form, then send your request through email — your email app will open with a pre-filled audit request.'}
+            : 'Fill out the form, then use Send audit request via email or Open Gmail below.'}
         </p>
       </div>
 
@@ -251,7 +251,7 @@ export function RevenueLeakAuditForm({ sourcePage, className = '' }: RevenueLeak
           </button>
         ) : (
           <p className="text-sm text-slate-300">
-            Fill out the form, then send your request through email — fields are included in the message body.
+            Fill out the form, then send your request via email or Open Gmail — fields are included in the message body.
           </p>
         )}
 

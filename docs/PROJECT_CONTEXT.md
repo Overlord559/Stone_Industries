@@ -29,7 +29,7 @@
 - **Homepage service cards:** Compare → `pricing.html?service=<slug>`; Request → same-page inquiry scroll with service preselect (`navigateToContactInquiry`). CSS **3D service objects** link to estimator — no WebGL.
 - **Inquiry-first conversion:** Hero and form clusters use inquiry CTAs; phone shown as plain linked text (`Prefer phone? 559-579-9376`). Mobile sticky bar: Inquiry + Pricing.
 - **Vision page:** `public/vision.html` — grounded roadmap (local-first → bigger vision). Top nav **Vision** → vision page. Homepage vision direction tiles use CSS **3D vision objects** linking to anchored sections — no WebGL.
-- **Email contact fallback:** Visible `edward@stoneindustriesusa.com` + **Copy email** + **Open email app** (`mailto:`) on React contact/footer/inquiry clusters and static pages via `contact-email.js` — no Gmail web-login-only URLs.
+- **Email contact fallback:** Visible `edward@stoneindustriesusa.com` + **Copy email** + **Open Gmail** (Gmail web compose) on React contact/inquiry clusters and static pages via `contact-email.js` — no unreliable mail-app button; no environment-status fallback copy.
 - Legal pages: `public/privacy.html`, `public/terms.html`, `public/capability-brief.html`, `public/vision.html`
 
 - **Learning backfill (2026-05-25):** 26 operator corrections indexed in [`DESIGN_MISTAKE_LEDGER.md`](DESIGN_MISTAKE_LEDGER.md) → *Recent Operator Corrections Backfill*; promoted to factory **DESIGN-036**.
@@ -37,6 +37,8 @@
 **Runtime note:** Uncommitted WIP may exist in `src/` — agents must not assume working tree is clean.
 
 **Credibility cleanup pass (2026-05-30):** Removed customer-facing setup/status language (Google Workspace/Gmail live copy). Fixed mailto/contact UX with company-level CTAs (`Contact Stone Industries`). Shortened/relocated GovCon disclaimer. Upgraded privacy/terms baseline copy. Made pricing quotes/payment and handoff/delivery sections collapsible.
+
+**Contact UX + sticky nav pass (2026-05-30):** Removed unreliable **Open email app** button; standardized **Copy email** + **Open Gmail** everywhere. Homepage navbar sticky (matches static pricing/vision); root layout uses `overflow-x-hidden` so sticky is not broken by `overflow-hidden`.
 
 **Background balance pass (2026-05-26):** Right-edge scrim vignette + removed 82% cyan glow; hero accent moved to sky clear zone (**STONE-030**). **Hero rocket pass (2026-05-26):** Replaced hero WebGL orb with `HeroRocketAccent` — vertical retro SVG, pointer tilt, hold-to-thrust plume (**STONE-031**, **STONE-032**).
 

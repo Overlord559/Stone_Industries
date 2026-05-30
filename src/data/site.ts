@@ -46,11 +46,11 @@ export const contactPhoneHref = 'tel:+15595799376'
 /** SSOT phone tel: href — alias of contactPhoneHref for new imports. */
 export const phoneHref = contactPhoneHref
 
-/** Standard subject-only mailto (no body) — reliable default for visible email + Open email app. */
+/** Standard subject-only mailto (no body) — semantic fallback for visible email links. */
 export const emailMailto =
   'mailto:edward@stoneindustriesusa.com?subject=Stone%20Industries%20Inquiry'
 
-/** Optional Gmail web compose fallback when no desktop mail client is configured. */
+/** Primary browser-based email action — Gmail web compose. */
 export const gmailComposeUrl =
   'https://mail.google.com/mail/?view=cm&fs=1&to=edward@stoneindustriesusa.com&su=Stone%20Industries%20Inquiry'
 

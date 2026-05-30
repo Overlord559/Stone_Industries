@@ -149,15 +149,14 @@
       '<p class="si-email-line">Email: <a href="mailto:edward@stoneindustriesusa.com?subject=Stone%20Industries%20Inquiry">edward@stoneindustriesusa.com</a></p>' +
       '<div class="si-email-buttons">' +
       '<button type="button" class="cta cta-secondary" data-si-copy-email>Copy email</button>' +
-      '<a class="cta cta-secondary" href="mailto:edward@stoneindustriesusa.com?subject=Stone%20Industries%20Inquiry">Open email app</a>' +
-      '<a class="cta cta-secondary" href="https://mail.google.com/mail/?view=cm&fs=1&to=edward@stoneindustriesusa.com&su=Stone%20Industries%20Inquiry" target="_blank" rel="noopener noreferrer">Open Gmail draft</a>' +
+      '<a class="cta cta-secondary" href="https://mail.google.com/mail/?view=cm&fs=1&to=edward@stoneindustriesusa.com&su=Stone%20Industries%20Inquiry" target="_blank" rel="noopener noreferrer">Open Gmail</a>' +
       '</div>' +
       '<p class="si-copy-status" data-si-copy-status hidden aria-live="polite">Email copied.</p>' +
       '<p class="note-muted">Prefer phone? <a href="tel:+15595799376">559-579-9376</a></p>' +
       '</div>' +
       (configured
         ? ''
-        : '<p class="si-inquiry-note">Prefer email? Contact Stone Industries at <a href="mailto:edward@stoneindustriesusa.com?subject=Stone%20Industries%20Inquiry">edward@stoneindustriesusa.com</a>.</p>') +
+        : '<p class="si-inquiry-note">Prefer email? Use Copy email or Open Gmail below.</p>') +
       '</form></section>'
 
     const form = container.querySelector('[data-si-inquiry-form]')

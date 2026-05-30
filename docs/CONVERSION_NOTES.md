@@ -13,7 +13,7 @@
 | 2 | View Pricing & Packages / Compare services | Hero secondary; service cards → `pricing.html?service=<slug>`; static pages context-appropriate primary where buyer is browsing packages |
 | 3 | Service inquiry (Supabase form) | Homepage `#contact`; pricing/services static forms; service card secondary |
 | 4 | Phone `559-579-9376` | Plain linked text near inquiry/contact — not a primary desktop button |
-| 5 | Email copy + mailto fallback | Visible address + Copy email + Open email app — not mailto-only |
+| 5 | Email copy + Gmail fallback | Visible address + **Copy email** + **Open Gmail** — not mailto-only |
 | 6 | Capability brief | Footer / About — subcontracting only |
 
 **Primary outreach CTA:** Book an AI Revenue Leak Audit — company voice (`we` / `our team`); **Contact Stone Industries** for direct mailto; **Request an AI Customer Engine Sprint** on hero secondary.
@@ -154,8 +154,8 @@ See **STONE-035**.
 |---------|------|
 | Visible address | `edward@stoneindustriesusa.com` on contact, footer, pricing, services, service detail pages |
 | Copy email | Clipboard copy with “Email copied.” status — legacy fallback if clipboard blocked |
-| Open email app | Standard `mailto:edward@stoneindustriesusa.com?subject=Stone%20Industries%20Inquiry` |
-| Forbidden | Gmail compose / Google account picker URLs without copy fallback |
+| Open Gmail | `https://mail.google.com/mail/?view=cm&fs=1&to=edward@stoneindustriesusa.com&su=Stone%20Industries%20Inquiry` (new tab) |
+| mailto | Semantic fallback on visible address only — not a primary button |
 | React | `EmailContactActions` + `copyContactEmail()` |
 | Static | `public/contact-email.js` + `[data-si-copy-email]` |
 
@@ -294,7 +294,7 @@ Logistics guardrail: `logisticsFreightDisclaimer` in catalog + service page.
 | Navbar phone | All | Plain linked text in menu/footer — not primary desktop button |
 | Hero phone | All | `Prefer phone?` linked text near inquiry |
 | Sticky bottom bar | `< md` | Inquiry + Pricing (max 2) |
-| Email fallback | All | Copy email + Open email app near inquiry clusters |
+| Email fallback | All | Copy email + Open Gmail near inquiry clusters |
 
 Bottom bar uses safe-area padding and `#root` mobile padding so footer/contact is not covered.
 

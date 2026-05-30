@@ -10,8 +10,8 @@ import {
   calendlyRevenueLeakAuditUrl,
   ctaBookRevenueLeakAudit,
   ctaContactCompany,
-  emailMailto,
   externalBookingLinkProps,
+  gmailComposeUrl,
   navItems,
   pricingPagePath,
   servicesPagePath,
@@ -22,7 +22,7 @@ export function Navbar() {
 
   return (
     <>
-    <header className="sticky top-0 z-50 border-b border-white/[0.12] bg-slate-900/72 backdrop-blur-xl">
+    <header className="si-site-navbar fixed inset-x-0 top-0 z-50 border-b border-white/[0.12] bg-slate-900/72 backdrop-blur-xl">
       <nav className="mx-auto flex w-full max-w-7xl items-center justify-between px-6 py-4 lg:px-10">
         <a
           href="#top"
@@ -64,7 +64,8 @@ export function Navbar() {
             {ctaBookRevenueLeakAudit}
           </a>
           <a
-            href={emailMailto}
+            href={gmailComposeUrl}
+            {...externalBookingLinkProps}
             className="rounded-full border border-white/15 bg-white/5 px-5 py-2.5 text-sm font-medium !text-white transition hover:bg-white/10 hover:!text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
           >
             {ctaContactCompany}
@@ -119,7 +120,8 @@ export function Navbar() {
                 {ctaBookRevenueLeakAudit}
               </a>
               <a
-                href={emailMailto}
+                href={gmailComposeUrl}
+                {...externalBookingLinkProps}
                 className="inline-flex min-h-11 w-full items-center justify-center rounded-full border border-white/15 bg-white/5 px-5 py-3 text-sm font-medium !text-white transition hover:border-white/25 hover:bg-white/10 hover:!text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
                 onClick={() => setIsOpen(false)}
               >
@@ -130,6 +132,8 @@ export function Navbar() {
         ) : null}
       </AnimatePresence>
     </header>
+
+    <div className="si-navbar-spacer" aria-hidden="true" />
 
     <div
       className="si-mobile-contact-bar fixed inset-x-0 bottom-0 z-40 border-t border-white/[0.12] bg-slate-900/92 backdrop-blur-xl md:hidden"

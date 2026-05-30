@@ -69,18 +69,12 @@ export function EmailContactActions({
           Copy email
         </button>
         <a
-          href={mailtoHref}
+          href={gmailHref}
+          {...externalBookingLinkProps}
           onClick={handleMailtoAnalytics}
           className="si-secondary-cta inline-flex min-h-10 items-center justify-center rounded-full border border-white/15 bg-white/5 px-4 py-2 text-sm font-semibold !text-white transition hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
         >
-          Open email app
-        </a>
-        <a
-          href={gmailHref}
-          {...externalBookingLinkProps}
-          className="si-secondary-cta inline-flex min-h-10 items-center justify-center rounded-full border border-white/15 bg-white/5 px-4 py-2 text-sm font-semibold !text-white transition hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
-        >
-          Open Gmail draft
+          Open Gmail
         </a>
       </div>
       {copied ? (
@@ -90,7 +84,7 @@ export function EmailContactActions({
       ) : null}
       {copyFailed ? (
         <p className="mt-2 text-xs text-slate-400" role="status">
-          Copy unavailable — use the email link above, Open email app, or Open Gmail draft.
+          Copy unavailable — use the email link above or Open Gmail.
         </p>
       ) : null}
     </div>

@@ -781,7 +781,7 @@ Index of operator corrections from pricing/estimator/nav/email/vision passes. Ex
 
 1. **Company CTAs** — public copy uses “Contact Stone Industries” / “Contact Our Team”; Edward only in founder/about context if needed.
 2. **Professional contact blurb** — `siteContactBlurb` replaces setup/status language; no “Gmail activated” or “live on Google Workspace” on customer pages.
-3. **Mailto everywhere** — visible email + Open email app use real `mailto:edward@stoneindustriesusa.com?subject=Stone%20Industries%20Inquiry`; copy email is secondary.
+3. **Gmail contact row** — visible email + **Copy email** + **Open Gmail** (Gmail web compose in new tab); no unreliable mail-app button.
 4. **No environment leaks** — never show “Online capture is not configured in this environment” to customers; use email/phone fallback copy instead.
 5. **Short GovCon disclaimer** — full text only on capability brief, About/GovCon sections, and terms; remove from pricing/services footers.
 6. **Legal pages** — privacy/terms are professional plain-English baselines without “simple baseline / not reviewed by counsel” footers.
