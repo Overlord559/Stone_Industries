@@ -2,9 +2,9 @@ import { motion } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
 
 import { primaryOffers, primaryOffersIntro } from '../../data/primaryOffers'
+import { auditPagePath } from '../../data/revenueLeakAudit'
 import {
   calendlyGeneralConsultationUrl,
-  calendlyRevenueLeakAuditUrl,
   ctaContactCompany,
   ctaScheduleGeneralConsultation,
   externalBookingLinkProps,
@@ -58,8 +58,9 @@ export function PrimaryOffers() {
               <a
                 href={offer.href}
                 {...(isExternalBooking ? externalBookingLinkProps : {})}
+                data-cta={offer.href === auditPagePath ? 'view-ai-revenue-leak-audit' : undefined}
                 onClick={
-                  offer.href === calendlyRevenueLeakAuditUrl
+                  offer.href === auditPagePath
                     ? () => trackAuditCtaClick('primary_offers')
                     : undefined
                 }

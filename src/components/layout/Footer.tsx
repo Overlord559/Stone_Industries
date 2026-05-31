@@ -1,6 +1,6 @@
+import { auditPagePath } from '../../data/revenueLeakAudit'
 import {
   calendlyGeneralConsultationUrl,
-  calendlyRevenueLeakAuditUrl,
   contactEmail,
   contactPhone,
   contactPhoneHref,
@@ -46,8 +46,8 @@ export function Footer() {
           <p className="text-slate-200">Reliable Today. Autonomous Tomorrow.</p>
           <div className="flex flex-wrap gap-x-4 gap-y-1 lg:justify-end">
             <a
-              href={calendlyRevenueLeakAuditUrl}
-              {...externalBookingLinkProps}
+              href={auditPagePath}
+              data-cta="view-ai-revenue-leak-audit"
               className="transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
             >
               {ctaBookRevenueLeakAudit}

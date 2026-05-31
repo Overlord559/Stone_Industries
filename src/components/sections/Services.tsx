@@ -1,10 +1,9 @@
 import { motion } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
+import { auditPagePath } from '../../data/revenueLeakAudit'
 import {
   buildPricingServiceHref,
-  calendlyRevenueLeakAuditUrl,
   ctaBookRevenueLeakAudit,
-  externalBookingLinkProps,
   recurringCarePaths,
   services,
   servicesPagePath,
@@ -143,8 +142,8 @@ export function Services() {
           recommended fix plan for Fresno and Central Valley service businesses.
         </p>
         <a
-          href={calendlyRevenueLeakAuditUrl}
-          {...externalBookingLinkProps}
+          href={auditPagePath}
+          data-cta="view-ai-revenue-leak-audit"
           onClick={() => trackAuditCtaClick('services_promo')}
           className="si-secondary-cta mt-4 inline-flex min-h-11 items-center gap-2 rounded-full border border-cyan-400/30 bg-cyan-400/10 px-5 py-2.5 text-sm font-semibold !text-cyan-50 transition hover:border-cyan-300/50 hover:bg-cyan-400/15 hover:!text-white"
         >

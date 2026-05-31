@@ -14,6 +14,7 @@ import {
 } from 'lucide-react'
 
 import { builtServices } from './buildServices'
+import { auditPagePath } from './revenueLeakAudit'
 
 export type NavItem = {
   label: string
@@ -100,6 +101,7 @@ export const visionPagePath = `${import.meta.env.BASE_URL}vision.html`
 export const navItems: NavItem[] = [
   { label: 'Services', href: servicesPagePath },
   { label: 'Pricing', href: pricingPagePath },
+  { label: 'Audit', href: auditPagePath },
   { label: 'About', href: '#about' },
   { label: 'Vision', href: visionPagePath },
   { label: 'Contact', href: '#contact' },

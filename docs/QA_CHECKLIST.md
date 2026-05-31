@@ -174,13 +174,16 @@ Run on live production URL after deploy — https://stoneindustriesusa.com/ — 
 ## AI Revenue Leak Audit landing (2026-05-30)
 
 - [ ] `/ai-revenue-leak-audit` loads — hero, checklist, form, after-audit options, final CTA
-- [ ] Homepage `#revenue-leak-audit` teaser — **See Audit Details** → `/ai-revenue-leak-audit`; **Book Audit Call** → Calendly
+- [ ] Top nav **Audit** → `/ai-revenue-leak-audit`
+- [ ] Homepage `#revenue-leak-audit` teaser — **See Audit Details** and **Book Audit Call** → `/ai-revenue-leak-audit` (not Calendly)
+- [ ] Hero primary audit CTA, navbar Book Audit, mobile sticky Book Audit, contact/footer/services promo audit CTAs → `/ai-revenue-leak-audit`
 - [ ] No Starter/Growth/Operator ($199/$499/$999 setup) cards on audit landing or homepage audit section
 - [ ] $497 audit price visible on landing page
 - [ ] **Book AI Revenue Leak Audit Call** → `https://calendly.com/edward-stoneindustriesusa/30min`
 - [ ] Audit form: business name, website, GBP link, contact name, email, phone, biggest problem, permission; optional city + notes
 - [ ] **Request Audit Review** submit + **Copy email** + **Open Gmail** on audit form
-- [ ] `data-cta="book-ai-revenue-leak-audit"` and `data-cta="request-audit-review"` on landing CTAs
+- [ ] Off-landing audit links use `data-cta="view-ai-revenue-leak-audit"` where applicable
+- [ ] Landing: `data-cta="book-ai-revenue-leak-audit"` on Calendly buttons; `data-cta="request-audit-review"` on form scroll CTA
 - [ ] `data-page="ai-revenue-leak-audit"` on landing root
 - [ ] 375px / 320px — form usable; no horizontal scroll
 

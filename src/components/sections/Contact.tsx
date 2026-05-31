@@ -1,8 +1,8 @@
 import { ArrowRight } from 'lucide-react'
 
+import { auditPagePath } from '../../data/revenueLeakAudit'
 import {
   calendlyGeneralConsultationUrl,
-  calendlyRevenueLeakAuditUrl,
   capabilityBriefPath,
   ctaBookRevenueLeakAudit,
   ctaContactCompany,
@@ -106,8 +106,8 @@ export function Contact() {
 
           <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
             <a
-              href={calendlyRevenueLeakAuditUrl}
-              {...externalBookingLinkProps}
+              href={auditPagePath}
+              data-cta="view-ai-revenue-leak-audit"
               onClick={() => trackAuditCtaClick('contact')}
               className="si-primary-cta inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold !text-slate-950 transition hover:bg-slate-200 hover:!text-slate-950 [&_svg]:!stroke-slate-950"
             >

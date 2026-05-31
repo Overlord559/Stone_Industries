@@ -3,7 +3,6 @@ import { ArrowRight, FileText, Shield, Waypoints } from 'lucide-react'
 import { HeroRocketAccent } from '../scene/HeroRocketAccent'
 import {
   buildMailto,
-  calendlyRevenueLeakAuditUrl,
   capabilityBriefPath,
   contactPhone,
   contactPhoneHref,
@@ -82,8 +81,8 @@ export function Hero() {
           </div>
           <div className="mt-8 flex flex-col gap-3 md:mt-10 md:gap-4 sm:flex-row sm:flex-wrap sm:items-center">
             <a
-              href={calendlyRevenueLeakAuditUrl}
-              {...externalBookingLinkProps}
+              href={auditPagePath}
+              data-cta="view-ai-revenue-leak-audit"
               onClick={() => trackAuditCtaClick('hero')}
               className="si-primary-cta pointer-events-auto inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold !text-slate-950 transition hover:bg-slate-200 hover:!text-slate-950 [&_svg]:!stroke-slate-950"
             >
@@ -123,6 +122,8 @@ export function Hero() {
           </div>
           <a
             href={auditPagePath}
+            data-cta="view-ai-revenue-leak-audit"
+            onClick={() => trackAuditCtaClick('hero_mobile_audit_details')}
             className="pointer-events-auto mt-3 inline-flex min-h-11 items-center text-sm font-medium text-cyan-200/90 underline-offset-4 hover:text-cyan-100 hover:underline md:hidden"
           >
             See audit details ↓

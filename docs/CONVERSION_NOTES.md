@@ -9,7 +9,7 @@
 
 | Rank | Action | Where |
 |------|--------|-------|
-| 1 | **Book an AI Revenue Leak Audit** | Dedicated landing `/ai-revenue-leak-audit` (Google Ads destination); Calendly book CTAs on landing + homepage teaser; navbar desktop/mobile; mobile sticky bar (Book Audit); static `pricing.html` / `services.html` secondary |
+| 1 | **Book an AI Revenue Leak Audit** | **Google Ads final URL:** `https://stoneindustriesusa.com/ai-revenue-leak-audit`. Homepage, nav, hero, teaser, contact, footer, primary-offer card, services promo, and static `pricing.html` / `services.html` audit CTAs → `/ai-revenue-leak-audit` first. **Calendly** (`/30min`) only on the dedicated audit landing page booking buttons. |
 | 2 | View Pricing & Packages / Compare services | Hero secondary; service cards → `pricing.html?service=<slug>`; static pages context-appropriate primary where buyer is browsing packages |
 | 3 | Service inquiry (Supabase form) | Homepage `#contact`; pricing/services static forms; service card secondary |
 | 4 | Phone `559-579-9376` | Plain linked text near inquiry/contact — not a primary desktop button |
@@ -110,11 +110,11 @@ Custom events send **only** non-sensitive metadata: `page_path`, `cta_location`,
 | **Ad destination URL** | `/ai-revenue-leak-audit` (https://stoneindustriesusa.com/ai-revenue-leak-audit) |
 | **Campaign goal** | Leads / Schedule Appointment |
 | **Front-door offer** | AI Revenue Leak Audit — **$497** |
-| **Primary CTA** | Book AI Revenue Leak Audit Call → `https://calendly.com/edward-stoneindustriesusa/30min` |
+| **Primary CTA (on landing only)** | Book AI Revenue Leak Audit Call → `https://calendly.com/edward-stoneindustriesusa/30min` |
 | **Secondary CTA** | Request Audit Review (form on landing page) |
 | **Removed from ad funnel** | Starter ($199 + $99/mo), Growth ($499 + $249/mo), Operator ($999 + $499/mo) package cards |
-| **Homepage** | Teaser section links to landing page — full form + offer detail live on `/ai-revenue-leak-audit` only |
-| **CTA data attributes** | `data-cta="book-ai-revenue-leak-audit"`, `data-cta="request-audit-review"`, `data-page="ai-revenue-leak-audit"` |
+| **Homepage / nav** | All audit-learn CTAs → `/ai-revenue-leak-audit`; Calendly only after visitor reaches landing |
+| **CTA data attributes** | Off-landing: `data-cta="view-ai-revenue-leak-audit"`. On landing: `data-cta="book-ai-revenue-leak-audit"`, `data-cta="request-audit-review"`, `data-page="ai-revenue-leak-audit"` |
 
 ---
 

@@ -3,10 +3,10 @@ import type { LucideIcon } from 'lucide-react'
 
 import {
   buildMailto,
-  calendlyRevenueLeakAuditUrl,
   ctaBookRevenueLeakAudit,
   ctaRequestCustomerEngineSprint,
 } from './site'
+import { auditPagePath } from './revenueLeakAudit'
 
 export type PrimaryOffer = {
   title: string
@@ -22,7 +22,7 @@ export const primaryOffers: PrimaryOffer[] = [
     description:
       'Human-reviewed audit of your website, Google Business Profile, follow-up, and offer clarity — with a practical fix plan for Fresno and Central Valley operators.',
     ctaLabel: ctaBookRevenueLeakAudit,
-    href: calendlyRevenueLeakAuditUrl,
+    href: auditPagePath,
     icon: Radar,
   },
   {

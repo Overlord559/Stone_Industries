@@ -6,8 +6,8 @@ import {
   trackPricingCtaClick,
   trackServicesCtaClick,
 } from '../../lib/analytics'
+import { auditPagePath } from '../../data/revenueLeakAudit'
 import {
-  calendlyRevenueLeakAuditUrl,
   ctaBookRevenueLeakAudit,
   ctaContactCompany,
   externalBookingLinkProps,
@@ -49,6 +49,7 @@ export function Navbar() {
               onClick={() => {
                 if (item.href === servicesPagePath) trackServicesCtaClick('navbar')
                 if (item.href === pricingPagePath) trackPricingCtaClick('navbar')
+                if (item.href === auditPagePath) trackAuditCtaClick('navbar_audit')
               }}
               className="text-sm !text-slate-300 transition hover:!text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
             >
@@ -56,8 +57,8 @@ export function Navbar() {
             </a>
           ))}
           <a
-            href={calendlyRevenueLeakAuditUrl}
-            {...externalBookingLinkProps}
+            href={auditPagePath}
+            data-cta="view-ai-revenue-leak-audit"
             onClick={() => trackAuditCtaClick('navbar_desktop')}
             className="rounded-full border border-cyan-400/30 bg-cyan-400/10 px-5 py-2.5 text-sm font-medium !text-cyan-100 transition hover:border-cyan-300/50 hover:bg-cyan-300/15 hover:!text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
           >
@@ -102,6 +103,7 @@ export function Navbar() {
                     setIsOpen(false)
                     if (item.href === servicesPagePath) trackServicesCtaClick('navbar_mobile')
                     if (item.href === pricingPagePath) trackPricingCtaClick('navbar_mobile')
+                    if (item.href === auditPagePath) trackAuditCtaClick('navbar_mobile_audit')
                   }}
                   className="flex min-h-11 items-center text-sm !text-slate-300 transition hover:!text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
                 >
@@ -109,8 +111,8 @@ export function Navbar() {
                 </a>
               ))}
               <a
-                href={calendlyRevenueLeakAuditUrl}
-                {...externalBookingLinkProps}
+                href={auditPagePath}
+                data-cta="view-ai-revenue-leak-audit"
                 className="inline-flex min-h-11 w-full items-center justify-center rounded-full border border-cyan-400/30 bg-cyan-400/10 px-5 py-3 text-sm font-medium !text-cyan-100 transition hover:border-cyan-300/50 hover:bg-cyan-300/15 hover:!text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
                 onClick={() => {
                   setIsOpen(false)
@@ -142,8 +144,8 @@ export function Navbar() {
     >
       <div className="mx-auto flex max-w-7xl gap-2 px-4 py-3 pb-[max(0.75rem,env(safe-area-inset-bottom))]">
         <a
-          href={calendlyRevenueLeakAuditUrl}
-          {...externalBookingLinkProps}
+          href={auditPagePath}
+          data-cta="view-ai-revenue-leak-audit"
           onClick={() => trackAuditCtaClick('mobile_sticky')}
           className="inline-flex min-h-11 flex-1 items-center justify-center rounded-full border border-cyan-400/30 bg-cyan-400/10 px-4 text-sm font-semibold !text-cyan-50 transition hover:border-cyan-300/50 hover:bg-cyan-400/15 hover:!text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
         >
