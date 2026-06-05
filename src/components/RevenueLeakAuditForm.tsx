@@ -151,7 +151,7 @@ export function RevenueLeakAuditForm({
 
       <label className="block text-sm text-slate-200">
         <span className={labelClass}>Business name *</span>
-        <input name="business_name" required autoComplete="organization" className={fieldClass} />
+        <input name="business_name" required autoComplete="organization" className={fieldClass} maxLength={120} />
       </label>
 
       <div className="grid gap-4 sm:grid-cols-2">
@@ -165,6 +165,7 @@ export function RevenueLeakAuditForm({
             placeholder="https://yourbusiness.com"
             autoComplete="url"
             className={fieldClass}
+            maxLength={500}
           />
         </label>
 
@@ -177,6 +178,7 @@ export function RevenueLeakAuditForm({
             inputMode="url"
             placeholder="Google Maps or Business Profile link"
             className={fieldClass}
+            maxLength={500}
           />
         </label>
       </div>
@@ -184,24 +186,24 @@ export function RevenueLeakAuditForm({
       <div className="grid gap-4 sm:grid-cols-2">
         <label className="block text-sm text-slate-200">
           <span className={labelClass}>Contact name *</span>
-          <input name="contact_name" required autoComplete="name" className={fieldClass} />
+          <input name="contact_name" required autoComplete="name" className={fieldClass} maxLength={100} />
         </label>
 
         <label className="block text-sm text-slate-200">
           <span className={labelClass}>Email *</span>
-          <input name="email" required type="email" autoComplete="email" className={fieldClass} />
+          <input name="email" required type="email" autoComplete="email" className={fieldClass} maxLength={254} />
         </label>
       </div>
 
       <div className="grid gap-4 sm:grid-cols-2">
         <label className="block text-sm text-slate-200">
           <span className={labelClass}>Phone *</span>
-          <input name="phone" required type="tel" autoComplete="tel" className={fieldClass} />
+          <input name="phone" required type="tel" autoComplete="tel" className={fieldClass} maxLength={40} />
         </label>
 
         <label className="block text-sm text-slate-200">
           <span className={labelClass}>City</span>
-          <input name="city" autoComplete="address-level2" className={fieldClass} />
+          <input name="city" autoComplete="address-level2" className={fieldClass} maxLength={100} />
         </label>
       </div>
 
@@ -226,6 +228,7 @@ export function RevenueLeakAuditForm({
           rows={3}
           placeholder="Optional context about your business or goals"
           className={fieldClass}
+          maxLength={2000}
         />
       </label>
 

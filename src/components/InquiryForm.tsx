@@ -201,6 +201,7 @@ export function InquiryForm({ sourcePage, defaultService = '', className = '' }:
             required
             autoComplete="name"
             className="w-full rounded-xl border border-white/10 bg-slate-950/50 px-3 py-2.5 text-white outline-none ring-cyan-400/40 focus:border-cyan-400/40 focus:ring-2"
+            maxLength={100}
           />
         </label>
 
@@ -235,6 +236,7 @@ export function InquiryForm({ sourcePage, defaultService = '', className = '' }:
             type="email"
             autoComplete="email"
             className="w-full rounded-xl border border-white/10 bg-slate-950/50 px-3 py-2.5 text-white outline-none ring-cyan-400/40 focus:border-cyan-400/40 focus:ring-2"
+            maxLength={254}
           />
         </label>
 
@@ -247,6 +249,7 @@ export function InquiryForm({ sourcePage, defaultService = '', className = '' }:
             type="tel"
             autoComplete="tel"
             className="w-full rounded-xl border border-white/10 bg-slate-950/50 px-3 py-2.5 text-white outline-none ring-cyan-400/40 focus:border-cyan-400/40 focus:ring-2"
+            maxLength={40}
           />
         </label>
       </div>
@@ -261,6 +264,7 @@ export function InquiryForm({ sourcePage, defaultService = '', className = '' }:
           name="city"
           autoComplete="address-level2"
           className="w-full rounded-xl border border-white/10 bg-slate-950/50 px-3 py-2.5 text-white outline-none ring-cyan-400/40 focus:border-cyan-400/40 focus:ring-2"
+          maxLength={100}
         />
       </label>
 
@@ -274,6 +278,7 @@ export function InquiryForm({ sourcePage, defaultService = '', className = '' }:
           rows={5}
           className="w-full rounded-xl border border-white/10 bg-slate-950/50 px-3 py-2.5 text-white outline-none ring-cyan-400/40 focus:border-cyan-400/40 focus:ring-2"
           placeholder="What you need, timeline, and best callback time."
+          maxLength={2000}
         />
       </label>
 
