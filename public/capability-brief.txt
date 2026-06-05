@@ -73,13 +73,12 @@ INCLUDE IN YOUR MESSAGE
 - Photos/screenshots if relevant
 - Best callback time
 
-HONEST LIMITATIONS
-- Static website; no booking system or online payment
-- No unsupervised autonomous agents or enterprise AI systems sold today
-- No autonomous logistics systems product available for purchase today
-- Certifications are factual credentials — not awarded contract wins or past performance
-- No client logos or fabricated contract wins
-- Quote-based pricing confirmed before work begins
+CLEAR SCOPE BEFORE WORK STARTS
+- Fixed scope before payment
+- No surprise subscriptions
+- Usage costs explained before launch
+- Client owns customer data
+- Stone owns reusable implementation IP, templates, and workflows
 
 WEB
 Homepage: https://stoneindustries.netlify.app/

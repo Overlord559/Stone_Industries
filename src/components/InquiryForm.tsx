@@ -1,15 +1,22 @@
 import { useEffect, useState, type FormEvent } from 'react'
 
 import {
+  contactEmail,
   contactPhone,
   contactPhoneHref,
   inquiryServiceOptions,
   resolveServiceFromQuery,
   resolveServiceTitleFromSlug,
 } from '../data/site'
+import {
+  buildInquiryGmailUrl,
+  copyInquiryContactEmail,
+  copyInquiryDetails,
+  inquiryDraftOpenedMessage,
+  openInquiryMailto,
+} from '../lib/inquiryEmail'
 import { INQUIRY_SERVICE_EVENT } from '../lib/inquiryNavigation'
-import { validateInquiryInput } from '../lib/inquiryTypes'
-import { inquiryFormAvailable, submitInquiry } from '../lib/submitInquiry'
+import { type InquiryPayload, validateInquiryInput } from '../lib/inquiryTypes'
 import { EmailContactActions } from './ui/EmailContactActions'
 
 type InquiryFormProps = {
@@ -18,15 +25,18 @@ type InquiryFormProps = {
   className?: string
 }
 
-type FormStatus = 'idle' | 'submitting' | 'success' | 'error'
+type FormStatus = 'idle' | 'draft_opened' | 'error'
 
 export function InquiryForm({ sourcePage, defaultService = '', className = '' }: InquiryFormProps) {
   const [status, setStatus] = useState<FormStatus>('idle')
   const [errorMessage, setErrorMessage] = useState('')
+  const [draftPayload, setDraftPayload] = useState<InquiryPayload | null>(null)
+  const [copiedDetails, setCopiedDetails] = useState(false)
+  const [copiedEmail, setCopiedEmail] = useState(false)
+  const [copyFailed, setCopyFailed] = useState(false)
   const [selectedService, setSelectedService] = useState(
     () => resolveServiceFromQuery() || defaultService,
   )
-  const configured = inquiryFormAvailable()
 
   useEffect(() => {
     function handleServiceSelect(event: Event) {
@@ -39,9 +49,8 @@ export function InquiryForm({ sourcePage, defaultService = '', className = '' }:
     return () => window.removeEventListener(INQUIRY_SERVICE_EVENT, handleServiceSelect)
   }, [])
 
-  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
-    if (status === 'submitting') return
 
     const form = event.currentTarget
     const data = new FormData(form)
@@ -62,50 +71,96 @@ export function InquiryForm({ sourcePage, defaultService = '', className = '' }:
       return
     }
 
-    if (!configured) {
-      setStatus('error')
-      setErrorMessage(
-        'Please use email or phone below to reach Stone Industries directly.',
-      )
-      return
-    }
-
-    setStatus('submitting')
     setErrorMessage('')
-
-    try {
-      await submitInquiry(validation.payload)
-      setStatus('success')
-      form.reset()
-      setSelectedService(defaultService)
-    } catch (error) {
-      setStatus('error')
-      setErrorMessage(
-        error instanceof Error
-          ? error.message
-          : 'We could not save your inquiry. Please call or email Stone Industries directly.',
-      )
-    }
+    openInquiryMailto(validation.payload)
+    setDraftPayload(validation.payload)
+    setStatus('draft_opened')
+    setCopiedDetails(false)
+    setCopiedEmail(false)
+    setCopyFailed(false)
+    form.reset()
+    setSelectedService(defaultService)
   }
 
-  if (status === 'success') {
+  async function handleCopyDetails() {
+    if (!draftPayload) return
+    setCopyFailed(false)
+    const ok = await copyInquiryDetails(draftPayload)
+    if (ok) {
+      setCopiedDetails(true)
+      window.setTimeout(() => setCopiedDetails(false), 2500)
+      return
+    }
+    setCopyFailed(true)
+  }
+
+  async function handleCopyEmail() {
+    setCopyFailed(false)
+    const ok = await copyInquiryContactEmail()
+    if (ok) {
+      setCopiedEmail(true)
+      window.setTimeout(() => setCopiedEmail(false), 2500)
+      return
+    }
+    setCopyFailed(true)
+  }
+
+  if (status === 'draft_opened' && draftPayload) {
+    const gmailHref = buildInquiryGmailUrl(draftPayload)
+
     return (
       <div
-        className={`si-section-glass rounded-[1.75rem] border border-emerald-400/25 bg-emerald-400/10 p-6 ${className}`}
+        className={`si-section-glass rounded-[1.75rem] border border-cyan-400/25 bg-cyan-400/10 p-6 ${className}`}
         role="status"
       >
-        <p className="text-sm font-semibold text-emerald-100">Inquiry received</p>
-        <p className="mt-2 text-sm leading-6 text-slate-200">
-          Thank you. Stone Industries will follow up by email or phone. For urgent help, call{' '}
-          <a className="font-medium text-white underline" href={contactPhoneHref}>
-            {contactPhone}
+        <p className="text-sm font-semibold text-cyan-100">Email draft opened</p>
+        <p className="mt-2 text-sm leading-6 text-slate-200">{inquiryDraftOpenedMessage}</p>
+        <div className="mt-4 flex flex-wrap gap-2">
+          <button
+            type="button"
+            className="si-secondary-cta inline-flex min-h-10 items-center justify-center rounded-full border border-white/15 bg-white/5 px-4 py-2 text-sm font-semibold !text-white transition hover:bg-white/10"
+            onClick={() => void handleCopyDetails()}
+          >
+            Copy inquiry details
+          </button>
+          <button
+            type="button"
+            className="si-secondary-cta inline-flex min-h-10 items-center justify-center rounded-full border border-white/15 bg-white/5 px-4 py-2 text-sm font-semibold !text-white transition hover:bg-white/10"
+            onClick={() => void handleCopyEmail()}
+          >
+            Copy email
+          </button>
+          <a
+            href={gmailHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="si-secondary-cta inline-flex min-h-10 items-center justify-center rounded-full border border-white/15 bg-white/5 px-4 py-2 text-sm font-semibold !text-white transition hover:bg-white/10"
+          >
+            Open Gmail draft
           </a>
-          .
-        </p>
+        </div>
+        {copiedDetails ? (
+          <p className="mt-2 text-xs font-medium text-emerald-200/90" aria-live="polite">
+            Inquiry details copied.
+          </p>
+        ) : null}
+        {copiedEmail ? (
+          <p className="mt-2 text-xs font-medium text-emerald-200/90" aria-live="polite">
+            Email copied ({contactEmail}).
+          </p>
+        ) : null}
+        {copyFailed ? (
+          <p className="mt-2 text-xs text-slate-400" aria-live="polite">
+            Copy unavailable — use Open Gmail draft or email {contactEmail} directly.
+          </p>
+        ) : null}
         <button
           type="button"
           className="mt-4 text-sm font-medium text-cyan-200 underline"
-          onClick={() => setStatus('idle')}
+          onClick={() => {
+            setStatus('idle')
+            setDraftPayload(null)
+          }}
         >
           Send another inquiry
         </button>
@@ -124,9 +179,8 @@ export function InquiryForm({ sourcePage, defaultService = '', className = '' }:
           Send an inquiry
         </p>
         <p className="mt-2 text-sm leading-6 text-slate-300">
-          {configured
-            ? 'Submit the form below — inquiry is the fastest path. Prefer phone? Call or text below.'
-            : 'Prefer email? Contact Stone Industries using the options below, or call us directly.'}
+          Submit opens your email app with the inquiry filled in. You send the message — nothing is
+          stored on this site until a CRM form is connected.
         </p>
       </div>
 
@@ -232,10 +286,9 @@ export function InquiryForm({ sourcePage, defaultService = '', className = '' }:
       <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
         <button
           type="submit"
-          disabled={status === 'submitting' || !configured}
-          className="si-primary-cta inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-semibold !text-slate-950 transition hover:bg-slate-200 disabled:cursor-not-allowed disabled:opacity-60"
+          className="si-primary-cta inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-semibold !text-slate-950 transition hover:bg-slate-200"
         >
-          {status === 'submitting' ? 'Sending…' : 'Submit inquiry'}
+          Submit inquiry
         </button>
       </div>
 
@@ -247,12 +300,6 @@ export function InquiryForm({ sourcePage, defaultService = '', className = '' }:
           {contactPhone}
         </a>
       </p>
-
-      {!configured ? (
-        <p className="text-xs text-slate-400">
-          Prefer email? Use Copy email or Open Gmail below.
-        </p>
-      ) : null}
     </form>
   )
 }

@@ -396,13 +396,14 @@ export function buildMailto(subject: string, body?: string) {
   return `mailto:${contactEmail}?${params.toString().replace(/\+/g, '%20')}`
 }
 
-export function buildGmailComposeUrl(subject: string): string {
+export function buildGmailComposeUrl(subject: string, body?: string): string {
   const params = new URLSearchParams({
     view: 'cm',
     fs: '1',
     to: contactEmail,
     su: subject,
   })
+  if (body) params.set('body', body)
   return `https://mail.google.com/mail/?${params.toString()}`
 }
 

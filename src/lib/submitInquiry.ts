@@ -1,3 +1,4 @@
+// Future: replace mailto fallback with HubSpot embedded form or API once CRM form is ready.
 import { isInquiryConfigured, type InquiryPayload } from './inquiryTypes'
 
 export class InquirySubmitError extends Error {

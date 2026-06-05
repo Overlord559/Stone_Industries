@@ -1,13 +1,20 @@
 /**
- * Static-page inquiry form helper for Stone Industries.
- * Loads with inquiry-config.js (build-time env injection). Falls back to mailto/phone when unset.
+ * Static-page inquiry form — mailto draft flow (no server submit).
+ * Future: replace mailto fallback with HubSpot embedded form or API once CRM form is ready.
  */
 (function () {
-  const SERVICE_OPTIONS = [
-    'AI Revenue Leak Audit',
+  var EMAIL = 'edward@stoneindustriesusa.com'
+  var SOURCE_LINE = 'stoneindustriesusa.com inquiry form'
+  var DRAFT_MESSAGE =
+    'Your email app should open with the inquiry filled in. If it does not, use Copy inquiry details and send it to edward@stoneindustriesusa.com.'
+
+  var SERVICE_OPTIONS = [
+    'Free Remote Revenue Leak Review',
+    'AI Revenue Leak Audit (paid)',
     'AI Customer Engine Sprint',
+    'Remote Quick Fix',
+    'Remote Business Tech Session',
     'Managed AI Ops',
-    'BidSignal First Award Sprint',
     'Custom PC Builds & Upgrades',
     'Tier 1 IT Support & Tech Cleanup',
     'Wi-Fi, Printer & POS Support',
@@ -19,7 +26,7 @@
     'Subcontracting / Capability Brief',
   ]
 
-  const SERVICE_SLUG_TO_TITLE = {
+  var SERVICE_SLUG_TO_TITLE = {
     'custom-pc-builds': 'Custom PC Builds & Upgrades',
     'tech-cleanup': 'Tier 1 IT Support & Tech Cleanup',
     'business-websites': 'Business Websites & 3D Interactive Websites',
@@ -29,29 +36,19 @@
     'mobile-app-mvp': 'Mobile App / MVP Prototyping',
   }
 
-  const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-
-  function config() {
-    return window.__SI_INQUIRY_CONFIG__ || {}
-  }
-
-  function isConfigured() {
-    const cfg = config()
-    return Boolean(cfg.url && cfg.anonKey)
-  }
+  var EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
   function validateInput(input) {
     if (input.honeypot && input.honeypot.trim()) {
       return { ok: false, error: 'Unable to submit inquiry. Please call or email instead.' }
     }
 
-    const name = (input.name || '').trim()
-    const email = (input.email || '').trim()
-    const phone = (input.phone || '').trim()
-    const service_requested = (input.service_requested || '').trim()
-    const city = (input.city || '').trim()
-    const message = (input.message || '').trim()
-    const source_page = (input.source_page || '').trim()
+    var name = (input.name || '').trim()
+    var email = (input.email || '').trim()
+    var phone = (input.phone || '').trim()
+    var service_requested = (input.service_requested || '').trim()
+    var city = (input.city || '').trim()
+    var message = (input.message || '').trim()
 
     if (name.length < 2 || name.length > 100) {
       return { ok: false, error: 'Please enter your name (2–100 characters).' }
@@ -75,34 +72,90 @@
       return { ok: false, error: 'Please enter a message (10–2000 characters).' }
     }
 
-    const payload = { name, service_requested, message }
+    var payload = { name: name, service_requested: service_requested, message: message }
     if (email) payload.email = email
     if (phone) payload.phone = phone
     if (city) payload.city = city
-    if (source_page) payload.source_page = source_page.slice(0, 500)
-    return { ok: true, payload }
+    return { ok: true, payload: payload }
   }
 
-  async function submitPayload(payload) {
-    const cfg = config()
-    const response = await fetch(`${cfg.url.replace(/\/$/, '')}/rest/v1/inquiries`, {
-      method: 'POST',
-      headers: {
-        apikey: cfg.anonKey,
-        Authorization: 'Bearer ' + cfg.anonKey,
-        'Content-Type': 'application/json',
-        Prefer: 'return=minimal',
-      },
-      body: JSON.stringify(payload),
-    })
-    if (!response.ok) throw new Error('submit_failed')
+  function buildSubject(payload) {
+    return 'Stone Industries inquiry — ' + payload.service_requested + ' — ' + payload.name
+  }
+
+  function buildBody(payload) {
+    return [
+      'New Stone Industries inquiry',
+      '',
+      'Name: ' + payload.name,
+      'Email: ' + (payload.email || ''),
+      'Phone: ' + (payload.phone || ''),
+      'City / Area: ' + (payload.city || ''),
+      'Service: ' + payload.service_requested,
+      'Message:',
+      payload.message,
+      '',
+      'Source:',
+      SOURCE_LINE,
+    ].join('\n')
+  }
+
+  function buildMailto(payload) {
+    var params = new URLSearchParams()
+    params.set('subject', buildSubject(payload))
+    params.set('body', buildBody(payload))
+    return 'mailto:' + EMAIL + '?' + params.toString().replace(/\+/g, '%20')
+  }
+
+  function buildGmailUrl(payload) {
+    var params = new URLSearchParams()
+    params.set('view', 'cm')
+    params.set('fs', '1')
+    params.set('to', EMAIL)
+    params.set('su', buildSubject(payload))
+    params.set('body', buildBody(payload))
+    return 'https://mail.google.com/mail/?' + params.toString()
+  }
+
+  function openMailto(payload) {
+    var anchor = document.createElement('a')
+    anchor.href = buildMailto(payload)
+    anchor.style.display = 'none'
+    document.body.appendChild(anchor)
+    anchor.click()
+    document.body.removeChild(anchor)
+  }
+
+  function copyText(text, onSuccess) {
+    function legacyCopy() {
+      try {
+        var ta = document.createElement('textarea')
+        ta.value = text
+        ta.setAttribute('readonly', 'true')
+        ta.style.position = 'absolute'
+        ta.style.left = '-9999px'
+        document.body.appendChild(ta)
+        ta.select()
+        var ok = document.execCommand('copy')
+        document.body.removeChild(ta)
+        if (ok && onSuccess) onSuccess()
+      } catch (_e) {
+        /* no-op */
+      }
+    }
+
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(onSuccess).catch(legacyCopy)
+    } else {
+      legacyCopy()
+    }
   }
 
   function optionTags(selected) {
     return (
       '<option value="">Choose a service</option>' +
       SERVICE_OPTIONS.map(function (option) {
-        const sel = option === selected ? ' selected' : ''
+        var sel = option === selected ? ' selected' : ''
         return '<option value="' + option + '"' + sel + '>' + option + '</option>'
       }).join('')
     )
@@ -115,15 +168,57 @@
     return fallback || ''
   }
 
+  function renderDraftSuccess(container, payload) {
+    container.innerHTML =
+      '<section class="page-section si-inquiry-section si-inquiry-draft-opened">' +
+      '<h2><span class="label">Inquiry</span> Email draft opened</h2>' +
+      '<p class="page-lead">' +
+      DRAFT_MESSAGE +
+      '</p>' +
+      '<div class="cta-band">' +
+      '<button type="button" class="cta cta-secondary" data-si-copy-inquiry>Copy inquiry details</button>' +
+      '<button type="button" class="cta cta-secondary" data-si-copy-email>Copy email</button>' +
+      '<a class="cta cta-secondary" data-si-gmail-draft href="' +
+      buildGmailUrl(payload) +
+      '" target="_blank" rel="noopener noreferrer">Open Gmail draft</a>' +
+      '</div>' +
+      '<p class="si-copy-status" data-si-copy-status hidden aria-live="polite"></p>' +
+      '<p class="note-muted">Prefer phone? <a href="tel:+15595799376">559-579-9376</a></p>' +
+      '<button type="button" class="cta cta-secondary" data-si-inquiry-reset>Send another inquiry</button>' +
+      '</section>'
+
+    container.querySelector('[data-si-copy-inquiry]').addEventListener('click', function () {
+      var status = container.querySelector('[data-si-copy-status]')
+      copyText(buildBody(payload), function () {
+        if (status) {
+          status.hidden = false
+          status.textContent = 'Inquiry details copied.'
+        }
+      })
+    })
+
+    container.querySelector('[data-si-copy-email]').addEventListener('click', function () {
+      var status = container.querySelector('[data-si-copy-status]')
+      copyText(EMAIL, function () {
+        if (status) {
+          status.hidden = false
+          status.textContent = 'Email copied.'
+        }
+      })
+    })
+
+    container.querySelector('[data-si-inquiry-reset]').addEventListener('click', function () {
+      renderForm(container)
+    })
+  }
+
   function renderForm(container) {
-    const sourcePage = container.dataset.sourcePage || window.location.pathname
-    const defaultService = defaultServiceFromQuery(container.dataset.defaultService || '')
-    const configured = isConfigured()
+    var defaultService = defaultServiceFromQuery(container.dataset.defaultService || '')
 
     container.innerHTML =
       '<section class="page-section si-inquiry-section">' +
       '<h2><span class="label">Inquiry</span> Send a service inquiry</h2>' +
-      '<p class="page-lead">Homes and small businesses welcome. Submit the form below or use email/phone if you prefer. Final quote confirmed before work begins.</p>' +
+      '<p class="page-lead">Submit opens your email app with the inquiry filled in. You send the message — nothing is stored on this site until a CRM form is connected.</p>' +
       '<form class="si-inquiry-form" data-si-inquiry-form novalidate>' +
       '<div class="si-inquiry-honeypot" aria-hidden="true">' +
       '<label>Website<input name="website" type="text" tabindex="-1" autocomplete="off"></label>' +
@@ -141,9 +236,7 @@
       '<label>Message *<textarea name="message" required rows="5" placeholder="What you need, timeline, and best callback time."></textarea></label>' +
       '<p class="si-inquiry-status" data-si-inquiry-status role="alert" aria-live="polite" hidden></p>' +
       '<div class="cta-band">' +
-      '<button type="submit" class="cta cta-primary"' +
-      (configured ? '' : ' disabled') +
-      '>Submit inquiry</button>' +
+      '<button type="submit" class="cta cta-primary">Submit inquiry</button>' +
       '</div>' +
       '<div class="si-email-actions">' +
       '<p class="si-email-line">Email: <a href="mailto:edward@stoneindustriesusa.com?subject=Stone%20Industries%20Inquiry">edward@stoneindustriesusa.com</a></p>' +
@@ -154,27 +247,22 @@
       '<p class="si-copy-status" data-si-copy-status hidden aria-live="polite">Email copied.</p>' +
       '<p class="note-muted">Prefer phone? <a href="tel:+15595799376">559-579-9376</a></p>' +
       '</div>' +
-      (configured
-        ? ''
-        : '<p class="si-inquiry-note">Prefer email? Use Copy email or Open Gmail below.</p>') +
       '</form></section>'
 
-    const form = container.querySelector('[data-si-inquiry-form]')
-    const statusEl = container.querySelector('[data-si-inquiry-status]')
+    var form = container.querySelector('[data-si-inquiry-form]')
+    var statusEl = container.querySelector('[data-si-inquiry-status]')
 
-    form.addEventListener('submit', async function (event) {
+    form.addEventListener('submit', function (event) {
       event.preventDefault()
-      if (!configured) return
 
-      const data = new FormData(form)
-      const validation = validateInput({
+      var data = new FormData(form)
+      var validation = validateInput({
         name: data.get('name'),
         email: data.get('email'),
         phone: data.get('phone'),
         service_requested: data.get('service_requested'),
         city: data.get('city'),
         message: data.get('message'),
-        source_page: sourcePage,
         honeypot: data.get('website'),
       })
 
@@ -187,25 +275,10 @@
         return
       }
 
-      const submitButton = form.querySelector('button[type="submit"]')
-      submitButton.disabled = true
-      submitButton.textContent = 'Sending…'
       statusEl.textContent = ''
-
-      try {
-        await submitPayload(validation.payload)
-        form.reset()
-        statusEl.textContent =
-          'Inquiry received. Stone Industries will follow up by email or phone. For urgent help, call 559-579-9376.'
-        statusEl.classList.add('is-success')
-      } catch (_error) {
-        statusEl.textContent =
-          'We could not save your inquiry right now. Please call 559-579-9376 or email edward@stoneindustriesusa.com.'
-        statusEl.classList.add('is-error')
-      } finally {
-        submitButton.disabled = false
-        submitButton.textContent = 'Submit inquiry'
-      }
+      statusEl.hidden = true
+      openMailto(validation.payload)
+      renderDraftSuccess(container, validation.payload)
     })
   }
 
