@@ -9,7 +9,34 @@ export function normalizeAppPath(pathname: string): string {
   return normalized
 }
 
-export function isAiRevenueLeakAuditPath(pathname?: string): boolean {
+export type AppRoute = 'home' | 'audit' | 'calculator' | 'remote-support'
+
+const ROUTE_PATHS: Record<Exclude<AppRoute, 'home'>, string> = {
+  audit: '/ai-revenue-leak-audit',
+  calculator: '/price-fit-calculator',
+  'remote-support': '/remote-support',
+}
+
+export function getAppRoute(pathname?: string): AppRoute {
   const path = normalizeAppPath(pathname ?? window.location.pathname)
-  return path === '/ai-revenue-leak-audit'
+  if (path === ROUTE_PATHS.audit) return 'audit'
+  if (path === ROUTE_PATHS.calculator) return 'calculator'
+  if (path === ROUTE_PATHS['remote-support']) return 'remote-support'
+  return 'home'
+}
+
+export function isAiRevenueLeakAuditPath(pathname?: string): boolean {
+  return getAppRoute(pathname) === 'audit'
+}
+
+export function isPriceFitCalculatorPath(pathname?: string): boolean {
+  return getAppRoute(pathname) === 'calculator'
+}
+
+export function isRemoteSupportPath(pathname?: string): boolean {
+  return getAppRoute(pathname) === 'remote-support'
+}
+
+export function isStandaloneAppPath(pathname?: string): boolean {
+  return getAppRoute(pathname) !== 'home'
 }

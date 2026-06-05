@@ -46,7 +46,7 @@ export function Contact() {
 
             title="Submit an inquiry for the fastest response."
 
-            description={`For AI Revenue Leak Audit, AI Customer Engine, Managed AI Ops, BidSignal First Award Sprint, supporting IT/website packages, or subcontracting discussions, use the inquiry form or Calendly links below. ${serviceAreaOnSite} ${serviceAreaRemote} ${siteContactBlurb} No online checkout on this site.`}
+            description={`For free remote revenue leak review, paid audit, AI Customer Engine sprints, Managed AI Ops, remote tech sessions, supporting IT/website packages, or subcontracting discussions, use the inquiry form or Calendly below. ${serviceAreaRemote} ${serviceAreaOnSite} ${siteContactBlurb} No online checkout on this site.`}
           />
 
 

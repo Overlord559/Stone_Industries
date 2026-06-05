@@ -8,12 +8,14 @@ import {
 } from '../../lib/analytics'
 import { auditPagePath } from '../../data/revenueLeakAudit'
 import {
-  ctaBookRevenueLeakAudit,
-  ctaContactCompany,
+  calendlyFreeRemoteReviewUrl,
+  ctaBookFreeRemoteReview,
+  ctaFindBestFitPackage,
   externalBookingLinkProps,
-  gmailComposeUrl,
   navItems,
+  priceFitCalculatorPath,
   pricingPagePath,
+  remoteSupportPagePath,
   servicesPagePath,
 } from '../../data/site'
 
@@ -25,7 +27,7 @@ export function Navbar() {
     <header className="si-site-navbar fixed inset-x-0 top-0 z-50 border-b border-white/[0.12] bg-slate-900/72 backdrop-blur-xl">
       <nav className="mx-auto flex w-full max-w-7xl items-center justify-between px-6 py-4 lg:px-10">
         <a
-          href="#top"
+          href={`${import.meta.env.BASE_URL}#top`}
           className="flex items-center gap-3 text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
         >
           <div className="flex h-10 w-10 items-center justify-center rounded-full border border-cyan-400/30 bg-cyan-400/10 text-sm font-semibold tracking-[0.3em] text-cyan-200">
@@ -36,12 +38,12 @@ export function Navbar() {
               Stone Industries
             </div>
             <div className="text-xs text-slate-400">
-              Reliable Today. Autonomous Tomorrow.
+              California remote-first
             </div>
           </div>
         </a>
 
-        <div className="hidden items-center gap-8 md:flex">
+        <div className="hidden items-center gap-6 xl:flex">
           {navItems.map((item) => (
             <a
               key={item.href}
@@ -50,6 +52,7 @@ export function Navbar() {
                 if (item.href === servicesPagePath) trackServicesCtaClick('navbar')
                 if (item.href === pricingPagePath) trackPricingCtaClick('navbar')
                 if (item.href === auditPagePath) trackAuditCtaClick('navbar_audit')
+                if (item.href === priceFitCalculatorPath) trackPricingCtaClick('navbar_calculator')
               }}
               className="text-sm !text-slate-300 transition hover:!text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
             >
@@ -57,23 +60,17 @@ export function Navbar() {
             </a>
           ))}
           <a
-            href={auditPagePath}
-            data-cta="view-ai-revenue-leak-audit"
+            href={calendlyFreeRemoteReviewUrl}
+            {...externalBookingLinkProps}
+            data-cta="book-free-remote-review"
             onClick={() => trackAuditCtaClick('navbar_desktop')}
             className="rounded-full border border-cyan-400/30 bg-cyan-400/10 px-5 py-2.5 text-sm font-medium !text-cyan-100 transition hover:border-cyan-300/50 hover:bg-cyan-300/15 hover:!text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
           >
-            {ctaBookRevenueLeakAudit}
-          </a>
-          <a
-            href={gmailComposeUrl}
-            {...externalBookingLinkProps}
-            className="rounded-full border border-white/15 bg-white/5 px-5 py-2.5 text-sm font-medium !text-white transition hover:bg-white/10 hover:!text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
-          >
-            {ctaContactCompany}
+            {ctaBookFreeRemoteReview}
           </a>
         </div>
 
-        <div className="flex items-center gap-2 md:hidden">
+        <div className="flex items-center gap-2 xl:hidden">
           <button
             type="button"
             className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/15 !text-white transition hover:border-white/25 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 [&_svg]:stroke-current"
@@ -92,7 +89,7 @@ export function Navbar() {
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
-            className="border-t border-white/[0.12] bg-slate-900/88 px-6 py-5 md:hidden"
+            className="border-t border-white/[0.12] bg-slate-900/88 px-6 py-5 xl:hidden"
           >
             <div className="mx-auto flex max-w-7xl flex-col gap-1">
               {navItems.map((item) => (
@@ -104,6 +101,8 @@ export function Navbar() {
                     if (item.href === servicesPagePath) trackServicesCtaClick('navbar_mobile')
                     if (item.href === pricingPagePath) trackPricingCtaClick('navbar_mobile')
                     if (item.href === auditPagePath) trackAuditCtaClick('navbar_mobile_audit')
+                    if (item.href === priceFitCalculatorPath) trackPricingCtaClick('navbar_mobile_calculator')
+                    if (item.href === remoteSupportPagePath) trackServicesCtaClick('navbar_mobile_remote')
                   }}
                   className="flex min-h-11 items-center text-sm !text-slate-300 transition hover:!text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
                 >
@@ -111,23 +110,16 @@ export function Navbar() {
                 </a>
               ))}
               <a
-                href={auditPagePath}
-                data-cta="view-ai-revenue-leak-audit"
+                href={calendlyFreeRemoteReviewUrl}
+                {...externalBookingLinkProps}
+                data-cta="book-free-remote-review"
                 className="inline-flex min-h-11 w-full items-center justify-center rounded-full border border-cyan-400/30 bg-cyan-400/10 px-5 py-3 text-sm font-medium !text-cyan-100 transition hover:border-cyan-300/50 hover:bg-cyan-300/15 hover:!text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
                 onClick={() => {
                   setIsOpen(false)
                   trackAuditCtaClick('navbar_mobile')
                 }}
               >
-                {ctaBookRevenueLeakAudit}
-              </a>
-              <a
-                href={gmailComposeUrl}
-                {...externalBookingLinkProps}
-                className="inline-flex min-h-11 w-full items-center justify-center rounded-full border border-white/15 bg-white/5 px-5 py-3 text-sm font-medium !text-white transition hover:border-white/25 hover:bg-white/10 hover:!text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
-                onClick={() => setIsOpen(false)}
-              >
-                {ctaContactCompany}
+                {ctaBookFreeRemoteReview}
               </a>
             </div>
           </motion.div>
@@ -144,19 +136,20 @@ export function Navbar() {
     >
       <div className="mx-auto flex max-w-7xl gap-2 px-4 py-3 pb-[max(0.75rem,env(safe-area-inset-bottom))]">
         <a
-          href={auditPagePath}
-          data-cta="view-ai-revenue-leak-audit"
+          href={calendlyFreeRemoteReviewUrl}
+          {...externalBookingLinkProps}
+          data-cta="book-free-remote-review"
           onClick={() => trackAuditCtaClick('mobile_sticky')}
-          className="inline-flex min-h-11 flex-1 items-center justify-center rounded-full border border-cyan-400/30 bg-cyan-400/10 px-4 text-sm font-semibold !text-cyan-50 transition hover:border-cyan-300/50 hover:bg-cyan-400/15 hover:!text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
+          className="inline-flex min-h-11 flex-1 items-center justify-center rounded-full border border-cyan-400/30 bg-cyan-400/10 px-3 text-xs font-semibold !text-cyan-50 transition hover:border-cyan-300/50 hover:bg-cyan-400/15 hover:!text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 sm:text-sm sm:px-4"
         >
-          Book Audit
+          Book Free Review
         </a>
         <a
-          href={pricingPagePath}
+          href={priceFitCalculatorPath}
           onClick={() => trackPricingCtaClick('mobile_sticky')}
-          className="inline-flex min-h-11 flex-1 items-center justify-center rounded-full border border-white/15 bg-white/5 px-4 text-sm font-semibold !text-white transition hover:border-white/25 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
+          className="inline-flex min-h-11 flex-1 items-center justify-center rounded-full border border-white/15 bg-white/5 px-3 text-xs font-semibold !text-white transition hover:border-white/25 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 sm:text-sm sm:px-4"
         >
-          Pricing
+          {ctaFindBestFitPackage}
         </a>
       </div>
     </div>

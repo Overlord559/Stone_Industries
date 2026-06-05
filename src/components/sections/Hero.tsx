@@ -2,23 +2,22 @@ import { motion } from 'framer-motion'
 import { ArrowRight, FileText, Shield, Waypoints } from 'lucide-react'
 import { HeroRocketAccent } from '../scene/HeroRocketAccent'
 import {
-  buildMailto,
   capabilityBriefPath,
   contactPhone,
   contactPhoneHref,
-  ctaBookRevenueLeakAudit,
-  ctaContactCompany,
-  ctaRequestCustomerEngineSprint,
+  ctaBookFreeRemoteReview,
+  ctaFindBestFitPackage,
+  calendlyFreeRemoteReviewUrl,
   externalBookingLinkProps,
-  gmailComposeUrl,
   heroCertificationsMicro,
+  priceFitCalculatorPath,
   serviceAreaOnSite,
   serviceAreaPrimary,
+  serviceAreaRemote,
   siteContactBlurb,
 } from '../../data/site'
-import {
-  auditPagePath,
-} from '../../data/revenueLeakAudit'
+import { positioningHeadline, positioningSubheadline, proofLedgerCopy } from '../../data/productLadder'
+import { auditPagePath } from '../../data/revenueLeakAudit'
 import { trackAuditCtaClick, trackServicesCtaClick } from '../../lib/analytics'
 
 export function Hero() {
@@ -36,7 +35,7 @@ export function Hero() {
         >
           <div className="inline-flex w-fit items-center gap-2 rounded-full border border-cyan-400/20 bg-cyan-400/10 px-4 py-2 text-xs font-medium uppercase tracking-[0.28em] text-cyan-100">
             <Shield size={14} />
-            Veteran-led. Practical services. Disciplined execution.
+            California remote-first · Veteran-led
           </div>
           <div
             className="si-hero-cert-micro mt-2.5 max-w-2xl"
@@ -48,12 +47,10 @@ export function Hero() {
             </p>
           </div>
           <h1 className="mt-6 max-w-4xl font-display text-4xl font-semibold tracking-[-0.065em] text-white sm:text-5xl lg:text-6xl lg:leading-[1.02]">
-            AI revenue and customer systems for Fresno operators—plus disciplined local tech support when scoped.
+            {positioningHeadline}
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300 sm:text-xl">
-            Primary work: AI Revenue Leak Audit, AI Customer Engine sprints, Managed AI Ops, and BidSignal First
-            Award Sprint for GovCon teams. PC builds, Tier 1 IT, websites, and Wi-Fi/POS remain supporting
-            services.
+            {positioningSubheadline}
           </p>
           <p className="mt-4 max-w-2xl text-sm leading-6 text-slate-400">{siteContactBlurb}</p>
           <p className="mt-5 hidden text-sm font-medium uppercase tracking-[0.32em] text-slate-400 md:block">
@@ -61,15 +58,16 @@ export function Hero() {
           </p>
           <p className="mt-3 max-w-2xl text-sm leading-6 text-slate-400">
             <span className="font-medium text-slate-300">Service area:</span> {serviceAreaPrimary}.{' '}
+            {serviceAreaRemote}{' '}
             <span className="hidden md:inline">{serviceAreaOnSite}</span>
           </p>
           <div className="mt-6 hidden flex-wrap gap-2 md:flex">
             {[
+              'Free Remote Revenue Leak Review',
               'AI Revenue Leak Audit',
-              'AI Customer Engine',
+              'AI Customer Engine Sprint',
+              'Remote Quick Fix',
               'Managed AI Ops',
-              'BidSignal First Award Sprint',
-              'Tier 1 IT & websites (supporting)',
             ].map((label) => (
               <span
                 key={label}
@@ -81,27 +79,29 @@ export function Hero() {
           </div>
           <div className="mt-8 flex flex-col gap-3 md:mt-10 md:gap-4 sm:flex-row sm:flex-wrap sm:items-center">
             <a
-              href={auditPagePath}
-              data-cta="view-ai-revenue-leak-audit"
+              href={calendlyFreeRemoteReviewUrl}
+              {...externalBookingLinkProps}
+              data-cta="book-free-remote-review"
               onClick={() => trackAuditCtaClick('hero')}
               className="si-primary-cta pointer-events-auto inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold !text-slate-950 transition hover:bg-slate-200 hover:!text-slate-950 [&_svg]:!stroke-slate-950"
             >
-              {ctaBookRevenueLeakAudit}
+              {ctaBookFreeRemoteReview}
               <ArrowRight size={16} />
             </a>
             <a
-              href={buildMailto('AI Customer Engine Sprint Request — Stone Industries')}
+              href={priceFitCalculatorPath}
               className="si-secondary-cta pointer-events-auto inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-cyan-400/25 bg-cyan-400/10 px-6 py-3 text-sm font-semibold !text-cyan-50 transition hover:border-cyan-300/40 hover:bg-cyan-400/15 hover:!text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
             >
-              {ctaRequestCustomerEngineSprint}
+              {ctaFindBestFitPackage}
               <ArrowRight size={16} />
             </a>
             <a
-              href={gmailComposeUrl}
-              {...externalBookingLinkProps}
+              href={auditPagePath}
+              data-cta="view-ai-revenue-leak-audit"
+              onClick={() => trackAuditCtaClick('hero_audit_details')}
               className="si-secondary-cta pointer-events-auto inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm font-semibold !text-white transition hover:bg-white/10 hover:!text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
             >
-              {ctaContactCompany}
+              Free Review vs Paid Audit
               <ArrowRight size={16} />
             </a>
             <a
@@ -126,14 +126,13 @@ export function Hero() {
             onClick={() => trackAuditCtaClick('hero_mobile_audit_details')}
             className="pointer-events-auto mt-3 inline-flex min-h-11 items-center text-sm font-medium text-cyan-200/90 underline-offset-4 hover:text-cyan-100 hover:underline md:hidden"
           >
-            See audit details ↓
+            See review vs audit details ↓
           </a>
           <p className="mt-4 max-w-2xl text-sm leading-6 text-slate-400">
             <span className="hidden md:inline">
-              Book audit calls on Calendly, or submit the audit form below for async review. Browse
-              starting packages on pricing pages, then use the inquiry form for a confirmed quote.
-              Capability brief available for subcontracting outreach. No online checkout on this site.{' '}
+              Book on Calendly or use the inquiry form for async review. No online checkout on this site.{' '}
             </span>
+            {proofLedgerCopy}{' '}
             Prefer phone?{' '}
             <a
               className="pointer-events-auto font-medium text-slate-300 underline hover:text-white"
@@ -146,9 +145,9 @@ export function Hero() {
 
           <div className="mt-12 hidden gap-6 border-t border-white/10 pt-8 sm:grid-cols-3 md:grid">
             {[
-              ['Available today', 'AI Revenue Leak Audit, AI Customer Engine sprints, Managed AI Ops, and BidSignal First Award Sprint — with supporting PC, IT, website, and Wi-Fi/POS packages when scoped.'],
-              ['Who we serve', 'Local small businesses, home offices, and partners evaluating subcontracting or scoped operational support.'],
-              ['Future roadmap', 'DALRM, AI-assisted operations, and autonomous logistics—long-range direction, not current products.'],
+              ['Available today', 'Free remote revenue leak review, paid audit, sprints, remote tech sessions, and Managed AI Ops — plus Central Valley on-site for hardware when quoted.'],
+              ['Who we serve', 'California small businesses, home offices, and operators who need practical remote systems help.'],
+              ['How we measure', 'Before/after signals over 30 days — calls, forms, bookings, follow-up. No revenue guarantees.'],
             ].map(([title, copy]) => (
               <div key={title}>
                 <p className="text-xs font-semibold uppercase tracking-[0.32em] text-slate-500">

@@ -1,3 +1,5 @@
+import { marketIntelScanCopy, proofLedgerCopy } from './productLadder'
+
 export const revenueLeakAuditSectionId = 'revenue-leak-audit'
 
 export const auditPagePath = `${import.meta.env.BASE_URL}ai-revenue-leak-audit`
@@ -6,9 +8,11 @@ export const auditChecklistSectionId = 'audit-checklist'
 
 export const auditFormSectionId = 'request-audit'
 
-export const auditServiceLabel = 'AI Revenue Leak Audit'
+export const auditServiceLabel = 'AI Revenue Leak Review / Audit'
 
-export const auditPrice = '$497'
+export const auditPriceStandard = '$497'
+export const auditPriceLaunch = '$297'
+export const auditPrice = `${auditPriceLaunch} launch · ${auditPriceStandard} standard`
 
 export const auditBiggestProblemOptions = [
   'Calls',
@@ -21,91 +25,107 @@ export const auditBiggestProblemOptions = [
 
 export type AuditBiggestProblem = (typeof auditBiggestProblemOptions)[number]
 
-export const auditHeroHeadline = 'Find Where Your Business Is Losing Customers'
+export const auditHeroHeadline = 'Find Where Leads May Be Slipping Through'
 
 export const auditHeroSubheadline =
-  'Stone Industries reviews your website, Google Business Profile, booking flow, missed-call capture, and follow-up process to find the leaks costing you leads.'
+  'Book a free remote review and we will show 2–3 places where leads may be slipping through — or request a paid audit for a full written report in 48 hours.'
 
 export const auditHeroTrustLine =
-  'Veteran-owned technology services company serving Fresno & the Central Valley.'
+  'Veteran-owned California remote-first technology services. Public scan only for free review — no logins, no scraping, no fake data.'
 
-export const auditOfferTitle = `AI Revenue Leak Audit — ${auditPrice}`
+export const freeReviewTitle = 'Free Remote Revenue Leak Review'
 
-export const auditOfferCopy =
-  'A founder-led review of your customer acquisition flow. We identify where prospects are dropping off, where follow-up is slow, where booking/contact flow is unclear, and where simple AI or CRM systems can recover lost opportunities.'
+export const freeReviewCopy =
+  '15–20 minutes. Public scan of your website, Google profile, booking flow, and follow-up path. We show 2–3 obvious leaks verbally — no full written report, no implementation plan. Designed to show whether there is a real issue worth fixing.'
+
+export const paidAuditTitle = `AI Revenue Leak Audit — ${auditPrice}`
+
+export const paidAuditCopy =
+  'Full written report delivered in 48 hours. Includes website review, Google Business Profile review, booking/quote flow review, follow-up path review, lead-loss score, top 5 leaks, fix plan, recommended package, 30-day proof check, and 100% credit toward a sprint if started within 7 days.'
+
+export const auditOfferTitle = 'Free Review vs Paid Audit'
+
+export const auditOfferCopy = marketIntelScanCopy
 
 export const auditChecklistItems = [
-  'Website conversion review',
-  'Google Business Profile review',
-  'Missed-call/contact-path review',
-  'Booking flow review',
-  'CRM/follow-up leak review',
-  'Review/testimonial flow review',
-  '30-day fix plan',
+  'Website conversion path (public view)',
+  'Google Business Profile signals',
+  'Missed-call and contact-path review',
+  'Booking and quote flow review',
+  'CRM and follow-up leak review',
+  'Review and testimonial flow review',
+] as const
+
+export const freeReviewDeliverables = [
+  '15–20 minute remote walkthrough',
+  '2–3 obvious leaks (verbal)',
+  'Quick sense of whether paid audit or sprint makes sense',
+  'No full written report',
 ] as const
 
 export const auditDeliverables = [
-  'Revenue Leak Map',
-  'Priority Fix List',
-  '30-Day Action Plan',
-  'Optional Implementation Recommendation',
-  'Founder-led walkthrough',
+  'Full written Revenue Leak Report',
+  'Lead-loss score',
+  'Top 5 prioritized leaks',
+  '30-day fix plan and recommended package',
+  '30-day proof check after implementation',
+  '100% audit credit toward sprint within 7 days',
 ] as const
 
 export const auditAudienceSegments = [
-  'Contractors',
-  'Med spas',
-  'Dental offices',
-  'Gyms',
-  'Restaurants and catering businesses',
+  'Contractors and trades',
+  'Med spas and wellness',
+  'Dental and medical offices',
+  'Gyms and fitness',
+  'Restaurants and catering',
   'Property managers',
-  'Small professional services',
-  'Veteran-owned businesses',
+  'Professional services',
+  'California small businesses',
 ] as const
 
 export const auditProcessSteps = [
-  'Submit your business or book a call',
-  'Stone reviews your public customer journey',
+  'Book a free remote review or request a paid audit',
+  'Stone runs a public scan of your customer journey',
   'We identify leaks across website, booking, calls, CRM, and follow-up',
-  'You receive a clear report and fix plan',
-  'If it makes sense, Stone can install the fixes',
+  'Free review: verbal walkthrough of 2–3 leaks. Paid audit: full written report in 48 hours.',
+  'If it makes sense, Stone can install fixes via a scoped sprint',
 ] as const
 
 export const afterAuditOptions = [
   {
-    name: 'Fix Sprint',
-    price: '$1,500–$2,500 one-time',
-    detail: 'Website, booking, CRM, follow-up, and conversion cleanup.',
+    name: 'Starter Fix Sprint',
+    price: '$750–$1,500',
+    detail: 'Website CTA, forms, booking link, basic CRM, and follow-up.',
+  },
+  {
+    name: 'AI Customer Engine Sprint',
+    price: '$1,500–$2,500',
+    detail: 'Lead capture, CRM, booking, follow-up workflow, and simple dashboard.',
   },
   {
     name: 'Managed AI Ops',
     price: '$299–$997/mo',
-    detail: 'Ongoing improvement, reporting, and support.',
-  },
-  {
-    name: 'Custom Website / CRM / Automation Build',
-    price: 'Quoted after audit',
-    detail: 'Larger systems quoted based on scope.',
+    detail: 'Ongoing monitoring, optimization, and monthly improvements.',
   },
 ] as const
 
 export const auditTrustBoundaries = [
   'Veteran-owned',
-  'Fresno & Central Valley service area',
+  'California remote-first',
   'Human-reviewed recommendations',
   'No revenue guarantees',
-  'No fully autonomous outreach or customer messaging without approval',
+  'No fully autonomous customer messaging without approval',
+  proofLedgerCopy,
 ] as const
 
-export const auditTeaserTitle = 'AI Revenue Leak Audit'
+export const auditTeaserTitle = 'Revenue Leak Review'
 
-export const auditTeaserHeadline = 'Find Where Customers Are Dropping Off'
+export const auditTeaserHeadline = 'See Where Leads May Be Slipping Through'
 
-export const auditTeaserCopy =
-  'Stone Industries reviews your website, Google Business Profile, booking flow, missed-call capture, CRM, and follow-up process to find where leads are leaking.'
+export const auditTeaserCopy = marketIntelScanCopy
 
 export const afterAuditIntro =
-  'If the audit shows clear revenue leaks, Stone Industries can help install the fixes. Implementation is optional.'
+  'If the review or audit shows clear leaks, Stone Industries can help install fixes through a scoped sprint. Implementation is optional — we scope down before discounting.'
 
 /** @deprecated Removed from ad funnel — kept empty for grep-safe migration */
 export const secondShiftPackages = [] as const

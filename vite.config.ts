@@ -117,6 +117,8 @@ export default defineConfig(() => ({
       input: {
         main: resolve(process.cwd(), 'index.html'),
         audit: resolve(process.cwd(), 'ai-revenue-leak-audit/index.html'),
+        calculator: resolve(process.cwd(), 'price-fit-calculator/index.html'),
+        remoteSupport: resolve(process.cwd(), 'remote-support/index.html'),
       },
       output: {
         manualChunks(id) {

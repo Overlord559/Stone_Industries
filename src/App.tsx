@@ -1,4 +1,4 @@
-import { useEffect, type CSSProperties } from 'react'
+import { useEffect, type CSSProperties, type ReactNode } from 'react'
 import { Footer } from './components/layout/Footer'
 import { Navbar } from './components/layout/Navbar'
 import { About } from './components/sections/About'
@@ -10,9 +10,11 @@ import { RevenueLeakAuditTeaser } from './components/sections/RevenueLeakAuditTe
 import { Services } from './components/sections/Services'
 import { Vision } from './components/sections/Vision'
 import { AiRevenueLeakAuditPage } from './pages/AiRevenueLeakAuditPage'
+import { PriceFitCalculatorPage } from './pages/PriceFitCalculatorPage'
+import { RemoteSupportPage } from './pages/RemoteSupportPage'
 import { trackPageView } from './lib/analytics'
 import { syncHashScroll } from './lib/inquiryNavigation'
-import { isAiRevenueLeakAuditPath } from './lib/routePath'
+import { getAppRoute } from './lib/routePath'
 
 const assetBase = import.meta.env.BASE_URL
 const backgroundStyle = {
@@ -73,7 +75,7 @@ function HomePage() {
   )
 }
 
-function AuditLandingShell() {
+function StandalonePageShell({ children }: { children: ReactNode }) {
   return (
     <div className="relative isolate">
       <div
@@ -84,16 +86,17 @@ function AuditLandingShell() {
         className="si-lower-bg-scrim pointer-events-none absolute inset-0 -z-10 min-h-full"
         aria-hidden="true"
       />
-      <AiRevenueLeakAuditPage />
+      {children}
     </div>
   )
 }
 
 function App() {
-  const isAuditLanding = isAiRevenueLeakAuditPath()
+  const route = getAppRoute()
+  const isStandalone = route !== 'home'
 
   useEffect(() => {
-    if (!isAuditLanding) {
+    if (!isStandalone) {
       syncHashScroll()
     } else {
       trackPageView()
@@ -105,7 +108,12 @@ function App() {
 
     window.addEventListener('hashchange', onHashChange)
     return () => window.removeEventListener('hashchange', onHashChange)
-  }, [isAuditLanding])
+  }, [isStandalone])
+
+  let page: ReactNode = <HomePage />
+  if (route === 'audit') page = <AiRevenueLeakAuditPage />
+  if (route === 'calculator') page = <PriceFitCalculatorPage />
+  if (route === 'remote-support') page = <RemoteSupportPage />
 
   return (
     <div
@@ -118,7 +126,9 @@ function App() {
         aria-hidden="true"
       />
       <Navbar />
-      <main className="w-full">{isAuditLanding ? <AuditLandingShell /> : <HomePage />}</main>
+      <main className="w-full">
+        {isStandalone ? <StandalonePageShell>{page}</StandalonePageShell> : page}
+      </main>
       <Footer />
     </div>
   )

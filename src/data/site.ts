@@ -55,23 +55,28 @@ export const emailMailto =
 export const gmailComposeUrl =
   'https://mail.google.com/mail/?view=cm&fs=1&to=edward@stoneindustriesusa.com&su=Stone%20Industries%20Inquiry'
 
-export const siteLastUpdated = 'May 30, 2026'
+export const siteLastUpdated = 'June 5, 2026'
 export const siteContactBlurb =
-  'Stone Industries accepts project inquiries by email, phone, and scheduled consultation.'
+  'Stone Industries accepts project inquiries by email, phone, and scheduled remote consultation across California.'
 /** @deprecated Use siteContactBlurb — kept for import compatibility during cleanup */
 export const siteLaunchStatus = siteContactBlurb
 
-export const ctaBookRevenueLeakAudit = 'Book an AI Revenue Leak Audit'
-export const ctaRequestCustomerEngineSprint = 'Request an AI Customer Engine Sprint'
+export const ctaBookFreeRemoteReview = 'Book Free Remote Revenue Leak Review'
+/** @deprecated Use ctaBookFreeRemoteReview — kept for analytics attribute migration */
+export const ctaBookRevenueLeakAudit = ctaBookFreeRemoteReview
+export const ctaFindBestFitPackage = 'Find Your Best-Fit Package'
+export const ctaSeeWhatFits = 'See What Fits Your Business'
+export const ctaRequestCustomerEngineSprint = 'Request AI Customer Engine Sprint'
 export const ctaScheduleGeneralConsultation = 'Schedule a General Consultation'
 export const ctaContactCompany = 'Contact Stone Industries'
 export const defaultInquiryMailtoSubject = 'Stone Industries Inquiry'
 
-/** Official Calendly booking URLs (May 2026). */
-export const calendlyRevenueLeakAuditUrl =
-  'https://calendly.com/edward-stoneindustriesusa/30min'
-export const calendlyGeneralConsultationUrl =
+/** Official Calendly booking URLs (June 2026). */
+export const calendlyFreeRemoteReviewUrl =
   'https://calendly.com/edward-stoneindustriesusa/general-business-tech-consultation'
+/** @deprecated Use calendlyFreeRemoteReviewUrl */
+export const calendlyRevenueLeakAuditUrl = calendlyFreeRemoteReviewUrl
+export const calendlyGeneralConsultationUrl = calendlyFreeRemoteReviewUrl
 
 /** Safe defaults for off-site booking links (Calendly). */
 export const externalBookingLinkProps = {
@@ -81,29 +86,34 @@ export const externalBookingLinkProps = {
 
 export function isCalendlyBookingUrl(href: string): boolean {
   return (
-    href === calendlyRevenueLeakAuditUrl || href === calendlyGeneralConsultationUrl
+    href === calendlyFreeRemoteReviewUrl ||
+    href === calendlyRevenueLeakAuditUrl ||
+    href === calendlyGeneralConsultationUrl
   )
 }
 
-export const serviceAreaPrimary = 'Fresno & Central Valley, California'
-export const serviceAreaShort = 'Fresno / Central Valley'
-export const serviceAreaContactLabel = 'Fresno & Central Valley, CA'
+export const serviceAreaPrimary = 'California — remote-first'
+export const serviceAreaShort = 'California remote-first'
+export const serviceAreaContactLabel = 'California (remote-first)'
 export const serviceAreaOnSite =
-  'On-site support in the Fresno area and greater Central Valley when scheduling allows.'
+  'On-site in Fresno, Clovis, Fowler, and Central Valley only — by appointment or custom quote for hardware, POS, and networking.'
 export const serviceAreaRemote =
-  'Remote support available for websites, AI receptionist setup, mobile MVP prototypes, and operations coordination.'
-export const serviceAreaSeoPhrase = 'Fresno and Central Valley, California'
+  'Remote delivery across California: websites, CRM, booking, follow-up workflows, AI automation, dashboards, and business tech support.'
+export const serviceAreaSeoPhrase = 'California remote-first AI systems, websites, and IT support'
 
 export const pricingPagePath = `${import.meta.env.BASE_URL}pricing.html`
 export const servicesPagePath = `${import.meta.env.BASE_URL}services.html`
 export const visionPagePath = `${import.meta.env.BASE_URL}vision.html`
+export const priceFitCalculatorPath = `${import.meta.env.BASE_URL}price-fit-calculator`
+export const remoteSupportPagePath = `${import.meta.env.BASE_URL}remote-support`
 
 export const navItems: NavItem[] = [
   { label: 'Services', href: servicesPagePath },
-  { label: 'Pricing', href: pricingPagePath },
-  { label: 'Audit', href: auditPagePath },
+  { label: 'Packages', href: pricingPagePath },
+  { label: 'Revenue Review', href: auditPagePath },
+  { label: 'Calculator', href: priceFitCalculatorPath },
+  { label: 'Remote Support', href: remoteSupportPagePath },
   { label: 'About', href: '#about' },
-  { label: 'Vision', href: visionPagePath },
   { label: 'Contact', href: '#contact' },
 ]
 
@@ -177,7 +187,7 @@ export const pricingDisclaimer =
   'Fixed package prices apply to listed scope. Final quote confirmed in writing before work begins.'
 
 export const paymentNote =
-  'No online checkout on this site. Fixed packages for defined scope; custom quote when unclear. Hosted invoice or payment link after written quote. Deposits on larger jobs; final balance before handoff. No card data collected here.'
+  'No online checkout on this site. Under $300 paid upfront. Sprints use deposit splits per written quote. Audit fee credited toward sprint within 7 days when applicable. We scope down before discounting.'
 
 /** Shown on service/pricing pages — honest scope, no compliance or hacker-proof claims. */
 export const securityPackageDisclaimer =
@@ -231,10 +241,12 @@ export const inquiryTypes: InquiryType[] = [
 ]
 
 export const inquiryServiceOptions = [
-  'AI Revenue Leak Audit',
+  'Free Remote Revenue Leak Review',
+  'AI Revenue Leak Audit (paid)',
   'AI Customer Engine Sprint',
+  'Remote Quick Fix',
+  'Remote Business Tech Session',
   'Managed AI Ops',
-  'BidSignal First Award Sprint',
   ...services.map((service) => service.title),
   'General Inquiry',
   'Subcontracting / Capability Brief',
@@ -242,8 +254,8 @@ export const inquiryServiceOptions = [
 
 export const whoWeWorkWith = [
   {
-    title: 'Local small businesses',
-    description: 'Shops, vendors, and operators who need practical tech or web help without enterprise overhead.',
+    title: 'California small businesses',
+    description: 'Shops, vendors, and operators who need practical remote tech, web, or automation help without enterprise overhead.',
   },
   {
     title: 'Independent contractors and small operators',
@@ -337,14 +349,14 @@ export type VisionDirection = {
 export const visionDirections: VisionDirection[] = [
   {
     anchor: 'local-first',
-    title: 'Local First',
-    summary: 'Earn trust in Fresno and the Central Valley with fixed-scope delivery.',
+    title: 'Remote First',
+    summary: 'Earn trust across California with remote delivery — Central Valley on-site for hardware only.',
     icon: MapPin,
   },
   {
     anchor: 'current-focus',
     title: 'Current Focus',
-    summary: 'Websites, secure lead capture, Tier 1 IT, AI receptionist workflows, and mobile MVP prototypes.',
+    summary: 'Free revenue leak review, paid audit, sprints, remote tech sessions, and Managed AI Ops.',
     icon: Crosshair,
   },
   {
@@ -362,11 +374,11 @@ export const visionDirections: VisionDirection[] = [
 ]
 
 export const trustChips = [
-  'Fresno & Central Valley service area',
+  'California remote-first',
+  'Central Valley on-site for hardware only',
   'Veteran-led discipline',
   'Direct small-business support',
-  'Subcontracting inquiries welcome',
-  'No inflated claims',
+  'No revenue guarantees',
 ] as const
 
 export const inquiryBodyTemplate = `Service needed:

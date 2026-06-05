@@ -70,7 +70,7 @@ const metaBySlug: Record<string, ServiceMeta> = {
     scope: [
       'Quick fix through small-office setup tiers',
       'Wi-Fi, printer, and POS safety guidance — not PCI certification',
-      'On-site in Fresno / Central Valley when scheduling allows',
+      'Central Valley on-site by appointment — custom quote for hardware/POS',
     ],
     securityIncluded: [],
     icon: Wifi,

@@ -23,9 +23,9 @@ export function Services() {
 
       <div className="flex flex-col gap-8 lg:flex-row lg:items-start lg:justify-between lg:gap-10">
         <SectionHeading
-          eyebrow="Supporting services"
-          title="Fixed local packages when you need PC, IT, web, or coordination help."
-          description="These remain available with clear scope and starting prices — secondary to AI Revenue Leak Audit, AI Customer Engine, Managed AI Ops, and BidSignal First Award Sprint."
+          eyebrow="Supporting packages"
+          title="Remote-first sprints plus legacy fixed packages when scoped."
+          description="Primary path: free remote review → paid audit → sprint. These supporting packages remain for PC builds, Tier 1 IT, websites, and coordination — Central Valley on-site for hardware only."
         />
         <div className="hidden shrink-0 self-start lg:block">
           <InteractiveOrbAccent
@@ -136,10 +136,10 @@ export function Services() {
       </div>
 
       <div className="si-section-glass mt-10 rounded-[1.75rem] border border-cyan-400/20 bg-cyan-400/[0.06] p-5 sm:p-6">
-        <p className="text-sm font-semibold text-white">AI Revenue Leak Audit for local service businesses</p>
+        <p className="text-sm font-semibold text-white">Start with a free remote revenue leak review</p>
         <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-300">
-          Send us your website and Google Business Profile — our team sends a human-reviewed leak report and
-          recommended fix plan for Fresno and Central Valley service businesses.
+          We run a simple public scan of your website, Google profile, booking flow, and follow-up path.
+          Book a free remote review and we will show 2–3 places where leads may be slipping through.
         </p>
         <a
           href={auditPagePath}

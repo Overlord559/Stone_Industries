@@ -1,16 +1,13 @@
 import { motion } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
 
-import { primaryOffers, primaryOffersIntro } from '../../data/primaryOffers'
+import { primaryOffers, primaryOffersIntro, primaryOffersSecondaryCta } from '../../data/primaryOffers'
 import { auditPagePath } from '../../data/revenueLeakAudit'
 import {
-  calendlyGeneralConsultationUrl,
-  ctaContactCompany,
-  ctaScheduleGeneralConsultation,
+  calendlyFreeRemoteReviewUrl,
+  ctaBookFreeRemoteReview,
   externalBookingLinkProps,
-  gmailComposeUrl,
   isCalendlyBookingUrl,
-  siteContactBlurb,
 } from '../../data/site'
 import { trackAuditCtaClick } from '../../lib/analytics'
 import { SectionHeading } from '../ui/SectionHeading'
@@ -21,16 +18,16 @@ export function PrimaryOffers() {
   return (
     <section id="primary-offers" className="relative mx-auto w-full max-w-7xl px-6 py-16 lg:px-10 lg:py-20">
       <SectionHeading
-        eyebrow="Launch offers"
-        title="AI systems and GovCon sprint work — live and taking inquiries."
+        eyebrow="Product ladder"
+        title="Start free. Scale when the leaks are real."
         description={primaryOffersIntro}
       />
-      <p className="mt-4 max-w-3xl text-sm leading-6 text-slate-400">{siteContactBlurb}</p>
 
-      <div className="mt-10 grid gap-5 sm:grid-cols-2">
+      <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {primaryOffers.map((offer, index) => {
           const Icon = offer.icon
           const isExternalBooking = isCalendlyBookingUrl(offer.href)
+          const isAuditPath = offer.href === auditPagePath || offer.href.startsWith(auditPagePath)
 
           return (
             <motion.article
@@ -47,7 +44,7 @@ export function PrimaryOffers() {
                 </div>
                 <div>
                   <p className="text-[0.65rem] font-semibold uppercase tracking-[0.28em] text-cyan-300/85">
-                    Primary offer
+                    {index === 0 ? 'Primary CTA' : 'Offer'}
                   </p>
                   <h3 className="mt-1 font-display text-xl font-semibold tracking-[-0.04em] text-white">
                     {offer.title}
@@ -58,11 +55,9 @@ export function PrimaryOffers() {
               <a
                 href={offer.href}
                 {...(isExternalBooking ? externalBookingLinkProps : {})}
-                data-cta={offer.href === auditPagePath ? 'view-ai-revenue-leak-audit' : undefined}
+                data-cta={isAuditPath ? 'view-ai-revenue-leak-audit' : undefined}
                 onClick={
-                  offer.href === auditPagePath
-                    ? () => trackAuditCtaClick('primary_offers')
-                    : undefined
+                  isAuditPath ? () => trackAuditCtaClick('primary_offers') : undefined
                 }
                 className="si-primary-cta mt-6 inline-flex w-fit items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-semibold !text-slate-950 transition hover:bg-slate-200 hover:!text-slate-950 [&_svg]:!stroke-slate-950"
               >
@@ -76,19 +71,20 @@ export function PrimaryOffers() {
 
       <div className="mt-8 flex flex-wrap gap-3">
         <a
-          href={calendlyGeneralConsultationUrl}
-          {...externalBookingLinkProps}
+          href={primaryOffersSecondaryCta.href}
           className="si-secondary-cta inline-flex min-h-11 items-center gap-2 rounded-full border border-cyan-400/25 bg-cyan-400/10 px-6 py-3 text-sm font-semibold !text-cyan-50 transition hover:border-cyan-300/40 hover:bg-cyan-400/15 hover:!text-white"
         >
-          {ctaScheduleGeneralConsultation}
+          {primaryOffersSecondaryCta.label}
           <ArrowRight size={15} />
         </a>
         <a
-          href={gmailComposeUrl}
+          href={calendlyFreeRemoteReviewUrl}
           {...externalBookingLinkProps}
+          data-cta="book-free-remote-review"
+          onClick={() => trackAuditCtaClick('primary_offers_calendly')}
           className="si-secondary-cta inline-flex min-h-11 items-center gap-2 rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm font-semibold !text-white transition hover:bg-white/10 hover:!text-white"
         >
-          {ctaContactCompany}
+          {ctaBookFreeRemoteReview}
           <ArrowRight size={15} />
         </a>
       </div>

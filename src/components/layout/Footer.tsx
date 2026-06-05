@@ -27,8 +27,8 @@ export function Footer() {
             Stone Industries
           </p>
           <p className="max-w-xl leading-6">
-            AI Revenue Leak Audit, AI Customer Engine, Managed AI Ops, and BidSignal First Award Sprint—plus supporting PC, IT, and website
-            packages for Fresno and the Central Valley.
+            California remote-first AI systems, websites, automation, and IT support. Free remote revenue leak review,
+            paid audit, sprints, and Managed AI Ops — Central Valley on-site for hardware by custom quote.
           </p>
           <p className="max-w-xl text-xs leading-5 text-slate-500">{siteContactBlurb}</p>
           <p className="text-sm text-slate-400">
