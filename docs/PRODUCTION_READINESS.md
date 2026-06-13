@@ -32,7 +32,7 @@
 | Competitive positioning | `#where-stone-fits` on pricing/services; logistics freight disclaimer; no competitor names |
 | Vision page | `public/vision.html` — grounded roadmap; homepage vision objects link to anchors |
 | Email fallback | Copy email + mailto on React + static pages; no Gmail-login-only URLs (STONE-020) |
-| Inquiry-first CTAs | Supabase forms primary; phone plain text; no mailto-only Request buttons |
+| Inquiry-first CTAs | Supabase forms primary via `/api/inquiries`; operator email notify (Resend); HubSpot CRM backup; phone plain text |
 | Certification trust | VOSB/SDVOSB/SAM.gov + certified LLC on About/footer/pricing/services — bounded disclaimer; no contract-win claims (**STONE-034**) |
 | Launch critic pass | Recurring care visible; capability brief parity; hero deduped (**STONE-035**) |
 

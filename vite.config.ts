@@ -17,7 +17,7 @@ import { advancedSeoNotIncludedNote, advancedSeoPublicLine, aiWorkflowScopeNote 
 const basePath = process.env.VITE_BASE_PATH ?? '/'
 
 /** Bump when lead-capture static JS behavior changes; stamped into dist HTML at build. */
-const LEAD_CAPTURE_ASSET_VERSION = '2026-06-13-capture'
+const LEAD_CAPTURE_ASSET_VERSION = '2026-06-13-lead-router'
 
 const LEAD_CAPTURE_SCRIPTS = [
   'inquiry-config.js',

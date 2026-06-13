@@ -133,13 +133,17 @@ See **STONE-029**.
 
 | Pattern | Rule |
 |---------|------|
-| Primary path | `submitInquiry` → Supabase `public.inquiries` (anon + RLS INSERT) on React + static forms |
-| Success copy | **Inquiry received** only after REST POST succeeds — never on mailto open |
+| Primary path | `POST /api/inquiries` (Cloudflare Functions) → Supabase save → Resend notify → HubSpot sync; fallback to direct anon insert if API unavailable |
+| Source of truth | Supabase `public.inquiries` — customer success requires saved row |
+| Operator inbox | Resend → `STONE_NOTIFY_EMAIL` (default `edward@stoneindustriesusa.com`) — Edward checks email first |
+| CRM backup | HubSpot contact + note when `HUBSPOT_PRIVATE_APP_TOKEN` configured |
+| Scheduling | Calendly optional post-capture — **Book free consultation** on success panel; not required before save |
+| Success copy | **Inquiry received** only after save — never on mailto open |
 | Email fallback | Manual **Email instead** / **Open email draft** buttons; customer must click Send |
 | Failure copy | **Inquiry was not sent automatically** + copy/email/call — no fake success |
 | Auto-open | Never call `openInquiryMailto` on normal submit |
 
-See **STONE-037**.
+See **STONE-037**, **STONE-039**.
 
 ## Cache-safe lead capture (2026-06-13)
 

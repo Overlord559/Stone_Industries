@@ -4,7 +4,7 @@ import type { InquiryPayload } from './inquiryTypes'
 export const INQUIRY_SOURCE_LINE = 'stoneindustriesusa.com inquiry form'
 
 export const inquiryReceivedMessage =
-  'Stone Industries received your inquiry and will review it. You can also copy the details, email them manually, or call/text if urgent.'
+  'Stone Industries received your inquiry and will review it. You can book a call now, call/text if urgent, or wait for a follow-up.'
 
 export const inquirySubmitFailedMessage =
   'The automatic submit did not complete. Please copy the inquiry details or email them to edward@stoneindustriesusa.com.'

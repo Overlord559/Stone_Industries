@@ -183,12 +183,16 @@ No backend required. Netlify + GitHub Pages compatible via relative links and `%
 |------|-------|
 | **Purpose** | Structured lead capture from homepage + pricing/services pages |
 | **Schema** | [`docs/supabase/stone-industries-inquiries.sql`](supabase/stone-industries-inquiries.sql) |
-| **Client auth** | Public **anon key only** — insert via RLS; no service role in frontend |
-| **Netlify env** | `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY` (Site configuration → Environment variables) — **public build-time vars only**; never put service role or Stripe secrets in `VITE_*` |
-| **Fallback** | Mailto + `tel:+15595799376` when env vars missing or submit fails |
-| **Not in scope** | Auth, dashboard, customer portal, booking, AI chat |
+| **Submit path** | `POST /api/inquiries` (Cloudflare Functions) → Supabase; fallback to anon insert if API unavailable |
+| **Client auth** | Public **anon key only** for fallback — service role server-side only |
+| **Cloudflare build env** | `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY` |
+| **Cloudflare Functions env** | `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`, optional `RESEND_*`, `HUBSPOT_PRIVATE_APP_TOKEN`, `STONE_NOTIFY_EMAIL` — see [`CLOUDFLARE_MIGRATION.md`](CLOUDFLARE_MIGRATION.md) |
+| **Fallback** | Mailto + `tel:+15595799376` when save fails or env unset |
+| **Not in scope** | Auth, customer portal, on-site checkout, AI chat |
 
-**Operator steps:** Run SQL in Supabase → add env vars in Netlify → redeploy → submit test inquiry → verify row in Table Editor.
+**Operator steps:** Run SQL in Supabase → set Cloudflare build + Functions env vars → redeploy → submit test inquiry → verify row in Table Editor + operator email if Resend configured.
+
+Lead routing detail: [`CRM_HUBSPOT_LEAD_ROUTING.md`](CRM_HUBSPOT_LEAD_ROUTING.md).
 
 ### Payments — **Bluevine near-term (no site checkout)**
 

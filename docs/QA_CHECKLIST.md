@@ -141,7 +141,7 @@ Optional preview: `npm run preview` — open printed local URL.
 
 ---
 
-## Inquiry form check (Supabase)
+## Inquiry form check (Supabase + lead router)
 
 - [ ] Homepage Contact section form loads without console errors
 - [ ] `/?service=business-websites#contact` preselects **24-Hour Business Websites** in service dropdown
@@ -149,12 +149,16 @@ Optional preview: `npm run preview` — open printed local URL.
 - [ ] Client validation: name + message required; email **or** phone required
 - [ ] Honeypot field hidden; filled honeypot rejects submit
 - [ ] With Supabase env configured: test submit creates row in `public.inquiries`; success shows **Inquiry received** only after save
+- [ ] Production submit hits `POST /api/inquiries` (Network tab) when deployed on Cloudflare Pages
+- [ ] With `RESEND_API_KEY` + `RESEND_FROM` set: Edward receives notification email; customer success still works if email fails
+- [ ] With `HUBSPOT_PRIVATE_APP_TOKEN` set: contact appears in HubSpot; customer success still works if HubSpot fails
+- [ ] Success panel: **Book free consultation** → Calendly general consultation URL
 - [ ] Submit does **not** auto-open Gmail or mailto on success
 - [ ] Production QA uses **canonical URL** (`https://stoneindustriesusa.com/`) — not `?v=` cache-bust params
 - [ ] After deploy: Cloudflare **Purge Everything** + hard refresh + Incognito test on normal URL
 - [ ] `dist/_headers` sets `no-cache` on `/`, `/*.html`, and lead-capture JS (`inquiry-form.js`, etc.)
 - [ ] `dist/assets/*` remains `immutable` (hashed Vite bundles)
-- [ ] Success fallback buttons: Copy inquiry details, **Email instead**, Call/text — manual only
+- [ ] Success fallback buttons: **Book free consultation**, Call/text, Copy inquiry details, **Email instead** — manual only
 - [ ] Submit failure shows **Inquiry was not sent automatically** + copy/email draft/call fallbacks (no fake success)
 - [ ] With env unset: submit attempts show failure panel with manual fallbacks (not mailto-first success)
 - [ ] No service role key in repo, build output, or client bundle
@@ -320,6 +324,7 @@ Run on live production URL after deploy — https://stoneindustriesusa.com/ — 
 - [ ] RLS enabled on `public.inquiries`; anon has INSERT only (no SELECT/UPDATE/DELETE policies)
 - [ ] Column-scoped INSERT grant; REST POST with `status: closed` fails
 - [ ] Cloudflare Pages build env: `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY` only — never service role in `VITE_*`
+- [ ] Cloudflare Functions env: `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY` for lead router; optional `RESEND_*`, `HUBSPOT_PRIVATE_APP_TOKEN`
 - [ ] `inquiry-config.js` in `dist/` exposes only public URL + anon key (expected when configured)
 - [ ] Privacy page matches form fields + sensitive-data warning + retention note
 - [ ] Security headers present in `netlify.toml` (X-Frame-Options, nosniff, Referrer-Policy, Permissions-Policy)

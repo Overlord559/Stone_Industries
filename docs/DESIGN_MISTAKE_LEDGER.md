@@ -837,6 +837,32 @@ Index of operator corrections from pricing/estimator/nav/email/vision passes. Ex
 
 ---
 
+## STONE-039 — Lead capture layers: Supabase truth, email inbox, HubSpot backup
+
+| Field | Value |
+|-------|-------|
+| **Severity** | STRONG_RULE |
+| **Factory link** | DESIGN-036 (extend) |
+| **Status** | ACTIVE |
+| **First observed** | Lead router pass (2026-06-13) |
+
+**Problem:** Edward checks email more than HubSpot or Supabase Table Editor. Direct browser Supabase insert saved leads but did not notify the operator inbox. HubSpot was not synced.
+
+**Rule:**
+
+1. **Supabase is source of truth** — customer success requires saved row in `public.inquiries`.
+2. **Email is operator inbox** — `POST /api/inquiries` sends Resend notification to `STONE_NOTIFY_EMAIL` when configured; failures must not fail customer success.
+3. **HubSpot is CRM backup** — contact + note sync when token configured; failures must not fail customer success.
+4. **Calendly is optional post-capture** — success panel offers **Book free consultation**; never require booking before save.
+5. **No secrets in frontend** — `RESEND_*`, `HUBSPOT_*`, service role keys are Functions-only env vars.
+6. **API first, anon fallback** — frontend tries `/api/inquiries`; direct anon insert only when API unavailable (local Vite dev).
+
+**QA check:** Submit on production → Supabase row + success panel; Edward email when Resend configured; HubSpot contact when token configured; no auto mailto; Calendly CTA on success only.
+
+Detail: [`CRM_HUBSPOT_LEAD_ROUTING.md`](CRM_HUBSPOT_LEAD_ROUTING.md).
+
+---
+
 ## How to add a lesson
 
 1. Assign next `STONE-NNN` ID

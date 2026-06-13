@@ -56,10 +56,36 @@ Optional analytics (same as Netlify if configured):
 | Variable | Scope | Purpose |
 |----------|-------|---------|
 | `SUPABASE_URL` | Functions | Supabase REST base |
-| `SUPABASE_SERVICE_ROLE_KEY` | Functions | Admin read/update only |
+| `SUPABASE_SERVICE_ROLE_KEY` | Functions | Lead router insert + admin CRM |
 | `STONE_ADMIN_TOKEN` | Functions | Shared secret for `/admin/leads.html` |
+| `RESEND_API_KEY` | Functions | Operator email notification (optional) |
+| `RESEND_FROM` | Functions | Verified Resend sender (required for email notify) |
+| `STONE_NOTIFY_EMAIL` | Functions | Notification inbox (default `edward@stoneindustriesusa.com`) |
+| `HUBSPOT_PRIVATE_APP_TOKEN` | Functions | HubSpot CRM sync (optional) |
 
-**Never** prefix service role or admin token with `VITE_`. **Never** commit these values.
+**Never** prefix service role, Resend, HubSpot, or admin token with `VITE_`. **Never** commit these values.
+
+---
+
+## Pages Functions
+
+| Cloudflare route | File | Method | Purpose |
+|------------------|------|--------|---------|
+| `/api/inquiries` | `functions/api/inquiries.js` | POST | Lead router: Supabase → email → HubSpot |
+| `/admin/leads` | `functions/admin/leads.js` | GET | Admin CRM list |
+| `/admin/lead-update` | `functions/admin/lead-update.js` | PATCH | Admin status update |
+
+### Lead router (`POST /api/inquiries`)
+
+1. Validates inquiry payload (honeypot, required fields).
+2. Inserts into Supabase `public.inquiries` via service role.
+3. Sends Resend notification to Edward if `RESEND_API_KEY` + `RESEND_FROM` configured.
+4. Syncs HubSpot contact + note if `HUBSPOT_PRIVATE_APP_TOKEN` configured.
+5. Returns `{ saved, emailNotified, hubspotSynced, inquiryId?, errorCode? }`.
+
+Email/HubSpot failures are logged but do **not** fail customer success when Supabase saved.
+
+Frontend (`submitInquiry`, `SI_submitInquiryWithFallback`) tries `/api/inquiries` first; falls back to direct anon Supabase insert when API unavailable (e.g. local Vite dev).
 
 ---
 
@@ -111,12 +137,12 @@ Build stamps lead-capture script tags in static HTML with `?v=` from `LEAD_CAPTU
 
 ## What stays static (unchanged)
 
-No server functions required for:
+No server functions required for page shells — but inquiry **submit** uses Functions when deployed:
 
-- React homepage (`/`)
+- React homepage (`/`) — form POSTs to `/api/inquiries`
 - Static funnel: `/pricing.html`, `/services.html`, `/services/*.html`
 - Legal: `/privacy.html`, `/terms.html`
-- Capability brief, inquiry forms (browser → Supabase anon insert)
+- Capability brief, inquiry forms (API first; anon Supabase fallback)
 - `public/admin/leads.html` shell + CSS (JS calls Functions API)
 
 ---

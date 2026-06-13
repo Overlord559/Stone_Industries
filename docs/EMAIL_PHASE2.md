@@ -11,13 +11,12 @@
 
 | Item | Status |
 |------|--------|
-| Supabase inquiry capture | **Live** (browser anon insert) |
-| Admin CRM v0 | **Live** (Netlify Functions + `/admin/leads.html`) |
-| Resend / SMTP configured | **No** |
-| Serverless email function | **No** |
-| Domain email trust (SPF/DKIM/DMARC) | **Not ready** — deferred with trust stack |
+| Supabase inquiry capture | **Live** (API router + anon fallback) |
+| Internal lead notification (Resend) | **Implemented** — requires `RESEND_API_KEY` + `RESEND_FROM` in Cloudflare Functions |
+| HubSpot CRM sync | **Implemented** — requires `HUBSPOT_PRIVATE_APP_TOKEN` |
+| Admin CRM v0 | **Live** (Cloudflare Functions + `/admin/leads.html`) |
+| Domain email trust (SPF/DKIM/DMARC) | Configure for Resend sending domain |
 | Customer confirmation email | **No** |
-| Internal lead notification to Edward | **No** — check Supabase admin CRM manually |
 | Twilio / SMS API configured | **No** |
 | Automated SMS status updates | **No** |
 

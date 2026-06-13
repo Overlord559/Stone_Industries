@@ -1,8 +1,10 @@
 /**
- * Shared Supabase inquiry submit with enhanced-field fallback.
+ * Shared inquiry submit — POST /api/inquiries first; fallback to direct Supabase anon insert.
  * Tries full payload first; on schema/column errors retries legacy columns only.
  */
 (function () {
+  var API_PATH = '/api/inquiries'
+
   function config() {
     return window.__SI_INQUIRY_CONFIG__ || {}
   }
@@ -36,7 +38,41 @@
     )
   }
 
-  async function postPayload(payload) {
+  async function postViaApi(payload) {
+    try {
+      var response = await fetch(API_PATH, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      })
+
+      if (response.status === 404 || response.status === 405) {
+        return null
+      }
+
+      var result
+      try {
+        result = await response.json()
+      } catch (_parseError) {
+        return null
+      }
+
+      if (result && result.saved) {
+        return { mode: 'api', ok: true, result: result }
+      }
+
+      if (response.ok) {
+        throw new Error('submit_failed')
+      }
+
+      return null
+    } catch (error) {
+      if (error && error.message === 'submit_failed') throw error
+      return null
+    }
+  }
+
+  async function postPayloadDirect(payload) {
     var cfg = config()
     var response = await fetch(cfg.url.replace(/\/$/, '') + '/rest/v1/inquiries', {
       method: 'POST',
@@ -62,23 +98,32 @@
   /**
    * @param {object} basePayload Legacy-safe columns (required).
    * @param {object|null} enhancedFields Optional structured package fields.
-   * @returns {Promise<{mode: 'enhanced'|'legacy', ok: true}>}
+   * @returns {Promise<{mode: 'api'|'enhanced'|'legacy', ok: true, result?: object}>}
    */
   async function submitInquiryWithFallback(basePayload, enhancedFields) {
     if (!isConfigured()) throw new Error('not_configured')
 
     var legacy = legacyPayload(basePayload)
+    var fullPayload = legacy
 
     if (enhancedFields && Object.keys(enhancedFields).length) {
-      var enhanced = Object.assign({}, legacy, enhancedFields)
-      var enhancedResult = await postPayload(enhanced)
+      fullPayload = Object.assign({}, legacy, enhancedFields)
+    }
+
+    var apiResult = await postViaApi(fullPayload)
+    if (apiResult) {
+      return apiResult
+    }
+
+    if (enhancedFields && Object.keys(enhancedFields).length) {
+      var enhancedResult = await postPayloadDirect(fullPayload)
 
       if (enhancedResult.ok) {
         return { mode: 'enhanced', ok: true }
       }
 
       if (isSchemaColumnError(enhancedResult.status, enhancedResult.bodyText)) {
-        var legacyResult = await postPayload(legacy)
+        var legacyResult = await postPayloadDirect(legacy)
         if (legacyResult.ok) {
           if (typeof console !== 'undefined' && console.info) {
             console.info('[Stone] Inquiry saved via legacy columns — apply extended-fields SQL migration for structured package columns.')
@@ -90,7 +135,7 @@
       throw new Error('submit_failed')
     }
 
-    var result = await postPayload(legacy)
+    var result = await postPayloadDirect(legacy)
     if (result.ok) return { mode: 'legacy', ok: true }
     throw new Error('submit_failed')
   }

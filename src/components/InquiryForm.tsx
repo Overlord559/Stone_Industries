@@ -1,9 +1,11 @@
 import { useEffect, useState, type FormEvent } from 'react'
 
 import {
+  calendlyFreeRemoteReviewUrl,
   contactEmail,
   contactPhone,
   contactPhoneHref,
+  externalBookingLinkProps,
   inquiryServiceOptions,
   resolveServiceFromQuery,
   resolveServiceTitleFromSlug,
@@ -155,8 +157,25 @@ export function InquiryForm({ sourcePage, defaultService = '', className = '' }:
         <p className="mt-2 text-sm leading-6 text-slate-200">
           {isSuccess ? inquiryReceivedMessage : inquirySubmitFailedMessage}
         </p>
-        <p className="mt-2 text-xs leading-5 text-slate-400">{inquiryEmailFallbackHint}</p>
+        {!isSuccess ? (
+          <p className="mt-2 text-xs leading-5 text-slate-400">{inquiryEmailFallbackHint}</p>
+        ) : null}
         <div className="mt-4 flex flex-wrap gap-2">
+          {isSuccess ? (
+            <a
+              href={calendlyFreeRemoteReviewUrl}
+              {...externalBookingLinkProps}
+              className="si-primary-cta inline-flex min-h-10 items-center justify-center rounded-full bg-white px-4 py-2 text-sm font-semibold !text-slate-950 transition hover:bg-slate-200"
+            >
+              Book free consultation
+            </a>
+          ) : null}
+          <a
+            href={contactPhoneHref}
+            className="si-secondary-cta inline-flex min-h-10 items-center justify-center rounded-full border border-white/15 bg-white/5 px-4 py-2 text-sm font-semibold !text-white transition hover:bg-white/10"
+          >
+            Call / text {contactPhone}
+          </a>
           <button
             type="button"
             className="si-secondary-cta inline-flex min-h-10 items-center justify-center rounded-full border border-white/15 bg-white/5 px-4 py-2 text-sm font-semibold !text-white transition hover:bg-white/10"
@@ -171,12 +190,6 @@ export function InquiryForm({ sourcePage, defaultService = '', className = '' }:
             className="si-secondary-cta inline-flex min-h-10 items-center justify-center rounded-full border border-white/15 bg-white/5 px-4 py-2 text-sm font-semibold !text-white transition hover:bg-white/10"
           >
             {isSuccess ? 'Email instead' : 'Open email draft'}
-          </a>
-          <a
-            href={contactPhoneHref}
-            className="si-secondary-cta inline-flex min-h-10 items-center justify-center rounded-full border border-white/15 bg-white/5 px-4 py-2 text-sm font-semibold !text-white transition hover:bg-white/10"
-          >
-            Call / text {contactPhone}
           </a>
         </div>
         {copiedDetails ? (

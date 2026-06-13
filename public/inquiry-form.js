@@ -5,10 +5,12 @@
   var EMAIL = 'edward@stoneindustriesusa.com'
   var PHONE = '559-579-9376'
   var PHONE_HREF = 'tel:+15595799376'
+  var CALENDLY_URL =
+    'https://calendly.com/edward-stoneindustriesusa/general-business-tech-consultation'
   var SOURCE_LINE = 'stoneindustriesusa.com inquiry form'
 
   var RECEIVED_MESSAGE =
-    'Stone Industries received your inquiry and will review it. You can also copy the details, email them manually, or call/text if urgent.'
+    'Stone Industries received your inquiry and will review it. You can book a call now, call/text if urgent, or wait for a follow-up.'
   var FAILED_MESSAGE =
     'The automatic submit did not complete. Please copy the inquiry details or email them to edward@stoneindustriesusa.com.'
   var EMAIL_FALLBACK_HINT =
@@ -203,10 +205,20 @@
       '<p class="page-lead">' +
       body +
       '</p>' +
-      '<p class="note-muted">' +
-      EMAIL_FALLBACK_HINT +
-      '</p>' +
+      (isSuccess
+        ? ''
+        : '<p class="note-muted">' + EMAIL_FALLBACK_HINT + '</p>') +
       '<div class="cta-band">' +
+      (isSuccess
+        ? '<a class="cta cta-primary" href="' +
+          CALENDLY_URL +
+          '" target="_blank" rel="noopener noreferrer">Book free consultation</a>'
+        : '') +
+      '<a class="cta cta-secondary" href="' +
+      PHONE_HREF +
+      '">Call / text ' +
+      PHONE +
+      '</a>' +
       '<button type="button" class="cta cta-secondary" data-si-copy-inquiry>Copy inquiry details</button>' +
       '<a class="cta cta-secondary" data-si-email-fallback href="' +
       emailHref +
@@ -214,11 +226,6 @@
       emailTarget +
       '>' +
       emailLabel +
-      '</a>' +
-      '<a class="cta cta-secondary" href="' +
-      PHONE_HREF +
-      '">Call / text ' +
-      PHONE +
       '</a>' +
       '</div>' +
       '<p class="si-copy-status" data-si-copy-status hidden aria-live="polite"></p>' +
