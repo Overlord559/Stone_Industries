@@ -2,7 +2,7 @@
  * Package + add-on estimator — package-scoped add-ons, page limits, included items.
  */
 (function () {
-  var EXTRA_PAGE_RATE = 125
+  var EXTRA_PAGE_RATE = 97
   var LARGE_SITE_PAGE_THRESHOLD = 10
 
   function catalog() {

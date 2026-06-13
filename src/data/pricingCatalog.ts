@@ -277,17 +277,19 @@ const pricingCatalogRaw: CatalogService[] = [
     serviceDisclaimer:
       'Final price depends on scope, content readiness, and timeline. ' +
       advancedSeoPublicLine +
-      ' Optional 3D/interactive sections use safe CSS/L3 patterns before heavy WebGL — quoted when the prospect needs more than a standard layout. Security layers are practical hardening — not formal compliance or managed security.',
+      ' Optional 3D/interactive sections use safe CSS/L3 patterns before heavy WebGL — quoted when the prospect needs more than a standard layout. Security layers are practical hardening — not formal compliance or managed security. ' +
+      'Scoped quick offers (separate from packages): Quick Fix $97–$197 · Contact Flow Cleanup $297–$497 · Cyber Trust Cleanup $197–$497.',
     packages: [
       {
         id: 'starter-landing',
         name: 'Starter Landing Page',
-        priceLabel: '$399',
-        baseEstimate: 399,
+        priceLabel: '$297',
+        baseEstimate: 297,
         isFrom: false,
         pagesIncluded: 1,
         pagesIncludedLabel: '1 page',
-        summary: 'Single-page local business site — mobile-ready with clear phone/email CTA.',
+        summary:
+          'Cash-first single-page site for local Fresno and Central Valley businesses — mobile-ready landing with clear phone and email CTA, no full agency contract.',
         includes: [
           '1-page website (mobile-ready)',
           'Basic service / offer layout',
@@ -297,17 +299,18 @@ const pricingCatalogRaw: CatalogService[] = [
           '1 revision round',
         ],
         notIncluded: ['Secure Supabase lead capture (optional add-on)', 'More than 1 page without add-on or quote'],
-        pageLimitNote: 'Use the page-count control on the estimator — 1 page included; extra pages +$125/page each.',
+        pageLimitNote: 'Use the page-count control on the estimator — 1 page included; extra pages +$97/page each.',
       },
       {
         id: 'business-site',
         name: 'Business Website',
-        priceLabel: '$799',
-        baseEstimate: 799,
+        priceLabel: '$597',
+        baseEstimate: 597,
         isFrom: false,
         pagesIncluded: 5,
         pagesIncludedLabel: 'Up to 5 pages',
-        summary: 'Multi-page site for local businesses — home, services, pricing, contact, and legal pages. Optional interactive/3D sections quoted when needed.',
+        summary:
+          'Multi-page site to capture more local leads — home, services, contact, and legal pages with inquiry path and basic SEO/meta for trust.',
         includes: [
           'Up to 5 pages (e.g. home, services, pricing, contact, privacy/terms)',
           'Mobile-ready layout',
@@ -321,17 +324,18 @@ const pricingCatalogRaw: CatalogService[] = [
           'Formal compliance certification',
           'Unlimited future edits',
         ],
-        pageLimitNote: 'Extra pages beyond 5: +$125/page on estimator, or custom quote if scope is complex.',
+        pageLimitNote: 'Extra pages beyond 5: +$97/page on estimator, or custom quote if scope is complex.',
       },
       {
         id: 'premium',
         name: 'Premium Website',
-        priceLabel: '$1,199+',
-        baseEstimate: 1199,
+        priceLabel: '$997+',
+        baseEstimate: 997,
         isFrom: true,
         pagesIncluded: 7,
         pagesIncludedLabel: 'Up to 7 pages',
-        summary: 'Full Business scope plus secure lead capture, cybersecurity layers, Stripe readiness, launch-ready handoff, and optional interactive/3D section planning.',
+        summary:
+          'Full business scope plus secure lead capture, cybersecurity layers, and launch-ready conversion handoff — reduce places where local leads slip through.',
         includes: [
           'Up to 7 pages — everything in Business Website',
           'Secure lead capture setup (Supabase + RLS pattern)',
@@ -346,7 +350,7 @@ const pricingCatalogRaw: CatalogService[] = [
           'Monthly website care (optional add-on)',
           'Formal compliance certification',
         ],
-        pageLimitNote: 'Extra pages beyond 7: +$125/page on estimator, or custom quote if scope is complex.',
+        pageLimitNote: 'Extra pages beyond 7: +$97/page on estimator, or custom quote if scope is complex.',
         includedAddOnIds: [
           'lead-capture',
           'cyber-tier-1',
@@ -413,7 +417,7 @@ const pricingCatalogRaw: CatalogService[] = [
       {
         id: 'monthly-care',
         name: 'Monthly website care',
-        priceLabel: '$99–$299/mo',
+        priceLabel: '$49–$149/mo',
         kind: 'monthly',
         estimateAdd: null,
         estimateNote: 'Billed monthly upfront — separate from one-time project total',
