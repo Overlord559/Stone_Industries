@@ -148,9 +148,11 @@ Optional preview: `npm run preview` — open printed local URL.
 - [ ] `/pricing.html` and `/services.html` inquiry sections render
 - [ ] Client validation: name + message required; email **or** phone required
 - [ ] Honeypot field hidden; filled honeypot rejects submit
-- [ ] With Supabase env configured: test submit creates row in `public.inquiries`
-- [ ] With env unset: submit disabled on React form; static form shows mailto/tel fallback note
-- [ ] Submit failure shows error + mailto/tel still available
+- [ ] With Supabase env configured: test submit creates row in `public.inquiries`; success shows **Inquiry received** only after save
+- [ ] Submit does **not** auto-open Gmail or mailto on success
+- [ ] Success fallback buttons: Copy inquiry details, **Email instead**, Call/text — manual only
+- [ ] Submit failure shows **Inquiry was not sent automatically** + copy/email draft/call fallbacks (no fake success)
+- [ ] With env unset: submit attempts show failure panel with manual fallbacks (not mailto-first success)
 - [ ] No service role key in repo, build output, or client bundle
 
 ---

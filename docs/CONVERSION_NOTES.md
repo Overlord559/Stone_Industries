@@ -20,7 +20,7 @@
 
 **Secondary CTAs:** View Services, View Pricing, Request This Package, Send an inquiry.
 
-**Fail:** Mailto-only request buttons (STONE-007, STONE-013). Mailto-only email fallback with no copy path (STONE-020). Inquiry buried by Call-first chrome (STONE-021). First-click `#contact` scroll race (STONE-014). Top nav **Services** must open `/services.html`. Solo-founder copy on audit funnel (`Send me`, `I'll`, `my audit`).
+**Fail:** Mailto-only request buttons (STONE-007, STONE-013). Mailto-only email fallback with no copy path (STONE-020). Inquiry buried by Call-first chrome (STONE-021). First-click `#contact` scroll race (STONE-014). **Mailto-first inquiry submit** that shows success before data is saved (STONE-037). Top nav **Services** must open `/services.html`. Solo-founder copy on audit funnel (`Send me`, `I'll`, `my audit`).
 
 **Backfill index:** [`DESIGN_MISTAKE_LEDGER.md`](DESIGN_MISTAKE_LEDGER.md) → *Recent Operator Corrections Backfill* (38 items → STONE/DESIGN IDs).
 
@@ -128,6 +128,18 @@ Custom events send **only** non-sensitive metadata: `page_path`, `cta_location`,
 | Service pages | Collapse “What to send” into `<details>`; remove duplicate package cards when guide repeats same tiers |
 
 See **STONE-029**.
+
+## Inquiry capture first (2026-06-13)
+
+| Pattern | Rule |
+|---------|------|
+| Primary path | `submitInquiry` → Supabase `public.inquiries` (anon + RLS INSERT) on React + static forms |
+| Success copy | **Inquiry received** only after REST POST succeeds — never on mailto open |
+| Email fallback | Manual **Email instead** / **Open email draft** buttons; customer must click Send |
+| Failure copy | **Inquiry was not sent automatically** + copy/email/call — no fake success |
+| Auto-open | Never call `openInquiryMailto` on normal submit |
+
+See **STONE-037**.
 
 ## Hero visual accent (2026-05-26)
 

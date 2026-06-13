@@ -791,6 +791,30 @@ Index of operator corrections from pricing/estimator/nav/email/vision passes. Ex
 
 ---
 
+## STONE-037 — Inquiry forms must capture first; email drafts are fallback only
+
+| Field | Value |
+|-------|-------|
+| **Severity** | STRONG_RULE |
+| **Factory link** | DESIGN-036 (extend) |
+| **Status** | ACTIVE |
+| **First observed** | Inquiry capture repair pass (2026-06-13) |
+
+**Problem:** Homepage and static inquiry forms auto-opened mailto/Gmail on submit and showed “Email draft opened” — a lead-capture leak. If the customer lacks Gmail, closes the tab, or never clicks Send, Stone loses the lead.
+
+**Rule:**
+
+1. **Capture first** — POST to Supabase `public.inquiries` via `submitInquiry` / `SI_submitInquiryWithFallback` before any success UI.
+2. **No auto mailto** — never call `openInquiryMailto` or `openMailto` on normal submit.
+3. **Success honesty** — show **Inquiry received** only after save succeeds.
+4. **Failure honesty** — show **Inquiry was not sent automatically** when save fails or env is unset; offer copy + manual email draft + call.
+5. **Email fallback is manual** — **Email instead** / **Open email draft** buttons only; remind customer to click Send.
+6. **Keep fallbacks** — do not remove copy/email/call buttons from success or failure panels.
+
+**QA check:** Submit valid inquiry with env configured → row in Supabase + success panel; no mailto tab auto-opens; failure path shows amber panel with fallbacks.
+
+---
+
 ## How to add a lesson
 
 1. Assign next `STONE-NNN` ID

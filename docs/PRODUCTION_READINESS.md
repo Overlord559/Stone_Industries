@@ -110,6 +110,9 @@ Full checklist: [`DEPLOYMENT.md`](DEPLOYMENT.md) post-deploy section.
 | Item | Status | Notes |
 |------|--------|-------|
 | Run hardened SQL in Supabase | **Before first live submit** | [`docs/supabase/stone-industries-inquiries.sql`](supabase/stone-industries-inquiries.sql) |
+| Inquiry capture path | **Live** | React `InquiryForm` + static `inquiry-form.js` POST via anon key; package/audit forms already on same path |
+| Cloudflare Pages env (build) | **Required for capture** | `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY` — never `VITE_*` service role |
+| Cloudflare Pages env (admin only) | Optional | `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`, `STONE_ADMIN_TOKEN` for `/admin/leads` |
 | CAPTCHA / Turnstile | Deferred | Requires server-side token verification — not client-only |
 | Rate limiting | Deferred | Supabase Edge Function, Netlify Function proxy, or platform limits |
 | Content-Security-Policy | Deferred | Google Fonts `@import` + Vite bundles need tuned CSP — see factory [`NETLIFY_SECURITY_HEADERS.md`](../../priv-saas-factory/docs/NETLIFY_SECURITY_HEADERS.md) |

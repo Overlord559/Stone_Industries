@@ -1,6 +1,6 @@
 # Stone Industries — Learning Loop
 
-**Last updated:** 2026-05-26 · **Project OS v2**  
+**Last updated:** 2026-06-13 · **Project OS v2**  
 **Routing:** [`PROJECT_OS_INDEX.md`](PROJECT_OS_INDEX.md) → learning/backfill row  
 **Related:** SaaS Factory [`docs/SAAS_FACTORY_LEARNING_LOOP.md`](../../priv-saas-factory/docs/SAAS_FACTORY_LEARNING_LOOP.md)
 
@@ -37,6 +37,7 @@ Add to [`DESIGN_MISTAKE_LEDGER.md`](DESIGN_MISTAKE_LEDGER.md) when:
 - AI service naming overclaims capability
 - Background/scrim tuning blocks focal art
 - CTA routing, email fallback, scope boundaries, or prompt/doc discipline gaps
+- Inquiry forms that treat mailto/Gmail as primary capture instead of Supabase save (**STONE-037**, 2026-06-13)
 
 If the pattern applies to **all factory projects**, also promote to SaaS Factory `DESIGN-NNN` (see **DESIGN-036** for 2026-05-25 Stone proof-site batch).
 

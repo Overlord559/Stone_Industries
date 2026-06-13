@@ -10,13 +10,16 @@ import {
 } from '../data/site'
 import {
   buildInquiryGmailUrl,
+  buildInquiryMailto,
   copyInquiryContactEmail,
   copyInquiryDetails,
-  inquiryDraftOpenedMessage,
-  openInquiryMailto,
+  inquiryEmailFallbackHint,
+  inquiryReceivedMessage,
+  inquirySubmitFailedMessage,
 } from '../lib/inquiryEmail'
 import { INQUIRY_SERVICE_EVENT } from '../lib/inquiryNavigation'
 import { type InquiryPayload, validateInquiryInput } from '../lib/inquiryTypes'
+import { inquiryFormAvailable, submitInquiry } from '../lib/submitInquiry'
 import { EmailContactActions } from './ui/EmailContactActions'
 
 type InquiryFormProps = {
@@ -25,18 +28,19 @@ type InquiryFormProps = {
   className?: string
 }
 
-type FormStatus = 'idle' | 'draft_opened' | 'error'
+type FormStatus = 'idle' | 'submitting' | 'success' | 'failure'
 
 export function InquiryForm({ sourcePage, defaultService = '', className = '' }: InquiryFormProps) {
   const [status, setStatus] = useState<FormStatus>('idle')
   const [errorMessage, setErrorMessage] = useState('')
-  const [draftPayload, setDraftPayload] = useState<InquiryPayload | null>(null)
+  const [savedPayload, setSavedPayload] = useState<InquiryPayload | null>(null)
   const [copiedDetails, setCopiedDetails] = useState(false)
   const [copiedEmail, setCopiedEmail] = useState(false)
   const [copyFailed, setCopyFailed] = useState(false)
   const [selectedService, setSelectedService] = useState(
     () => resolveServiceFromQuery() || defaultService,
   )
+  const configured = inquiryFormAvailable()
 
   useEffect(() => {
     function handleServiceSelect(event: Event) {
@@ -49,8 +53,9 @@ export function InquiryForm({ sourcePage, defaultService = '', className = '' }:
     return () => window.removeEventListener(INQUIRY_SERVICE_EVENT, handleServiceSelect)
   }, [])
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
+    if (status === 'submitting') return
 
     const form = event.currentTarget
     const data = new FormData(form)
@@ -66,26 +71,38 @@ export function InquiryForm({ sourcePage, defaultService = '', className = '' }:
     })
 
     if (!validation.ok) {
-      setStatus('error')
+      setStatus('idle')
       setErrorMessage(validation.error)
       return
     }
 
     setErrorMessage('')
-    openInquiryMailto(validation.payload)
-    setDraftPayload(validation.payload)
-    setStatus('draft_opened')
     setCopiedDetails(false)
     setCopiedEmail(false)
     setCopyFailed(false)
-    form.reset()
-    setSelectedService(defaultService)
+    setSavedPayload(validation.payload)
+
+    if (!configured) {
+      setStatus('failure')
+      return
+    }
+
+    setStatus('submitting')
+
+    try {
+      await submitInquiry(validation.payload)
+      setStatus('success')
+      form.reset()
+      setSelectedService(defaultService)
+    } catch {
+      setStatus('failure')
+    }
   }
 
   async function handleCopyDetails() {
-    if (!draftPayload) return
+    if (!savedPayload) return
     setCopyFailed(false)
-    const ok = await copyInquiryDetails(draftPayload)
+    const ok = await copyInquiryDetails(savedPayload)
     if (ok) {
       setCopiedDetails(true)
       window.setTimeout(() => setCopiedDetails(false), 2500)
@@ -105,16 +122,40 @@ export function InquiryForm({ sourcePage, defaultService = '', className = '' }:
     setCopyFailed(true)
   }
 
-  if (status === 'draft_opened' && draftPayload) {
-    const gmailHref = buildInquiryGmailUrl(draftPayload)
+  function resetForm() {
+    setStatus('idle')
+    setSavedPayload(null)
+    setErrorMessage('')
+    setCopiedDetails(false)
+    setCopiedEmail(false)
+    setCopyFailed(false)
+  }
+
+  if ((status === 'success' || status === 'failure') && savedPayload) {
+    const gmailHref = buildInquiryGmailUrl(savedPayload)
+    const mailtoHref = buildInquiryMailto(savedPayload)
+    const isSuccess = status === 'success'
 
     return (
       <div
-        className={`si-section-glass rounded-[1.75rem] border border-cyan-400/25 bg-cyan-400/10 p-6 ${className}`}
+        className={`si-section-glass rounded-[1.75rem] border p-6 ${
+          isSuccess
+            ? 'border-emerald-400/25 bg-emerald-400/10'
+            : 'border-amber-400/25 bg-amber-400/10'
+        } ${className}`}
         role="status"
       >
-        <p className="text-sm font-semibold text-cyan-100">Email draft opened</p>
-        <p className="mt-2 text-sm leading-6 text-slate-200">{inquiryDraftOpenedMessage}</p>
+        <p
+          className={`text-sm font-semibold ${
+            isSuccess ? 'text-emerald-100' : 'text-amber-100'
+          }`}
+        >
+          {isSuccess ? 'Inquiry received' : 'Inquiry was not sent automatically'}
+        </p>
+        <p className="mt-2 text-sm leading-6 text-slate-200">
+          {isSuccess ? inquiryReceivedMessage : inquirySubmitFailedMessage}
+        </p>
+        <p className="mt-2 text-xs leading-5 text-slate-400">{inquiryEmailFallbackHint}</p>
         <div className="mt-4 flex flex-wrap gap-2">
           <button
             type="button"
@@ -123,20 +164,19 @@ export function InquiryForm({ sourcePage, defaultService = '', className = '' }:
           >
             Copy inquiry details
           </button>
-          <button
-            type="button"
-            className="si-secondary-cta inline-flex min-h-10 items-center justify-center rounded-full border border-white/15 bg-white/5 px-4 py-2 text-sm font-semibold !text-white transition hover:bg-white/10"
-            onClick={() => void handleCopyEmail()}
-          >
-            Copy email
-          </button>
           <a
-            href={gmailHref}
-            target="_blank"
-            rel="noopener noreferrer"
+            href={isSuccess ? gmailHref : mailtoHref}
+            target={isSuccess ? '_blank' : undefined}
+            rel={isSuccess ? 'noopener noreferrer' : undefined}
             className="si-secondary-cta inline-flex min-h-10 items-center justify-center rounded-full border border-white/15 bg-white/5 px-4 py-2 text-sm font-semibold !text-white transition hover:bg-white/10"
           >
-            Open Gmail draft
+            {isSuccess ? 'Email instead' : 'Open email draft'}
+          </a>
+          <a
+            href={contactPhoneHref}
+            className="si-secondary-cta inline-flex min-h-10 items-center justify-center rounded-full border border-white/15 bg-white/5 px-4 py-2 text-sm font-semibold !text-white transition hover:bg-white/10"
+          >
+            Call / text {contactPhone}
           </a>
         </div>
         {copiedDetails ? (
@@ -151,19 +191,31 @@ export function InquiryForm({ sourcePage, defaultService = '', className = '' }:
         ) : null}
         {copyFailed ? (
           <p className="mt-2 text-xs text-slate-400" aria-live="polite">
-            Copy unavailable — use Open Gmail draft or email {contactEmail} directly.
+            Copy unavailable — use Email instead or call {contactPhone}.
           </p>
         ) : null}
-        <button
-          type="button"
-          className="mt-4 text-sm font-medium text-cyan-200 underline"
-          onClick={() => {
-            setStatus('idle')
-            setDraftPayload(null)
-          }}
-        >
-          Send another inquiry
-        </button>
+        {isSuccess ? (
+          <button
+            type="button"
+            className="mt-4 text-sm font-medium text-cyan-200 underline"
+            onClick={resetForm}
+          >
+            Send another inquiry
+          </button>
+        ) : (
+          <div className="mt-4 flex flex-wrap gap-3">
+            <button
+              type="button"
+              className="text-sm font-medium text-cyan-200 underline"
+              onClick={() => void handleCopyEmail()}
+            >
+              Copy email ({contactEmail})
+            </button>
+            <button type="button" className="text-sm font-medium text-cyan-200 underline" onClick={resetForm}>
+              Try again
+            </button>
+          </div>
+        )}
       </div>
     )
   }
@@ -179,8 +231,9 @@ export function InquiryForm({ sourcePage, defaultService = '', className = '' }:
           Send an inquiry
         </p>
         <p className="mt-2 text-sm leading-6 text-slate-300">
-          Submit opens your email app with the inquiry filled in. You send the message — nothing is
-          stored on this site until a CRM form is connected.
+          {configured
+            ? 'Submit sends your inquiry to Stone Industries. We review every message and follow up by email or phone.'
+            : 'Submit will try to save your inquiry. If automatic delivery is unavailable, use copy or email fallback below.'}
         </p>
       </div>
 
@@ -282,7 +335,7 @@ export function InquiryForm({ sourcePage, defaultService = '', className = '' }:
         />
       </label>
 
-      {status === 'error' && errorMessage ? (
+      {errorMessage ? (
         <p className="rounded-xl border border-rose-400/30 bg-rose-400/10 px-3 py-2 text-sm text-rose-100" role="alert">
           {errorMessage}
         </p>
@@ -291,9 +344,10 @@ export function InquiryForm({ sourcePage, defaultService = '', className = '' }:
       <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
         <button
           type="submit"
-          className="si-primary-cta inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-semibold !text-slate-950 transition hover:bg-slate-200"
+          disabled={status === 'submitting'}
+          className="si-primary-cta inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-semibold !text-slate-950 transition hover:bg-slate-200 disabled:cursor-not-allowed disabled:opacity-60"
         >
-          Submit inquiry
+          {status === 'submitting' ? 'Sending…' : 'Submit inquiry'}
         </button>
       </div>
 

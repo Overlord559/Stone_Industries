@@ -1,12 +1,16 @@
 import { buildGmailComposeUrl, buildMailto, contactEmail } from '../data/site'
 import type { InquiryPayload } from './inquiryTypes'
 
-// Future: replace mailto fallback with HubSpot embedded form or API once CRM form is ready.
-
 export const INQUIRY_SOURCE_LINE = 'stoneindustriesusa.com inquiry form'
 
-export const inquiryDraftOpenedMessage =
-  'Your email app should open with the inquiry filled in. If it does not, use Copy inquiry details and send it to edward@stoneindustriesusa.com.'
+export const inquiryReceivedMessage =
+  'Stone Industries received your inquiry and will review it. You can also copy the details, email them manually, or call/text if urgent.'
+
+export const inquirySubmitFailedMessage =
+  'The automatic submit did not complete. Please copy the inquiry details or email them to edward@stoneindustriesusa.com.'
+
+export const inquiryEmailFallbackHint =
+  'If you open an email draft, click Send to deliver your inquiry — Stone does not receive it until you send.'
 
 export function buildInquirySubject(service: string, name: string): string {
   return `Stone Industries inquiry — ${service} — ${name}`
