@@ -141,6 +141,18 @@ See **STONE-029**.
 
 See **STONE-037**.
 
+## Cache-safe lead capture (2026-06-13)
+
+| Pattern | Rule |
+|---------|------|
+| Canonical URL QA | Test `https://stoneindustriesusa.com/` — never rely on `?v=` for production behavior |
+| HTML cache | `no-cache, must-revalidate` on `/`, `/*.html`, nested service HTML |
+| Fixed-name JS | `no-cache` on inquiry/pricing public JS; bump `LEAD_CAPTURE_ASSET_VERSION` in `vite.config.ts` when behavior changes |
+| Hashed assets | `/assets/*` stays `immutable` — React homepage picks up new bundles when `index.html` is fresh |
+| Post-deploy | Cloudflare **Purge Everything** + hard refresh + Incognito on normal URL |
+
+See **STONE-038**.
+
 ## Hero visual accent (2026-05-26)
 
 | Pattern | Rule |

@@ -815,6 +815,28 @@ Index of operator corrections from pricing/estimator/nav/email/vision passes. Ex
 
 ---
 
+## STONE-038 — Lead-capture JS cannot rely on query-string cache busting
+
+| Field | Value |
+|-------|-------|
+| **Severity** | STRONG_RULE |
+| **Factory link** | DESIGN-036 (extend) |
+| **Status** | ACTIVE |
+| **First observed** | Inquiry works on `/?v=inquiry-fix-2` but not canonical `/` (2026-06-13) |
+
+**Problem:** Cloudflare cached stale `index.html` (old hashed React bundle refs) and/or fixed-name `inquiry-form.js` while a query-string URL bypassed HTML cache. Real visitors use `https://stoneindustriesusa.com/` — not cache-bust params.
+
+**Rule:**
+
+1. **`public/_headers`** — `no-cache, must-revalidate` on HTML and lead-capture JS; `immutable` only on `/assets/*`.
+2. **Build stamp** — bump `LEAD_CAPTURE_ASSET_VERSION` in `vite.config.ts` when inquiry/pricing static JS changes; dist HTML gets `?v=` on script tags.
+3. **Production QA** — canonical URL, Incognito, after **Purge Everything** — never accept `?v=` as proof of fix.
+4. **No query-param logic** — inquiry behavior must not branch on `location.search` except `?service=` preselect.
+
+**QA check:** After deploy + purge, `/` and `/pricing.html` inquiry save to Supabase without any `?v=` param; Response headers show `Cache-Control: no-cache` on `/` and `/inquiry-form.js`.
+
+---
+
 ## How to add a lesson
 
 1. Assign next `STONE-NNN` ID

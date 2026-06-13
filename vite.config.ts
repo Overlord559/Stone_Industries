@@ -1,6 +1,6 @@
 import tailwindcss from '@tailwindcss/vite'
 import react from '@vitejs/plugin-react'
-import { writeFileSync } from 'node:fs'
+import { readFileSync, readdirSync, statSync, writeFileSync } from 'node:fs'
 import { join, resolve } from 'node:path'
 import { defineConfig, loadEnv, type Plugin } from 'vite'
 import {
@@ -15,6 +15,53 @@ import { advancedSeoNotIncludedNote, advancedSeoPublicLine, aiWorkflowScopeNote 
 
 /** Root deploy (Cloudflare Pages, Netlify). Override with VITE_BASE_PATH for GitHub Pages mirror only. */
 const basePath = process.env.VITE_BASE_PATH ?? '/'
+
+/** Bump when lead-capture static JS behavior changes; stamped into dist HTML at build. */
+const LEAD_CAPTURE_ASSET_VERSION = '2026-06-13-capture'
+
+const LEAD_CAPTURE_SCRIPTS = [
+  'inquiry-config.js',
+  'inquiry-submit.js',
+  'inquiry-form.js',
+  'pricing-estimator.js',
+  'pricing-catalog.js',
+  'package-request-form.js',
+] as const
+
+function stampLeadCaptureScriptsInHtml(html: string): string {
+  let result = html
+  for (const script of LEAD_CAPTURE_SCRIPTS) {
+    const escaped = script.replace('.', '\\.')
+    const pattern = new RegExp(`((?:\\.\\./|\\.\\/|/)?)(${escaped})(?![?&])`, 'g')
+    result = result.replace(pattern, `$1$2?v=${LEAD_CAPTURE_ASSET_VERSION}`)
+  }
+  return result
+}
+
+function walkHtmlFiles(dir: string): string[] {
+  const files: string[] = []
+  for (const entry of readdirSync(dir)) {
+    const full = join(dir, entry)
+    if (statSync(full).isDirectory()) {
+      files.push(...walkHtmlFiles(full))
+      continue
+    }
+    if (entry.endsWith('.html')) {
+      files.push(full)
+    }
+  }
+  return files
+}
+
+function stampLeadCaptureScriptsInDist(outDir: string) {
+  for (const file of walkHtmlFiles(outDir)) {
+    const html = readFileSync(file, 'utf8')
+    const stamped = stampLeadCaptureScriptsInHtml(html)
+    if (stamped !== html) {
+      writeFileSync(file, stamped, 'utf8')
+    }
+  }
+}
 
 function inquiryEnv(mode: string) {
   const fileEnv = loadEnv(mode, process.cwd(), '')
@@ -104,6 +151,7 @@ function stoneStaticAssetsPlugin(): Plugin {
       writeFileSync(join(outDir, 'inquiry-config.js'), inquiryConfigSource(inquiry), 'utf8')
       writeFileSync(join(outDir, 'analytics-config.js'), analyticsConfigSource(analytics), 'utf8')
       writeFileSync(join(outDir, 'pricing-catalog.js'), pricingCatalogSource(), 'utf8')
+      stampLeadCaptureScriptsInDist(outDir)
     },
   }
 }

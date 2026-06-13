@@ -111,6 +111,8 @@ Full checklist: [`DEPLOYMENT.md`](DEPLOYMENT.md) post-deploy section.
 |------|--------|-------|
 | Run hardened SQL in Supabase | **Before first live submit** | [`docs/supabase/stone-industries-inquiries.sql`](supabase/stone-industries-inquiries.sql) |
 | Inquiry capture path | **Live** | React `InquiryForm` + static `inquiry-form.js` POST via anon key; package/audit forms already on same path |
+| Cache headers (`public/_headers`) | **Required** | HTML + lead-capture JS: `no-cache`; `/assets/*`: `immutable` |
+| Post-deploy cache purge | **Required** | Cloudflare Purge Everything after inquiry/HTML/JS deploy — see [`CLOUDFLARE_MIGRATION.md`](CLOUDFLARE_MIGRATION.md) |
 | Cloudflare Pages env (build) | **Required for capture** | `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY` — never `VITE_*` service role |
 | Cloudflare Pages env (admin only) | Optional | `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`, `STONE_ADMIN_TOKEN` for `/admin/leads` |
 | CAPTCHA / Turnstile | Deferred | Requires server-side token verification — not client-only |

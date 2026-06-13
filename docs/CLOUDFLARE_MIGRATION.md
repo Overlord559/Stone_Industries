@@ -93,6 +93,20 @@ Netlify headers live in `netlify.toml`. Cloudflare uses `public/_headers` (copie
 - `Referrer-Policy: strict-origin-when-cross-origin`
 - `Permissions-Policy: camera=(), microphone=(), geolocation=()`
 
+### Cache headers (lead capture — required)
+
+`public/_headers` also sets:
+
+| Path | Cache-Control |
+|------|----------------|
+| `/`, `/index.html`, `/*.html`, `/services/*.html`, MPA `index.html` entries | `no-cache, must-revalidate` |
+| `/inquiry-form.js`, `/inquiry-submit.js`, `/inquiry-config.js`, `/pricing-estimator.js`, `/pricing-catalog.js`, `/package-request-form.js` | `no-cache, must-revalidate` |
+| `/assets/*` (Vite hashed bundles) | `public, max-age=31536000, immutable` |
+
+Build stamps lead-capture script tags in static HTML with `?v=` from `LEAD_CAPTURE_ASSET_VERSION` in `vite.config.ts` — bump when inquiry JS behavior changes.
+
+**After every production deploy that touches inquiry or HTML:** purge Cloudflare cache (see [Post-deploy cache purge](#post-deploy-cache-purge)).
+
 ---
 
 ## What stays static (unchanged)
@@ -176,10 +190,28 @@ Cloudflare additions do not remove Netlify compatibility.
 
 ---
 
+## Post-deploy cache purge
+
+**Required after any deploy that changes inquiry capture, HTML, or fixed-name public JS.**
+
+1. Cloudflare dashboard → **stoneindustriesusa.com** → **Caching** → **Configuration** → **Purge Everything**
+2. Open https://stoneindustriesusa.com/ (no query string)
+3. Hard refresh: **Ctrl+Shift+R** (Windows) / **Cmd+Shift+R** (Mac)
+4. Submit test inquiry on homepage `#contact` — confirm **Inquiry received** (not “Email draft opened”)
+5. Confirm row in Supabase `public.inquiries`
+6. Repeat in **Incognito** on normal URL (not `?v=…`)
+7. Test `/pricing.html` and `/services.html` inquiry on normal URLs
+8. Mobile normal URL smoke
+
+Do **not** rely on `?v=` query strings for production QA — canonical URL must work.
+
+---
+
 ## Post-deploy smoke test
 
 Run on Cloudflare `*.pages.dev` URL (then custom domain when added):
 
+- [ ] `/` — homepage inquiry submits to Supabase on **normal URL** (no `?v=`); success only after save; no auto Gmail
 - [ ] `/` — homepage, assets 200
 - [ ] `/ai-revenue-leak-audit` — dedicated audit landing (200, audit title/meta, $497, no Starter/Growth/Operator cards)
 - [ ] `/pricing.html` — package request form submits to Supabase

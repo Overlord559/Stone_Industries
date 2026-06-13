@@ -234,6 +234,20 @@ See [`QA_CHECKLIST.md`](QA_CHECKLIST.md).
 
 ---
 
+## Cloudflare Pages (production — stoneindustriesusa.com)
+
+Primary production host and cache rules: [`CLOUDFLARE_MIGRATION.md`](CLOUDFLARE_MIGRATION.md).
+
+**After deploy that touches inquiry, HTML, or fixed-name public JS:**
+
+1. Cloudflare → **Caching** → **Purge Everything**
+2. Test https://stoneindustriesusa.com/ on normal URL (no `?v=`)
+3. Hard refresh + Incognito; confirm inquiry saves to Supabase
+
+`public/_headers` ships with `dist/` — HTML and lead-capture JS use `no-cache`; Vite `/assets/*` stays `immutable`.
+
+---
+
 ## Rollback
 
 | Host | Rollback |

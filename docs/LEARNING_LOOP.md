@@ -38,6 +38,7 @@ Add to [`DESIGN_MISTAKE_LEDGER.md`](DESIGN_MISTAKE_LEDGER.md) when:
 - Background/scrim tuning blocks focal art
 - CTA routing, email fallback, scope boundaries, or prompt/doc discipline gaps
 - Inquiry forms that treat mailto/Gmail as primary capture instead of Supabase save (**STONE-037**, 2026-06-13)
+- Stale CDN cache on canonical URL while query-string URLs work (**STONE-038**, 2026-06-13)
 
 If the pattern applies to **all factory projects**, also promote to SaaS Factory `DESIGN-NNN` (see **DESIGN-036** for 2026-05-25 Stone proof-site batch).
 

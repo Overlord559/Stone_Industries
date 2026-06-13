@@ -150,6 +150,10 @@ Optional preview: `npm run preview` — open printed local URL.
 - [ ] Honeypot field hidden; filled honeypot rejects submit
 - [ ] With Supabase env configured: test submit creates row in `public.inquiries`; success shows **Inquiry received** only after save
 - [ ] Submit does **not** auto-open Gmail or mailto on success
+- [ ] Production QA uses **canonical URL** (`https://stoneindustriesusa.com/`) — not `?v=` cache-bust params
+- [ ] After deploy: Cloudflare **Purge Everything** + hard refresh + Incognito test on normal URL
+- [ ] `dist/_headers` sets `no-cache` on `/`, `/*.html`, and lead-capture JS (`inquiry-form.js`, etc.)
+- [ ] `dist/assets/*` remains `immutable` (hashed Vite bundles)
 - [ ] Success fallback buttons: Copy inquiry details, **Email instead**, Call/text — manual only
 - [ ] Submit failure shows **Inquiry was not sent automatically** + copy/email draft/call fallbacks (no fake success)
 - [ ] With env unset: submit attempts show failure panel with manual fallbacks (not mailto-first success)
