@@ -22,10 +22,12 @@
 - React Three Fiber for restrained interactive orb accents (desktop)
 - Cinematic parallax backgrounds (main DALRM hero + lower coastal-tech support image)
 - **Cloudflare Pages** — production host (`stoneindustriesusa.com`, `VITE_BASE_PATH=/`, `public/_headers`, `public/_redirects`)
-- **Netlify** — rollback only (`netlify.toml` preserved; not primary)
+- **Netlify** — rollback mirror only (`netlify.toml` preserved; **not** primary production)
 - GitHub Pages mirror via `.github/workflows/deploy.yml` on push to `main` (fallback, not primary commercial URL)
 - Contact: `edward@stoneindustriesusa.com` · `559-579-9376`
-- Inquiry capture: Supabase `public.inquiries` (anon insert + RLS) when env configured; mailto/tel fallback always available
+- **Lead capture:** `POST /api/inquiries` (Cloudflare Functions) → Supabase `public.inquiries` (source of truth) → Resend operator notify → HubSpot optional; anon insert fallback when API unavailable
+- **Resend (live):** `Stone Industries <notifications@notify.stoneindustriesusa.com>` → `edward@stoneindustriesusa.com`
+- **HubSpot:** sync code shipped; optional until `HUBSPOT_PRIVATE_APP_TOKEN` set in Cloudflare Functions
 - **Navigation (2026-05-25):** Top nav **Services** → `services.html`; **Pricing** → `pricing.html`. Homepage `#services` anchor kept for hero scroll only.
 - **Homepage service cards:** Compare → `pricing.html?service=<slug>`; Request → same-page inquiry scroll with service preselect (`navigateToContactInquiry`). CSS **3D service objects** link to estimator — no WebGL.
 - **Inquiry-first conversion:** Hero and form clusters use inquiry CTAs; phone shown as plain linked text (`Prefer phone? 559-579-9376`). Mobile sticky bar: Inquiry + Pricing.

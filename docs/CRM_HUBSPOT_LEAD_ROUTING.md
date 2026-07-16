@@ -93,7 +93,7 @@ Set in **Pages → Settings → Environment variables** (Functions scope):
 ## Resend setup (operator)
 
 1. Create Resend account and verify sending domain (or use Resend onboarding domain for testing).
-2. Set `RESEND_FROM` to verified sender (e.g. `Stone Industries <hello@stoneindustriesusa.com>`).
+2. Set `RESEND_FROM` to verified sender, e.g. `Stone Industries <notifications@notify.stoneindustriesusa.com>` (production verified).
 3. Set `RESEND_API_KEY` in Cloudflare Functions env.
 4. Set `STONE_NOTIFY_EMAIL=edward@stoneindustriesusa.com`.
 5. Submit test inquiry on production → check Edward inbox.
